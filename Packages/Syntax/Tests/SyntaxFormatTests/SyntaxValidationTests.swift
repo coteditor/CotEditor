@@ -54,6 +54,14 @@ struct SyntaxValidationTests {
     }
     
     
+    @Test func emptyPatternValidation() {
+        
+        let syntax = Syntax(outlines: [.init()])
+        
+        #expect(syntax.validate().isEmpty)
+    }
+    
+    
     @Test func outlineAndBlockCommentValidation() {
         
         let syntax = Syntax(

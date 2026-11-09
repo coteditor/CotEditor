@@ -80,7 +80,7 @@ public extension Syntax {
             // allow appearing the same highlights in different kinds
             var checkedHighlights: Set<Syntax.Highlight> = []
             
-            for highlight in highlights {
+            for highlight in highlights where !highlight.begin.isEmpty {
                 guard checkedHighlights.insert(highlight).inserted else {
                     errors.append(Error(.duplicated, scope: .highlight(type), value: highlight.begin))
                     continue
@@ -93,7 +93,7 @@ public extension Syntax {
                         errors.append(Error(.regularExpression, scope: .highlight(type), value: highlight.begin))
                     }
                     
-                    if let end = highlight.end {
+                    if let end = highlight.end, !end.isEmpty {
                         do {
                             _ = try NSRegularExpression(pattern: end)
                         } catch {
@@ -104,7 +104,7 @@ public extension Syntax {
             }
         }
         
-        for outline in self.outlines {
+        for outline in self.outlines where !outline.pattern.isEmpty {
             do {
                 _ = try NSRegularExpression(pattern: outline.pattern)
             } catch {
