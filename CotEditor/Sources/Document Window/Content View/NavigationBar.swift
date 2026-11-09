@@ -72,16 +72,11 @@ struct NavigationBar: View {
             .labelStyle(.iconOnly)
             .help(.init("Split editor", table: "Document", comment: "verb; tooltip; split the editor pane"))
             .contextMenu {
-                Button {
+                Button(self.splitState.isVertical
+                       ? .init("Stack Editors Horizontally", table: "MainMenu", comment: "verb; menu item")
+                       : .init("Stack Editors Vertically", table: "MainMenu", comment: "verb; menu item"))
+                {
                     NSApp.sendAction(#selector(DocumentViewController.toggleSplitOrientation), to: nil, from: nil)
-                } label: {
-                    if self.splitState.isVertical {
-                        Label(.init("Stack Editors Horizontally", table: "MainMenu", comment: "verb; menu item"),
-                              systemImage: "rectangle.split.1x2")
-                    } else {
-                        Label(.init("Stack Editors Vertically", table: "MainMenu", comment: "verb; menu item"),
-                              systemImage: "rectangle.split.2x1")
-                    }
                 }
             }
         }
@@ -109,17 +104,7 @@ private struct OutlineNavigationView: View {
         HStack {
             if let items = self.navigator.items {
                 if !items.isEmpty {
-                    HStack(spacing: 0) {
-                        if self.navigator.isVerticalOrientation {
-                            self.nextButton(systemImage: "chevron.left")
-                            self.previousButton(systemImage: "chevron.right")
-                        } else {
-                            self.previousButton(systemImage: "chevron.up")
-                            self.nextButton(systemImage: "chevron.down")
-                        }
-                    }
-                    .fontWeight(.medium)
-                    .labelStyle(.iconOnly)
+                    OutlineNavigationButtons(navigator: self.navigator)
                     
                     // Use AppKit-based picker to open programmatically (2024-05, macOS 14).
                     OutlinePicker(items: items, selection: $navigator.selection, isPresented: $navigator.isOutlinePickerPresented) {
@@ -148,6 +133,28 @@ private struct OutlineNavigationView: View {
                 self.isLongExtraction = false
             }
         }
+    }
+}
+
+
+private struct OutlineNavigationButtons: View {
+    
+    var navigator: OutlineNavigator
+    
+    
+    var body: some View {
+        
+        HStack(spacing: 0) {
+            if self.navigator.isVerticalOrientation {
+                self.nextButton(systemImage: "chevron.left")
+                self.previousButton(systemImage: "chevron.right")
+            } else {
+                self.previousButton(systemImage: "chevron.up")
+                self.nextButton(systemImage: "chevron.down")
+            }
+        }
+        .fontWeight(.medium)
+        .labelStyle(.iconOnly)
     }
     
     
