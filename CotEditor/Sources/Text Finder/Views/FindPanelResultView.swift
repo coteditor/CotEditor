@@ -203,12 +203,19 @@ private extension FindAllMatch {
     /// - Returns: An attributed string.
     func attributedLineString(offset: Int) -> AttributedString {
         
-        let string = NSMutableAttributedString(string: self.lineString)
+        var string = AttributedString(self.lineString)
+        
         for highlight in self.highlights {
-            string.addAttribute(.backgroundColor, value: highlight.value, range: highlight.range)
+            guard let range = Range(highlight.range, in: string) else { continue }
+            
+            string[range].backgroundColor = Color(nsColor: highlight.value)
         }
         
-        return AttributedString(string.truncatedHead(until: self.inlineLocation, offset: offset))
+        if let range = Range(NSRange(location: self.inlineLocation, length: 0), in: string) {
+            string.truncateHead(until: range.lowerBound, offset: offset)
+        }
+        
+        return string
     }
 }
 

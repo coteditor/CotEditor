@@ -114,21 +114,6 @@ public extension NSAttributedString {
         
         return value != nil || effectiveRange.upperBound < range.upperBound
     }
-    
-    
-    /// Truncates the head with an ellipsis until the specified `location` if the length before `location` exceeds `offset`.
-    ///
-    /// - Parameters:
-    ///   - location: The character index at which truncation should start.
-    ///   - offset: The maximum number of composed characters to leave to the left of `location`.
-    /// - Returns: The truncated attributed string.
-    final func truncatedHead(until location: Int, offset: Int) -> NSAttributedString {
-        
-        let mutable = self.mutable
-        mutable.truncateHead(until: location, offset: offset)
-        
-        return mutable
-    }
 }
 
 
@@ -138,30 +123,6 @@ public extension NSMutableAttributedString {
     static func += (lhs: inout NSMutableAttributedString, rhs: NSAttributedString) {
         
         lhs.append(rhs)
-    }
-}
-
-
-extension NSMutableAttributedString {
-    
-    /// Truncates the head with an ellipsis until the specified `location` if the length before `location` exceeds `offset`.
-    ///
-    /// - Parameters:
-    ///   - location: The character index at which truncation should start.
-    ///   - offset: The maximum number of composed characters to leave to the left of `location`.
-    final func truncateHead(until location: Int, offset: Int) {
-        
-        assert(location >= 0)
-        assert(offset >= 0)
-        
-        guard location > offset else { return }
-        
-        let truncationIndex = (self.string as NSString)
-            .lowerBoundOfComposedCharacterSequence(location, offsetBy: offset)
-        
-        guard truncationIndex > 0 else { return }
-        
-        self.replaceCharacters(in: NSRange(..<truncationIndex), with: "…")
     }
 }
 

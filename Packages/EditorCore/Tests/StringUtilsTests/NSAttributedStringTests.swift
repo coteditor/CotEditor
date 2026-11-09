@@ -55,38 +55,6 @@ struct NSAttributedStringTests {
     }
     
     
-    @Test func truncate() throws {
-        
-        let string1 = NSMutableAttributedString(string: "0123456")
-        string1.truncateHead(until: 5, offset: 2)
-        #expect(string1.string == "…3456")
-        
-        let string2 = NSMutableAttributedString(string: "0123456")
-        string2.truncateHead(until: 2, offset: 3)
-        #expect(string2.string == "0123456")
-        
-        let string3 = NSMutableAttributedString(string: "🐱🐶🐮")
-        string3.truncateHead(until: 4, offset: 1)
-        #expect(string3.string == "…🐶🐮")
-        
-        let string4 = NSMutableAttributedString(string: "🐈‍⬛🐕🐄")
-        string4.truncateHead(until: 4, offset: 1)
-        #expect(string4.string == "🐈‍⬛🐕🐄")
-        
-        let string5 = NSMutableAttributedString(string: "🐈‍⬛🐕🐄")
-        string5.truncateHead(until: 5, offset: 1)
-        #expect(string5.string == "🐈‍⬛🐕🐄")
-        
-        let string6 = NSMutableAttributedString(string: "🐈‍⬛ab")
-        string6.truncateHead(until: 5, offset: 1)
-        #expect(string6.string == "…ab")
-        
-        let string7 = NSMutableAttributedString(string: "🐈‍⬛🐕🐄")
-        string7.truncateHead(until: 6, offset: 1)
-        #expect(string7.string == "…🐕🐄")
-    }
-    
-    
     @Test func join() {
         
         let attrs: [NSAttributedString] = [
@@ -171,16 +139,6 @@ struct NSAttributedStringTests {
         
         let empty = NSAttributedString(string: "")
         #expect(!empty.hasAttribute(.test))
-    }
-    
-    
-    @Test func truncatedHead() {
-        
-        let original = NSAttributedString(string: "0123456")
-        let truncated = original.truncatedHead(until: 5, offset: 2)
-        
-        #expect(truncated.string == "…3456")
-        #expect(original.string == "0123456")
     }
     
     
