@@ -138,6 +138,7 @@ struct SyntaxMappingTableTests {
         #expect(SyntaxMappingTable.scanInterpreterInShebang("#!/usr/bin/env swift") == "swift")
         #expect(SyntaxMappingTable.scanInterpreterInShebang("#!/usr/bin/env -S swift -frontend") == "swift")
         #expect(SyntaxMappingTable.scanInterpreterInShebang("#!/usr/bin/env swift\nabc") == "swift")
+        #expect(SyntaxMappingTable.scanInterpreterInShebang("#!/usr/bin/env\r\nruby") == nil)
         #expect(SyntaxMappingTable.scanInterpreterInShebang("#!/usr/bin/osascript -l JavaScript") == "osascript")
     }
 }

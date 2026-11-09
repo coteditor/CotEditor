@@ -117,7 +117,7 @@ public struct SyntaxMappingTable: Equatable, Sendable {
     static func scanInterpreterInShebang(_ source: String) -> SyntaxName? {
         
         guard
-            let shebang = source.firstMatch(of: /^#!\s*(?<first>\S+)(?<rest>[^\n]*)/),
+            let shebang = source.firstMatch(of: /^#!\h*(?<first>\S+)(?<rest>.*)/),
             let interpreter = shebang.first.split(separator: "/").last
         else { return nil }
         
