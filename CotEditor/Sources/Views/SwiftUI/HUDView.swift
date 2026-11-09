@@ -82,7 +82,7 @@ struct HUDView: View {
             .scaleEffect(y: self.symbol.isFlipped ? -1 : 1)
             .padding(28)
             .foregroundStyle(.secondary)
-            .background(.ultraThinMaterial, in: .rect(cornerRadius: 14, style: .continuous))
+            .background(.ultraThinMaterial, in: .rect(cornerRadius: 14))
             .opacity(self.isPresented ? 1 : 0)
             .onAppear {
                 withAnimation(.default.delay(0.5)) {

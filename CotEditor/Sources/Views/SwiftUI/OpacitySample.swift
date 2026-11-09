@@ -34,7 +34,7 @@ struct OpacitySample: View {
     var body: some View {
         
         GeometryReader { geometry in
-            let shape = RoundedRectangle(cornerRadius: geometry.size.height / 3, style: .continuous)
+            let shape = RoundedRectangle(cornerRadius: geometry.size.height / 3)
             
             shape
                 .fill(.background)

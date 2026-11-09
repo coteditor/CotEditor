@@ -78,8 +78,8 @@ struct CloudSettingsCopiesView: View {
                     }
                 }
             }
-            .clipShape(.rect(cornerRadius: 7, style: .continuous))
-            .overlay(RoundedRectangle(cornerRadius: 7, style: .continuous).strokeBorder(.separator))
+            .clipShape(.rect(cornerRadius: 7))
+            .overlay(RoundedRectangle(cornerRadius: 7).strokeBorder(.separator))
             .overlay {
                 if let loadingError {
                     Text(loadingError.localizedDescription)

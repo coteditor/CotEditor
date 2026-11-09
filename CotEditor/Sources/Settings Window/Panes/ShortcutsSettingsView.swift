@@ -87,8 +87,8 @@ struct ShortcutsSettingsView: View {
                 .padding(.vertical, 6)
             }
             .scrollEdgeEffectStyle(.hard, for: .top)
-            .clipShape(.rect(cornerRadius: 7, style: .continuous))
-            .overlay(RoundedRectangle(cornerRadius: 7, style: .continuous).strokeBorder(.separator))
+            .clipShape(.rect(cornerRadius: 7))
+            .overlay(RoundedRectangle(cornerRadius: 7).strokeBorder(.separator))
             .frame(height: 280)
             
             HStack(alignment: .firstTextBaseline) {

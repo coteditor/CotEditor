@@ -122,7 +122,7 @@ struct IncompatibleCharactersView: View {
                 }
                 .tableStyle(.bordered)
                 .padding(-1)  // remove border
-                .clipShape(.rect(cornerRadius: 8, style: .continuous))
+                .clipShape(.rect(cornerRadius: 8))
                 .onChange(of: self.selection) { _, newValue in
                     self.model.selectItem(id: newValue)
                 }
