@@ -313,7 +313,7 @@ private struct ModeIndentOptionsView: View {
             
             Group {
                 HStack(alignment: .firstTextBaseline) {
-                    Text(.init("Prefer using", table: "EditSettings"))
+                    Text("Prefer using", tableName: "EditSettings")
                         .accessibilityLabeledPair(role: .label, id: "expandsTab", in: self.accessibility)
                     Picker(selection: self.expandsTab) {
                         Text("Spaces", tableName: "EditSettings", comment: "noun; menu item; indent style").tag(true)
