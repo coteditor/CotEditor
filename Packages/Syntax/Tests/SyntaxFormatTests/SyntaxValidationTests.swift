@@ -37,6 +37,7 @@ struct SyntaxValidationTests {
             highlights: [
                 .keywords: [
                     duplicate,
+                    .init(begin: "abc", ignoreCase: true),
                     duplicate,
                     .init(begin: "(", isRegularExpression: true),
                     .init(begin: "a", end: "(", isRegularExpression: true),

@@ -53,7 +53,7 @@ public struct Syntax: Equatable, Sendable {
     }
     
     
-    public struct Highlight: Equatable, Sendable {
+    public struct Highlight: Hashable, Sendable {
         
         public var begin: String
         public var end: String?

@@ -75,19 +75,13 @@ public extension Syntax {
         var errors: [Error] = []
         
         for type in SyntaxType.allCases {
-            guard let highlights = self.highlights[type]?
-                .sorted(using: [KeyPathComparator(\.begin), KeyPathComparator(\.end)])  // sort for duplication check
-            else { continue }
+            guard let highlights = self.highlights[type] else { continue }
             
             // allow appearing the same highlights in different kinds
-            var lastHighlight: Syntax.Highlight?
+            var checkedHighlights: Set<Syntax.Highlight> = []
             
             for highlight in highlights {
-                defer {
-                    lastHighlight = highlight
-                }
-                
-                guard highlight != lastHighlight else {
+                guard checkedHighlights.insert(highlight).inserted else {
                     errors.append(Error(.duplicated, scope: .highlight(type), value: highlight.begin))
                     continue
                 }
