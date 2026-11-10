@@ -127,7 +127,11 @@ extension [NestableToken: SyntaxType] {
                 continue
             }
             
-            guard let endIndex = beginPosition.token.matchingEndIndex(in: positions, from: index, lowerBound: beginPosition.range.upperBound, upperBound: searchUpperBound) else {
+            // -> searchUpperBound can precede the begin token end when the token ends between CR and LF of a CRLF.
+            guard
+                beginPosition.range.upperBound <= searchUpperBound,
+                let endIndex = beginPosition.token.matchingEndIndex(in: positions, from: index, range: NSRange(beginPosition.range.upperBound...searchUpperBound))
+            else {
                 if !beginPosition.token.allowsMultiline {
                     failedUpperBounds[beginPosition.token] = searchUpperBound
                 }
@@ -140,7 +144,7 @@ extension [NestableToken: SyntaxType] {
             highlights[beginPosition.type, default: []].append(range)
             
             seekLocation = range.upperBound
-            index = endIndex
+            index = endIndex + 1
         }
         
         return highlights
@@ -221,15 +225,14 @@ private extension NestableToken {
     }
     
     
-    /// Returns the index of the first end token that matches the begin token within the search bound.
+    /// Returns the index of the first end token that matches the begin token within the search bounds.
     ///
     /// - Parameters:
     ///   - positions: The ordered token positions in the parse range.
     ///   - startIndex: The index in `positions` where the search starts.
-    ///   - searchLowerBound: The lower bound where an end token can start.
-    ///   - searchUpperBound: The upper bound where the search should stop.
+    ///   - searchRange: The UTF-16 search range for token start locations.
     /// - Returns: The index of the matching end token in `positions`, or `nil` if not found.
-    func matchingEndIndex(in positions: [NestableItem], from startIndex: Int, lowerBound searchLowerBound: Int, upperBound searchUpperBound: Int) -> Int? {
+    func matchingEndIndex(in positions: [NestableItem], from startIndex: Int, range searchRange: NSRange) -> Int? {
         
         let isDoubleEscape: Bool = switch self {
             case .pair(let pair, _, _, _, let escapeCharacter?): String(escapeCharacter) == pair.end
@@ -237,35 +240,38 @@ private extension NestableToken {
         }
         
         var nestDepth = 0
-        var skipCount = 0
-        for (offset, position) in positions[startIndex...].enumerated() where position.token == self {
-            guard position.range.location <= searchUpperBound else { return nil }
+        var skipsNext = false
+        for index in positions.indices[startIndex...] where positions[index].token == self {
+            let position = positions[index]
+            
+            guard position.range.location < searchRange.upperBound else { return nil }
             
             // skip tokens overlapping the begin token
-            guard position.range.location >= searchLowerBound else { continue }
+            guard position.range.location >= searchRange.lowerBound else { continue }
             
-            guard skipCount == 0 else {
-                skipCount -= 1
+            guard !skipsNext else {
+                skipsNext = false
                 continue
             }
             
             if position.role.contains(.end) {
                 // -> Single character pairs cannot be nested.
-                if isDoubleEscape, startIndex < positions.count {
-                    skipCount = positions[(startIndex + offset + 1)...].prefix { next in
-                        next.token == position.token &&
-                        next.role.contains(.end) &&
-                        next.range.location <= searchUpperBound &&
-                        next.range.location == position.range.location + 1 + skipCount
-                    }.count
-                    
-                    if skipCount.isMultiple(of: 2) {
-                        return startIndex + offset + skipCount  // found
-                    } else {
+                if isDoubleEscape {
+                    // skip a pair of adjacent end tokens as an escaped delimiter
+                    let nextIndex = index + 1
+                    if nextIndex < positions.endIndex,
+                       positions[nextIndex].token == self,
+                       positions[nextIndex].role.contains(.end),
+                       positions[nextIndex].range.location < searchRange.upperBound,
+                       positions[nextIndex].range.location == position.range.location + 1
+                    {
+                        skipsNext = true
                         continue
                     }
+                    return index  // found
                 }
-                if nestDepth == 0 { return startIndex + offset }  // found
+                if nestDepth == 0 { return index }  // found
+                
                 nestDepth -= 1
                 
             } else if self.allowsNesting {

@@ -324,6 +324,18 @@ struct NestableTests {
         }
         
         
+        @Test func pairBeginEndingBetweenCRLF() throws {
+            
+            let source = "x\r\ny"
+            let tokens: [NestableToken: SyntaxType] = [
+                .pair(Pair("x\r", "y"), isMultiline: false, isNestable: false): .strings,
+            ]
+            let dict = try tokens.parseHighlights(in: source, range: source.nsRange)
+            
+            #expect(dict.isEmpty)
+        }
+        
+        
         @Test func pairEndOverlappingBegin() throws {
             
             let source = "/*/ a */ b"
