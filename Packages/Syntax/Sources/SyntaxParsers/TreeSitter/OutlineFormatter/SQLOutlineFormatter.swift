@@ -151,14 +151,9 @@ private extension SQLOutlineFormatter {
             return Self.typeText(for: typeNodes, source: source)
         }
         
-        var typeNodes = (0..<argument.namedChildCount)
+        let typeNodes = (0..<argument.namedChildCount)
             .compactMap(argument.namedChild(at:))
             .filter { Self.sqlTypeNodeTypes.contains($0.nodeType ?? "") }
-        
-        // drop the leading modifier keyword node (e.g. IN, OUT, INOUT, VARIADIC)
-        if typeNodes.count > 1, typeNodes[1].nodeType != "array_size_definition" {
-            typeNodes.removeFirst()
-        }
         
         return Self.typeText(for: typeNodes, source: source)
     }
