@@ -40,6 +40,16 @@
       "isMultiline" : true
     },
     {
+      "begin" : "\"",
+      "description" : "WYSIWYG/hex string literal",
+      "end" : "\"",
+      "isMultiline" : true,
+      "prefixes" : [
+        "r",
+        "x"
+      ]
+    },
+    {
       "begin" : "`",
       "description" : "WYSIWYG string literal",
       "end" : "`",
@@ -50,16 +60,6 @@
       "description" : "Token string literal with { } delimiter",
       "end" : "}",
       "isMultiline" : true
-    },
-    {
-      "begin" : "\"",
-      "description" : "WYSIWYG/hex string literal",
-      "end" : "\"",
-      "isMultiline" : true,
-      "prefixes" : [
-        "r",
-        "x"
-      ]
     }
   ]
 }

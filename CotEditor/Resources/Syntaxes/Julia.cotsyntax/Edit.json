@@ -40,12 +40,6 @@
       "isMultiline" : true
     },
     {
-      "begin" : "\"\"\"",
-      "end" : "\"\"\"",
-      "escapeCharacter" : "\\",
-      "isMultiline" : true
-    },
-    {
       "begin" : "\"",
       "description" : "Prefixed string literal",
       "end" : "\"",
@@ -55,6 +49,12 @@
         "r",
         "v"
       ]
+    },
+    {
+      "begin" : "\"\"\"",
+      "end" : "\"\"\"",
+      "escapeCharacter" : "\\",
+      "isMultiline" : true
     }
   ]
 }

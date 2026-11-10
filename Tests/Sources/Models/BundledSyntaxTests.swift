@@ -69,6 +69,12 @@ actor BundledSyntaxTests {
                     ".completions of “\(name)” is not sanitized in the latest manner")
             #expect(syntax.commentDelimiters == sanitized.commentDelimiters,
                     ".commentDelimiters of “\(name)” is not sanitized in the latest manner")
+            #expect(syntax.stringDelimiters == sanitized.stringDelimiters,
+                    ".stringDelimiters of “\(name)” is not sanitized in the latest manner")
+            #expect(syntax.characterDelimiters == sanitized.characterDelimiters,
+                    ".characterDelimiters of “\(name)” is not sanitized in the latest manner")
+            #expect(syntax.indentation == sanitized.indentation,
+                    ".indentation of “\(name)” is not sanitized in the latest manner")
             #expect(syntax.fileMap.extensions == sanitized.fileMap.extensions,
                     ".extensions of “\(name)” is not sanitized in the latest manner")
             #expect(syntax.fileMap.filenames == sanitized.fileMap.filenames,

@@ -27,29 +27,18 @@
       "escapeCharacter" : "\\"
     },
     {
-      "begin" : "\"\"\"",
-      "end" : "\"\"\"",
-      "escapeCharacter" : "\\",
-      "isMultiline" : true
-    },
-    {
-      "begin" : "'",
-      "end" : "'",
-      "escapeCharacter" : "\\"
-    },
-    {
-      "begin" : "'''",
-      "end" : "'''",
-      "escapeCharacter" : "\\",
-      "isMultiline" : true
-    },
-    {
       "begin" : "\"",
       "description" : "Raw string literal",
       "end" : "\"",
       "prefixes" : [
         "r"
       ]
+    },
+    {
+      "begin" : "\"\"\"",
+      "end" : "\"\"\"",
+      "escapeCharacter" : "\\",
+      "isMultiline" : true
     },
     {
       "begin" : "\"\"\"",
@@ -62,11 +51,22 @@
     },
     {
       "begin" : "'",
+      "end" : "'",
+      "escapeCharacter" : "\\"
+    },
+    {
+      "begin" : "'",
       "description" : "Raw string literal",
       "end" : "'",
       "prefixes" : [
         "r"
       ]
+    },
+    {
+      "begin" : "'''",
+      "end" : "'''",
+      "escapeCharacter" : "\\",
+      "isMultiline" : true
     },
     {
       "begin" : "'''",

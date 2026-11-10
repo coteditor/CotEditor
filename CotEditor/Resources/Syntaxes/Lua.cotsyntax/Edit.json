@@ -56,15 +56,9 @@
       "escapeCharacter" : "\\"
     },
     {
-      "begin" : "[[",
-      "description" : "Long bracket string (level 0)",
-      "end" : "]]",
-      "isMultiline" : true
-    },
-    {
-      "begin" : "[=[",
-      "description" : "Long bracket string (level 1)",
-      "end" : "]=]",
+      "begin" : "[===[",
+      "description" : "Long bracket string (level 3)",
+      "end" : "]===]",
       "isMultiline" : true
     },
     {
@@ -74,9 +68,15 @@
       "isMultiline" : true
     },
     {
-      "begin" : "[===[",
-      "description" : "Long bracket string (level 3)",
-      "end" : "]===]",
+      "begin" : "[=[",
+      "description" : "Long bracket string (level 1)",
+      "end" : "]=]",
+      "isMultiline" : true
+    },
+    {
+      "begin" : "[[",
+      "description" : "Long bracket string (level 0)",
+      "end" : "]]",
       "isMultiline" : true
     }
   ]

@@ -34,11 +34,6 @@
       "escapeCharacter" : "\\"
     },
     {
-      "begin" : "\"\"\"",
-      "end" : "\"\"\"",
-      "isMultiline" : true
-    },
-    {
       "begin" : "\"",
       "description" : "Interpolated string literal",
       "end" : "\"",
@@ -58,6 +53,11 @@
         "$@",
         "@$"
       ]
+    },
+    {
+      "begin" : "\"\"\"",
+      "end" : "\"\"\"",
+      "isMultiline" : true
     }
   ]
 }

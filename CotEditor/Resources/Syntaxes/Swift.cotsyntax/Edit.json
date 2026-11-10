@@ -42,15 +42,15 @@
       "end" : "\"#"
     },
     {
-      "begin" : "##\"",
-      "description" : "Raw string literal (2 #)",
-      "end" : "\"##"
-    },
-    {
       "begin" : "#\"\"\"",
       "description" : "Raw multiline string literal (1 #)",
       "end" : "\"\"\"#",
       "isMultiline" : true
+    },
+    {
+      "begin" : "##\"",
+      "description" : "Raw string literal (2 #)",
+      "end" : "\"##"
     },
     {
       "begin" : "##\"\"\"",
