@@ -105,6 +105,18 @@ struct TreeSitterHTMLOutlineTests {
     }
     
     
+    @Test func outlineTreatsLineBreakAsWhitespace() async throws {
+        
+        let source = #"""
+            <h2>A<br>B</h2>
+            """#
+        
+        let outline = try await self.parseOutline(in: source)
+        
+        #expect(outline.map(\.title) == ["A B"])
+    }
+    
+    
     // MARK: Private Methods
     
     /// Parses outline items from an HTML source snippet using the shared HTML tree-sitter configuration.

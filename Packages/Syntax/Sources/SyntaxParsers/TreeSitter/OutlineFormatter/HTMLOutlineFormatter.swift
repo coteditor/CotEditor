@@ -110,7 +110,7 @@ private extension HTMLOutlineFormatter {
     }
     
     
-    /// Returns whether the gap between text nodes contains visible whitespace outside tags and quoted attributes.
+    /// Returns whether the gap between text nodes contains visible whitespace outside tags and quoted attributes, or a line break element.
     ///
     /// - Parameter string: The source gap to inspect.
     /// - Returns: `true` when the gap contributes visible whitespace to rendered text.
@@ -119,7 +119,9 @@ private extension HTMLOutlineFormatter {
         var isInsideTag = false
         var quote: Character?
         
-        for character in string {
+        for index in string.indices {
+            let character = string[index]
+            
             if let quotedCharacter = quote {
                 if character == quotedCharacter {
                     quote = nil
@@ -135,6 +137,9 @@ private extension HTMLOutlineFormatter {
                 }
             } else {
                 if character == "<" {
+                    if string[string.index(after: index)...].prefixMatch(of: /br[\s\/>]/.ignoresCase()) != nil {
+                        return true
+                    }
                     isInsideTag = true
                 } else if character.isWhitespace {
                     return true
