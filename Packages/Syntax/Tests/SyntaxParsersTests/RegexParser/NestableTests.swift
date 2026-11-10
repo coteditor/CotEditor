@@ -309,5 +309,31 @@ struct NestableTests {
             let plainMatches = (dict[.strings] ?? []).map((source as NSString).substring(with:))
             #expect(plainMatches == [#""plain""#])
         }
+        
+        
+        @Test func prefixedSameDelimiterClosedAfterPrefixCharacter() throws {
+            
+            let source = #"r"bar" "baz""#
+            let tokens: [NestableToken: SyntaxType] = [
+                .pair(Pair("\"", "\""), prefixes: ["r"], isMultiline: false, isNestable: true): .strings,
+            ]
+            let dict = try tokens.parseHighlights(in: source, range: source.nsRange)
+            let matches = (dict[.strings] ?? []).map((source as NSString).substring(with:))
+            
+            #expect(matches == [#"r"bar""#])
+        }
+        
+        
+        @Test func pairEndOverlappingBegin() throws {
+            
+            let source = "/*/ a */ b"
+            let tokens: [NestableToken: SyntaxType] = [
+                .pair(Pair("/*", "*/"), isMultiline: true, isNestable: false): .comments,
+            ]
+            let dict = try tokens.parseHighlights(in: source, range: source.nsRange)
+            let matches = (dict[.comments] ?? []).map((source as NSString).substring(with:))
+            
+            #expect(matches == ["/*/ a */"])
+        }
     }
 }

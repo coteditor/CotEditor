@@ -127,7 +127,7 @@ extension [NestableToken: SyntaxType] {
                 continue
             }
             
-            guard let endIndex = beginPosition.token.matchingEndIndex(in: positions, from: index, upperBound: searchUpperBound) else {
+            guard let endIndex = beginPosition.token.matchingEndIndex(in: positions, from: index, lowerBound: beginPosition.range.upperBound, upperBound: searchUpperBound) else {
                 if !beginPosition.token.allowsMultiline {
                     failedUpperBounds[beginPosition.token] = searchUpperBound
                 }
@@ -165,7 +165,7 @@ private extension NestableToken {
         
         switch self {
             case .inline: false
-            case .pair(_, _, _, let isNestable, _): isNestable
+            case .pair(let pair, _, _, let isNestable, _): isNestable && pair.begin != pair.end
         }
     }
     
@@ -198,38 +198,25 @@ private extension NestableToken {
                 // -> `prefixes` is pre-sorted by descending length at NestableToken creation
                 //    to ensure longest-match-first and stable Hashable identity.
                 let nsString = string as NSString
+                let endRanges = string.ranges(of: pair.end, range: parseRange)
                 
-                if pair.begin == pair.end {
-                    let ranges = string.ranges(of: pair.begin, range: parseRange)
-                    if prefixes.isEmpty {
-                        return ranges
-                            .map { NestableItem(type: type, token: self, role: [.begin, .end], range: $0) }
-                    } else {
-                        return ranges.map { range in
-                            if let prefixLength = Self.matchingPrefixLength(at: range.location, in: nsString, prefixes: prefixes, parseRange: parseRange) {
-                                NestableItem(type: type, token: self, role: .begin,
-                                             range: NSRange(location: range.location - prefixLength, length: range.length + prefixLength))
-                            } else {
-                                NestableItem(type: type, token: self, role: .end, range: range)
-                            }
-                        }
-                    }
-                } else {
-                    let beginItems: [NestableItem] = if prefixes.isEmpty {
-                        string.ranges(of: pair.begin, range: parseRange)
-                            .map { NestableItem(type: type, token: self, role: .begin, range: $0) }
-                    } else {
-                        string.ranges(of: pair.begin, range: parseRange)
-                            .compactMap { range in
-                                guard let prefixLength = Self.matchingPrefixLength(at: range.location, in: nsString, prefixes: prefixes, parseRange: parseRange) else { return nil }
-                                return NestableItem(type: type, token: self, role: .begin,
-                                                    range: NSRange(location: range.location - prefixLength, length: range.length + prefixLength))
-                            }
-                    }
-                    let endItems = string.ranges(of: pair.end, range: parseRange)
-                        .map { NestableItem(type: type, token: self, role: .end, range: $0) }
-                    return beginItems + endItems
+                if pair.begin == pair.end, prefixes.isEmpty {
+                    return endRanges.map { NestableItem(type: type, token: self, role: [.begin, .end], range: $0) }
                 }
+                
+                let beginRanges = (pair.begin == pair.end) ? endRanges : string.ranges(of: pair.begin, range: parseRange)
+                let beginItems: [NestableItem] = if prefixes.isEmpty {
+                    beginRanges.map { NestableItem(type: type, token: self, role: .begin, range: $0) }
+                } else {
+                    beginRanges.compactMap { range in
+                        guard let prefixLength = Self.matchingPrefixLength(at: range.location, in: nsString, prefixes: prefixes, parseRange: parseRange) else { return nil }
+                        return NestableItem(type: type, token: self, role: .begin,
+                                            range: NSRange(location: range.location - prefixLength, length: range.length + prefixLength))
+                    }
+                }
+                let endItems = endRanges.map { NestableItem(type: type, token: self, role: .end, range: $0) }
+                
+                return beginItems + endItems
         }
     }
     
@@ -239,9 +226,10 @@ private extension NestableToken {
     /// - Parameters:
     ///   - positions: The ordered token positions in the parse range.
     ///   - startIndex: The index in `positions` where the search starts.
+    ///   - searchLowerBound: The lower bound where an end token can start.
     ///   - searchUpperBound: The upper bound where the search should stop.
     /// - Returns: The index of the matching end token in `positions`, or `nil` if not found.
-    func matchingEndIndex(in positions: [NestableItem], from startIndex: Int, upperBound searchUpperBound: Int) -> Int? {
+    func matchingEndIndex(in positions: [NestableItem], from startIndex: Int, lowerBound searchLowerBound: Int, upperBound searchUpperBound: Int) -> Int? {
         
         let isDoubleEscape: Bool = switch self {
             case .pair(let pair, _, _, _, let escapeCharacter?): String(escapeCharacter) == pair.end
@@ -252,6 +240,9 @@ private extension NestableToken {
         var skipCount = 0
         for (offset, position) in positions[startIndex...].enumerated() where position.token == self {
             guard position.range.location <= searchUpperBound else { return nil }
+            
+            // skip tokens overlapping the begin token
+            guard position.range.location >= searchLowerBound else { continue }
             
             guard skipCount == 0 else {
                 skipCount -= 1
