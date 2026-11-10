@@ -90,6 +90,7 @@ private extension JavaScriptOutlineFormatter {
             .replacing(/\(\s+/, with: "(")
             .replacing(/\s+\)/, with: ")")
             .replacing(/\s*,\s*/, with: ", ")
+            .replacing(/,\s*\)/, with: ")")
             .trimmingCharacters(in: .whitespacesAndNewlines)
     }
     

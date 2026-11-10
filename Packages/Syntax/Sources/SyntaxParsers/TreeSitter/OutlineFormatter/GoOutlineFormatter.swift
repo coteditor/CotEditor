@@ -157,6 +157,8 @@ private extension GoOutlineFormatter {
             .replacing(/\s+\)/, with: ")")
             .replacing(/\s+\]/, with: "]")
             .replacing(/\s*,\s*/, with: ", ")
+            .replacing(/,\s*\)/, with: ")")
+            .replacing(/,\s*\]/, with: "]")
     }
     
     

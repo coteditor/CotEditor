@@ -108,5 +108,8 @@ private extension RustOutlineFormatter {
             .replacing(/\s+\]/, with: "]")
             .replacing(/\s+>/, with: ">")
             .replacing(/\s*,\s*/, with: ", ")
+            .replacing(/,\s*\)/, with: ")")
+            .replacing(/,\s*\]/, with: "]")
+            .replacing(/,\s*>/, with: ">")
     }
 }

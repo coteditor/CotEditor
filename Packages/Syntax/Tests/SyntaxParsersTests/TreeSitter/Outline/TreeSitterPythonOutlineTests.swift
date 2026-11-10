@@ -152,6 +152,22 @@ struct TreeSitterPythonOutlineTests {
     }
     
     
+    @Test func outlineOmitsTrailingCommaInParameterClause() async throws {
+        
+        let source = #"""
+            def run(
+                a,
+                b,
+            ):
+                pass
+        """#
+        
+        let outline = try await self.parseOutline(in: source)
+        
+        #expect(outline.map(\.title) == ["run(a, b)"])
+    }
+    
+    
     // MARK: Private Methods
     
     private func parseOutline(in source: String) async throws -> [OutlineItem] {
