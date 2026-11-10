@@ -47,6 +47,11 @@ struct TreeSitterOutlineFormatterTests {
         #expect(MarkdownOutlineFormatter.formatTitle("ATX H1", kind: .heading(nil)) == "ATX H1")
         #expect(MarkdownOutlineFormatter.formatTitle("### ATX Closed ###", kind: .heading(nil)) == "ATX Closed")
         #expect(MarkdownOutlineFormatter.formatTitle("###   ", kind: .heading(nil)) == nil)
+        #expect(MarkdownOutlineFormatter.formatTitle("Setext CRLF\r\n========", kind: .heading(nil)) == "Setext CRLF")
+        #expect(MarkdownOutlineFormatter.formatTitle("Setext\nTwo Lines\n========", kind: .heading(nil)) == "Setext Two Lines")
+        #expect(MarkdownOutlineFormatter.formatTitle("Quoted\n> > Two Lines\n> > ===", kind: .heading(nil)) == "Quoted Two Lines")
+        #expect(MarkdownOutlineFormatter.formatTitle("# C#", kind: .heading(nil)) == "C#")
+        #expect(MarkdownOutlineFormatter.formatTitle("   # Indented", kind: .heading(nil)) == "Indented")
     }
     
     

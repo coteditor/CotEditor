@@ -39,14 +39,20 @@ enum MarkdownOutlineFormatter: TreeSitterOutlineFormatting {
         
         guard case .heading = kind else { return title }
         
-        // Setext headings include the underline on following lines.
-        let firstLine = title.split(separator: "\n", maxSplits: 1, omittingEmptySubsequences: false)
-            .first.map(String.init) ?? title
+        let lines = title
+            .split(whereSeparator: \.isNewline)
+            .map { $0.trimmingCharacters(in: .whitespaces) }
         
-        let normalized = firstLine
-            .replacing(/^#{1,6}[ \t]*/, with: "")  // ATX prefix
-            .replacing(/[ \t]*#+[ \t]*$/, with: "")  // optional ATX closing
-            .trimmingCharacters(in: .whitespacesAndNewlines)
+        // -> Setext headings end with the underline line.
+        let normalized = if lines.count > 1 {
+            lines.dropLast()
+                .map { $0.trimmingPrefix(/(?:>[ \t]*)+/) }  // block quote markers
+                .joined(separator: " ")
+        } else {
+            (lines.first ?? "")
+                .replacing(/^#{1,6}[ \t]*/, with: "")  // ATX prefix
+                .replacing(/(?:^|[ \t]+)#+[ \t]*$/, with: "")  // optional ATX closing
+        }
         
         return normalized.isEmpty ? nil : normalized
     }
