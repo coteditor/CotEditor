@@ -97,6 +97,24 @@ struct TreeSitterCOutlineTests {
     }
     
     
+    @Test func outlineNormalizesParameterClauseSpacing() async throws {
+        
+        let source = #"""
+            int run( ) {
+                return 0;
+            }
+            
+            int stop(int a,char *b) {
+                return 0;
+            }
+        """#
+        
+        let outline = try await self.parseOutline(in: source)
+        
+        #expect(outline.map(\.title) == ["run()", "stop(int a, char *b)"])
+    }
+    
+    
     // MARK: Private Methods
     
     private func parseOutline(in source: String) async throws -> [OutlineItem] {
