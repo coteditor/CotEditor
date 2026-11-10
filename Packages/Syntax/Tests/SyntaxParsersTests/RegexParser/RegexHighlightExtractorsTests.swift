@@ -129,6 +129,26 @@ struct RegexHighlightExtractorsTests {
     }
     
     
+    @Test func beginEndStringExtractorBeginEndingInCRLF() throws {
+        
+        let extractor = BeginEndStringExtractor(begin: "\r", end: "x", ignoresCase: false, isMultiline: false)
+        
+        let source = "a\r\nx"
+        
+        #expect(try extractor.ranges(in: source, range: source.nsRange).isEmpty)
+    }
+    
+    
+    @Test func beginEndStringExtractorIgnoresEmptyFoundRange() throws {
+        
+        let extractor = BeginEndStringExtractor(begin: "\u{0902}", end: "x", ignoresCase: true, isMultiline: false)
+        
+        let source = "abxc"
+        
+        #expect(try extractor.ranges(in: source, range: source.nsRange).isEmpty)
+    }
+    
+    
     @Test func cancellation() async throws {
         
         let definition = Syntax.Highlight(begin: #"\w+"#, end: nil, isRegularExpression: true, isMultiline: true)

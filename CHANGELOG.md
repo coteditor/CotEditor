@@ -90,7 +90,7 @@
 - [trivial] Fix an issue where regular expression conditions in the file scope of folder search did not match names containing certain characters, such as “é”, “が”, or Hangul.
 - [trivial] Fix an issue where regular expression conditions in the file scope of folder search accepted some invalid patterns, such as those with unbalanced parentheses.
 - [trivial] Fix an issue where automatic indentation could treat part of a word as a keyword, such as “then”, if a non-ASCII letter adjoined it.
-- [trivial] Fix several issues where regular-expression-based syntax highlighting could highlight strings or comments in an incorrect range.
+- [trivial] Fix several issues with regular-expression-based syntax highlighting, such as highlighting strings or comments in an incorrect range, or the app crashing with certain syntax definitions.
 - [trivial] Fix an issue where the selection could move to an incorrect range when commenting out lines with block comment delimiters while only line endings were selected.
 - [trivial] Fix an issue where the selection after reversing, shuffling, or sorting lines by pattern did not include an empty line moved to the end.
 - [trivial] Fix an issue in the file browser where moving a symbolic link to a folder to the Trash also closed open documents in that folder.
