@@ -73,7 +73,7 @@
 <h3>Removal of implicit delimiter handling</h3>
 
 <p>Previously, CotEditor automatically identified delimiter-like definitions from syntax highlighting rules and used them for highlighting. In the new system, this implicit delimiter extraction no longer occurs. In addition, CotEditor used to treat “<code>\</code>” (backslash) as an escape character universally across all syntaxes, but this implicit escaping has also been removed. Now only escape characters explicitly specified for each string or character delimiter are used.</p>
-<p>Therefore, if you want highlighting that accounts for nested structures of strings, characters, and comment symbols, use the delimiter definitions. During migration to CotEditor 7, definitions that were previously identified as “delimiter-like” are automatically moved to the new delimiter definitions.</p>
+<p>Therefore, if you want highlighting that accounts for nested structures of strings, characters, and comment symbols, use the delimiter definitions. During migration to CotEditor 7, string and character definitions that begin and end with the same quotation marks (such as <code>&quot;…&quot;</code>) are automatically moved to the new delimiter definitions.</p>
 </section>
 
 
