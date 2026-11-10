@@ -140,6 +140,12 @@ actor TreeSitterClient: IncrementalParsing, HighlightParsing, OutlineParsing {
             .sorted()
             .resolvingCaptureConflicts()
             .compactMap(Highlight.init(capture:))
+            // -> The caller repaints only the update range.
+            .compactMap { highlight in
+                highlight.range
+                    .intersection(updateRange)
+                    .flatMap { $0.isEmpty ? nil : Highlight(value: highlight.value, range: $0) }
+            }
         
         return (highlights, updateRange)
     }

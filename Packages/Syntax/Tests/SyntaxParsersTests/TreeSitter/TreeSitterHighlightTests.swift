@@ -72,6 +72,28 @@ struct TreeSitterHighlightTests {
     }
     
     
+    @Test func incrementalParseClipsHighlightsToUpdateRange() async throws {
+        
+        let source = "s = \"\"\"a\\nb\nc\n\"\"\"\n"
+        
+        let config = try self.registry.configuration(for: .python)
+        let client = try TreeSitterClient(languageConfig: config, languageProvider: self.registry.languageProvider, syntax: .python)
+        _ = try #require(await client.parseHighlights(in: source, range: source.nsRange))
+        
+        let insertLocation = (source as NSString).range(of: "c").location
+        let insertedText = "z"
+        let editedSource = (source as NSString).replacingCharacters(in: NSRange(location: insertLocation, length: 0), with: insertedText)
+        try await client.noteEdit(editedRange: NSRange(location: insertLocation, length: insertedText.length), delta: insertedText.length, insertedText: insertedText)
+        
+        let requestedRange = (editedSource as NSString).lineRange(for: NSRange(location: insertLocation, length: 0))
+        let result = try #require(await client.parseHighlights(in: editedSource, range: requestedRange))
+        let updateRange = result.updateRange
+        
+        #expect(!result.highlights.isEmpty)
+        #expect(result.highlights.allSatisfy { $0.lowerBound >= updateRange.lowerBound && $0.upperBound <= updateRange.upperBound })
+    }
+    
+    
     @Test func highlightSwift() async throws {
         
         let source = #"""
