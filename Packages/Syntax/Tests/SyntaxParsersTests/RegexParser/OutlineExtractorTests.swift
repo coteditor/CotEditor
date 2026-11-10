@@ -65,6 +65,18 @@ struct OutlineExtractorTests {
     }
     
     
+    @Test func trimsTrailingWhitespace() throws {
+        
+        let definition = Syntax.Outline(pattern: #"^\w+.*$"#, template: "$0", kind: .function)
+        let extractor = try OutlineExtractor(definition: definition)
+        
+        let source = "alpha  beta  "
+        let items = try extractor.items(in: source, range: source.nsRange)
+        
+        #expect(items.map(\.title) == ["alpha beta"])
+    }
+    
+    
     @Test func separatorKindProducesSeparatorItems() throws {
         
         let definition = Syntax.Outline(pattern: "^---+$", template: "", kind: .separator)

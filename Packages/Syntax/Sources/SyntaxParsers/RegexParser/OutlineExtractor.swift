@@ -71,10 +71,7 @@ struct OutlineExtractor: Sendable {
                              : self.regex.replacementString(for: result, in: string, offset: 0, template: self.template))
                     .replacing(/(\S)\s+/) { "\($0.1) " }
                 
-                guard
-                    let match = title.firstMatch(of: /^(?<indent>\s*)(?<title>.+)$/),
-                    !match.title.isEmpty
-                else { return nil }
+                guard let match = title.firstMatch(of: /^(?<indent>\s*+)(?<title>.*\S)/) else { return nil }
                 
                 let kind: Syntax.Outline.Kind? = switch self.kind {
                     case .heading(_?): .heading(nil)
