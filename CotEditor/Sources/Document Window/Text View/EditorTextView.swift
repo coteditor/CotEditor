@@ -1600,7 +1600,6 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
         if paragraphStyle.lineHeightMultiple != self.defaultParagraphStyle?.lineHeightMultiple ||
            paragraphStyle.defaultTabInterval != self.defaultParagraphStyle?.defaultTabInterval
         {
-            // -> Set to LayoutManager first, because applying the paragraph style to the text storage lays out the visible lines immediately.
             (self.layoutManager as? LayoutManager)?.lineHeightMultiple = paragraphStyle.lineHeightMultiple
             self.defaultParagraphStyle = paragraphStyle
             self.typingAttributes[.paragraphStyle] = paragraphStyle

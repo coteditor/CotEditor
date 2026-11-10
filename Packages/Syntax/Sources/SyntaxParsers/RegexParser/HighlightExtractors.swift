@@ -84,7 +84,7 @@ struct BeginEndStringExtractor: HighlightExtractable {
             let beginRange = (string as NSString).range(of: self.begin, options: self.options, range: NSRange(location..<range.upperBound))
             location = beginRange.upperBound
             
-            // workaround the issue that `.caseInsensitive` can find some characters, such as U+0902, as an empty range (2026-11, macOS 27.2)
+            // -> `.caseInsensitive` can find some characters, such as U+0902, as an empty range.
             guard beginRange.location != NSNotFound, !beginRange.isEmpty else { break }
             
             // find end string
@@ -98,7 +98,7 @@ struct BeginEndStringExtractor: HighlightExtractable {
             let endRange = (string as NSString).range(of: self.end, options: self.options, range: NSRange(location..<upperBound))
             location = endRange.upperBound
             
-            // workaround the issue that `.caseInsensitive` can find some characters, such as U+0902, as an empty range (2026-11, macOS 27.2)
+            // -> `.caseInsensitive` can find some characters, such as U+0902, as an empty range.
             guard endRange.location != NSNotFound, !endRange.isEmpty else {
                 location = upperBound
                 continue

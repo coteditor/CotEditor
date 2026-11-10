@@ -64,10 +64,7 @@ extension SortPattern {
         let firstLine = options.keepsFirstLine ? lines.removeFirst() : nil
         
         lines = lines
-            .map { line in
-                // parse numbers once per line rather than in every comparison
-                (line: line, key: self.sortKey(for: line.contents).map { (string: $0, number: options.parse($0)) })
-            }
+            .map { line in (line: line, key: self.sortKey(for: line.contents).map { (string: $0, number: options.parse($0)) }) }
             .sorted {
                 switch ($0.key, $1.key) {
                     case let (.some(lhs), .some(rhs)):

@@ -146,7 +146,6 @@ struct RMateParser {
         
         guard self.headerLength <= Self.maximumHeaderLength else { throw .headerTooLarge }
         
-        // -> A non-literal search does not match a space that is combined with the following character.
         guard let separator = line.range(of: ": ", options: .literal) else { throw .invalidMessage }
         
         let key = String(line[..<separator.lowerBound])
