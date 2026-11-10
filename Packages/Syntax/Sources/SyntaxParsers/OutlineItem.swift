@@ -124,9 +124,9 @@ extension BidirectionalCollection<OutlineItem> {
     /// - Returns: The previous outline item, or `nil` if not exist.
     public func previousItem(for range: NSRange) -> OutlineItem? {
         
-        guard let currentIndex = self.indexOfItem(at: range.lowerBound) else { return nil }
+        guard let currentItem = self.item(at: range.lowerBound) else { return nil }
         
-        return self[..<currentIndex].last { !$0.isSeparator }
+        return self.item(at: currentItem.range.location - 1)
     }
     
     

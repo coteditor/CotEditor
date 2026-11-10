@@ -71,6 +71,18 @@ struct OutlineCollectionTests {
     }
     
     
+    @Test func previousItemSkipsItemAtSameLocation() throws {
+        
+        let items: [OutlineItem] = [
+            OutlineItem(title: "dog", range: NSRange(location: 0, length: 5)),
+            OutlineItem(title: "cow", range: NSRange(location: 10, length: 5)),
+            OutlineItem(title: "dogcow", range: NSRange(location: 10, length: 5)),
+        ]
+        
+        #expect(items.previousItem(for: NSRange(10..<10)) == items[0])
+    }
+    
+    
     @Test func nextItem() throws {
         
         #expect(self.emptyItems.nextItem(for: NSRange(10..<20)) == nil)
