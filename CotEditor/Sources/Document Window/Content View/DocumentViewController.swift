@@ -440,10 +440,18 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
             // tell the parser that text was changed
             self.document.syntaxController.invalidate(in: range, changeInLength: length)
             
-            guard self.focusedTextView?.hasMarkedText() != true else { return }
-            
-            self.document.counter.invalidateContent()
-            self.document.syntaxController.parseIfNeeded()
+            if self.focusedTextView?.hasMarkedText() == true {
+                // -> The input method can end the composition without a further edit, such as by deleting the marked text.
+                Task { [weak self] in
+                    guard let self, self.focusedTextView?.hasMarkedText() != true else { return }
+                    
+                    self.document.counter.invalidateContent()
+                    self.document.syntaxController.parseIfNeeded()
+                }
+            } else {
+                self.document.counter.invalidateContent()
+                self.document.syntaxController.parseIfNeeded()
+            }
         }
     }
     
