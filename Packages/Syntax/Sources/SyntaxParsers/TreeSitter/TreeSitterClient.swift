@@ -129,25 +129,32 @@ actor TreeSitterClient: IncrementalParsing, HighlightParsing, OutlineParsing {
             : []
         self.pendingAffectedRanges.clear()
         
-        try Task.checkCancellation()
-        
-        guard
-            let updateRange = (invalidations.unionRange()?.union(range) ?? range).intersection(parseRange)
-        else { return nil }
-        
-        let highlights = try self.queryMatches(.highlights, in: updateRange, string: string as NSString)
-            .flatMap(\.captures)
-            .sorted()
-            .resolvingCaptureConflicts()
-            .compactMap(Highlight.init(capture:))
-            // -> The caller repaints only the update range.
-            .compactMap { highlight in
-                highlight.range
-                    .intersection(updateRange)
-                    .flatMap { $0.isEmpty ? nil : Highlight(value: highlight.value, range: $0) }
-            }
-        
-        return (highlights, updateRange)
+        do {
+            try Task.checkCancellation()
+            
+            guard
+                let updateRange = (invalidations.unionRange()?.union(range) ?? range).intersection(parseRange)
+            else { return nil }
+            
+            let highlights = try self.queryMatches(.highlights, in: updateRange, string: string as NSString)
+                .flatMap(\.captures)
+                .sorted()
+                .resolvingCaptureConflicts()
+                .compactMap(Highlight.init(capture:))
+                // -> The caller repaints only the update range.
+                .compactMap { highlight in
+                    highlight.range
+                        .intersection(updateRange)
+                        .flatMap { $0.isEmpty ? nil : Highlight(value: highlight.value, range: $0) }
+                }
+            
+            return (highlights, updateRange)
+            
+        } catch {
+            // -> The layer doesn't report the parsed changes again.
+            self.pendingAffectedRanges.formUnion(invalidations)
+            throw error
+        }
     }
     
     

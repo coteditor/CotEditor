@@ -162,6 +162,45 @@ struct EditedRangeSetTests {
     }
     
     
+    @Test func formUnionIndexSet() {
+        
+        var set = EditedRangeSet(range: NSRange(location: 2, length: 0))
+        
+        var indexSet = IndexSet(integersIn: 2..<4)
+        indexSet.insert(integersIn: 6..<8)
+        set.formUnion(indexSet)
+        
+        #expect(set.ranges == [NSRange(location: 2, length: 2), NSRange(location: 6, length: 2)])
+    }
+    
+    
+    @Test func formUnionPreEditRange() {
+        
+        // abcdefghij -> a0bcdefghij: "hi" moves to 8..<10
+        var set = EditedRangeSet()
+        set.append(editedRange: NSRange(location: 1, length: 1), changeInLength: 1)
+        set.formUnion(preEditRange: NSRange(location: 7, length: 2), changeInLength: 1)
+        #expect(set.ranges == [NSRange(location: 1, length: 9)])
+        
+        // abcdefghij -> abcfghij: "cdef" becomes "cf" at 2..<4
+        set = EditedRangeSet()
+        set.append(editedRange: NSRange(location: 3, length: 0), changeInLength: -2)
+        set.formUnion(preEditRange: NSRange(location: 2, length: 4), changeInLength: -2)
+        #expect(set.ranges == [NSRange(location: 2, length: 2)])
+        
+        // abcdefghij -> abcdefgij: "bc" stays at 1..<3
+        set = EditedRangeSet()
+        set.append(editedRange: NSRange(location: 7, length: 0), changeInLength: -1)
+        set.formUnion(preEditRange: NSRange(location: 1, length: 2), changeInLength: -1)
+        #expect(set.ranges == [NSRange(location: 1, length: 6)])
+        
+        // no edits
+        set = EditedRangeSet()
+        set.formUnion(preEditRange: NSRange(location: 1, length: 2), changeInLength: 0)
+        #expect(set.ranges == [NSRange(location: 1, length: 2)])
+    }
+    
+    
     @Test func testStorage() async throws {
         
         let textStorage = NSTextStorage("abcdefg")

@@ -119,4 +119,39 @@ public struct EditedRangeSet: Sendable {
             self.ranges.insert(editedRange, at: index)
         }
     }
+    
+    
+    /// Adds the ranges in the given index set.
+    ///
+    /// - Parameters:
+    ///   - indexSet: The ranges to add.
+    public mutating func formUnion(_ indexSet: IndexSet) {
+        
+        for range in indexSet.rangeView {
+            self.append(editedRange: NSRange(range), changeInLength: 0)
+        }
+    }
+    
+    
+    /// Adds a range in the string before the stored edits.
+    ///
+    /// The receiver must contain all edits made since the string.
+    /// Because the positions within the stored ranges are unknown, the added range may extend to cover them.
+    ///
+    /// - Parameters:
+    ///   - range: The range in the string before the edits.
+    ///   - delta: The total change in length by the edits.
+    public mutating func formUnion(preEditRange range: NSRange, changeInLength delta: Int) {
+        
+        guard let editedRange = self.range else {
+            self.ranges = [range]
+            return
+        }
+        
+        // -> Locations before the edits stay and those after the edits shift by the delta.
+        let lowerBound = min(range.lowerBound, editedRange.lowerBound)
+        let upperBound = max(range.upperBound + delta, editedRange.upperBound)
+        
+        self.append(editedRange: NSRange(lowerBound..<upperBound), changeInLength: 0)
+    }
 }
