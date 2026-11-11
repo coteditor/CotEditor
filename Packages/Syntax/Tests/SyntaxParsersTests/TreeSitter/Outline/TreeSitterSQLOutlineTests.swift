@@ -89,6 +89,18 @@ struct TreeSitterSQLOutlineTests {
     }
     
     
+    @Test func outlineIncludesDateTimeAndArrayTypes() async throws {
+        
+        let source = #"""
+            CREATE FUNCTION f(a DATETIME, b ARRAY<INT>) RETURNS INT AS $$ SELECT 1 $$ LANGUAGE SQL;
+        """#
+        
+        let outline = try await self.parseOutline(in: source)
+        
+        #expect(outline.map(\.title) == ["f(DATETIME, ARRAY<INT>)"])
+    }
+    
+    
     // MARK: Private Methods
     
     private func parseOutline(in source: String) async throws -> [OutlineItem] {

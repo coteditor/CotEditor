@@ -47,10 +47,12 @@ private extension SQLOutlineFormatter {
     
     private static let sqlTypeNodeTypes: Set<String> = [
         "array_size_definition",
+        "array_type",
         "bigint",
         "binary",
         "bit",
         "char",
+        "datetime",
         "datetimeoffset",
         "decimal",
         "double",
@@ -74,7 +76,6 @@ private extension SQLOutlineFormatter {
         "keyword_box3d",
         "keyword_bytea",
         "keyword_date",
-        "keyword_datetime",
         "keyword_datetime2",
         "keyword_geography",
         "keyword_geometry",
