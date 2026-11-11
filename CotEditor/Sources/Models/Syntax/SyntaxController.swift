@@ -172,7 +172,7 @@ extension NSAttributedString.Key {
             } catch {
                 Logger.app.debug("failed noting edit: \(error.localizedDescription) in \(#function)")
                 if let self {
-                    await parser.update(content: self.textStorage.string)
+                    await parser.update(content: self.textStorage.string.immutable)
                 }
             }
         }
