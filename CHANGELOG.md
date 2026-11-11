@@ -68,7 +68,7 @@
 - Fix an issue where commenting out lines could insert comment delimiters at an incorrect position relative to the indentation in CRLF documents or if a space preceded a tab.
 - Fix an issue where the outline menu in the navigation bar could display an empty or incorrect item when the insertion point was before the first outline item.
 - Fix an issue where syntax highlighting could stop partway through a large document if the document was edited before the highlighting finished after opening.
-- Fix an issue in tree-sitter-based syntax highlighting where highlights could remain outdated after editing, such as when typing immediately after deleting the opening quotation marks of a string spanning multiple lines.
+- Fix an issue in tree-sitter-based syntax highlighting where highlights could remain outdated after editing, such as when typing immediately after deleting the opening quotation marks of a string spanning multiple lines or when entering text with an input method.
 - Fix an issue in tree-sitter-based syntax highlighting where editing in a string spanning multiple lines could remove the highlight of nested elements on other lines, such as escape sequences or interpolated variables.
 - Fix several issues with outline item titles in tree-sitter-based syntaxes.
 - Fix an issue where typing after extending selections during multi-cursor editing could insert text at an incorrect location if an insertion point was already at the beginning of a line.

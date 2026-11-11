@@ -24,6 +24,7 @@
 //  limitations under the License.
 //
 
+import Foundation
 import Testing
 import StringUtils
 import SyntaxFormat
@@ -74,6 +75,26 @@ struct TreeSitterClientPendingRangeTests {
         
         _ = try #require(await client.parseHighlights(in: editedSource, range: editedSource.nsRange))
         #expect(try !self.hasPendingAffectedRanges(client))
+    }
+    
+    
+    @Test func outlineParseKeepsParsedChangesForHighlightParse() async throws {
+        
+        let initialSource = "\"\"\"\nx = 1\n\"\"\"\n"
+        let editedSource = "\nx = 1\n\"\"\"\n"
+        let config = try self.registry.configuration(for: .python)
+        let client = try TreeSitterClient(languageConfig: config, languageProvider: self.registry.languageProvider, syntax: .python)
+        
+        await client.update(content: initialSource)
+        _ = try #require(await client.parseHighlights(in: initialSource, range: initialSource.nsRange))
+        
+        // the code is no longer in a string
+        try await client.noteEdit(editedRange: NSRange(location: 0, length: 0), delta: -3, insertedText: "")
+        _ = try await client.parseOutline(in: editedSource)
+        
+        let result = try #require(await client.parseHighlights(in: editedSource, range: NSRange(location: 0, length: 1)))
+        let codeRange = NSRange(location: 1, length: 5)
+        #expect(result.updateRange.intersection(codeRange) == codeRange)
     }
     
     

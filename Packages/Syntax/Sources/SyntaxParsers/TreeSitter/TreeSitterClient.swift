@@ -175,11 +175,13 @@ actor TreeSitterClient: IncrementalParsing, HighlightParsing, OutlineParsing {
         let content = LanguageLayer.Content(string: string, limit: parseRange.length)
         
         if !self.pendingAffectedRanges.isEmpty {
-            // -> Outline parsing should preserve pending ranges when highlights are available,
-            //    because highlight parsing uses them to compute the next update range.
-            _ = self.layer.parse(with: content, affecting: self.pendingAffectedRanges.indexSet, resolveSublayers: true)
+            let invalidations = self.layer.parse(with: content, affecting: self.pendingAffectedRanges.indexSet, resolveSublayers: true)
             
-            if !self.syntax.features.contains(.highlight) {
+            // -> Outline parsing should preserve pending ranges together with the parsed changes when highlights are available,
+            //    because highlight parsing uses them to compute the next update range.
+            if self.syntax.features.contains(.highlight) {
+                self.pendingAffectedRanges.formUnion(invalidations)
+            } else {
                 self.pendingAffectedRanges.clear()
             }
         }
