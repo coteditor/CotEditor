@@ -101,7 +101,7 @@ extension NSAttributedString.Key {
         }
         
         self.isReady = true
-        self.invalidRanges.clear()
+        self.invalidRanges.update(editedRange: self.textStorage.range)
         
         self.setupTask = Task { [weak self] in
             if let self, let parser = self.incrementalParser {
@@ -268,6 +268,10 @@ extension NSAttributedString.Key {
             guard let self else { return }
             
             try await self.performHighlight(in: self.textStorage.range)
+            
+            guard !Task.isCancelled else { return }
+            
+            self.invalidRanges.clear()
         }
     }
     
