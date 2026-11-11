@@ -246,6 +246,19 @@ struct TreeSitterTypeScriptOutlineTests {
         #expect(nsSource.substring(with: outline[7].range) == "ReadonlyRecord")
         #expect(nsSource.substring(with: outline[8].range) == "PublicID")
     }
+    
+    
+    @Test func outlineOmitsTrailingCommaAfterWhitespace() async throws {
+        
+        let source = #"""
+            function run(a ,) {
+            }
+        """#
+        
+        let outline = try await self.parseOutline(in: source)
+        
+        #expect(outline.map(\.title) == ["run(a)"])
+    }
 
 
     // MARK: Private Methods

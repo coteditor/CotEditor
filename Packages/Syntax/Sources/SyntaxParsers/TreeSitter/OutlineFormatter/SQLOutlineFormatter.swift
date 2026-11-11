@@ -173,7 +173,7 @@ private extension SQLOutlineFormatter {
         let range = typeNodes.dropFirst()
             .reduce(into: firstTypeNode.range) { $0.formUnion($1.range) }
         let type = Self.text(of: argument, in: range, source: source)
-            .replacing(/\s+/, with: " ")
+            .collapsingWhitespace
             .trimmingCharacters(in: .whitespacesAndNewlines)
         
         return type.isEmpty ? nil : type

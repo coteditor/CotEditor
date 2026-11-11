@@ -64,10 +64,7 @@ private extension COutlineFormatter {
         else { return nil }
         
         let parameterList = Self.text(of: parameters, source: source)
-            .replacing(/\s+/, with: " ")
-            .replacing(/\(\s+/, with: "(")
-            .replacing(/\s+\)/, with: ")")
-            .replacing(/\s*,\s*/, with: ", ")
+            .normalizingClauseSpacing(openings: ["("], closings: [")"])
         let title = source.substring(with: name.range) + parameterList
         let range = name.range.union(parameters.range)
         

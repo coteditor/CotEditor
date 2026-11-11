@@ -53,7 +53,7 @@ enum HTMLOutlineFormatter: TreeSitterOutlineFormatting {
     static func formatTitle(_ title: String, kind: Syntax.Outline.Kind) -> String? {
         
         let normalized = title
-            .replacing(/\s+/, with: " ")
+            .collapsingWhitespace
             .trimmingCharacters(in: .whitespacesAndNewlines)
         
         return normalized.isEmpty ? nil : normalized

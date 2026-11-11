@@ -100,16 +100,6 @@ private extension RustOutlineFormatter {
     private static func normalizedClause(_ clause: String) -> String {
         
         clause
-            .replacing(/\s+/, with: " ")
-            .replacing(/\(\s+/, with: "(")
-            .replacing(/\[\s+/, with: "[")
-            .replacing(/<\s+/, with: "<")
-            .replacing(/\s+\)/, with: ")")
-            .replacing(/\s+\]/, with: "]")
-            .replacing(/\s+>/, with: ">")
-            .replacing(/\s*,\s*/, with: ", ")
-            .replacing(/,\s*\)/, with: ")")
-            .replacing(/,\s*\]/, with: "]")
-            .replacing(/,\s*>/, with: ">")
+            .normalizingClauseSpacing(openings: ["(", "[", "<"], closings: [")", "]", ">"], trailingCommaClosings: [")", "]", ">"])
     }
 }

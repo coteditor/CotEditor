@@ -138,15 +138,7 @@ private extension CSharpOutlineFormatter {
     private static func normalizedSignature(_ signature: String) -> String {
         
         signature
-            .replacing(/\s+/, with: " ")
-            .replacing(/\(\s+/, with: "(")
-            .replacing(/\s+\)/, with: ")")
-            .replacing(/\s+\(/, with: "(")
-            .replacing(/\s+</, with: "<")
-            .replacing(/<\s+/, with: "<")
-            .replacing(/\s+>/, with: ">")
-            .replacing(/\.\s+/, with: ".")
-            .replacing(/\s*,\s*/, with: ", ")
+            .normalizingClauseSpacing(openings: ["(", "<", "."], closings: [")", "(", "<", ">"])
             .trimmingCharacters(in: .whitespacesAndNewlines)
     }
 }

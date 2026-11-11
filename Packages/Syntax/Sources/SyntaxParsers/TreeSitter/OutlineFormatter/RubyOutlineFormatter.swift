@@ -119,10 +119,7 @@ private extension RubyOutlineFormatter {
     private static func normalizedParameters(_ parameters: String) -> String {
         
         let normalized = parameters
-            .replacing(/\s+/, with: " ")
-            .replacing(/\(\s+/, with: "(")
-            .replacing(/\s+\)/, with: ")")
-            .replacing(/\s*,\s*/, with: ", ")
+            .normalizingClauseSpacing(openings: ["("], closings: [")"])
             .trimmingCharacters(in: .whitespacesAndNewlines)
         
         guard !normalized.isEmpty else { return "()" }

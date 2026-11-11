@@ -119,16 +119,7 @@ private extension TypeScriptOutlineFormatter {
     private static func normalizedClause(_ clause: String) -> String {
         
         clause
-            .replacing(/\s+/, with: " ")
-            .replacing(/\(\s+/, with: "(")
-            .replacing(/\s+\)/, with: ")")
-            .replacing(/\s+\(/, with: "(")
-            .replacing(/,\s*\)/, with: ")")
-            .replacing(/,\s*>/, with: ">")
-            .replacing(/\s+</, with: "<")
-            .replacing(/<\s+/, with: "<")
-            .replacing(/\s+>/, with: ">")
-            .replacing(/\s*,\s*/, with: ", ")
+            .normalizingClauseSpacing(openings: ["(", "<"], closings: [")", "(", "<", ">"], trailingCommaClosings: [")", ">"])
             .trimmingCharacters(in: .whitespacesAndNewlines)
     }
 }

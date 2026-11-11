@@ -117,10 +117,7 @@ private extension CPPOutlineFormatter {
     private static func normalizedClause(_ clause: String) -> String {
         
         clause
-            .replacing(/\s+/, with: " ")
-            .replacing(/\(\s+/, with: "(")
-            .replacing(/\s+\)/, with: ")")
-            .replacing(/\s*,\s*/, with: ", ")
+            .normalizingClauseSpacing(openings: ["("], closings: [")"])
             .trimmingCharacters(in: .whitespacesAndNewlines)
     }
 }

@@ -151,14 +151,7 @@ private extension GoOutlineFormatter {
     private static func normalizedClause(_ clause: String) -> String {
         
         clause
-            .replacing(/\s+/, with: " ")
-            .replacing(/\(\s+/, with: "(")
-            .replacing(/\[\s+/, with: "[")
-            .replacing(/\s+\)/, with: ")")
-            .replacing(/\s+\]/, with: "]")
-            .replacing(/\s*,\s*/, with: ", ")
-            .replacing(/,\s*\)/, with: ")")
-            .replacing(/,\s*\]/, with: "]")
+            .normalizingClauseSpacing(openings: ["(", "["], closings: [")", "]"], trailingCommaClosings: [")", "]"])
     }
     
     
@@ -169,7 +162,7 @@ private extension GoOutlineFormatter {
     private static func normalizedType(_ type: String) -> String {
         
         type
-            .replacing(/\s+/, with: " ")
+            .collapsingWhitespace
             .trimmingCharacters(in: .whitespacesAndNewlines)
     }
 }
