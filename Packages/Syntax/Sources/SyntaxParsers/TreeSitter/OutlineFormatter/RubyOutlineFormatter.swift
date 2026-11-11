@@ -56,8 +56,8 @@ private extension RubyOutlineFormatter {
     static func functionTitle(for match: QueryMatch, title: String, source: NSString) -> String {
         
         let receiver = Self.receiverPrefix(for: match, source: source) ?? ""
-        let parameters = Self.parametersRange(for: match)
-            .map(source.substring(with:))
+        let parameters = Self.parametersNode(for: match)
+            .map { Self.text(of: $0, source: source) }
             .map(Self.normalizedParameters)
             ?? "()"
         
@@ -75,7 +75,7 @@ private extension RubyOutlineFormatter {
         
         nameRange.union(with: [
             Self.receiverRange(for: match),
-            Self.parametersRange(for: match),
+            Self.parametersNode(for: match)?.range,
         ])
     }
     
@@ -102,13 +102,13 @@ private extension RubyOutlineFormatter {
     }
     
     
-    /// Returns the parameters range for a Ruby method declaration.
+    /// Returns the parameters node for a Ruby method declaration.
     ///
     /// - Parameter match: The resolved query match.
-    /// - Returns: The parameters range, or `nil` if omitted.
-    private static func parametersRange(for match: QueryMatch) -> NSRange? {
+    /// - Returns: The parameters node, or `nil` if omitted.
+    private static func parametersNode(for match: QueryMatch) -> Node? {
         
-        match.outlineNode?.parent?.child(byFieldName: "parameters")?.range
+        match.outlineNode?.parent?.child(byFieldName: "parameters")
     }
     
     

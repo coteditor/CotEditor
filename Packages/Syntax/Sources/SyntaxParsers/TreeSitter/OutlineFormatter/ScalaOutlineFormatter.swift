@@ -69,7 +69,7 @@ private extension ScalaOutlineFormatter {
     /// - Returns: The displayed parameter-clause suffix.
     private static func parametersClause(for parameters: Node, source: NSString) -> String {
         
-        let clause = Self.normalizedClause(source.substring(with: parameters.range))
+        let clause = Self.normalizedClause(Self.text(of: parameters, source: source))
         let names = Self.parameterNames(in: parameters, source: source)
         
         guard !names.isEmpty else { return clause }

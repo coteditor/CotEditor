@@ -36,11 +36,11 @@ enum CSharpOutlineFormatter: TreeSitterOutlineFormatting {
         switch capture.kind {
             case .value:
                 let range = capture.range.union(with: [Self.explicitInterfaceRange(for: match)])
-                let title = Self.normalizedSignature(source.substring(with: range))
+                let title = Self.normalizedSignature(Self.signatureText(in: range, for: match, source: source))
                 return (title, range)
             case .function:
                 let range = Self.signatureRange(for: match, source: source, nameRange: capture.range)
-                let title = Self.normalizedSignature(source.substring(with: range))
+                let title = Self.normalizedSignature(Self.signatureText(in: range, for: match, source: source))
                 return (title, range)
             default:
                 return Self.defaultTitle(capture: capture, source: source)
@@ -113,6 +113,21 @@ private extension CSharpOutlineFormatter {
     private static func typeParametersRange(for match: QueryMatch) -> NSRange? {
         
         match.outlineNode?.parent?.child(byFieldName: "type_parameters")?.range
+    }
+    
+    
+    /// Returns the C# signature text in the range without comments.
+    ///
+    /// - Parameters:
+    ///   - range: The signature range.
+    ///   - match: The resolved query match.
+    ///   - source: The source text as `NSString`.
+    /// - Returns: The signature text.
+    private static func signatureText(in range: NSRange, for match: QueryMatch, source: NSString) -> String {
+        
+        match.outlineNode?.parent
+            .map { Self.text(of: $0, in: range, source: source) }
+            ?? source.substring(with: range)
     }
     
     

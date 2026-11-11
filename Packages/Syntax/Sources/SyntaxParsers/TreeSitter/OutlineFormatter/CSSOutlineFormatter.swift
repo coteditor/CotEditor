@@ -26,8 +26,19 @@
 
 import Foundation
 import SyntaxFormat
+import SwiftTreeSitter
 
 enum CSSOutlineFormatter: TreeSitterOutlineFormatting {
+    
+    static func title(for match: QueryMatch, capture: OutlineCapture, source: NSString) -> (title: String, range: NSRange)? {
+        
+        guard let node = match.outlineNode else {
+            return Self.defaultTitle(capture: capture, source: source)
+        }
+        
+        return (title: Self.text(of: node, in: Self.headerRange(of: node), source: source), range: capture.range)
+    }
+    
     
     /// Formats a CSS outline title by keeping only the at-rule header.
     static func formatTitle(_ title: String, kind: Syntax.Outline.Kind) -> String? {
@@ -42,5 +53,23 @@ enum CSSOutlineFormatter: TreeSitterOutlineFormatting {
             .trimmingCharacters(in: .whitespacesAndNewlines)
         
         return normalized.isEmpty ? nil : normalized
+    }
+}
+
+
+private extension CSSOutlineFormatter {
+    
+    /// Returns the range of the at-rule before its block.
+    ///
+    /// - Parameter node: The at-rule node.
+    /// - Returns: The range of the at-rule header.
+    static func headerRange(of node: Node) -> NSRange {
+        
+        let blockLocation = (0..<node.childCount).lazy
+            .compactMap(node.child(at:))
+            .first { ["block", "keyframe_block_list"].contains($0.nodeType ?? "") }?
+            .range.location
+        
+        return NSRange(node.range.lowerBound..<(blockLocation ?? node.range.upperBound))
     }
 }

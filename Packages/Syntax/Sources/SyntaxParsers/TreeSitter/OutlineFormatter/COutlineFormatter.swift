@@ -63,7 +63,7 @@ private extension COutlineFormatter {
             let parameters = functionDeclarator.child(byFieldName: "parameters")
         else { return nil }
         
-        let parameterList = source.substring(with: parameters.range)
+        let parameterList = Self.text(of: parameters, source: source)
             .replacing(/\s+/, with: " ")
             .replacing(/\(\s+/, with: "(")
             .replacing(/\s+\)/, with: ")")

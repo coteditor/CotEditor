@@ -55,12 +55,12 @@ private extension GoOutlineFormatter {
     /// - Returns: The displayed Go function or method title.
     static func functionTitle(for match: QueryMatch, title: String, source: NSString) -> String {
         
-        let typeParameters = Self.typeParametersRange(for: match)
-            .map(source.substring(with:))
+        let typeParameters = Self.typeParametersNode(for: match)
+            .map { Self.text(of: $0, source: source) }
             .map(Self.normalizedClause)
             ?? ""
-        let parameters = Self.parametersRange(for: match)
-            .map(source.substring(with:))
+        let parameters = Self.parametersNode(for: match)
+            .map { Self.text(of: $0, source: source) }
             .map(Self.normalizedClause)
             ?? "()"
         
@@ -83,19 +83,19 @@ private extension GoOutlineFormatter {
     static func signatureRange(for match: QueryMatch, nameRange: NSRange) -> NSRange {
         
         nameRange.union(with: [
-            Self.typeParametersRange(for: match),
+            Self.typeParametersNode(for: match)?.range,
             Self.parametersRange(for: match),
         ])
     }
     
     
-    /// Returns the type parameter list range for a Go function declaration.
+    /// Returns the type parameter list node for a Go function declaration.
     ///
     /// - Parameter match: The resolved query match.
-    /// - Returns: The type parameter list range, or `nil` if none exists.
-    private static func typeParametersRange(for match: QueryMatch) -> NSRange? {
+    /// - Returns: The type parameter list node, or `nil` if none exists.
+    private static func typeParametersNode(for match: QueryMatch) -> Node? {
         
-        match.outlineNode?.parent?.child(byFieldName: "type_parameters")?.range
+        match.outlineNode?.parent?.child(byFieldName: "type_parameters")
     }
     
     

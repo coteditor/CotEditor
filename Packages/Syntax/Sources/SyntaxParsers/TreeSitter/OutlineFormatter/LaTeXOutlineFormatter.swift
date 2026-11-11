@@ -32,11 +32,13 @@ enum LaTeXOutlineFormatter: TreeSitterOutlineFormatting {
     
     static func title(for match: QueryMatch, capture: OutlineCapture, source: NSString) -> (title: String, range: NSRange)? {
         
-        guard let range = Self.titleRange(for: match) else {
+        guard let node = Self.titleNode(for: match) else {
             return Self.defaultTitle(capture: capture, source: source)
         }
         
-        return (title: source.substring(with: range), range: range)
+        let range = Self.innerRange(of: node)
+        
+        return (title: Self.text(of: node, in: range, source: source), range: range)
     }
     
     
@@ -53,11 +55,11 @@ enum LaTeXOutlineFormatter: TreeSitterOutlineFormatting {
 
 private extension LaTeXOutlineFormatter {
     
-    /// Returns the content range for the node matched by the outline query.
+    /// Returns the group node of the title for the node matched by the outline query.
     ///
     /// - Parameter match: The query match.
-    /// - Returns: The content range for the node matched by the outline query.
-    static func titleRange(for match: QueryMatch) -> NSRange? {
+    /// - Returns: The group node of the title for the node matched by the outline query.
+    static func titleNode(for match: QueryMatch) -> Node? {
         
         guard
             let node = match.outlineNode,
@@ -80,12 +82,9 @@ private extension LaTeXOutlineFormatter {
                 nil
         }
         
-        guard
-            let fieldName,
-            let fieldNode = node.child(byFieldName: fieldName)
-        else { return nil }
+        guard let fieldName else { return nil }
         
-        return Self.innerRange(of: fieldNode)
+        return node.child(byFieldName: fieldName)
     }
     
     

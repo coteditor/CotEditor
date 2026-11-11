@@ -115,6 +115,21 @@ struct TreeSitterCOutlineTests {
     }
     
     
+    @Test func outlineOmitsCommentsInParameterClause() async throws {
+        
+        let source = #"""
+            int run(int a, // first
+                    char *b /* second */) {
+                return 0;
+            }
+        """#
+        
+        let outline = try await self.parseOutline(in: source)
+        
+        #expect(outline.map(\.title) == ["run(int a, char *b)"])
+    }
+    
+    
     // MARK: Private Methods
     
     private func parseOutline(in source: String) async throws -> [OutlineItem] {

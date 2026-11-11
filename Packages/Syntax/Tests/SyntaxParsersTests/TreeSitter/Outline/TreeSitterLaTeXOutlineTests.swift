@@ -141,6 +141,19 @@ struct TreeSitterLaTeXOutlineTests {
     }
     
     
+    @Test func outlineOmitsCommentsInTitle() async throws {
+        
+        let source = #"""
+            \section{Results % draft
+            }
+            """#
+        
+        let outline = try await self.parseOutline(in: source)
+        
+        #expect(outline.map(\.title) == ["Results"])
+    }
+    
+    
     // MARK: Private Methods
     
     private func parseOutline(in source: String) async throws -> [OutlineItem] {

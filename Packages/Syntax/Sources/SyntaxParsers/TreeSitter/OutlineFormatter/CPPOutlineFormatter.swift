@@ -63,7 +63,7 @@ private extension CPPOutlineFormatter {
             let parameters = functionDeclarator.child(byFieldName: "parameters")
         else { return nil }
         
-        let parameterList = Self.normalizedClause(source.substring(with: parameters.range))
+        let parameterList = Self.normalizedClause(Self.text(of: parameters, source: source))
         let title = source.substring(with: nameNode.range) + parameterList
         let range = nameNode.range.union(parameters.range)
         

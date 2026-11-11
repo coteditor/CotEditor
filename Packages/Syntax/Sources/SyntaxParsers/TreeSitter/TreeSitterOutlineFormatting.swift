@@ -25,6 +25,7 @@
 //
 
 import Foundation
+import StringUtils
 import SyntaxFormat
 import SwiftTreeSitter
 
@@ -117,7 +118,56 @@ extension TreeSitterOutlineFormatting {
     /// - Returns: The parameters range, or `nil` if the match has no parameter capture.
     static func parametersRange(for match: QueryMatch) -> NSRange? {
         
-        match.captures(named: "outline.signature.parameters").first?.range
+        Self.parametersNode(for: match)?.range
+    }
+    
+    
+    /// Returns the node of the first `outline.signature.parameters` capture in the match.
+    ///
+    /// - Parameter match: The resolved query match.
+    /// - Returns: The parameters node, or `nil` if the match has no parameter capture.
+    static func parametersNode(for match: QueryMatch) -> Node? {
+        
+        match.captures(named: "outline.signature.parameters").first?.node
+    }
+    
+    
+    /// Returns the source text in the node with the extras, such as comments, replaced with a space.
+    ///
+    /// - Parameters:
+    ///   - node: The node to take the text from.
+    ///   - range: The range of the text in the node, or `nil` for the whole node.
+    ///   - source: The source text as `NSString`.
+    /// - Returns: The source text without extras.
+    static func text(of node: Node, in range: NSRange? = nil, source: NSString) -> String {
+        
+        let range = range ?? node.range
+        let cursor = node.treeCursor
+        var extraRanges: [NSRange] = []
+        
+        if cursor.goToFirstChild() {
+            traversal: while true {
+                if let child = cursor.currentNode, let intersection = child.range.intersection(range) {
+                    if child.isExtra {
+                        extraRanges.append(intersection)
+                    } else if cursor.goToFirstChild() {
+                        continue
+                    }
+                }
+                while !cursor.gotoNextSibling() {
+                    guard cursor.gotoParent() else { break traversal }
+                }
+            }
+        }
+        
+        guard !extraRanges.isEmpty else { return source.substring(with: range) }
+        
+        let text = NSMutableString(string: source.substring(with: range))
+        for extraRange in extraRanges.reversed() {
+            text.replaceCharacters(in: extraRange.shifted(by: -range.location), with: " ")
+        }
+        
+        return text as String
     }
 }
 

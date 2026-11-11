@@ -59,8 +59,8 @@ private extension PythonOutlineFormatter {
     /// - Returns: The displayed Python function title.
     static func functionTitle(for match: QueryMatch, title: String, source: NSString) -> String {
         
-        let parameters = Self.parametersRange(for: match)
-            .map(source.substring(with:))
+        let parameters = Self.parametersNode(for: match)
+            .map { Self.text(of: $0, source: source) }
             .map(Self.normalizedClause)
             ?? "()"
         

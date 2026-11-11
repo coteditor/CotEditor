@@ -148,14 +148,14 @@ private extension SQLOutlineFormatter {
                 .compactMap(argument.namedChild(at:))
                 .filter { $0 == customType || $0.nodeType == "array_size_definition" }
             
-            return Self.typeText(for: typeNodes, source: source)
+            return Self.typeText(for: typeNodes, in: argument, source: source)
         }
         
         let typeNodes = (0..<argument.namedChildCount)
             .compactMap(argument.namedChild(at:))
             .filter { Self.sqlTypeNodeTypes.contains($0.nodeType ?? "") }
         
-        return Self.typeText(for: typeNodes, source: source)
+        return Self.typeText(for: typeNodes, in: argument, source: source)
     }
     
     
@@ -163,15 +163,16 @@ private extension SQLOutlineFormatter {
     ///
     /// - Parameters:
     ///   - typeNodes: The SQL type-related nodes in source order.
+    ///   - argument: The SQL function argument node that contains the type nodes.
     ///   - source: The source text as `NSString`.
     /// - Returns: The normalized type text, or `nil` if it is empty.
-    private static func typeText(for typeNodes: [Node], source: NSString) -> String? {
+    private static func typeText(for typeNodes: [Node], in argument: Node, source: NSString) -> String? {
         
         guard let firstTypeNode = typeNodes.first else { return nil }
         
         let range = typeNodes.dropFirst()
             .reduce(into: firstTypeNode.range) { $0.formUnion($1.range) }
-        let type = source.substring(with: range)
+        let type = Self.text(of: argument, in: range, source: source)
             .replacing(/\s+/, with: " ")
             .trimmingCharacters(in: .whitespacesAndNewlines)
         

@@ -46,7 +46,10 @@ enum TypeScriptOutlineFormatter: TreeSitterOutlineFormatting {
                     return Self.defaultTitle(capture: capture, source: source)
                 }
                 let range = Self.signatureRange(for: match, nameRange: capture.range)
-                let title = Self.normalizedClause(source.substring(with: range))
+                let signature = match.outlineNode?.parent
+                    .map { Self.text(of: $0, in: range, source: source) }
+                    ?? source.substring(with: range)
+                let title = Self.normalizedClause(signature)
                 return (title, range)
             default:
                 return Self.defaultTitle(capture: capture, source: source)
