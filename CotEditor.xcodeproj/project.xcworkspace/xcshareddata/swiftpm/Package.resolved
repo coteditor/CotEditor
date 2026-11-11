@@ -1,5 +1,5 @@
 {
-  "originHash" : "8808143f4860fdb1458cf9e706216755ba815f69285fb3ae9240623fb9bdc526",
+  "originHash" : "719538e40cadb438eac28b95950fc96b1c39f297526328d5c90a6b4ba6f1ea8f",
   "pins" : [
     {
       "identity" : "sparkle",
@@ -222,8 +222,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/tree-sitter/tree-sitter-scala",
       "state" : {
-        "revision" : "854efe86bd888c11f3eef8c8a3c0a805555b7802",
-        "version" : "0.26.9"
+        "revision" : "b22db807e45caca5cc2fa55a9067b49f119c3183",
+        "version" : "0.26.11"
       }
     },
     {
