@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="25406" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="25408" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="25406"/>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="25408"/>
     </dependencies>
     <scenes>
         <!--Application-->
@@ -19,16 +20,17 @@
                                                 <action selector="showAboutPanel:" target="Ady-hI-5gd" id="u8D-Wn-gmq"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Donate to CotEditor…" secondaryImage="mug" catalog="system" id="qPX-5r-cB2">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
-                                            <connections>
-                                                <action selector="showDonationWindow:" target="Ady-hI-5gd" id="y4U-qi-7Pb"/>
-                                            </connections>
-                                        </menuItem>
                                         <menuItem isSeparatorItem="YES" id="202"/>
                                         <menuItem title="Settings…" image="gear" catalog="system" keyEquivalent="," id="129">
                                             <connections>
                                                 <action selector="showSettingsWindow:" target="Ady-hI-5gd" id="B5S-pE-Q9J"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem isSeparatorItem="YES" id="4LK-AN-eJy"/>
+                                        <menuItem title="Donate to CotEditor…" secondaryImage="mug" catalog="system" id="qPX-5r-cB2">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="showDonationWindow:" target="Ady-hI-5gd" id="y4U-qi-7Pb"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="143"/>
