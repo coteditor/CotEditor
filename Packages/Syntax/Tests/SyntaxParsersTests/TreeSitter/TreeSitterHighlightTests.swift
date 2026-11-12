@@ -485,6 +485,28 @@ struct TreeSitterHighlightTests {
         #expect(captures.contains(Capture(type: .types, text: "Foo")))
         #expect(captures.contains(Capture(type: .types, text: "Bar")))
     }
+    
+    
+    @Test func highlightCSharpTypePositions() async throws {
+        
+        let source = #"""
+            class A
+            {
+                Foo f = new Foo();
+                Bar M(Baz b) => (Bar)b;
+            }
+            """#
+        
+        let config = try self.registry.configuration(for: .cSharp)
+        let client = try TreeSitterClient(languageConfig: config, languageProvider: self.registry.languageProvider, syntax: .cSharp)
+        let captures = try #require(await client.parseHighlights(in: source, range: source.nsRange))
+            .highlights
+            .map { Capture(type: $0.value, text: (source as NSString).substring(with: $0.range)) }
+        
+        #expect(captures.filter { $0 == Capture(type: .types, text: "Foo") }.count == 2)
+        #expect(captures.filter { $0 == Capture(type: .types, text: "Bar") }.count == 2)
+        #expect(captures.contains(Capture(type: .types, text: "Baz")))
+    }
 }
 
 

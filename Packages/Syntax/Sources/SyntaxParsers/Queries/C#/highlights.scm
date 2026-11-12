@@ -144,9 +144,12 @@
 (type_argument_list (identifier) @types)
 (as_expression right: (identifier) @types)
 (is_pattern_expression pattern: (constant_pattern (identifier) @types))
-(declaration_pattern type: (identifier) @types)
 (base_list (identifier) @types)
 (predefined_type) @types.builtin
+
+; type positions (variables, parameters, returns, `new`, casts, patterns)
+(_ type: (identifier) @types)
+(_ returns: (identifier) @types)
 
 
 ; MARK: Attributes

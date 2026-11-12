@@ -125,6 +125,7 @@
 
 (type_identifier) @types
 (predefined_type) @types
+(new_expression constructor: (identifier) @types)
 
 ; special identifiers
 ((identifier) @types
