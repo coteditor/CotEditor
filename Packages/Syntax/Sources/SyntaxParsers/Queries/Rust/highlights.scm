@@ -10,6 +10,7 @@
 
 ; set defaults at first
 (field_identifier) @variables
+(self) @variables.builtin
 
 
 ; MARK: Keywords
@@ -140,8 +141,6 @@
 ; ----------------------------
 
 (parameter (identifier) @variables)
-
-(self) @variables.builtin
 
 
 ; MARK: Values

@@ -8,6 +8,13 @@
 ;  © 2026 1024jp
 ;
 
+; set defaults at first
+[
+  (class_name)
+  (id_name)
+] @variables
+
+
 ; MARK: Keywords
 ; ----------------------------
 
@@ -79,10 +86,7 @@
 ; MARK: Variables
 ; ----------------------------
 
-[
-  (class_name)
-  (id_name)
-] @variables
+; -> Class and ID names are set at the beginning of the file.
 
 ((property_name) @variables
  (#match? @variables "^--"))

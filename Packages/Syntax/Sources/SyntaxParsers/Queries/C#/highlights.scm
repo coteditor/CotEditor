@@ -143,7 +143,8 @@
 (generic_name (identifier) @types)
 (type_argument_list (identifier) @types)
 (as_expression right: (identifier) @types)
-(is_expression right: (identifier) @types)
+(is_pattern_expression pattern: (constant_pattern (identifier) @types))
+(declaration_pattern type: (identifier) @types)
 (base_list (identifier) @types)
 (predefined_type) @types.builtin
 

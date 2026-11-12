@@ -70,6 +70,7 @@
 - Fix an issue where syntax highlighting could stop partway through a large document if the document was edited before the highlighting finished after opening.
 - Fix an issue in tree-sitter-based syntax highlighting where highlights could remain outdated after editing, such as when typing immediately after deleting the opening quotation marks of a string spanning multiple lines or when entering text with an input method.
 - Fix an issue in tree-sitter-based syntax highlighting where editing in a string spanning multiple lines could remove the highlight of nested elements on other lines, such as escape sequences or interpolated variables.
+- Fix several issues in tree-sitter-based syntax highlighting, such as CSS pseudo-classes and names in all uppercase letters in type or function positions being highlighted in the wrong color, or some keywords, such as `goto` in C, not being highlighted.
 - Fix several issues with outline item titles in tree-sitter-based syntaxes.
 - Fix an issue where typing after extending selections during multi-cursor editing could insert text at an incorrect location if an insertion point was already at the beginning of a line.
 - Fix an issue where inserting a snippet with line breaks could move the insertion point to an incorrect location or merge multiple insertion points into one if the document’s line endings were not LF.
