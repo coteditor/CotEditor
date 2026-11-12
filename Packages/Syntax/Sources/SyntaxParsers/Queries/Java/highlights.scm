@@ -8,8 +8,10 @@
 ;  © 2026 1024jp
 ;
 
-; set variables at first
+; set defaults at first
 (identifier) @variables
+((identifier) @values
+ (#match? @values "^_*[A-Z][A-Z\\d_]+$"))
 
 
 ; MARK: Keywords
@@ -101,21 +103,18 @@
 (record_declaration
   name: (identifier) @types)
 
-((field_access
-  object: (identifier) @types)
- (#match? @types "^[A-Z]"))
-
-((scoped_identifier
-  scope: (identifier) @types)
- (#match? @types "^[A-Z]"))
-
-((method_invocation
-  object: (identifier) @types)
- (#match? @types "^[A-Z]"))
-
-((method_reference
-  . (identifier) @types)
- (#match? @types "^[A-Z]"))
+([
+  (field_access
+    object: (identifier) @types)
+  (scoped_identifier
+    scope: (identifier) @types)
+  (method_invocation
+    object: (identifier) @types)
+  (method_reference
+    . (identifier) @types)
+ ]
+ (#match? @types "^[A-Z]")
+ (#not-match? @types "^_*[A-Z][A-Z\\d_]+$"))
 
 (constructor_declaration
   name: (identifier) @types)
@@ -148,9 +147,6 @@
 
 ; MARK: Values
 ; ----------------------------
-
-((identifier) @values
- (#match? @values "^_*[A-Z][A-Z\\d_]+$"))
 
 [
   (true)

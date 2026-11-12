@@ -244,6 +244,28 @@ struct TreeSitterHighlightTests {
     }
     
     
+    @Test func highlightLuaAllCapsNames() async throws {
+        
+        let source = #"""
+            local MAX = 10
+            local M = {}
+            function M.FOO()
+              return MAX
+            end
+            """#
+        
+        let config = try self.registry.configuration(for: .lua)
+        let client = try TreeSitterClient(languageConfig: config, languageProvider: self.registry.languageProvider, syntax: .lua)
+        let captures = try #require(await client.parseHighlights(in: source, range: source.nsRange))
+            .highlights
+            .map { Capture(type: $0.value, text: (source as NSString).substring(with: $0.range)) }
+        
+        #expect(captures.filter { $0 == Capture(type: .values, text: "MAX") }.count == 2)
+        #expect(captures.filter { $0 == Capture(type: .variables, text: "M") }.count == 2)
+        #expect(captures.contains(Capture(type: .commands, text: "FOO")))
+    }
+    
+    
     @Test func highlightJavaScriptShadowedRequireOnlyAtCallSite() async throws {
         
         let source = #"""
@@ -295,10 +317,10 @@ struct TreeSitterHighlightTests {
         let source = #"""
             type User = { name: string }
             
-            function greet(user: User) {
+            function greet(user: User, LIMIT: number) {
               let message = user.name
               const items = [message]
-              return items
+              return items.slice(0, LIMIT)
             }
             """#
         
@@ -312,6 +334,7 @@ struct TreeSitterHighlightTests {
         #expect(captures.contains { $0.type == .variables && $0.text == "items" })
         #expect(captures.contains { $0.type == .variables && $0.text == "user" })
         #expect(captures.contains { $0.type == .types && $0.text == "User" })
+        #expect(captures.filter { $0 == Capture(type: .values, text: "LIMIT") }.count == 2)
     }
     
     
@@ -385,6 +408,32 @@ struct TreeSitterHighlightTests {
         let interpolatorIndex = try #require(captures.firstIndex(of: Capture(type: .commands, text: "s")))
         let stringIndex = try #require(captures.firstIndex { $0.type == .strings && $0.text.hasPrefix("s\"") })
         #expect(stringIndex < interpolatorIndex)
+    }
+    
+    
+    @Test func highlightCSharpAllCapsNamesInPositions() async throws {
+        
+        let source = #"""
+            [DTO]
+            class Box<T>
+            {
+                const int MAX = 1;
+                List<T> Items() => null;
+                int Count() => MAX;
+            }
+            """#
+        
+        let config = try self.registry.configuration(for: .cSharp)
+        let client = try TreeSitterClient(languageConfig: config, languageProvider: self.registry.languageProvider, syntax: .cSharp)
+        let captures = try #require(await client.parseHighlights(in: source, range: source.nsRange))
+            .highlights
+            .map { Capture(type: $0.value, text: (source as NSString).substring(with: $0.range)) }
+        
+        #expect(captures.contains(Capture(type: .attributes, text: "DTO")))
+        #expect(captures.contains(Capture(type: .attributes, text: "T")))
+        #expect(captures.contains(Capture(type: .types, text: "T")))
+        #expect(!captures.contains(Capture(type: .values, text: "T")))
+        #expect(captures.filter { $0 == Capture(type: .values, text: "MAX") }.count == 2)
     }
 }
 

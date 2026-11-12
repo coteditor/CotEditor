@@ -11,6 +11,8 @@
 ; set defaults at first
 (identifier) @variables
 (field_identifier) @attributes
+((identifier) @values
+  (#match? @values "^[A-Z][A-Z\\d_]*$"))
 
 
 ; MARK: Keywords
@@ -95,9 +97,6 @@
 
 ; MARK: Values
 ; ----------------------------
-
-((identifier) @values
-  (#match? @values "^[A-Z][A-Z\\d_]*$"))
 
 (null) @values.builtin
 

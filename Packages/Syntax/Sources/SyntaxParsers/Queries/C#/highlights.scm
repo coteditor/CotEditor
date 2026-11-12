@@ -82,6 +82,33 @@
 ] @keywords
 
 
+; MARK: Variables
+; ----------------------------
+
+(parameter name: (identifier) @variables)
+(variable_declarator name: (identifier) @variables)
+(declaration_expression name: (identifier) @variables)
+(declaration_pattern name: (identifier) @variables)
+(catch_declaration name: (identifier) @variables)
+(from_clause name: (identifier) @variables)
+(foreach_statement left: (identifier) @variables)
+
+
+; MARK: Values
+; ----------------------------
+
+; ALL_CAPS names (commands, types, and attributes below override)
+((identifier) @values
+  (#match? @values "^[A-Z][A-Z\\d_]*$"))
+
+(enum_member_declaration (identifier) @values)
+
+[
+  (boolean_literal)
+  (null_literal)
+] @values.builtin
+
+
 ; MARK: Commands
 ; ----------------------------
 
@@ -115,32 +142,6 @@
 
 (attribute name: (identifier) @attributes)
 (type_parameter (identifier) @attributes)
-
-
-; MARK: Variables
-; ----------------------------
-
-(parameter name: (identifier) @variables)
-(variable_declarator name: (identifier) @variables)
-(declaration_expression name: (identifier) @variables)
-(declaration_pattern name: (identifier) @variables)
-(catch_declaration name: (identifier) @variables)
-(from_clause name: (identifier) @variables)
-(foreach_statement left: (identifier) @variables)
-
-
-; MARK: Values
-; ----------------------------
-
-((identifier) @values
-  (#match? @values "^[A-Z][A-Z\\d_]*$"))
-
-(enum_member_declaration (identifier) @values)
-
-[
-  (boolean_literal)
-  (null_literal)
-] @values.builtin
 
 
 ; MARK: Numbers

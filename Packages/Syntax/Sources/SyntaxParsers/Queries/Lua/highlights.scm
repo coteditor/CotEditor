@@ -14,6 +14,8 @@
   field: (identifier) @attributes)
 (field
   name: (identifier) @attributes)
+((identifier) @values
+ (#match? @values "^[A-Z][A-Z_0-9]+$"))
 
 
 ; MARK: Keywords
@@ -173,13 +175,6 @@
   ))
 
 
-; MARK: Types
-; ----------------------------
-
-((identifier) @types.constant
- (#match? @types.constant "^[A-Z][A-Z_0-9]*$"))
-
-
 ; MARK: Attributes
 ; ----------------------------
 
@@ -194,8 +189,9 @@
 ((identifier) @variables.builtin
   (#eq? @variables.builtin "self"))
 
-(parameters
+((parameters
   (identifier) @variables)
+ (#not-match? @variables "^[A-Z][A-Z_0-9]+$"))
 
 
 ; MARK: Values
