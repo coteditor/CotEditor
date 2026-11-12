@@ -243,13 +243,6 @@
 ((name) @variables
  (#eq? @variables "this"))
 
-; class constants
-(class_declaration
-  body: (declaration_list
-    (const_declaration
-      (const_element
-        (name) @variables))))
-
 
 ; MARK: Values
 ; ----------------------------
