@@ -27,12 +27,28 @@ import SwiftUI
 import Defaults
 import SemanticVersioning
 
+#if SPARKLE
+import Sparkle
+
+extension SPUUpdater: GeneralSettingsView.Updater { }
+#endif
+
 struct GeneralSettingsView: View {
     
+    @MainActor @objc protocol Updater: NSObjectProtocol {
+        
+        /// Whether to check for updates automatically.
+        var automaticallyChecksForUpdates: Bool { get set }
+        
+        /// Reschedules automatic update checks after a short delay.
+        func resetUpdateCycleAfterShortDelay()
+    }
+    
+    
 #if SPARKLE
-    var showsUpdaterSettings = true
+    var updater: (any NSObject & Updater)? = UpdaterManager.shared.updater
 #else
-    var showsUpdaterSettings = false
+    var updater: (any NSObject & Updater)?
 #endif
     
     @Environment(\.locale) private var locale
@@ -215,9 +231,9 @@ struct GeneralSettingsView: View {
                 }
             }
             
-            if self.showsUpdaterSettings {
+            if let updater {
                 Divider()
-                UpdaterView()
+                UpdaterView(updater: updater)
             }
             
             HStack {
@@ -389,10 +405,13 @@ private struct SettingsImportMenu: View {
 }
 
 
-private struct UpdaterView: View {
+private struct UpdaterView<Updater: NSObject & GeneralSettingsView.Updater>: View {
     
-    @AppStorage("SUEnableAutomaticChecks") private var enableAutomaticUpdateChecks: Bool = true
+    var updater: Updater
+    
     @AppStorage(.checksUpdatesForBeta) private var checksUpdatesForBeta: Bool
+    
+    @State private var enableAutomaticUpdateChecks: Bool = true
     
     
     var body: some View {
@@ -402,10 +421,13 @@ private struct UpdaterView: View {
                 .gridColumnAlignment(.trailing)
             
             VStack(alignment: .leading) {
-                Toggle(.init("Check for updates automatically", table: "GeneralSettings", comment: "verb; checkbox"), isOn: $enableAutomaticUpdateChecks)
+                Toggle(.init("Check for updates automatically", table: "GeneralSettings", comment: "verb; checkbox"),
+                       isOn: Binding(get: { self.enableAutomaticUpdateChecks },
+                                     set: { self.updater.automaticallyChecksForUpdates = $0 }))
                 
                 VStack(alignment: .leading, spacing: 2) {
-                    Toggle(.init("Update to prereleases when available", table: "GeneralSettings", comment: "verb; checkbox"), isOn: $checksUpdatesForBeta)
+                    Toggle(.init("Update to prereleases when available", table: "GeneralSettings", comment: "verb; checkbox"),
+                           isOn: $checksUpdatesForBeta)
                     
                     if Bundle.main.version!.isPrerelease {
                         Text("Regardless of this setting, new prereleases are always included while using a prerelease.", tableName: "GeneralSettings")
@@ -416,6 +438,12 @@ private struct UpdaterView: View {
                     }
                 }
             }
+        }
+        .onReceive(self.updater.publisher(for: \.automaticallyChecksForUpdates)) {
+            self.enableAutomaticUpdateChecks = $0
+        }
+        .onChange(of: self.checksUpdatesForBeta) {
+            self.updater.resetUpdateCycleAfterShortDelay()
         }
     }
 }
@@ -501,13 +529,21 @@ private extension DocumentConflictOption {
 
 // MARK: - Preview
 
+@MainActor private final class MockUpdater: NSObject, GeneralSettingsView.Updater {
+    
+    @objc dynamic var automaticallyChecksForUpdates = true
+    
+    func resetUpdateCycleAfterShortDelay() { }
+}
+
+
 #Preview {
-    GeneralSettingsView(showsUpdaterSettings: false)
+    GeneralSettingsView(updater: nil)
         .scenePadding()
 }
 
 #Preview("with Sparkle") {
-    GeneralSettingsView(showsUpdaterSettings: true)
+    GeneralSettingsView(updater: MockUpdater())
         .scenePadding()
 }
 

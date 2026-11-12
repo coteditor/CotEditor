@@ -36,6 +36,8 @@ import SemanticVersioning
     
     static let shared = UpdaterManager()
     
+    var updater: SPUUpdater  { self.controller.updater }
+    
     
     // MARK: Private Properties
     
@@ -47,19 +49,11 @@ import SemanticVersioning
     
     // MARK: Lifecycle
     
-    private override init() {
-        
-        super.init()
-        
-        // migrate from outdated feed API (Sparkle 2.4.0, 2023-03)
-        self.controller.updater.clearFeedURLFromUserDefaults()
-        
-        self.controller.updater.updateCheckInterval = TimeInterval(60 * 60 * 24)  // daily
-    }
+    private override init() { }
     
     
-    /// Sets Sparkle up.
-    func setup() {
+    /// Adds the “Check for Updates” item to the application menu.
+    func addCheckForUpdatesMenuItem() {
         
         // insert "Check for Updates…" menu item
         
@@ -72,8 +66,8 @@ import SemanticVersioning
         if #unavailable(macOS 27) {
             menuItem.image = NSImage(systemSymbolName: "arrow.trianglehead.2.counterclockwise", accessibilityDescription: nil)
         }
-        menuItem.action = #selector(SPUUpdater.checkForUpdates)
-        menuItem.target = self.controller.updater
+        menuItem.action = #selector(SPUStandardUpdaterController.checkForUpdates)
+        menuItem.target = self.controller
         
         applicationMenu.insertItem(menuItem, at: 1)
         self.menuItem = menuItem

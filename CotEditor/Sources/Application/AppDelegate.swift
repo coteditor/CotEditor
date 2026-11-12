@@ -159,7 +159,7 @@ extension Logger {
         self.prepareMainMenu()
         
         #if SPARKLE
-        UpdaterManager.shared.setup()
+        UpdaterManager.shared.addCheckForUpdatesMenuItem()
         #endif
     }
     
