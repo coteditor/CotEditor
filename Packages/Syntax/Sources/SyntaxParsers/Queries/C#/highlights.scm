@@ -81,6 +81,17 @@
   "let"
 ] @keywords
 
+; query expressions
+(order_by_clause ["orderby" "ascending" "descending"] @keywords)
+(group_clause ["group" "by"] @keywords)
+(join_clause ["join" "on" "equals"] @keywords)
+(join_into_clause "into" @keywords)
+(query_expression "into" @keywords)
+
+(fixed_statement "fixed" @keywords)
+(unsafe_statement "unsafe" @keywords)
+(ref_type "readonly" @keywords)
+
 
 ; MARK: Variables
 ; ----------------------------

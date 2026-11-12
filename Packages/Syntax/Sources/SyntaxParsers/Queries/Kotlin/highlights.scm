@@ -63,6 +63,9 @@
   (visibility_modifier)
 ] @keywords
 
+(use_site_target
+  ["field" "property" "receiver" "param" "setparam" "delegate"] @keywords)
+
 
 ; MARK: Commands
 ; ----------------------------

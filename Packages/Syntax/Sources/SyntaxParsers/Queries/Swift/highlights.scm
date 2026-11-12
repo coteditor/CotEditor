@@ -84,14 +84,43 @@
   "case" @keywords)
 (switch_entry
   "fallthrough" @keywords)
+((simple_identifier) @keywords
+  (#eq? @keywords "fallthrough"))
 (switch_entry
   (default_keyword) @keywords)
+(discard_statement
+  "discard" @keywords)
+
+; pattern matching
+(if_statement
+  ["case" "as" "is"] @keywords)
+(guard_statement
+  ["case" "as" "is"] @keywords)
+(while_statement
+  ["case" "as" "is"] @keywords)
+(pattern
+  ["case" "as" "is"] @keywords)
+(check_expression
+  "is" @keywords)
 
 (init_declaration
   "init" @keywords)
 
 (deinit_declaration
   "deinit" @keywords)
+
+(operator_declaration
+  ["prefix" "infix" "postfix" "operator"] @keywords)
+(precedence_group_declaration
+  "precedencegroup" @keywords)
+(macro_declaration
+  "macro" @keywords)
+
+; parameter packs
+(type_parameter_pack
+  "each" @keywords)
+(value_parameter_pack
+  "each" @keywords)
 
 ; contextual expression keywords
 (consume_expression
@@ -114,6 +143,7 @@
   (parameter_modifier)
   (inheritance_modifier)
   (mutation_modifier)
+  (property_behavior_modifier)
 ] @keywords
 
 ; self/super

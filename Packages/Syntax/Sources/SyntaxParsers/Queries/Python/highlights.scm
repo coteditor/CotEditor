@@ -59,6 +59,8 @@
   "not in"
 ] @keywords
 
+(type_alias_statement "type" @keywords)
+
 
 ; MARK: Commands
 ; ----------------------------

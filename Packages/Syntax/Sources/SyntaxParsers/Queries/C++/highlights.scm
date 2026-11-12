@@ -19,6 +19,9 @@
 ; ----------------------------
 
 [
+  "alignas"
+  "alignof"
+  "asm"
   "break"
   "case"
   "catch"
@@ -43,6 +46,7 @@
   "final"
   "for"
   "friend"
+  "goto"
   "if"
   "inline"
   "mutable"
@@ -54,12 +58,16 @@
   "private"
   "protected"
   "public"
+  "register"
+  "requires"
   "return"
   "sizeof"
   "static"
+  "static_assert"
   "struct"
   "switch"
   "template"
+  "thread_local"
   "throw"
   "try"
   "typedef"
@@ -69,6 +77,44 @@
   "virtual"
   "volatile"
   "while"
+] @keywords
+
+; alternative operator representations
+[
+  "and"
+  "and_eq"
+  "bitand"
+  "bitor"
+  "compl"
+  "not"
+  "not_eq"
+  "or"
+  "or_eq"
+  "xor"
+  "xor_eq"
+] @keywords
+
+; C11 keywords and compiler extensions
+[
+  "_Alignas"
+  "_Alignof"
+  "_Atomic"
+  "_Generic"
+  "_Noreturn"
+  "__alignof"
+  "__alignof__"
+  "__asm"
+  "__asm__"
+  "__attribute"
+  "__attribute__"
+  "__declspec"
+  "__extension__"
+  "__forceinline"
+  "__inline"
+  "__inline__"
+  "__restrict__"
+  "__thread"
+  "__volatile__"
 ] @keywords
 
 (auto) @keywords
@@ -83,6 +129,7 @@
   "#ifdef"
   "#ifndef"
   "#include"
+  "defined"
 ] @keywords
 
 (preproc_directive) @keywords

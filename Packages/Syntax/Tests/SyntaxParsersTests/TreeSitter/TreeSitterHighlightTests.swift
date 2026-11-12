@@ -213,6 +213,35 @@ struct TreeSitterHighlightTests {
     }
     
     
+    @Test func highlightSwiftDeclarationAndPatternKeywords() async throws {
+        
+        let source = #"""
+            infix operator •: AdditionPrecedence
+            lazy var items = [1]
+            let view = items.lazy
+            if case let item as Int = items.first { }
+            let isInt = view is Int
+            switch items.count {
+                case 0:
+                    fallthrough
+                default:
+                    break
+            }
+            """#
+        
+        let config = try self.registry.configuration(for: .swift)
+        let client = try TreeSitterClient(languageConfig: config, languageProvider: self.registry.languageProvider, syntax: .swift)
+        let captures = try #require(await client.parseHighlights(in: source, range: source.nsRange))
+            .highlights
+            .map { Capture(type: $0.value, text: (source as NSString).substring(with: $0.range)) }
+        
+        for keyword in ["infix", "operator", "case", "as", "is", "fallthrough"] {
+            #expect(captures.contains(Capture(type: .keywords, text: keyword)))
+        }
+        #expect(captures.filter { $0 == Capture(type: .keywords, text: "lazy") }.count == 1)
+    }
+    
+    
     @Test func highlightPythonAllCapsConstantsAndConstructorCalls() async throws {
         
         let source = #"""
