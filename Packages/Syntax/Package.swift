@@ -41,7 +41,7 @@ let package = Package(
         .package(url: "https://github.com/tree-sitter/tree-sitter-ruby", from: Version(0, 23, 1)),
         .package(url: "https://github.com/tree-sitter/tree-sitter-rust", from: Version(0, 24, 2)),
         .package(url: "https://github.com/tree-sitter/tree-sitter-scala", from: Version(0, 26, 12)),
-        .package(url: "https://github.com/DerekStride/tree-sitter-sql", branch: "gh-pages"),
+        .package(url: "https://github.com/DerekStride/tree-sitter-sql", revision: "2d088525f3f986108d969dab526a0d7129281e24"),  // branch: "gh-pages" (0.3.13)
         .package(url: "https://github.com/alex-pinkus/tree-sitter-swift", revision: "82bb3a533e0801fd2bbaa11dc49676e10bf41948"),  // branch: "with-generated-files" (0.7.4)
         .package(url: "https://github.com/tree-sitter/tree-sitter-typescript", from: Version(0, 23, 2)),
     ],
