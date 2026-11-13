@@ -60,6 +60,16 @@ struct SnippetTests {
     }
     
     
+    @Test func tokenAdjoiningCombiningMark() {
+        
+        let snippet = Snippet(name: "", format: "<<<CURSOR>>>\u{301}")
+        let (string, selections) = snippet.insertion(selectedString: "")
+        
+        #expect(string == "\u{301}")
+        #expect(selections == [NSRange(location: 0, length: 0)])
+    }
+    
+    
     @Test func multipleLines() {
         
         let format = """

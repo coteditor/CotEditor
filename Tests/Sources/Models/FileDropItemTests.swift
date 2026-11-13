@@ -103,6 +103,15 @@ struct FileDropItemTests {
     }
     
     
+    @Test func dropTextWithTokenInFilename() {
+        
+        let item = FileDropItem(format: "<<<ABSOLUTE-PATH>>>")
+        let droppedURL = URL(filePath: "/Users/Shared/<<<FILENAME>>>.txt")
+        
+        #expect(item.dropText(forFileURL: droppedURL, documentURL: nil) == "/Users/Shared/<<<FILENAME>>>.txt")
+    }
+    
+    
     @Test func dropTextWithRotatedImage() throws {
         
         let directoryURL = try FileManager.default.makeTemporaryDirectory()

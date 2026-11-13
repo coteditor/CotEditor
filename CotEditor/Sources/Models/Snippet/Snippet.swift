@@ -143,18 +143,27 @@ extension Snippet {
         
         assert(indent.allSatisfy(\.isWhitespace))
         
-        // split at the cursor tokens before inserting the selection,
-        // so that a cursor token contained in the selection is kept as is
-        return self.format
-            .replacing(/\R/) { $0.output + indent }  // indent
-            .split(separator: Variable.cursor.token, omittingEmptySubsequences: false)
-            .map { $0.replacing(Variable.selection.token, with: selectedString) }  // selection
-            .enumerated()
-            .reduce(into: ("", [])) { result, item in
-                if item.offset > 0 {
-                    result.selectedRanges.append(NSRange(location: (result.string as NSString).length, length: 0))
-                }
-                result.string += item.element
+        let format = self.format.replacing(/\R/) { $0.output + indent }  // indent
+        
+        // replace the tokens in a single pass, so that tokens contained in the selection are kept as is
+        var string = ""
+        var selectedRanges: [NSRange] = []
+        var location = 0
+        Variable.makeTokenizer().tokenize(format) { token, range, _ in
+            string += (format as NSString).substring(with: NSRange(location..<range.lowerBound))
+            location = range.upperBound
+            
+            switch Variable(rawValue: token) {
+                case .selection:
+                    string += selectedString
+                case .cursor:
+                    selectedRanges.append(NSRange(location: string.length, length: 0))
+                case nil:
+                    assertionFailure()
             }
+        }
+        string += (format as NSString).substring(from: location)
+        
+        return (string, selectedRanges)
     }
 }

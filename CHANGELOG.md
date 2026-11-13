@@ -103,6 +103,7 @@
 - [trivial] Fix an issue where the selection could move to an incorrect range when commenting out lines with block comment delimiters while only line endings were selected.
 - [trivial] Fix an issue where the selection after reversing, shuffling, or sorting lines by pattern did not include an empty line moved to the end.
 - [trivial] Fix an issue in the file browser where moving a symbolic link to a folder to the Trash also closed open documents in that folder.
+- [trivial] Fix several issues where snippet variables were replaced incorrectly, such as when the name of a dropped file contained a variable.
 
 
 ### Known Issues

@@ -186,6 +186,13 @@ extension FileDropItem {
     /// - Returns: The text to insert.
     func dropText(forFileURL droppedFileURL: URL, documentURL: URL?) -> String {
         
+        var tokens: [(variable: Variable, range: NSRange)] = []
+        Variable.makeTokenizer().tokenize(self.format) { token, range, _ in
+            guard let variable = Variable(rawValue: token) else { return assertionFailure() }
+            tokens.append((variable, range))
+        }
+        let variables = Set(tokens.map(\.variable))
+        
         let absolutePath = droppedFileURL.isFileURL
             ? droppedFileURL.path(percentEncoded: false)
             : droppedFileURL.absoluteString
@@ -195,19 +202,19 @@ extension FileDropItem {
             absolutePath
         }
         
-        // replace template
-        var dropText = self.format
-            .replacing(Variable.absolutePath.token, with: absolutePath)
-            .replacing(Variable.relativePath.token, with: relativePath)
-            .replacing(Variable.filename.token, with: droppedFileURL.lastPathComponent)
-            .replacing(Variable.filenameWithoutExtension.token, with: droppedFileURL.deletingPathExtension().lastPathComponent)
-            .replacing(Variable.fileExtension.token, with: droppedFileURL.pathExtension)
-            .replacing(Variable.fileExtensionLowercase.token, with: droppedFileURL.pathExtension.lowercased())
-            .replacing(Variable.fileExtensionUppercase.token, with: droppedFileURL.pathExtension.uppercased())
-            .replacing(Variable.directory.token, with: droppedFileURL.deletingLastPathComponent().lastPathComponent)
+        var values: [Variable: String] = [
+            .absolutePath: absolutePath,
+            .relativePath: relativePath,
+            .filename: droppedFileURL.lastPathComponent,
+            .filenameWithoutExtension: droppedFileURL.deletingPathExtension().lastPathComponent,
+            .fileExtension: droppedFileURL.pathExtension,
+            .fileExtensionLowercase: droppedFileURL.pathExtension.lowercased(),
+            .fileExtensionUppercase: droppedFileURL.pathExtension.uppercased(),
+            .directory: droppedFileURL.deletingLastPathComponent().lastPathComponent,
+        ]
         
         // get image dimension if needed
-        if self.format.contains(Variable.imageWidth.token) || self.format.contains(Variable.imageHeight.token) {
+        if !variables.isDisjoint(with: Variable.imageTokens) {
             var pixelWidth: Int?
             var pixelHeight: Int?
             NSFileCoordinator().coordinate(readingItemAt: droppedFileURL, options: [.withoutChanges, .resolvesSymbolicLink], error: nil) { newURL in
@@ -227,18 +234,24 @@ extension FileDropItem {
                 }
             }
             if let pixelWidth, let pixelHeight {
-                dropText.replace(Variable.imageWidth.token, with: String(pixelWidth))
-                dropText.replace(Variable.imageHeight.token, with: String(pixelHeight))
+                values[.imageWidth] = String(pixelWidth)
+                values[.imageHeight] = String(pixelHeight)
             }
         }
         
         // get text content if needed
-        // -> Replace this at last because the file content can contain other tokens.
-        if self.format.contains(Variable.fileContent.token) {
-            let content = try? String(contentsOf: droppedFileURL, encoding: .utf8)
-            dropText.replace(Variable.fileContent.token, with: content ?? "")
+        if variables.contains(.fileContent) {
+            values[.fileContent] = (try? String(contentsOf: droppedFileURL, encoding: .utf8)) ?? ""
         }
         
-        return dropText
+        // replace the tokens in a single pass, so that tokens contained in the values are kept as is
+        let dropText = NSMutableString(string: self.format)
+        for (variable, range) in tokens.reversed() {
+            guard let value = values[variable] else { continue }
+            
+            dropText.replaceCharacters(in: range, with: value)
+        }
+        
+        return dropText as String
     }
 }
