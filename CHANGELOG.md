@@ -27,7 +27,7 @@
 - Optimize the hanging indentation calculation.
 - Improve overall stability and performance.
 - Update tree-sitter-markdown to 0.5.4.
-- Update tree-sitter-scala to 0.26.11.
+- Update tree-sitter-scala to 0.26.12.
 - Update tree-sitter-sql to 0.3.13.
 - [trivial] Improve find results to include as much of a long match as possible in the line excerpt.
 - [dev] Update the build environment to Xcode 27.2.
