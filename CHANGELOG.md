@@ -76,6 +76,7 @@
 - Fix several issues with outline item titles in tree-sitter-based syntaxes.
 - Fix an issue where typing after extending selections during multi-cursor editing could insert text at an incorrect location if an insertion point was already at the beginning of a line.
 - Fix an issue where inserting a snippet with line breaks could move the insertion point to an incorrect location or merge multiple insertion points into one if the document’s line endings were not LF.
+- Fix an issue where editing at multiple insertion points or inserting a snippet could lose insertion points in documents with inconsistent line endings.
 - Fix an issue where File Drop snippets swapped the width and height of rotated images, such as photos taken in portrait orientation.
 - Fix an issue where changing the line height setting did not update the lines displayed in open documents.
 - Fix an issue where text was positioned too high in lines with some fonts, such as Raanana.

@@ -25,6 +25,7 @@
 
 import Foundation
 import Testing
+import LineEnding
 import StringUtils
 import TextEditing
 @testable import CotEditor
@@ -106,7 +107,7 @@ struct SnippetTests {
             NSRange(location: 4, length: 3),
             NSRange(location: 8, length: 0),
             NSRange(location: 9, length: 2),
-        ])
+        ], lineEnding: .lf)
         
         #expect(context.strings == [
             "<li>aaa</li>",
@@ -118,5 +119,15 @@ struct SnippetTests {
             NSRange(location: 21, length: 0),
             NSRange(location: 33, length: 0),
         ])
+    }
+    
+    
+    @Test func insertionsWithInconsistentLineEndings() {
+        
+        let snippet = Snippet(name: "", format: "(<<<SELECTION>>><<<CURSOR>>>)")
+        let context = snippet.insertions(for: "a\r\nb", ranges: [NSRange(location: 0, length: 3)], lineEnding: .lf)
+        
+        #expect(context.strings == ["(a\n)"])
+        #expect(context.selectedRanges == [NSRange(location: 3, length: 0)])
     }
 }

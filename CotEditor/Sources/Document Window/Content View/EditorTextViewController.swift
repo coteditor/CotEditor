@@ -290,7 +290,7 @@ final class EditorTextViewController: NSViewController, NSServicesMenuRequestor,
     }
     
     
-    func textView(_ textView: NSTextView, shouldChangeTextIn affectedCharRange: NSRange, replacementString: String?) -> Bool {
+    func textView(_ textView: NSTextView, shouldChangeTextInRanges affectedRanges: [NSValue], replacementStrings: [String]?) -> Bool {
         
         // restore previously accepted text without normalizing it again
         if let undoManager = textView.undoManager, undoManager.isUndoing || undoManager.isRedoing {
@@ -302,11 +302,11 @@ final class EditorTextViewController: NSViewController, NSServicesMenuRequestor,
         if textView.isApprovedTextChange { return true }
         
         // standardize line endings to the document line ending
-        if let replacementString,  // = only attributes changed
-           replacementString.lineEndingRanges().contains(where: { $0.value != textView.lineEnding })
+        if let replacementStrings,  // = only attributes changed
+           replacementStrings.contains(where: { $0.lineEndingRanges().contains { $0.value != textView.lineEnding } })
         {
-            return !textView.replace(with: replacementString.replacingLineEndings(with: textView.lineEnding),
-                                     range: affectedCharRange, selectedRange: nil)
+            return !textView.replace(with: replacementStrings.map { $0.replacingLineEndings(with: textView.lineEnding) },
+                                     ranges: affectedRanges.map(\.rangeValue), selectedRanges: nil)
         }
         
         return true
