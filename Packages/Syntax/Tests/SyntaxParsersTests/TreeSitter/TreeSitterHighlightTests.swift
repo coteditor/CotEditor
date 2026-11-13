@@ -509,6 +509,27 @@ struct TreeSitterHighlightTests {
     }
     
     
+    @Test func highlightCSharpContextualKeywordsOnlyAsKeywords() async throws {
+        
+        let source = #"""
+            class A
+            {
+                int M(int from) => from * 2;
+                IEnumerable<int> N(int[] a) => from x in a select x;
+            }
+            """#
+        
+        let config = try self.registry.configuration(for: .cSharp)
+        let client = try TreeSitterClient(languageConfig: config, languageProvider: self.registry.languageProvider, syntax: .cSharp)
+        let captures = try #require(await client.parseHighlights(in: source, range: source.nsRange))
+            .highlights
+            .map { Capture(type: $0.value, text: (source as NSString).substring(with: $0.range)) }
+        
+        #expect(captures.filter { $0 == Capture(type: .keywords, text: "from") }.count == 1)
+        #expect(captures.contains(Capture(type: .keywords, text: "select")))
+    }
+    
+    
     @Test func highlightBashANSICStrings() async throws {
         
         let source = #"""

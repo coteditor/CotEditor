@@ -19,7 +19,6 @@
 
 [
   "add"
-  "alias"
   "as"
   "base"
   "break"
@@ -39,7 +38,6 @@
   "finally"
   "for"
   "foreach"
-  "global"
   "goto"
   "if"
   "implicit"
@@ -47,7 +45,6 @@
   "is"
   "lock"
   "namespace"
-  "notnull"
   "operator"
   "params"
   "return"
@@ -66,27 +63,44 @@
   "new"
   "await"
   "in"
-  "yield"
   "get"
   "set"
-  "when"
   "out"
   "ref"
-  "from"
-  "where"
-  "select"
   "record"
   "init"
   "with"
-  "let"
 ] @keywords
 
 ; query expressions
+(from_clause "from" @keywords)
+(let_clause "let" @keywords)
+(where_clause "where" @keywords)
+(select_clause "select" @keywords)
 (order_by_clause ["orderby" "ascending" "descending"] @keywords)
 (group_clause ["group" "by"] @keywords)
 (join_clause ["join" "on" "equals"] @keywords)
 (join_into_clause "into" @keywords)
 (query_expression "into" @keywords)
+
+; pattern combinators
+(and_pattern "and" @keywords)
+(or_pattern "or" @keywords)
+(negated_pattern "not" @keywords)
+
+; contextual keywords
+; -> Match them only in their nodes, as identifiers with the same names contain the keyword tokens.
+(extern_alias_directive "alias" @keywords)
+(using_directive "global" @keywords)
+((alias_qualified_name
+  alias: (identifier) @keywords)
+ (#eq? @keywords "global"))
+(type_parameter_constraints_clause "where" @keywords)
+(type_parameter_constraint ["notnull" "unmanaged"] @keywords)
+(yield_statement "yield" @keywords)
+(when_clause "when" @keywords)
+(catch_filter_clause "when" @keywords)
+(calling_convention ["managed" "unmanaged"] @keywords)
 
 (fixed_statement "fixed" @keywords)
 (unsafe_statement "unsafe" @keywords)
