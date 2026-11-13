@@ -50,3 +50,19 @@
 (destructor_declaration
   name: (identifier) @outline.function
   parameters: (parameter_list) @outline.signature.parameters)
+
+(operator_declaration
+  "operator" @outline.function
+  parameters: (parameter_list) @outline.signature.parameters)
+
+(conversion_operator_declaration
+  ["implicit" "explicit"] @outline.function
+  parameters: (parameter_list) @outline.signature.parameters)
+
+(indexer_declaration
+  "this" @outline.function
+  parameters: (bracketed_parameter_list) @outline.signature.parameters)
+
+; Regions
+(preproc_region
+  content: (preproc_arg) @outline.mark)

@@ -142,6 +142,24 @@ struct TreeSitterJavaScriptOutlineTests {
     }
     
     
+    @Test func outlineIncludesClassExpressionsAndPropertyFunctions() async throws {
+        
+        let source = #"""
+            module.exports = class Foo {
+              bar() {}
+            }
+            const handlers = {
+              run: function (a) {},
+              stop: () => {},
+            }
+        """#
+        
+        let outline = try await self.parseOutline(in: source)
+        
+        #expect(outline.map(\.title) == ["Foo", "bar()", "run", "stop"])
+    }
+    
+    
     // MARK: Private Methods
     
     private func parseOutline(in source: String) async throws -> [OutlineItem] {

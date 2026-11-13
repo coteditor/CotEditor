@@ -10,14 +10,14 @@
 
 ; Containers
 (class
-  name: (constant) @outline.container)
+  name: (_) @outline.container)
 
 (module
-  name: (constant) @outline.container)
+  name: (_) @outline.container)
 
 ; Functions
 (method
-  name: (identifier) @outline.function)
+  name: (_) @outline.function)
 
 (singleton_method
-  name: (identifier) @outline.function)
+  name: (_) @outline.function)

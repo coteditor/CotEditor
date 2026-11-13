@@ -91,6 +91,22 @@ struct TreeSitterRustOutlineTests {
     }
     
     
+    @Test func outlineIncludesImplOfAnyType() async throws {
+        
+        let source = #"""
+            impl<T> Wrapper<T> {
+                fn get(&self) {}
+            }
+            impl From<u8> for i32 {}
+        """#
+        
+        let outline = try await self.parseOutline(in: source)
+        
+        #expect(outline.map(\.title) == ["Wrapper<T>", "get(&self)", "i32"])
+        #expect(outline.map(\.indent.level) == [0, 1, 0])
+    }
+    
+    
     // MARK: Private Methods
     
     private func parseOutline(in source: String) async throws -> [OutlineItem] {

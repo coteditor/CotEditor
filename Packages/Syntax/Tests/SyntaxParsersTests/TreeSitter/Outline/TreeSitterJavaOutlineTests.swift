@@ -128,6 +128,20 @@ struct TreeSitterJavaOutlineTests {
     }
     
     
+    @Test func outlineIncludesAnnotationTypes() async throws {
+        
+        let source = #"""
+            public @interface Marker {
+                String value();
+            }
+        """#
+        
+        let outline = try await self.parseOutline(in: source)
+        
+        #expect(outline.map(\.title) == ["Marker", "value()"])
+    }
+    
+    
     // MARK: Private Methods
     
     private func parseOutline(in source: String) async throws -> [OutlineItem] {

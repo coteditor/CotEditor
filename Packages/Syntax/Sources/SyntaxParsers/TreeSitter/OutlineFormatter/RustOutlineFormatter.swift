@@ -37,6 +37,11 @@ enum RustOutlineFormatter: TreeSitterOutlineFormatting {
             case .function:
                 return (title: Self.functionTitle(for: match, title: source.substring(with: capture.range), source: source),
                         range: Self.signatureRange(for: match, nameRange: capture.range))
+            case .container:
+                let title = match.outlineNode
+                    .map { Self.normalizedClause(Self.text(of: $0, source: source)) }
+                    ?? source.substring(with: capture.range)
+                return (title: title, range: capture.range)
             default:
                 return Self.defaultTitle(capture: capture, source: source)
         }

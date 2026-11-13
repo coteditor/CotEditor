@@ -26,6 +26,9 @@
 
 (internal_module) @outline.container
 
+(class
+  name: (type_identifier) @outline.container)
+
 ; Properties
 (public_field_definition
   name: (property_identifier) @outline.value)
@@ -63,6 +66,14 @@
 (abstract_method_signature
   name: (_) @outline.function
   parameters: (formal_parameters) @outline.signature.parameters)
+
+(pair
+  key: (property_identifier) @outline.function
+  value: [
+    (arrow_function)
+    (function_expression)
+    (generator_function)
+  ])
 
 ; Top-level assigned callables
 (program

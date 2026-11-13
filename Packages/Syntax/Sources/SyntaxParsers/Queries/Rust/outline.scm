@@ -22,7 +22,7 @@
   name: (type_identifier) @outline.container)
 
 (impl_item
-  type: (type_identifier) @outline.container)
+  type: (_) @outline.container)
 
 ; Functions
 (function_item

@@ -12,6 +12,9 @@
 (class_declaration
   name: (identifier) @outline.container)
 
+(class
+  name: (identifier) @outline.container)
+
 ; Properties
 (field_definition
   property: (property_identifier) @outline.value)
@@ -31,6 +34,14 @@
 (method_definition
   name: (_) @outline.function
   parameters: (formal_parameters) @outline.signature.parameters)
+
+(pair
+  key: (property_identifier) @outline.function
+  value: [
+    (arrow_function)
+    (function_expression)
+    (generator_function)
+  ])
 
 ; Top-level assigned callables
 (program

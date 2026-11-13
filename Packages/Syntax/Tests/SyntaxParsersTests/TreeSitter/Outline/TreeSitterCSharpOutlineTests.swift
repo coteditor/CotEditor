@@ -132,6 +132,26 @@ struct TreeSitterCSharpOutlineTests {
     }
     
     
+    @Test func outlineIncludesRegionsAndOperators() async throws {
+        
+        let source = #"""
+            class A
+            {
+                #region Helpers
+                public static A operator +(A a, A b) => a;
+                public static implicit operator int(A a) => 0;
+                public int this[int i] => i;
+                #endregion
+            }
+        """#
+        
+        let outline = try await self.parseOutline(in: source)
+        
+        #expect(outline.map(\.title) == ["A", "Helpers", "operator +(A a, A b)", "implicit operator int(A a)", "this[int i]"])
+        #expect(outline.map(\.kind) == [.container, .mark, .function, .function, .function])
+    }
+    
+    
     // MARK: Private Methods
     
     private func parseOutline(in source: String) async throws -> [OutlineItem] {

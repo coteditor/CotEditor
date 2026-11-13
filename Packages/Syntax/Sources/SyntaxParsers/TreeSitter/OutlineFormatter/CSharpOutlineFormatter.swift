@@ -42,6 +42,9 @@ enum CSharpOutlineFormatter: TreeSitterOutlineFormatting {
                 let range = Self.signatureRange(for: match, source: source, nameRange: capture.range)
                 let title = Self.normalizedSignature(Self.signatureText(in: range, for: match, source: source))
                 return (title, range)
+            case .mark:
+                let title = source.substring(with: capture.range).trimmingCharacters(in: .whitespacesAndNewlines)
+                return (title, capture.range)
             default:
                 return Self.defaultTitle(capture: capture, source: source)
         }

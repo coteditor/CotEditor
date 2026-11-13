@@ -21,6 +21,9 @@
 (record_declaration
   name: (identifier) @outline.container)
 
+(annotation_type_declaration
+  name: (identifier) @outline.container)
+
 ; Properties
 (field_declaration
   declarator: (variable_declarator
@@ -34,3 +37,6 @@
 (constructor_declaration
   name: (identifier) @outline.function
   parameters: (formal_parameters) @outline.signature.parameters)
+
+(annotation_type_element_declaration
+  name: (identifier) @outline.function)

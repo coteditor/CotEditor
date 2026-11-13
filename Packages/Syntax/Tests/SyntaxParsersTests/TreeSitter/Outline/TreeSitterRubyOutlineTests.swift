@@ -77,6 +77,25 @@ struct TreeSitterRubyOutlineTests {
     }
     
     
+    @Test func outlineIncludesScopedNamesSettersAndOperators() async throws {
+        
+        let source = #"""
+            module Foo::Bar
+              class Baz::Qux < Base
+                def name=(value)
+                end
+                def ==(other)
+                end
+              end
+            end
+        """#
+        
+        let outline = try await self.parseOutline(in: source)
+        
+        #expect(outline.map(\.title) == ["Foo::Bar", "Baz::Qux", "name=(value)", "==(other)"])
+    }
+    
+    
     // MARK: Private Methods
     
     private func parseOutline(in source: String) async throws -> [OutlineItem] {

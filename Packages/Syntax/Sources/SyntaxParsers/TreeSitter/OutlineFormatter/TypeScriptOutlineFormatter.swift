@@ -102,13 +102,13 @@ private extension TypeScriptOutlineFormatter {
     }
     
     
-    /// Returns whether the match represents a variable-assigned callable.
+    /// Returns whether the match represents a callable assigned to a variable or an object property.
     ///
     /// - Parameter match: The resolved query match.
-    /// - Returns: `true` when the callable is assigned through a variable declarator.
+    /// - Returns: `true` when the callable is assigned through a variable declarator or a property pair.
     private static func isAssignedFunction(_ match: QueryMatch) -> Bool {
         
-        match.outlineNode?.parent?.nodeType == "variable_declarator"
+        ["variable_declarator", "pair"].contains(match.outlineNode?.parent?.nodeType)
     }
     
     
