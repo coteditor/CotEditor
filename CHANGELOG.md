@@ -35,6 +35,7 @@
 
 ### Fixes
 
+- Fix an issue where the Select All Find Matches command crashed the app when there were no matches (thanks to Yusuke Terada!).
 - Fix an issue in the Find window where pinch zooming did not synchronize the text size between the find and replace fields.
 - Fix an issue where Find All highlights remained in the document after closing the search results.
 - Fix several issues with the “Match only whole words” find option, such as not finding text that starts or ends with a symbol, like “#tag”, or text that contains a line ending.
