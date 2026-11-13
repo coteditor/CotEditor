@@ -681,7 +681,12 @@ struct FindMatchesCache {
         guard let (textFind, client) = self.prepareTextFind() else { return }
         
         let matchedRanges = try await self.findMatches(for: textFind, in: client)
-        client.selectedRanges = matchedRanges as [NSValue]
+        
+        if matchedRanges.isEmpty {
+            NSSound.beep()
+        } else {
+            client.selectedRanges = matchedRanges as [NSValue]
+        }
         
         self.notify(FindResult(action: .find, count: matchedRanges.count), for: client)
         self.settings.noteFindHistory()
