@@ -23,6 +23,7 @@
 - Change the Delete key to delete a closing bracket or quotation mark together with the opening one only when it was automatically inserted.
 - Change the numbering to avoid name conflicts in the file browser and settings to match Finder, such as using “Foo 2” if “Foo 1” already exists.
 - Change regular expressions in folder search to match `^` and `$` at the beginning and end of each line, consistent with the default of the Find window.
+- Optimize regular-expression-based syntax highlighting in large documents.
 - Optimize Replace All when using regular expressions or the “Match only whole words” find option.
 - Optimize the hanging indentation calculation.
 - Improve overall stability and performance.

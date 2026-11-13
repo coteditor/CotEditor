@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2023-2025 1024jp
+//  © 2023-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -121,5 +121,15 @@ struct NSRangeTests {
         #expect([NSRange(1..<3), NSRange(2..<3)].merged == [NSRange(1..<3)])
         #expect([NSRange(1..<2), NSRange(3..<4)].merged == [NSRange(1..<2), NSRange(3..<4)])
         #expect([NSRange(1..<2), NSRange(3..<4), NSRange(1..<3)].merged == [NSRange(1..<4)])
+    }
+    
+    
+    @Test func subtract() {
+        
+        #expect([NSRange(0..<8)].subtracting([NSRange(2..<4)]) == [NSRange(0..<2), NSRange(4..<8)])
+        #expect([NSRange(0..<8), NSRange(10..<14)].subtracting([NSRange(2..<4), NSRange(6..<12)]) == [NSRange(0..<2), NSRange(4..<6), NSRange(12..<14)])
+        #expect([NSRange(2..<4), NSRange(6..<8)].subtracting([NSRange(0..<8)]).isEmpty)
+        #expect([NSRange(1..<2)].subtracting([NSRange(2..<3)]) == [NSRange(1..<2)])
+        #expect([NSRange(1..<2)].subtracting([]) == [NSRange(1..<2)])
     }
 }

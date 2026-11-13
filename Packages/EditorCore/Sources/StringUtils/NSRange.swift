@@ -201,7 +201,7 @@ public extension Sequence<NSRange> {
     var merged: [NSRange] {
         
         self
-            .sorted(using: KeyPathComparator(\.location))
+            .sorted { $0.location < $1.location }
             .reduce(into: []) { ranges, range in
                 if let last = ranges.last, last.touches(range) {
                     ranges[ranges.count - 1] = last.union(range)
@@ -209,6 +209,45 @@ public extension Sequence<NSRange> {
                     ranges.append(range)
                 }
             }
+    }
+}
+
+
+public extension [NSRange] {
+    
+    /// Returns the ranges that remain after removing the given ranges from the receiver.
+    ///
+    /// - Note: The receiver must be `merged` in advance.
+    ///
+    /// - Parameters:
+    ///   - ranges: The ranges to remove, which must be `merged` in advance.
+    /// - Returns: The remaining ranges in ascending order.
+    func subtracting(_ ranges: [NSRange]) -> [NSRange] {
+        
+        assert(self == self.merged)
+        assert(ranges == ranges.merged)
+        
+        var index = ranges.startIndex
+        
+        return self.reduce(into: []) { result, range in
+            var location = range.lowerBound
+            
+            while location < range.upperBound {
+                while index < ranges.endIndex, ranges[index].upperBound <= location {
+                    index += 1
+                }
+                
+                guard index < ranges.endIndex, ranges[index].lowerBound < range.upperBound else {
+                    result.append(NSRange(location..<range.upperBound))
+                    break
+                }
+                
+                if location < ranges[index].lowerBound {
+                    result.append(NSRange(location..<ranges[index].lowerBound))
+                }
+                location = ranges[index].upperBound
+            }
+        }
     }
 }
 

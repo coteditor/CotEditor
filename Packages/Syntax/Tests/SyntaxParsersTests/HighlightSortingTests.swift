@@ -121,6 +121,23 @@ struct HighlightSortingTests {
     }
     
     
+    @Test func mergeRangesOfSameType() throws {
+        
+        let dict: [SyntaxType: [NSRange]] = [
+            .keywords: [
+                NSRange(location: 3, length: 2),
+                NSRange(location: 0, length: 3),
+                NSRange(location: 4, length: 3),
+                NSRange(location: 9, length: 0),
+            ],
+        ]
+        
+        let result = try Highlight.highlights(dictionary: dict)
+        
+        #expect(result == [Highlight(value: .keywords, range: NSRange(location: 0, length: 7))])
+    }
+    
+    
     @Test func cancellation() async throws {
         
         let dict: [SyntaxType: [NSRange]] = [

@@ -1,5 +1,5 @@
 //
-//  Highlight.swift
+//  Highlight+Sorting.swift
 //  Syntax
 //
 //  CotEditor
@@ -40,22 +40,23 @@ extension ValueRange<SyntaxType> {
     /// - Throws: `CancellationError`.
     static func highlights(dictionary: [SyntaxType: [NSRange]]) throws -> [ValueRange<SyntaxType>] {
         
-        var occupied = IndexSet()
+        var occupied: [NSRange] = []
         
         return try SyntaxType.allCases.reversed()
-            .reduce(into: [SyntaxType: IndexSet]()) { result, type in
+            .reduce(into: [ValueRange<SyntaxType>]()) { highlights, type in
                 guard let ranges = dictionary[type] else { return }
                 
                 try Task.checkCancellation()
                 
-                var indexes = IndexSet(integersIn: ranges)
-                indexes.subtract(occupied)
+                let merged = ranges
+                    .filter { !$0.isEmpty }
+                    .merged
                 
-                result[type] = indexes
-                occupied.formUnion(indexes)
+                highlights += merged
+                    .subtracting(occupied)
+                    .map { ValueRange(value: type, range: $0) }
+                occupied = (occupied + merged).merged
             }
-            .mapValues { $0.rangeView.map(NSRange.init) }
-            .flatMap { type, ranges in ranges.map { ValueRange(value: type, range: $0) } }
-            .sorted(using: KeyPathComparator(\.range.location))
+            .sorted { $0.range.location < $1.range.location }
     }
 }
