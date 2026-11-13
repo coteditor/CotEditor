@@ -218,6 +218,13 @@ extension FileDropItem {
                 
                 pixelWidth = properties[kCGImagePropertyPixelWidth] as? Int
                 pixelHeight = properties[kCGImagePropertyPixelHeight] as? Int
+                
+                // swap for the orientations rotated by 90 degrees
+                if let orientation = (properties[kCGImagePropertyOrientation] as? UInt32).flatMap(CGImagePropertyOrientation.init(rawValue:)),
+                   [.leftMirrored, .right, .rightMirrored, .left].contains(orientation)
+                {
+                    swap(&pixelWidth, &pixelHeight)
+                }
             }
             if let pixelWidth, let pixelHeight {
                 dropText.replace(Variable.imageWidth.token, with: String(pixelWidth))
