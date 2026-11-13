@@ -59,6 +59,7 @@
 			<li>tree-sitter-scalaを0.26.12に更新</li>
 			<li>tree-sitter-sqlを0.3.13に更新</li>
 			<li><span class="trivial">trivial</span>: 検索結果の行の抜粋に、長い一致をできるだけ含めるように改良</li>
+			<li><span class="trivial">trivial</span>: ファイルドロップスニペットで、画像サイズの変数と同様に、ファイルの内容を読み込めないときは<code>&lt;&lt;&lt;FILECONTENT&gt;&gt;&gt;</code>をそのまま残すように変更</li>
 			<li><span class="trivial">開発</span>: ビルド環境をXcode 27.2に更新</li>
 		</ul>
 	</section>
@@ -116,6 +117,7 @@
 			<li>「書類内のエンコーディング宣言を参照」オプションが有効なとき、UTF-16以外で保存された書類にUTF-16の宣言があると文字化けすることがあった不具合を修正</li>
 			<li>書類をASCIIで保存するときに、変換できない文字が不正なバイトになっていた不具合を修正</li>
 			<li>現在のテキストエンコーディングで表現できない円記号について、「警告」インスペクタの変換結果が誤って表示されていた不具合を修正</li>
+			<li><span class="label">非AppStore版</span>: ファイルドロップスニペットがドロップしたWeb URLの内容をダウンロードして、アプリが応答しなくなることがあった不具合を修正</li>
 			<li><span class="trivial">trivial</span>: システムの数字にラテン数字以外を使用していると、ファイルブラウザで項目を複製したときにアプリがクラッシュすることがあった不具合を修正</li>
 			<li><span class="trivial">trivial</span>: 一部のテキストエンコーディングで、変換できない結合文字を含む書類を保存すると、アプリがクラッシュしたり応答しなくなったりすることがあった不具合を修正</li>
 			<li><span class="trivial">trivial</span>: ファイルの拡張属性に利用できないテキストエンコーディングが指定された書類を保存すると、アプリがクラッシュすることがあった不具合を修正</li>

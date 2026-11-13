@@ -213,8 +213,8 @@ extension FileDropItem {
             .directory: droppedFileURL.deletingLastPathComponent().lastPathComponent,
         ]
         
-        // get image dimension if needed
-        if !variables.isDisjoint(with: Variable.imageTokens) {
+        // get image dimension if needed (only for local files)
+        if !variables.isDisjoint(with: Variable.imageTokens), droppedFileURL.isFileURL {
             var pixelWidth: Int?
             var pixelHeight: Int?
             NSFileCoordinator().coordinate(readingItemAt: droppedFileURL, options: [.withoutChanges, .resolvesSymbolicLink], error: nil) { newURL in
@@ -239,9 +239,9 @@ extension FileDropItem {
             }
         }
         
-        // get text content if needed
-        if variables.contains(.fileContent) {
-            values[.fileContent] = (try? String(contentsOf: droppedFileURL, encoding: .utf8)) ?? ""
+        // get text content if needed (only for local files)
+        if variables.contains(.fileContent), droppedFileURL.isFileURL {
+            values[.fileContent] = try? String(contentsOf: droppedFileURL, encoding: .utf8)
         }
         
         // replace the tokens in a single pass, so that tokens contained in the values are kept as is

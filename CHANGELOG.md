@@ -31,6 +31,7 @@
 - Update tree-sitter-scala to 0.26.12.
 - Update tree-sitter-sql to 0.3.13.
 - [trivial] Improve find results to include as much of a long match as possible in the line excerpt.
+- [trivial] Change File Drop snippets to keep the `<<<FILECONTENT>>>` variable as is when the file content cannot be read, consistent with the image size variables.
 - [dev] Update the build environment to Xcode 27.2.
 
 
@@ -84,6 +85,7 @@
 - Fix an issue where the “Refer to encoding declaration in document” option could garble documents that declared UTF-16 but were not saved in UTF-16.
 - Fix an issue where characters that could not be converted were saved as invalid bytes when saving a document in ASCII.
 - Fix an issue where the Warnings inspector displayed an incorrect conversion result for yen signs that the text encoding could not represent.
+- [non-AppStore ver.] Fix an issue where File Drop snippets could make the app unresponsive by downloading dropped web URLs.
 - [trivial] Fix an issue where the app could crash when duplicating an item in the file browser if the system used non-Latin digits.
 - [trivial] Fix an issue where the app could crash or stop responding when saving a document in certain encodings if the text contained combining marks that could not be converted.
 - [trivial] Fix an issue where the app could crash when saving a document if the file’s extended attributes specified an unavailable text encoding.
