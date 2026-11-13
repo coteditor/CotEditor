@@ -507,6 +507,24 @@ struct TreeSitterHighlightTests {
         #expect(captures.filter { $0 == Capture(type: .types, text: "Bar") }.count == 2)
         #expect(captures.contains(Capture(type: .types, text: "Baz")))
     }
+    
+    
+    @Test func highlightBashANSICStrings() async throws {
+        
+        let source = #"""
+            IFS=$'\n'
+            echo $'a\tb'
+            """#
+        
+        let config = try self.registry.configuration(for: .bash)
+        let client = try TreeSitterClient(languageConfig: config, languageProvider: self.registry.languageProvider, syntax: .bash)
+        let captures = try #require(await client.parseHighlights(in: source, range: source.nsRange))
+            .highlights
+            .map { Capture(type: $0.value, text: (source as NSString).substring(with: $0.range)) }
+        
+        #expect(captures.contains(Capture(type: .strings, text: #"$'\n'"#)))
+        #expect(captures.contains(Capture(type: .strings, text: #"$'a\tb'"#)))
+    }
 }
 
 
