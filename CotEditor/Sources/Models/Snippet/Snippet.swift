@@ -118,6 +118,7 @@ extension Snippet {
             let selectedString = (string as NSString).substring(with: range)
                 .replacingLineEndings(with: lineEnding)
             let indent = string.rangeOfIndent(at: range.location)
+                .map { NSRange($0.lowerBound..<min($0.upperBound, range.location)) }
                 .map((string as NSString).substring(with:)) ?? ""
             
             let insertion = snippet.insertion(selectedString: selectedString, indent: indent)

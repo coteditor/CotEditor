@@ -132,6 +132,16 @@ struct SnippetTests {
     }
     
     
+    @Test func insertionsWithinIndent() {
+        
+        let snippet = Snippet(name: "", format: "x\n<<<CURSOR>>>y")
+        let context = snippet.insertions(for: "    a", ranges: [NSRange(location: 2, length: 0)], lineEnding: .lf)
+        
+        #expect(context.strings == ["x\n  y"])
+        #expect(context.selectedRanges == [NSRange(location: 6, length: 0)])
+    }
+    
+    
     @Test func insertionsWithInconsistentLineEndings() {
         
         let snippet = Snippet(name: "", format: "(<<<SELECTION>>><<<CURSOR>>>)")
