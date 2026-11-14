@@ -28,7 +28,7 @@
 - Optimize the hanging indentation calculation.
 - Improve overall stability and performance.
 - Update tree-sitter-markdown to 0.5.4.
-- Update tree-sitter-scala to 0.26.12.
+- Update tree-sitter-scala to 0.26.13.
 - Update tree-sitter-sql to 0.3.13.
 - [trivial] Improve find results to include as much of a long match as possible in the line excerpt.
 - [trivial] Change File Drop snippets to keep the `<<<FILECONTENT>>>` variable as is when the file content cannot be read, consistent with the image size variables.
