@@ -161,7 +161,7 @@ struct RegexSyntaxTests {
     
     @Test func highlightUnicodePropertyName() {
         
-        let properties = ["\\p{gc=L}", "\\P{Lowercase_Letter}", "\\p{White-Space}"]
+        let properties = ["\\p{gc=L}", "\\P{Lowercase_Letter}", "\\p{White-Space}", "\\p{Numeric_Value=1.5}"]
         
         for property in properties {
             #expect(RegexSyntaxType.character.ranges(in: property).contains(NSRange(..<property.utf16.count)))

@@ -102,7 +102,7 @@ enum RegexSyntaxType: CaseIterable {
                             #"\\\\"#,  // \\
                             #"\\c(?s:.)"#,  // \cX (control)
                             #"\\N\{[a-zA-Z0-9 -]+\}"#,  // \N{UNICODE CHARACTER NAME}
-                            #"\\[pP]\{[a-zA-Z0-9 _=-]+\}"#,  // \p{UNICODE PROPERTY NAME}
+                            #"\\[pP]\{[^}]+\}"#,  // \p{UNICODE PROPERTY NAME}
                             #"\\u[0-9a-fA-F]{4}"#,  // \uhhhh (h: hex)
                             #"\\U[0-9a-fA-F]{8}"#,  // \Uhhhhhhhh (h: hex)
                             #"\\x\{[0-9a-fA-F]{1,7}\}"#,  // \x{hhhh} (h: hex)
