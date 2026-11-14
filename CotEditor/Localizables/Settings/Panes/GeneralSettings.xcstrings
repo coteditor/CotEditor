@@ -283,6 +283,12 @@
             "value" : "Kies een instellingenarchief…"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wybierz archiwum ustawień…"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1188,6 +1194,12 @@
             "value" : "Bewaar een kopie in iCloud"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pozostaw kopię w iCloud"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1396,6 +1408,12 @@
             "value" : "Kopieën van de instellingen worden uit iCloud geladen…"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wczytuję kopie ustawień z iCloud…"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1495,6 +1513,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Beheer kopieën in iCloud…"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zarządzaj kopiami w iCloud…"
           }
         },
         "ru" : {
@@ -2060,6 +2084,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Geen kopieën van de instellingen in iCloud"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Brak kopii ustawień w iCloud"
           }
         },
         "ru" : {
@@ -2966,6 +2996,12 @@
             "value" : "Instellingen importeren en exporteren:"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Import i eksport ustawień:"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3170,6 +3206,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Bewaar een kopie van deze instellingen om ze op andere apparaten te kunnen importeren."
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zachowaj kopię tych ustawień, aby inne urządzenia mogły je zaimportować."
           }
         },
         "ru" : {

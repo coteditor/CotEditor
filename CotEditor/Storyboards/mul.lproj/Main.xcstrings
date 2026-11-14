@@ -24425,6 +24425,12 @@
             "value" : "Doneer aan CotEditor…"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wesprzyj CotEditor darowizną…"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",

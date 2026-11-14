@@ -420,6 +420,12 @@
             "value" : "Om geen kopie meer te bewaren, schakel je 'Bewaar een kopie in iCloud' uit op de Mac waarvan de kopie afkomstig is."
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aby zatrzymać zapisywanie kopii, wyłącz opcję „Pozostaw kopię w iCloud” na Macu, z którego pochodzi kopia."
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",

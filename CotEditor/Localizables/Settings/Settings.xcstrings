@@ -540,6 +540,12 @@
             "value" : "Integratie"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Integracja"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",

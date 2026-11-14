@@ -177,6 +177,12 @@
             "value" : "Bewaar een altijd actuele kopie van je instellingen in iCloud om ze op je andere Macs te importeren wanneer je maar wilt."
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Przechowuj w iCloud aktualną kopię swoich ustawień, aby w każdej chwili zaimportować je na innych Twoich Macach."
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -276,6 +282,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Je instellingen, slechts één import verwijderd"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Twoje ustawienia – wystarczy jeden import"
           }
         },
         "ru" : {
@@ -379,6 +391,12 @@
             "value" : "Open bestanden op een externe computer met `rmate` via SSH en bewaar je wijzigingen daar direct."
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Otwieraj pliki na komputerze zdalnym za pomocą `rmate` przez SSH i zapisuj zmiany bezpośrednio na nim."
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -478,6 +496,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Bewerk externe bestanden rechtstreeks op je Mac"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Edytuj zdalne pliki bezpośrednio na Twoim Macu"
           }
         },
         "ru" : {
@@ -581,6 +605,12 @@
             "value" : "Pas de toetscombinaties aan voor het verplaatsen van het invoegpunt en het selecteren en verwijderen van tekst, zodat je vingers zich meteen thuis voelen."
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dostosuj skróty do przemieszczania punktu wstawiania, zaznaczania i usuwania tekstu, aby Twoje palce czuły się jak w domu."
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -680,6 +710,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Jouw toetsen, jouw regels"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Twoje klawisze, twoje zasady"
           }
         },
         "ru" : {
