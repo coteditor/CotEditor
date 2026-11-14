@@ -155,7 +155,7 @@ private extension Version.Prerelease {
 enum NewFeature: CaseIterable {
     
     static let version = Version(7, 2, 0)
-    static let buildNumber = 856
+    static let buildNumber = 857
     
     case remoteEditing
     case copySettingsIniCloud
