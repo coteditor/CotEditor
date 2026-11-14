@@ -46,10 +46,10 @@ enum RegexSyntaxType: CaseIterable {
     func ranges(in string: String, mode: RegexParseMode = .search) -> [NSRange] {
         
         var ranges = self.patterns(for: mode)
-            .map { #"(?<!\\)(?:\\\\)*"# + $0 }  // regex pattern to avoid matching escaped character
+            .map { #"(?<!\\)(?:\\\\)*("# + $0 + ")" }  // regex pattern to avoid matching escaped character
             .map { try! NSRegularExpression(pattern: $0) }
             .flatMap { $0.matches(in: string, range: NSRange(..<string.utf16.count)) }
-            .map(\.range)
+            .map { (self == .character) ? $0.range : $0.range(at: 1) }  // `\\` before the token is a character
         
         if case .search = mode {
             let (quotedRanges, quoteEndRanges) = string.rangesForRegularExpressionQuotes()

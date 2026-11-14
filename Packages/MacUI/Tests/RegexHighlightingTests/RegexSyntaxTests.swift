@@ -133,6 +133,14 @@ struct RegexSyntaxTests {
     }
     
     
+    @Test func highlightBackReferenceInReplacement() {
+        
+        let string = "\\\\$1"
+        
+        #expect(RegexSyntaxType.backReference.ranges(in: string, mode: .replacement(unescapes: false)) == [NSRange(location: 2, length: 2)])
+    }
+    
+    
     @Test func highlightControlCharacter() {
         
         #expect(RegexSyntaxType.character.ranges(in: "\\cM").contains(NSRange(location: 0, length: 3)))
