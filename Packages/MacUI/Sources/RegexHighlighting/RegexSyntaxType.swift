@@ -117,7 +117,7 @@ enum RegexSyntaxType: CaseIterable {
                     case .symbol:
                         // -> [abc] will be extracted in ranges(in:) since regex cannot parse nested []
                         [
-                            #"\(\?(:|>|#|=|!|<=|<!|-?[ismwx]+:?|<[a-zA-Z][a-zA-Z0-9]*>)"#,  // (?...
+                            #"\(\?(:|>|#|=|!|<=|<!|[-dimsuwx]+:?|<[a-zA-Z][a-zA-Z0-9]*>)"#,  // (?...
                             #"[()|]"#,  // () |
                             #"\\[QE]"#,  // \Q ... \E
                         ]

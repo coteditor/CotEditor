@@ -101,6 +101,7 @@ struct RegexSyntaxTests {
         #expect(symbol.ranges(in: "(?<=\\[)a]") == [NSRange(location: 0, length: 4),
                                                     NSRange(location: 0, length: 1),
                                                     NSRange(location: 6, length: 1)])
+        #expect(symbol.ranges(in: "(?i-m)").contains(NSRange(location: 0, length: 5)))
     }
     
     
