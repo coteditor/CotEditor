@@ -4080,6 +4080,12 @@
             "value" : "選択した設定のコピーにアクセスできませんでした。"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "선택한 설정 복사본에 접근할 수 없습니다."
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -4172,6 +4178,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "iCloudに設定のコピーが見つかりませんでした。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iCloud에서 설정 복사본을 찾을 수 없습니다."
           }
         },
         "nl" : {
