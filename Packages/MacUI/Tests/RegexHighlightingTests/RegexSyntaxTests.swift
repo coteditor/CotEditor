@@ -139,6 +139,18 @@ struct RegexSyntaxTests {
     }
     
     
+    @Test func highlightHexEscape() {
+        
+        #expect(RegexSyntaxType.character.ranges(in: "\\xA").contains(NSRange(location: 0, length: 3)))
+    }
+    
+    
+    @Test func highlightOctalEscape() {
+        
+        #expect(RegexSyntaxType.character.ranges(in: "\\0477").contains(NSRange(location: 0, length: 4)))
+    }
+    
+    
     @Test func highlightUnicodePropertyName() {
         
         let properties = ["\\p{gc=L}", "\\P{Lowercase_Letter}", "\\p{White-Space}"]

@@ -105,9 +105,9 @@ enum RegexSyntaxType: CaseIterable {
                             #"\\[pP]\{[a-zA-Z0-9 _=-]+\}"#,  // \p{UNICODE PROPERTY NAME}
                             #"\\u[0-9a-fA-F]{4}"#,  // \uhhhh (h: hex)
                             #"\\U[0-9a-fA-F]{8}"#,  // \Uhhhhhhhh (h: hex)
-                            #"\\x\{[0-9a-fA-F]{1,6}\}"#,  // \x{hhhh} (h: hex)
-                            #"\\x[0-9a-fA-F]{2}"#,  // \xhh (h: hex)
-                            #"\\0[0-7]{1,3}"#,  // \0ooo (o: octal)
+                            #"\\x\{[0-9a-fA-F]{1,7}\}"#,  // \x{hhhh} (h: hex)
+                            #"\\x[0-9a-fA-F]{1,2}"#,  // \xhh (h: hex)
+                            #"\\0(?:[0-3][0-7]{0,2}|[4-7][0-7]?)"#,  // \0ooo (o: octal, up to 0377)
                         ]
                     case .backReference:
                         [
