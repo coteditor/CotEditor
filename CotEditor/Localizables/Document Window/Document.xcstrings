@@ -22651,7 +22651,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Pozioma"
+            "value" : "Poziomo"
           }
         },
         "pt" : {
@@ -22770,7 +22770,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Pozioma"
+            "value" : "Poziomy kierunek tekstu"
           }
         },
         "pt" : {
@@ -23127,7 +23127,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Pionowa"
+            "value" : "Pionowo"
           }
         },
         "pt" : {
@@ -23246,7 +23246,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Pionowa"
+            "value" : "Pionowy kierunek tekstu"
           }
         },
         "pt" : {

@@ -1634,7 +1634,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Zastąp wszystko"
+            "value" : "Zastąp wszystkie"
           }
         },
         "pt" : {
@@ -15194,7 +15194,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Pionowa"
+            "value" : "Pionowo"
           }
         },
         "pt" : {
@@ -20474,7 +20474,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Pozioma"
+            "value" : "Poziomo"
           }
         },
         "pt" : {
