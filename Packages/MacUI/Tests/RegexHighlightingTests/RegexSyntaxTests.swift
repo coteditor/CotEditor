@@ -123,6 +123,15 @@ struct RegexSyntaxTests {
     }
     
     
+    @Test func highlightDollarAsAnchor() {
+        
+        let string = "(a)$1"
+        
+        #expect(RegexSyntaxType.anchor.ranges(in: string) == [NSRange(location: 3, length: 1)])
+        #expect(RegexSyntaxType.backReference.ranges(in: string).isEmpty)
+    }
+    
+    
     @Test func highlightUnicodePropertyName() {
         
         let properties = ["\\p{gc=L}", "\\P{Lowercase_Letter}", "\\p{White-Space}"]

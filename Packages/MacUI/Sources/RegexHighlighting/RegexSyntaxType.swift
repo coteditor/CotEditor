@@ -111,7 +111,6 @@ enum RegexSyntaxType: CaseIterable {
                         ]
                     case .backReference:
                         [
-                            #"\$[0-9]+"#,  // $0
                             #"\\[1-9]+"#,  // \1
                             #"\\k<[a-zA-Z][a-zA-Z0-9]*>"#,  // \k<name>
                         ]
@@ -130,7 +129,6 @@ enum RegexSyntaxType: CaseIterable {
                         ]
                     case .anchor:
                         // -> `^` is also used for [^abc].
-                        // -> `$` is also used for .backReference.
                         [
                             #"[$^]"#,  // ^ $
                             #"\\[ABbGZz]"#,  // \A, \b, ...
