@@ -313,8 +313,8 @@ struct ShortcutTests {
     func numericPadModifier(_ key: String) throws {
         
         let event = try #require(NSEvent.keyEvent(with: .keyDown, location: .zero, modifierFlags: [.command, .numericPad],
-                                                timestamp: 0, windowNumber: 0, context: nil, characters: key,
-                                                charactersIgnoringModifiers: key, isARepeat: false, keyCode: 0))
+                                                  timestamp: 0, windowNumber: 0, context: nil, characters: key,
+                                                  charactersIgnoringModifiers: key, isARepeat: false, keyCode: 0))
         let captured = try #require(Shortcut(keyDownEvent: event))
         #expect(captured.modifiers == .command)
         #expect(captured.isAssignable)
@@ -344,8 +344,8 @@ struct ShortcutTests {
     func keyDownEventFunctionModifier(_ key: String, keyCode: UInt16, isFunctionKey: Bool) throws {
         
         let event = try #require(NSEvent.keyEvent(with: .keyDown, location: .zero, modifierFlags: [.command, .function],
-                                                timestamp: 0, windowNumber: 0, context: nil, characters: key,
-                                                charactersIgnoringModifiers: key, isARepeat: false, keyCode: keyCode))
+                                                  timestamp: 0, windowNumber: 0, context: nil, characters: key,
+                                                  charactersIgnoringModifiers: key, isARepeat: false, keyCode: keyCode))
         let shortcut = try #require(Shortcut(keyDownEvent: event))
         
         #expect(shortcut.modifiers == (isFunctionKey ? .command : [.command, .function]))
