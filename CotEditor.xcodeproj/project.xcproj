@@ -181,7 +181,7 @@
       "build-settings": {
         "ASSETCATALOG_COMPILER_APPICON_NAME": "AppIcon",
         "ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME": "AccentColor",
-        "CURRENT_PROJECT_VERSION": "857",
+        "CURRENT_PROJECT_VERSION": "858",
         "ENABLE_HARDENED_RUNTIME": "YES",
         "ENABLE_HARDWARE_CHECKED_POINTER_ARITHMETIC_SLICE": "NO",
         "ENABLE_POINTER_AUTHENTICATION": "NO",
@@ -192,7 +192,7 @@
         "INFOPLIST_KEY_NSAppleEventsUsageDescription": "${PRODUCT_NAME} needs your approval to control other applications with AppleScript.",
         "INFOPLIST_KEY_NSHumanReadableCopyright": "© 2005-2009 nakamuxu\n© 2011, 2014 usami-k\n© 2013-2026 1024jp",
         "INFOPLIST_KEY_NSMainStoryboardFile": "Main",
-        "MARKETING_VERSION": "7.2.0-beta",
+        "MARKETING_VERSION": "7.2.0-beta.2",
         "PRODUCT_BUNDLE_IDENTIFIER": "com.coteditor.CotEditor",
         "PRODUCT_NAME": "CotEditor",
         "SWIFT_STRICT_CONCURRENCY": "complete",
