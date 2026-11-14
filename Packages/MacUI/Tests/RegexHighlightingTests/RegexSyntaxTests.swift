@@ -94,6 +94,9 @@ struct RegexSyntaxTests {
         #expect(symbol.ranges(in: "[^]a]") == [NSRange(location: 0, length: 5)])
         #expect(symbol.ranges(in: "[^a]b]") == [NSRange(location: 0, length: 4)])
         
+        #expect(symbol.ranges(in: "[[:alpha:]_]") == [NSRange(location: 0, length: 12)])
+        #expect(symbol.ranges(in: "[\u{93E}\u{93F}]") == [NSRange(location: 0, length: 4)])
+        
         // just containing ranges for `(?<=`, `(` and `)`
         #expect(symbol.ranges(in: "(?<=\\[)a]") == [NSRange(location: 0, length: 4),
                                                     NSRange(location: 0, length: 1),
@@ -145,6 +148,27 @@ struct RegexSyntaxTests {
         #expect(RegexSyntaxType.symbol.ranges(in: string) == [NSRange(location: 0, length: 2),
                                                               NSRange(location: 10, length: 2)])
         #expect(RegexSyntaxType.quantifier.ranges(in: string) == [NSRange(location: 12, length: 1)])
+        #expect(RegexSyntaxType.character.ranges(in: string).isEmpty)
+    }
+    
+    
+    @Test func quoteEndingWithBackslash() {
+        
+        let string = #"\Qa\\E+"#
+        
+        #expect(RegexSyntaxType.symbol.ranges(in: string) == [NSRange(location: 0, length: 2),
+                                                              NSRange(location: 4, length: 2)])
+        #expect(RegexSyntaxType.quantifier.ranges(in: string) == [NSRange(location: 6, length: 1)])
+    }
+    
+    
+    @Test func ignoreSyntaxInComment() {
+        
+        let string = "(?#[a])b"
+        
+        #expect(RegexSyntaxType.symbol.ranges(in: string) == [NSRange(location: 0, length: 3),
+                                                              NSRange(location: 0, length: 1),
+                                                              NSRange(location: 6, length: 1)])
         #expect(RegexSyntaxType.character.ranges(in: string).isEmpty)
     }
     

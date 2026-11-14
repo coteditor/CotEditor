@@ -52,22 +52,28 @@ enum RegexSyntaxType: CaseIterable {
             .map(\.range)
         
         if case .search = mode {
-            let quotedRanges = string.rangesForRegularExpressionQuotes()
+            let (quotedRanges, quoteEndRanges) = string.rangesForRegularExpressionQuotes()
+            let scan = string.rangesForRegularExpressionBrackets(excluding: quotedRanges)
+            
+            // remove tokens overlapping quotes and comments
+            // (their ends are taken from the scans, since `\` in them is not an escape)
+            let literalRanges = quotedRanges + quoteEndRanges + scan.comments + scan.commentEnds
+            if !literalRanges.isEmpty {
+                ranges.removeAll { range in
+                    literalRanges.contains { literalRange in
+                        literalRange.lowerBound < range.upperBound && range.lowerBound < literalRange.upperBound
+                    }
+                }
+            }
             
             switch self {
                 case .character:
-                    ranges += string.rangesForRegularExpressionBrackets(includingSymbols: false, excluding: quotedRanges)
+                    ranges += scan.bracketContents
                 case .symbol:
-                    ranges += string.rangesForRegularExpressionBrackets(includingSymbols: true, excluding: quotedRanges)
+                    ranges += quoteEndRanges.filter { range in !scan.comments.contains { $0.contains(range.location) } }
+                    ranges += scan.commentEnds
+                    ranges += scan.brackets
                 default: break
-            }
-            
-            if !quotedRanges.isEmpty {
-                ranges.removeAll { range in
-                    quotedRanges.contains { quotedRange in
-                        quotedRange.lowerBound <= range.lowerBound && range.upperBound <= quotedRange.upperBound
-                    }
-                }
             }
         }
         
@@ -145,119 +151,138 @@ enum RegexSyntaxType: CaseIterable {
 }
 
 
+private struct RegexBracketRanges {
+    
+    var brackets: [NSRange] = []
+    var bracketContents: [NSRange] = []
+    var comments: [NSRange] = []
+    var commentEnds: [NSRange] = []
+}
+
+
 private extension StringProtocol {
     
     /// Finds the ranges quoted by `\Q...\E` pattern in the regular expression.
     ///
-    /// - Returns: The matched ranges, excluding the surrounding `\Q` and `\E`.
-    func rangesForRegularExpressionQuotes() -> [NSRange] {
+    /// - Returns: The matched ranges, excluding the surrounding `\Q` and `\E`, and the ranges of the closing `\E`.
+    func rangesForRegularExpressionQuotes() -> (quoted: [NSRange], ends: [NSRange]) {
         
+        let scalars = self.unicodeScalars
         var quoteStartIndex: Index?
         var quoteRanges: [Range<Index>] = []
+        var endRanges: [Range<Index>] = []
         var lastIndex: Index?
-        var lastCharacter: Character?
+        var lastScalar: Unicode.Scalar?
         var backslashCount = 0
         
-        for (index, character) in zip(self.indices, self) {
-            if lastCharacter == "\\", !backslashCount.isMultiple(of: 2), let lastIndex {
-                switch (character, quoteStartIndex) {
-                    case ("Q", .none):
-                        quoteStartIndex = self.index(after: index)
-                    case ("E", .some(let startIndex)):
+        for (index, scalar) in zip(scalars.indices, scalars) {
+            if lastScalar == "\\", let lastIndex {
+                switch (scalar, quoteStartIndex) {
+                    case ("Q", .none) where !backslashCount.isMultiple(of: 2):
+                        quoteStartIndex = scalars.index(after: index)
+                    case ("E", .some(let startIndex)):  // `\` in quotes is not an escape
                         quoteRanges.append(startIndex..<lastIndex)
+                        endRanges.append(lastIndex..<scalars.index(after: index))
                         quoteStartIndex = nil
                     default:
                         break
                 }
             }
             
-            backslashCount = (character == "\\") ? (backslashCount + 1) : 0
+            backslashCount = (scalar == "\\") ? (backslashCount + 1) : 0
             lastIndex = index
-            lastCharacter = character
+            lastScalar = scalar
         }
         
         if let quoteStartIndex {
             quoteRanges.append(quoteStartIndex..<self.endIndex)
         }
         
-        return quoteRanges.map { NSRange($0, in: self) }
+        return (quoteRanges.map { NSRange($0, in: self) }, endRanges.map { NSRange($0, in: self) })
     }
     
     
-    /// Finds the ranges of `[^abc]` pattern in the regular expression.
+    /// Finds the ranges of `[^abc]` and `(?#...)` patterns in the regular expression.
+    ///
+    /// Both are found in a single scan, as `(?#` in a bracket and `[` in a comment are just characters.
     ///
     /// - Parameters:
-    ///   - includingSymbols: Whether the result ranges including `[]` and `^`.
-    ///   - excludedRanges: The ranges to ignore.
-    /// - Returns: The matched ranges.
-    func rangesForRegularExpressionBrackets(includingSymbols: Bool, excluding excludedRanges: [NSRange] = []) -> [NSRange] {
+    ///   - excludedRanges: The ranges to ignore, sorted and not overlapping.
+    /// - Returns: The ranges of the brackets and the comments.
+    func rangesForRegularExpressionBrackets(excluding excludedRanges: [NSRange] = []) -> RegexBracketRanges {
         
-        var index = self.startIndex
-        var braceRanges: [Range<Index>] = []
+        assert(zip(excludedRanges, excludedRanges.dropFirst()).allSatisfy { $0.upperBound <= $1.lowerBound })
         
-        while index != self.endIndex {
-            guard let (range, isNegative) = self.rangeForRegularExpressionBrackets(starting: index, excluding: excludedRanges) else { break }
-            
-            if includingSymbols {
-                braceRanges.append(range)
-            } else {
-                braceRanges.append(self.index(range.lowerBound, offsetBy: isNegative ? 2 : 1)..<self.index(before: range.upperBound))
-            }
-            
-            index = range.upperBound
-        }
+        let scalars = self.unicodeScalars
+        var excludedRanges = excludedRanges[...]
+        var ranges = RegexBracketRanges()
         
-        return braceRanges.map { NSRange($0, in: self) }
-    }
-    
-    
-    // MARK: Private Methods
-    
-    /// Finds the range of the first `[^abc]` pattern in the regular expression after the given index.
-    ///
-    /// - Parameters:
-    ///   - searchIndex: The character index to start finding.
-    ///   - excludedRanges: The ranges to ignore.
-    /// - Returns: The found range and if the found pattern is a negative pattern (not `[abc]` but `[^abc]`), or `nil` if not found.
-    private func rangeForRegularExpressionBrackets(starting searchIndex: Index, excluding excludedRanges: [NSRange] = []) -> (range: Range<Index>, isNegative: Bool)? {
-        
-        assert(searchIndex == self.startIndex || self[self.index(before: searchIndex)] != "\\")
-        
-        var startIndex: Index?
-        var isFirst = false  // flag whether the index is just after the opening
-        var isNegative = false
+        var openBracket: (index: Index, contentIndex: Index)?  // the opening `[` of the outermost bracket and its content
+        var commentStartIndex: Index?
+        var depth = 0  // nesting level of the inner sets, such as `[:alpha:]` in `[[:alpha:]]`
+        var isFirst = false  // flag whether the index is just after the opening `[` or `[^`
+        var isNegatable = false  // flag whether the index is just after the opening `[`
         var isEscaped = false
         
-        for index in self[searchIndex...].indices {
+        for index in scalars.indices {
             if !excludedRanges.isEmpty {
                 let location = index.utf16Offset(in: self)
+                excludedRanges = excludedRanges.drop { $0.upperBound <= location }
                 
-                guard !excludedRanges.contains(where: { $0.contains(location) }) else { continue }
+                if excludedRanges.first?.contains(location) == true { continue }
             }
             
-            switch (self[index], startIndex) {
+            if let commentStart = commentStartIndex {
+                // any `)` ends the comment, even if escaped
+                if scalars[index] == ")" {
+                    ranges.comments.append(NSRange(commentStart..<index, in: self))
+                    ranges.commentEnds.append(NSRange(index..<scalars.index(after: index), in: self))
+                    commentStartIndex = nil
+                }
+                continue
+            }
+            
+            switch (scalars[index], openBracket) {
                 case ("\\", _):
                     isFirst = false
+                    isNegatable = false
                     isEscaped.toggle()
                     
+                case ("(", .none) where !isEscaped && scalars[scalars.index(after: index)...].starts(with: "?#".unicodeScalars):
+                    commentStartIndex = scalars.index(index, offsetBy: 3)
+                    
                 case ("[", .none) where !isEscaped:
-                    startIndex = index
+                    openBracket = (index, scalars.index(after: index))
                     isFirst = true
-                    isEscaped = false
+                    isNegatable = true
                     
-                case ("]", .some(let startIndex)) where !isEscaped && !isFirst:
-                    return (startIndex..<self.index(after: index), isNegative)
+                case ("[", .some) where !isEscaped:
+                    depth += 1
+                    isFirst = true
+                    isNegatable = true
                     
-                case ("^", _) where isFirst && !isNegative:
-                    isNegative = true
-                    isEscaped = false
+                case ("]", .some(let bracket)) where !isEscaped && !isFirst:
+                    if depth == 0 {
+                        ranges.brackets.append(NSRange(bracket.index..<scalars.index(after: index), in: self))
+                        ranges.bracketContents.append(NSRange(bracket.contentIndex..<index, in: self))
+                        openBracket = nil
+                    } else {
+                        depth -= 1
+                    }
+                    
+                case ("^", _) where isNegatable:
+                    if depth == 0 {
+                        openBracket?.contentIndex = scalars.index(after: index)
+                    }
+                    isNegatable = false
                     
                 default:
                     isFirst = false
+                    isNegatable = false
                     isEscaped = false
             }
         }
         
-        return nil
+        return ranges
     }
 }
