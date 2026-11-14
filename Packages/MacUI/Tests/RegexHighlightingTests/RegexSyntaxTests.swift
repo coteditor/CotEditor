@@ -133,6 +133,12 @@ struct RegexSyntaxTests {
     }
     
     
+    @Test func highlightControlCharacter() {
+        
+        #expect(RegexSyntaxType.character.ranges(in: "\\cM").contains(NSRange(location: 0, length: 3)))
+    }
+    
+    
     @Test func highlightUnicodePropertyName() {
         
         let properties = ["\\p{gc=L}", "\\P{Lowercase_Letter}", "\\p{White-Space}"]

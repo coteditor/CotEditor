@@ -100,7 +100,7 @@ enum RegexSyntaxType: CaseIterable {
                             #"\\[sdDefnrsStwWX]"#,  // \s, \d, ...
                             #"\\v"#,  // \v
                             #"\\\\"#,  // \\
-                            #"\\c[a-z]"#,  // \cX (control)
+                            #"\\c(?s:.)"#,  // \cX (control)
                             #"\\N\{[a-zA-Z0-9 -]+\}"#,  // \N{UNICODE CHARACTER NAME}
                             #"\\[pP]\{[a-zA-Z0-9 _=-]+\}"#,  // \p{UNICODE PROPERTY NAME}
                             #"\\u[0-9a-fA-F]{4}"#,  // \uhhhh (h: hex)
@@ -172,8 +172,16 @@ private extension StringProtocol {
         var lastIndex: Index?
         var lastScalar: Unicode.Scalar?
         var backslashCount = 0
+        var isControlCharacter = false  // flag whether the scalar is X of `\cX`
         
         for (index, scalar) in zip(scalars.indices, scalars) {
+            if isControlCharacter {
+                isControlCharacter = false
+                backslashCount = 0
+                lastScalar = nil
+                continue
+            }
+            
             if lastScalar == "\\", let lastIndex {
                 switch (scalar, quoteStartIndex) {
                     case ("Q", .none) where !backslashCount.isMultiple(of: 2):
@@ -182,6 +190,8 @@ private extension StringProtocol {
                         quoteRanges.append(startIndex..<lastIndex)
                         endRanges.append(lastIndex..<scalars.index(after: index))
                         quoteStartIndex = nil
+                    case ("c", .none) where !backslashCount.isMultiple(of: 2):
+                        isControlCharacter = true
                     default:
                         break
                 }
@@ -221,6 +231,7 @@ private extension StringProtocol {
         var isFirst = false  // flag whether the index is just after the opening `[` or `[^`
         var isNegatable = false  // flag whether the index is just after the opening `[`
         var isEscaped = false
+        var isControlCharacter = false  // flag whether the scalar is X of `\cX`
         
         for index in scalars.indices {
             if !excludedRanges.isEmpty {
@@ -240,11 +251,24 @@ private extension StringProtocol {
                 continue
             }
             
+            if isControlCharacter {
+                isControlCharacter = false
+                isFirst = false
+                isNegatable = false
+                continue
+            }
+            
             switch (scalars[index], openBracket) {
                 case ("\\", _):
                     isFirst = false
                     isNegatable = false
                     isEscaped.toggle()
+                    
+                case ("c", _) where isEscaped:
+                    isControlCharacter = true
+                    isFirst = false
+                    isNegatable = false
+                    isEscaped = false
                     
                 case ("(", .none) where !isEscaped && scalars[scalars.index(after: index)...].starts(with: "?#".unicodeScalars):
                     commentStartIndex = scalars.index(index, offsetBy: 3)
