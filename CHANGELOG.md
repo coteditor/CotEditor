@@ -38,76 +38,59 @@
 ### Fixes
 
 - Fix an issue where the Select All Find Matches command crashed the app when there were no matches (thanks to Yusuke Terada!).
-- Fix an issue in the Find window where pinch zooming did not synchronize the text size between the find and replace fields.
-- Fix an issue where Find All highlights remained in the document after closing the search results.
-- Fix several issues with the “Match only whole words” find option, such as not finding text that starts or ends with a symbol, like “#tag”, or text that contains a line ending.
-- Fix an issue where the document could remain uneditable after canceling Find All, Replace All, or Multiple Replace.
 - Fix an issue where the app could crash when searching in a folder with a regular expression, such as `\n` or `\s`, if files had CRLF line endings.
-- Fix an issue where regular-expression syntax highlighting in input fields could break for some patterns.
+- Fix an issue where the document could remain uneditable after canceling Find All, Replace All, or Multiple Replace.
+- Fix several issues with the “Match only whole words” find option, such as not finding text that starts or ends with a symbol, like “#tag”, or text that contains a line ending.
+- Fix an issue where Find All highlights remained in the document after closing the search results.
+- Fix an issue where syntax highlighting could stop partway through a large document if the document was edited before the highlighting finished after opening.
+- Fix issues in tree-sitter-based syntax highlighting where highlights could remain outdated or disappear after editing, such as when entering text with an input method or editing in a string spanning multiple lines.
+- Fix several issues in tree-sitter-based syntax highlighting.
+- Fix several issues with outline item titles in tree-sitter-based syntaxes.
+- Fix an issue where the outline menu in the navigation bar could display an empty or incorrect item when the insertion point was before the first outline item.
 - Fix an issue where the expansion state of folders in the file browser was sometimes not restored from the last session.
 - Fix an issue in the file browser where read-only files in a writable folder could not be renamed and the Move to Trash command was unavailable for them.
 - Fix an issue where shortcuts using function keys, arrow keys, or other navigation keys could not be set in the Shortcuts and Snippets settings panes.
-- Fix an issue where Shift-Return could be assigned as a keyboard shortcut.
-- Fix an issue where a customized shortcut for a command no longer in the menu could remove the default shortcut of another menu command.
-- Fix an issue where moving insertion points during multi-cursor editing could behave incorrectly in right-to-left text or at the end of wrapped lines.
-- Fix an issue where selecting or deleting text by word or to the beginning of a line could affect an incorrect range or make the app unresponsive in bidirectional text.
-- Fix an issue where the “Convert Indentation” commands did not convert indentation that mixed spaces and tabs.
-- Fix an issue where the Shift Right command did not indent the last empty line during multi-cursor editing.
-- Fix an issue where pressing the Tab or Delete key when using spaces for indentation could insert or delete an incorrect number of spaces, such as after a tab character in the line or if the indentation was not a multiple of the indent width.
-- Fix an issue where the automatic outdent when typing a closing symbol, such as “}”, did not reach the indent level of the opening symbol if the indentation was not a multiple of the indent width or mixed spaces and tabs.
-- Fix an issue where trailing whitespace on the previous line was not automatically trimmed while the insertion point was at the beginning of the next line.
-- Fix an issue where deleting a line break during multi-cursor editing could delete only part of a CRLF line ending.
-- Fix an issue where pressing Control-K could delete an incorrect range, such as not deleting the line ending in CRLF documents or deleting more than the selected text during multi-cursor editing.
-- Fix several issues with pressing Control-T, such as doing nothing after an emoji at the end of the document, or swapping selected characters or breaking an emoji during multi-cursor editing.
-- Fix an issue where moving lines down during multi-cursor editing could turn insertion points into selections, extend selections, or leave an insertion point on the last empty line behind.
-- Fix an issue where the Delete Duplicates command could cause unexpected behavior if lines contained VT (`U+000B`) or FF (`U+000C`).
-- Fix an issue where Sort by Pattern with the “In descending order” option reversed the order of lines with the same sort key and moved lines that do not contain the specified sort key to the top.
-- Fix an issue where Sort by Pattern with the “Treat numbers as numeric values” option could sort lines incorrectly if sort keys started with “nan”, such as “NaN” or “Nancy”.
-- Fix an issue where Sort by Pattern with the “Use captured group” option could report a valid regular expression as an invalid pattern if the pattern had fewer capture groups than the specified number.
 - Fix an issue where double-clicking a period, comma, or colon selected nothing or the preceding word instead of the character itself.
 - Fix an issue where the Select Enclosing Symbols command did nothing if an unmatched closing symbol, such as `>` in a comparison, came before the closing symbol of the enclosing pair.
+- Fix an issue where trailing whitespace on the previous line was not automatically trimmed while the insertion point was at the beginning of the next line.
+- Fix an issue where the “Convert Indentation” commands did not convert indentation that mixed spaces and tabs.
+- Fix several issues with indentation that was not a multiple of the indent width or mixed spaces and tabs, such as inserting or deleting an incorrect number of spaces with the Tab or Delete key, or not outdenting to the indent level of the opening symbol when typing a closing symbol, such as “}”.
 - Fix an issue where the Toggle Comment and Uncomment commands could not uncomment block or inline comments when only part of a line was selected.
 - Fix issues in syntaxes where the comment delimiter is valid only at the line start, such as Dockerfile, where the Inline Comment command inserted the delimiter in the middle of a line and comments indented with tabs were not highlighted.
-- Fix an issue where uncommenting block comments during multi-cursor editing could cause unexpected behavior if an insertion point and a selection were in the same line.
-- Fix an issue where commenting out lines could insert comment delimiters at an incorrect position relative to the indentation in CRLF documents or if a space preceded a tab.
-- Fix an issue where the outline menu in the navigation bar could display an empty or incorrect item when the insertion point was before the first outline item.
-- Fix an issue where syntax highlighting could stop partway through a large document if the document was edited before the highlighting finished after opening.
-- Fix an issue in tree-sitter-based syntax highlighting where highlights could remain outdated after editing, such as when typing immediately after deleting the opening quotation marks of a string spanning multiple lines or when entering text with an input method.
-- Fix an issue in tree-sitter-based syntax highlighting where editing in a string spanning multiple lines could remove the highlight of nested elements on other lines, such as escape sequences or interpolated variables.
-- Fix several issues in tree-sitter-based syntax highlighting, such as CSS pseudo-classes and names in all uppercase letters in type or function positions being highlighted in the wrong color, or some keywords, such as `goto` in C, not being highlighted.
-- Fix several issues with outline item titles in tree-sitter-based syntaxes.
-- Fix an issue where typing after extending selections during multi-cursor editing could insert text at an incorrect location if an insertion point was already at the beginning of a line.
-- Fix an issue where inserting a snippet with line breaks could move the insertion point to an incorrect location or merge multiple insertion points into one if the document’s line endings were not LF.
-- Fix an issue where editing at multiple insertion points or inserting a snippet could lose insertion points in documents with inconsistent line endings.
+- Fix several issues with multi-cursor editing, such as moving insertion points incorrectly at the end of wrapped lines or in right-to-left text, inserting text at an incorrect location when typing after extending selections, or turning insertion points into selections when moving lines down.
+- Fix several issues in documents whose line endings are not LF, such as deleting only part of a CRLF line ending during multi-cursor editing, inserting comment delimiters at an incorrect position relative to the indentation, or moving the insertion point to an incorrect location after inserting a snippet with line breaks.
+- Fix an issue where selecting or deleting text by word or to the beginning of a line could affect an incorrect range or make the app unresponsive in bidirectional text.
+- Fix several issues with Sort by Pattern, such as the “In descending order” option reversing the order of lines with the same sort key and moving lines that do not contain the sort key to the top.
 - Fix an issue where File Drop snippets swapped the width and height of rotated images, such as photos taken in portrait orientation.
-- Fix an issue where changing the line height setting did not update the lines displayed in open documents.
 - Fix an issue where text was positioned too high in lines with some fonts, such as Raanana.
 - Fix an issue where the AppleScript `line range` property of the selection could return incorrect lines, such as including the next line when the selection ended with a line ending.
 - Fix an issue where the “Refer to encoding declaration in document” option could garble documents that declared UTF-16 but were not saved in UTF-16.
 - Fix an issue where characters that could not be converted were saved as invalid bytes when saving a document in ASCII.
-- Fix an issue where the Warnings inspector displayed an incorrect conversion result for yen signs that the text encoding could not represent.
 - [non-AppStore ver.] Fix an issue where File Drop snippets could make the app unresponsive by downloading dropped web URLs.
 - [trivial] Fix an issue where the app could crash when duplicating an item in the file browser if the system used non-Latin digits.
 - [trivial] Fix an issue where the app could crash or stop responding when saving a document in certain encodings if the text contained combining marks that could not be converted.
 - [trivial] Fix an issue where the app could crash when saving a document if the file’s extended attributes specified an unavailable text encoding.
 - [trivial] Fix an issue where non-ASCII characters were lost without warning when saving a document in Non-lossy ASCII.
 - [trivial] Fix an issue where the app could crash while the Warnings inspector was open if the document contained certain sequences of emoji or decomposed Hangul characters that the current text encoding could not represent.
+- [trivial] Fix an issue where the Warnings inspector displayed an incorrect conversion result for yen signs that the text encoding could not represent.
 - [trivial] Fix an issue where the app could crash when replacing text within selections with a regular expression containing `\R` if a selection ended in the middle of a CRLF line ending.
 - [trivial] Fix an issue where progress could be displayed incorrectly when searching or replacing text within selections.
-- [trivial] Fix an issue where the “Unescape replacement text” find option did not convert `\n` or `\t` followed by a combining mark.
-- [trivial] Fix an issue where searching with a regular expression or the “Distinguish characters strictly” find option could show the previous results after changing the find string to a canonically equivalent one.
+- [trivial] Fix several issues with finding or replacing text that contains combining marks, such as the app crashing or not responding when finding or replacing only combining marks with the “Ignore Case” or “Ignore diacritical marks” find option.
 - [trivial] Fix an issue where Multiple Replace could not find text containing line endings if the document’s line endings were not LF.
-- [trivial] Fix an issue where the app could crash or stop responding when finding or replacing only combining marks, such as `U+0902`, with the “Ignore Case” or “Ignore diacritical marks” find option.
-- [trivial] Fix an issue where regular expression conditions in the file scope of folder search did not match names containing certain characters, such as “é”, “が”, or Hangul.
-- [trivial] Fix an issue where regular expression conditions in the file scope of folder search accepted some invalid patterns, such as those with unbalanced parentheses.
+- [trivial] Fix an issue in the Find window where pinch zooming did not synchronize the text size between the find and replace fields.
+- [trivial] Fix an issue where regular-expression syntax highlighting in input fields could break for some patterns.
+- [trivial] Fix issues where regular expression conditions in the file scope of folder search did not match names containing certain characters, such as “é”, “が”, or Hangul, and accepted some invalid patterns, such as those with unbalanced parentheses.
 - [trivial] Fix an issue where automatic indentation could treat part of a word as a keyword, such as “then”, if a non-ASCII letter adjoined it.
 - [trivial] Fix several issues with regular-expression-based syntax highlighting, such as highlighting strings or comments in an incorrect range, or the app crashing with certain syntax definitions.
 - [trivial] Fix an issue where syntax highlighting and the outline were not updated if text entered with an input method, such as for Japanese, replaced the selection and was then deleted or canceled before being confirmed.
 - [trivial] Fix an issue where the selection could move to an incorrect range when commenting out lines with block comment delimiters while only line endings were selected.
+- [trivial] Fix several issues with pressing Control-T, such as doing nothing after an emoji at the end of the document, or swapping selected characters or breaking an emoji during multi-cursor editing.
+- [trivial] Fix an issue where the Delete Duplicates command could cause unexpected behavior if lines contained VT (`U+000B`) or FF (`U+000C`).
 - [trivial] Fix an issue where the selection after reversing, shuffling, or sorting lines by pattern did not include an empty line moved to the end.
 - [trivial] Fix an issue in the file browser where moving a symbolic link to a folder to the Trash also closed open documents in that folder.
-- [trivial] Fix several issues where snippet variables were replaced incorrectly, such as when the name of a dropped file contained a variable.
-- [trivial] Fix an issue where inserting a snippet with line breaks within the indentation indented the subsequent lines too deeply.
+- [trivial] Fix several issues with snippets, such as replacing variables incorrectly when the name of a dropped file contained a variable, or indenting the subsequent lines too deeply when inserting a snippet with line breaks within the indentation.
+- [trivial] Fix an issue where Shift-Return could be assigned as a keyboard shortcut.
+- [trivial] Fix an issue where a customized shortcut for a command no longer in the menu could remove the default shortcut of another menu command.
 
 
 ### Known Issues
