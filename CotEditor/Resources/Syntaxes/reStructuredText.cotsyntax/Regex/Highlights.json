@@ -27,7 +27,7 @@
   ],
   "keywords" : [
     {
-      "begin" : "(?<![\\\\*)\\]'\"’‘”“`}>›»]|\\w)\\*[^* \\t\\r\\n)\\]'\"’‘”“`}>›»](?:(?!\\R{2})(?:[^*]|\\R))*?(?<![\\\\ \\t\\r\\n])\\*(?!\\w|['\"’‘”“`<‹«(\\[{])",
+      "begin" : "(?<![\\\\*)\\]'\"’‘”“`}>›»]|\\w)\\*[^* \\t\\r\\n)\\]'\"’‘”“`}>›»](?:(?!\\R{2})[^*])*?(?<![\\\\ \\t\\r\\n])\\*(?!\\w|['\"’‘”“`<‹«(\\[{])",
       "description" : "em",
       "regularExpression" : true
     },
@@ -37,7 +37,7 @@
       "regularExpression" : true
     },
     {
-      "begin" : "(?<![\\\\`)\\]'\"’‘”“`}>›»]|\\w)`[^ \\r\\n\\t`](?:(?!\\R{2})(?:[^`]|\\R))*?[^\\\\ \\r\\n\\t]`(?!\\w|['\"’‘”“`<‹«(\\[{_])",
+      "begin" : "(?<![\\\\`)\\]'\"’‘”“`}>›»]|\\w)`[^ \\r\\n\\t`](?:(?!\\R{2})[^`])*?[^\\\\ \\r\\n\\t]`(?!\\w|['\"’‘”“`<‹«(\\[{_])",
       "description" : "interpreted text",
       "ignoreCase" : true,
       "regularExpression" : true
@@ -157,12 +157,12 @@
       "regularExpression" : true
     },
     {
-      "begin" : "(mailto:)?[a-zA-Z0-9]+[a-zA-Z0-9\\._-]*@[a-zA-Z0-9_-]+([a-zA-Z0-9\\._-]+)+",
+      "begin" : "(mailto:)?[a-zA-Z0-9][a-zA-Z0-9._-]*+@[a-zA-Z0-9_-][a-zA-Z0-9._-]++",
       "description" : "mail link",
       "regularExpression" : true
     },
     {
-      "begin" : "\\b[^-=_ \\t\\r\\n](?:\\w|\\d|[-=])*_(?!_)\\b",
+      "begin" : "\\b[^-=_ \\t\\r\\n][\\w=-]*_(?!_)\\b",
       "description" : "single word link",
       "regularExpression" : true
     },
