@@ -13,16 +13,6 @@
   ],
   "characters" : [
     {
-      "begin" : "(?<!\\\\)</[a-zA-Z][a-zA-Z1-6]*>",
-      "description" : "HTML tag",
-      "regularExpression" : true
-    },
-    {
-      "begin" : "(?<!\\\\)<[a-zA-Z][a-zA-Z1-6]*(\\s[^<>]+)?>",
-      "description" : "HTML tag",
-      "regularExpression" : true
-    },
-    {
       "begin" : "(?<=\\]) ?(?<!\\\\)\\[.*?(?<!\\\\)\\]",
       "description" : "a href",
       "regularExpression" : true
@@ -63,6 +53,16 @@
     {
       "begin" : "(?<![\\\\`])~~(?>`[^`\\n\\r\\x0B\\f\\x85\\u2028\\u2029]*+`|[^ \\t~])(?:`[^`\\n\\r\\x0B\\f\\x85\\u2028\\u2029]*+`|[^~\\n\\r\\x0B\\f\\x85\\u2028\\u2029]|(?:(?<=[\\\\ ])|(?!~~))~|(?!\\R{2})\\R)*+(?<![\\\\ ])~~",
       "description" : "[github] strikethrough",
+      "regularExpression" : true
+    },
+    {
+      "begin" : "(?<!\\\\)</[a-zA-Z][a-zA-Z1-6]*>",
+      "description" : "HTML tag",
+      "regularExpression" : true
+    },
+    {
+      "begin" : "(?<!\\\\)<[a-zA-Z][a-zA-Z1-6]*(\\s[^<>]+)?>",
+      "description" : "HTML tag",
       "regularExpression" : true
     },
     {
