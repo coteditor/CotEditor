@@ -9,6 +9,11 @@
 - [beta] Optimize regular-expression-based syntax highlighting in large documents.
 
 
+### Known Issues
+
+- The text added in CotEditor 7.2.0 is not yet localized in Polish and Portuguese.
+
+
 
 7.2.0-beta (2026-11-14)
 --------------------------

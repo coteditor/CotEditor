@@ -229,6 +229,12 @@
     "Choose Settings Archive…" : {
       "comment" : "verb; menu item",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vybrat archiv nastavení…"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1134,6 +1140,12 @@
     "Keep a copy in iCloud" : {
       "comment" : "verb; checkbox; refer to the expression for “Keep a copy” by Apple",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zachovat kopii na iCloudu"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1342,6 +1354,12 @@
     "Loading Settings Copies from iCloud…" : {
       "comment" : "message; menu item",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Načítání kopií nastavení z iCloudu…"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1437,6 +1455,12 @@
     "Manage Copies on iCloud…" : {
       "comment" : "verb; menu item",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Spravovat kopie na iCloudu…"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2008,6 +2032,12 @@
     "No Settings Copies in iCloud" : {
       "comment" : "message; menu item",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Na iCloudu nejsou žádné kopie nastavení"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2912,6 +2942,12 @@
     },
     "Settings import & export:" : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Import a export nastavení:"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3118,6 +3154,12 @@
     },
     "Store a copy of these settings for other devices to import." : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ukládat kopii tohoto nastavení pro import do jiných zařízení."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",

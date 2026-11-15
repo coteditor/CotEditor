@@ -6,7 +6,7 @@
       "localizations" : {
         "cs" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Mazání"
           }
         },
@@ -125,7 +125,7 @@
       "localizations" : {
         "cs" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Úpravy"
           }
         },
@@ -244,7 +244,7 @@
       "localizations" : {
         "cs" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Přesun"
           }
         },
@@ -363,7 +363,7 @@
       "localizations" : {
         "cs" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Posouvání"
           }
         },
@@ -482,7 +482,7 @@
       "localizations" : {
         "cs" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Výběr"
           }
         },
@@ -601,7 +601,7 @@
       "localizations" : {
         "cs" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Smazat do začátku řádku"
           }
         },
@@ -720,7 +720,7 @@
       "localizations" : {
         "cs" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Smazat do začátku odstavce"
           }
         },
@@ -839,7 +839,7 @@
       "localizations" : {
         "cs" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Smazat do konce řádku"
           }
         },
@@ -958,7 +958,7 @@
       "localizations" : {
         "cs" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Smazat do konce odstavce"
           }
         },
@@ -1077,7 +1077,7 @@
       "localizations" : {
         "cs" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Smazat předchozí slovo"
           }
         },
@@ -1196,7 +1196,7 @@
       "localizations" : {
         "cs" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Smazat následující slovo"
           }
         },
@@ -1315,7 +1315,7 @@
       "localizations" : {
         "cs" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Přesunout o znak dozadu"
           }
         },
@@ -1434,7 +1434,7 @@
       "localizations" : {
         "cs" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Přesunout o znak dozadu s rozšířením výběru"
           }
         },
@@ -1553,7 +1553,7 @@
       "localizations" : {
         "cs" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Přesunout o řádek dolů"
           }
         },
@@ -1672,7 +1672,7 @@
       "localizations" : {
         "cs" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Přesunout o řádek dolů s rozšířením výběru"
           }
         },
@@ -1791,7 +1791,7 @@
       "localizations" : {
         "cs" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Přesunout o znak dopředu"
           }
         },
@@ -1910,7 +1910,7 @@
       "localizations" : {
         "cs" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Přesunout o znak dopředu s rozšířením výběru"
           }
         },
@@ -2029,7 +2029,7 @@
       "localizations" : {
         "cs" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Přesunout doleva s rozšířením výběru"
           }
         },
@@ -2148,7 +2148,7 @@
       "localizations" : {
         "cs" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Přesunout o odstavec dozadu s rozšířením výběru"
           }
         },
@@ -2267,7 +2267,7 @@
       "localizations" : {
         "cs" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Přesunout o odstavec dopředu s rozšířením výběru"
           }
         },
@@ -2386,7 +2386,7 @@
       "localizations" : {
         "cs" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Přesunout doprava s rozšířením výběru"
           }
         },
@@ -2505,7 +2505,7 @@
       "localizations" : {
         "cs" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Přesunout na začátek dokumentu"
           }
         },
@@ -2624,7 +2624,7 @@
       "localizations" : {
         "cs" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Přesunout na začátek dokumentu s rozšířením výběru"
           }
         },
@@ -2743,7 +2743,7 @@
       "localizations" : {
         "cs" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Přesunout na začátek odstavce"
           }
         },
@@ -2862,7 +2862,7 @@
       "localizations" : {
         "cs" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Přesunout na začátek odstavce s rozšířením výběru"
           }
         },
@@ -2981,7 +2981,7 @@
       "localizations" : {
         "cs" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Přesunout na konec dokumentu"
           }
         },
@@ -3100,7 +3100,7 @@
       "localizations" : {
         "cs" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Přesunout na konec dokumentu s rozšířením výběru"
           }
         },
@@ -3219,7 +3219,7 @@
       "localizations" : {
         "cs" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Přesunout na konec odstavce"
           }
         },
@@ -3338,7 +3338,7 @@
       "localizations" : {
         "cs" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Přesunout na konec odstavce s rozšířením výběru"
           }
         },
@@ -3457,7 +3457,7 @@
       "localizations" : {
         "cs" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Přesunout na levý konec řádku"
           }
         },
@@ -3576,7 +3576,7 @@
       "localizations" : {
         "cs" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Přesunout na levý konec řádku s rozšířením výběru"
           }
         },
@@ -3695,7 +3695,7 @@
       "localizations" : {
         "cs" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Přesunout na pravý konec řádku"
           }
         },
@@ -3814,7 +3814,7 @@
       "localizations" : {
         "cs" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Přesunout na pravý konec řádku s rozšířením výběru"
           }
         },
@@ -3933,7 +3933,7 @@
       "localizations" : {
         "cs" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Přesunout o řádek nahoru"
           }
         },
@@ -4052,7 +4052,7 @@
       "localizations" : {
         "cs" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Přesunout o řádek nahoru s rozšířením výběru"
           }
         },
@@ -4171,7 +4171,7 @@
       "localizations" : {
         "cs" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Přesunout o slovo dozadu"
           }
         },
@@ -4290,7 +4290,7 @@
       "localizations" : {
         "cs" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Přesunout o slovo dozadu s rozšířením výběru"
           }
         },
@@ -4409,7 +4409,7 @@
       "localizations" : {
         "cs" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Přesunout o slovo dopředu"
           }
         },
@@ -4528,7 +4528,7 @@
       "localizations" : {
         "cs" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Přesunout o slovo dopředu s rozšířením výběru"
           }
         },
@@ -4647,7 +4647,7 @@
       "localizations" : {
         "cs" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Přesunout o slovo doleva"
           }
         },
@@ -4766,7 +4766,7 @@
       "localizations" : {
         "cs" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Přesunout o slovo doleva s rozšířením výběru"
           }
         },
@@ -4885,7 +4885,7 @@
       "localizations" : {
         "cs" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Přesunout o slovo doprava"
           }
         },
@@ -5004,7 +5004,7 @@
       "localizations" : {
         "cs" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Přesunout o slovo doprava s rozšířením výběru"
           }
         },
@@ -5123,7 +5123,7 @@
       "localizations" : {
         "cs" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Přesunout o stránku dolů"
           }
         },
@@ -5242,7 +5242,7 @@
       "localizations" : {
         "cs" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Přesunout o stránku dolů s rozšířením výběru"
           }
         },
@@ -5361,7 +5361,7 @@
       "localizations" : {
         "cs" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Přesunout o stránku nahoru"
           }
         },
@@ -5480,7 +5480,7 @@
       "localizations" : {
         "cs" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Přesunout o stránku nahoru s rozšířením výběru"
           }
         },
@@ -5599,7 +5599,7 @@
       "localizations" : {
         "cs" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Posunout obrazovku o řádek dolů"
           }
         },
@@ -5718,7 +5718,7 @@
       "localizations" : {
         "cs" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Posunout obrazovku o řádek nahoru"
           }
         },
@@ -5837,7 +5837,7 @@
       "localizations" : {
         "cs" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Posunout obrazovku o stránku dolů"
           }
         },
@@ -5956,7 +5956,7 @@
       "localizations" : {
         "cs" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Posunout obrazovku o stránku nahoru"
           }
         },
@@ -6075,7 +6075,7 @@
       "localizations" : {
         "cs" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Posunout obrazovku na začátek dokumentu"
           }
         },
@@ -6194,7 +6194,7 @@
       "localizations" : {
         "cs" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Posunout obrazovku na konec dokumentu"
           }
         },
@@ -6313,7 +6313,7 @@
       "localizations" : {
         "cs" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Prohodit znaky"
           }
         },
@@ -6432,7 +6432,7 @@
       "localizations" : {
         "cs" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Yank"
           }
         },

@@ -4032,6 +4032,12 @@
     },
     "CloudSettingsError.invalidArchiveURL.description" : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "K vybrané kopii nastavení se nepodařilo získat přístup."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4132,6 +4138,12 @@
     },
     "CloudSettingsError.metadataQueryFailed.description" : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Na iCloudu se nepodařilo najít žádné kopie nastavení."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14377,6 +14389,12 @@
     "RemoteDocumentClosingAlert.informativeText" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vzdálené připojení je odpojeno. Vaše změny nebyly odeslány."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14478,6 +14496,12 @@
     "RemoteDocumentClosingAlert.messageText" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Uložit změny v dokumentu „%@“ na tento Mac?"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14699,6 +14723,12 @@
     "RemoteDocumentDisconnectAlert.informativeText" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Změny již nelze ukládat vzdáleně. Chcete-li je zachovat, uložte dokument na tento Mac."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14800,6 +14830,12 @@
     "RemoteDocumentDisconnectAlert.messageText" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vzdálené připojení k dokumentu „%@“ bylo přerušeno."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14901,6 +14937,12 @@
     "RMateServer.ListenError.addressInUse.description" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Port se již používá."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15122,6 +15164,12 @@
     "RMateServer.ListenError.invalidPort.recoverySuggestion" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zadejte číslo portu v rozsahu od 1 do 65535."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15223,6 +15271,12 @@
     "RMateServer.ReceiveError.fileTooLarge.description" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vzdálený soubor je příliš velký a nelze jej otevřít."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15325,6 +15379,12 @@
       "comment" : "%@ is file size, such as \"100 MB\"",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vzdálené úpravy podporují soubory do velikosti %@."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15664,6 +15724,12 @@
     "RMateServer.ReceiveError.tooManyFiles.description" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Některé vzdálené soubory se nepodařilo otevřít."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15765,6 +15831,36 @@
     "RMateServer.ReceiveError.tooManyFiles.recoverySuggestion" : {
       "comment" : "%lld is the number of files",
       "localizations" : {
+        "cs" : {
+          "variations" : {
+            "plural" : {
+              "few" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Jeden příkaz rmate může najednou otevřít maximálně %lld soubory."
+                }
+              },
+              "many" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Jeden příkaz rmate může najednou otevřít maximálně %lld souboru."
+                }
+              },
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Jeden příkaz rmate může najednou otevřít maximálně %lld soubor."
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Jeden příkaz rmate může najednou otevřít maximálně %lld souborů."
+                }
+              }
+            }
+          }
+        },
         "de" : {
           "variations" : {
             "plural" : {

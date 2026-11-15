@@ -4,6 +4,12 @@
     "Accept rmate connections" : {
       "comment" : "verb; checkbox; rmate is a remote connection protocol",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Přijímat připojení rmate"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -98,6 +104,12 @@
     },
     "Allow remote files to be opened in CotEditor using the `rmate` protocol." : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Umožní otevírat vzdálené soubory v CotEditoru pomocí protokolu `rmate`."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -879,6 +891,12 @@
     },
     "Remote editing:" : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vzdálené úpravy:"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",

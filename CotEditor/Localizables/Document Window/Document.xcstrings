@@ -2637,6 +2637,12 @@
     "Disconnected" : {
       "comment" : "window subtitle; for remote document",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Odpojeno"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5174,8 +5180,8 @@
       "localizations" : {
         "cs" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Byl dosažen limit vyhledávání"
+            "state" : "translated",
+            "value" : "Dosažen limit hledání"
           }
         },
         "de" : {
@@ -14159,6 +14165,12 @@
     "Remote" : {
       "comment" : "window subtitle; for remote document",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vzdálený"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",

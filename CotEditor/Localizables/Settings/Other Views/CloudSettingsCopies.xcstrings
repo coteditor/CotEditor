@@ -360,6 +360,12 @@
     },
     "To stop saving a copy, turn off “Keep a copy in iCloud” on the Mac it comes from." : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ukládání kopie na iCloud zastavíte vypnutím volby „Zachovat kopii na iCloudu“ na Macu, ze kterého byla kopie uložena."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",

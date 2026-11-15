@@ -117,6 +117,12 @@
     "NewFeature.copySettingsIniCloud.description" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Uchovávejte aktuální kopii svého nastavení na iCloudu, abyste ji mohli kdykoli importovat do ostatních Maců."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -218,6 +224,12 @@
     "NewFeature.copySettingsIniCloud.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vaše nastavení připravené k importu"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -319,6 +331,12 @@
     "NewFeature.remoteEditing.description" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Otevírejte soubory ze vzdáleného počítače přes SSH pomocí `rmate` a ukládejte změny přímo na něm."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -420,6 +438,12 @@
     "NewFeature.remoteEditing.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Upravujte vzdálené soubory přímo na Macu"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -521,6 +545,12 @@
     "NewFeature.textKeyBinding.description" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Přizpůsobte si klávesové zkratky pro pohyb kurzoru, výběr a mazání textu podle vlastních potřeb."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -622,6 +652,12 @@
     "NewFeature.textKeyBinding.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vaše klávesové zkratky, vaše pravidla"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",

@@ -480,6 +480,12 @@
     "SettingsPane.integration.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Integrace"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
