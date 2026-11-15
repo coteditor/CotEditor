@@ -28,7 +28,7 @@
   ],
   "keywords" : [
     {
-      "begin" : "(?<=</?)[[:alnum:]_\\-.:]+(?=[\\r\\n\\t />])",
+      "begin" : "(?<![^</])(?<=</?)[[:alnum:]_\\-.:]+(?=[\\r\\n\\t />])",
       "description" : "element",
       "regularExpression" : true
     }
@@ -47,11 +47,11 @@
   ],
   "variables" : [
     {
-      "begin" : "(?<=</?)[[:alnum:]_\\-.]+:(?=\\w)",
+      "begin" : "(?<![^</])(?<=</?)[[:alnum:]_\\-.]+:(?=\\w)",
       "regularExpression" : true
     },
     {
-      "begin" : "(?<=\\s)[[:alnum:]_\\-.]+:(?=(\\w|[\\-.])+\\s*=)",
+      "begin" : "(?<!\\S)(?<=\\s)[[:alnum:]_\\-.]+:(?=(\\w|[\\-.])+\\s*=)",
       "regularExpression" : true
     }
   ]

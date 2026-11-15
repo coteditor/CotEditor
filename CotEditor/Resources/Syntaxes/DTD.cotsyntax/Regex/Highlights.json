@@ -1,7 +1,7 @@
 {
   "attributes" : [
     {
-      "begin" : "(?<=\\s)[[:alnum:]_\\-.:]+(?=\\s*=)",
+      "begin" : "(?<!\\S)(?<=\\s)[[:alnum:]_\\-.:]+(?=\\s*=)",
       "regularExpression" : true
     }
   ],
@@ -32,7 +32,7 @@
   ],
   "keywords" : [
     {
-      "begin" : "(?<=</?)[[:alnum:]_\\-.:]+(?=[\\r\\n\\t />])",
+      "begin" : "(?<![^</])(?<=</?)[[:alnum:]_\\-.:]+(?=[\\r\\n\\t />])",
       "regularExpression" : true
     },
     {
@@ -113,20 +113,20 @@
   ],
   "variables" : [
     {
+      "begin" : "(?<![^</])(?<=</?)[[:alnum:]_\\-.]+:(?=\\w)",
+      "regularExpression" : true
+    },
+    {
+      "begin" : "(?<!\\S)(?<=\\s)[[:alnum:]_\\-.]+:(?=(\\w|[\\-.])+\\s*=)",
+      "regularExpression" : true
+    },
+    {
       "begin" : "(?<!ATTLIST)\\s+[O\\-]\\s+[O\\-](?=\\s[^<>]*>)",
       "description" : "for SGML DTD",
       "regularExpression" : true
     },
     {
-      "begin" : "(?<=</?)[[:alnum:]_\\-.]+:(?=\\w)",
-      "regularExpression" : true
-    },
-    {
       "begin" : "(?<=\\b)[[:alnum:]_\\-.]+:(?=\\w[^<>]*>)",
-      "regularExpression" : true
-    },
-    {
-      "begin" : "(?<=\\s)[[:alnum:]_\\-.]+:(?=(\\w|[\\-.])+\\s*=)",
       "regularExpression" : true
     }
   ]

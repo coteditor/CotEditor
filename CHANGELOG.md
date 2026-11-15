@@ -6,6 +6,7 @@
 ### Improvements
 
 - Improve the performance of undo and redo in large documents.
+- Update the DTD and XML syntaxes to improve performance.
 - [beta] Optimize regular-expression-based syntax highlighting in large documents.
 
 
