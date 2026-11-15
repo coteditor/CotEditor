@@ -7,6 +7,7 @@
 
 - Improve the performance of undo and redo in large documents.
 - Update the DTD and XML syntaxes to improve performance.
+- Update the JSON syntax to improve performance and fix the highlighting of some keys and numbers.
 - [beta] Optimize regular-expression-based syntax highlighting in large documents.
 
 
