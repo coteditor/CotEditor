@@ -1,7 +1,7 @@
 {
   "attributes" : [
     {
-      "begin" : "(?<!\\S)(?<=\\s)[[:alnum:]_\\-.:]+(?=\\s*=)",
+      "begin" : "(?<!\\S)(?<=\\s)[[:alnum:]\\p{M}_\\-.:\\u00B7\\u0387\\u203F\\u2040]+(?=\\s*=)",
       "regularExpression" : true
     }
   ],
@@ -11,7 +11,7 @@
       "regularExpression" : true
     },
     {
-      "begin" : "&\\S+?;",
+      "begin" : "&[^\\s&<>;]++;",
       "regularExpression" : true
     },
     {
@@ -22,7 +22,7 @@
   ],
   "commands" : [
     {
-      "begin" : "(?<=<)\\?[[:alnum:]_\\-.:]+",
+      "begin" : "(?<=<)\\?[[:alnum:]\\p{M}_\\-.:\\u00B7\\u0387\\u203F\\u2040]+",
       "regularExpression" : true
     },
     {
@@ -32,21 +32,21 @@
   ],
   "keywords" : [
     {
-      "begin" : "(?<![^</])(?<=</?)[[:alnum:]_\\-.:]+(?=[\\r\\n\\t />])",
+      "begin" : "(?<![^</])(?<=</?)[[:alnum:]\\p{M}_\\-.:\\u00B7\\u0387\\u203F\\u2040]+(?=[\\r\\n\\t />])",
       "regularExpression" : true
     },
     {
-      "begin" : "(?<=[\\r\\n\\t (|,])[[:alnum:]_\\-.:%]+(?=[\\r\\n\\t )|,]?[^<>\\[]*[>\\[])",
+      "begin" : "(?<=[\\r\\n\\t (|,])[[:alnum:]\\p{M}_\\-.:%\\u00B7\\u0387\\u203F\\u2040]+(?=[\\r\\n\\t )|,]?[^<>\\[]*[>\\[])",
       "regularExpression" : true
     }
   ],
   "strings" : [
     {
-      "begin" : "(?<!\\w)'[^']*?'(?=[^<>]*>)",
+      "begin" : "(?<!\\w)'[^'\\-]*+(?:-(?!->)[^'\\-]*+)*+'(?=[^<>]*>)",
       "regularExpression" : true
     },
     {
-      "begin" : "(?<=NDATA)\\s+[[:alnum:]_\\-.]+(?=\\s*>)",
+      "begin" : "(?<=NDATA)\\s+[[:alnum:]\\p{M}_\\-.\\u00B7\\u0387\\u203F\\u2040]+(?=\\s*>)",
       "regularExpression" : true
     }
   ],
@@ -113,11 +113,11 @@
   ],
   "variables" : [
     {
-      "begin" : "(?<![^</])(?<=</?)[[:alnum:]_\\-.]+:(?=\\w)",
+      "begin" : "(?<![^</])(?<=</?)[[:alnum:]\\p{M}_\\-.\\u00B7\\u0387\\u203F\\u2040]+:(?=\\w)",
       "regularExpression" : true
     },
     {
-      "begin" : "(?<!\\S)(?<=\\s)[[:alnum:]_\\-.]+:(?=(\\w|[\\-.])+\\s*=)",
+      "begin" : "(?<!\\S)(?<=\\s)[[:alnum:]\\p{M}_\\-.\\u00B7\\u0387\\u203F\\u2040]+:(?=(\\w|[\\-.])+\\s*=)",
       "regularExpression" : true
     },
     {
@@ -126,7 +126,7 @@
       "regularExpression" : true
     },
     {
-      "begin" : "(?<=\\b)[[:alnum:]_\\-.]+:(?=\\w[^<>]*>)",
+      "begin" : "(?<=\\b)[[:alnum:]\\p{M}_\\-.\\u00B7\\u0387\\u203F\\u2040]+:(?=\\w[^<>]*>)",
       "regularExpression" : true
     }
   ]
