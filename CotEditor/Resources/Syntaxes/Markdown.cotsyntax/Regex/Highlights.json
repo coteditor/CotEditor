@@ -1,12 +1,12 @@
 {
   "attributes" : [
     {
-      "begin" : "(?<!\\\\)(?<!\\*)\\*[^ \\t*]((?!\\R{2})(?:.|\\R))*?(?<![\\\\ ])\\*",
+      "begin" : "(?<!\\\\)(?<!\\*)\\*[^ \\t*](?:[^*\\n\\r\\x0B\\f\\x85\\u2028\\u2029]|(?<=[\\\\ ])\\*|(?!\\R{2})\\R)*+(?<![\\\\ ])\\*",
       "description" : "em",
       "regularExpression" : true
     },
     {
-      "begin" : "(?<!\\\\)\\b(?<!\\_)_[^ \\t_]((?!\\R{2})(?:.|\\R))*?(?<![\\\\ ])_",
+      "begin" : "(?<!\\\\)\\b(?<!\\_)_[^ \\t_](?:[^_\\n\\r\\x0B\\f\\x85\\u2028\\u2029]|(?<=[\\\\ ])_|(?!\\R{2})\\R)*+(?<![\\\\ ])_",
       "description" : "em",
       "regularExpression" : true
     }
@@ -36,30 +36,32 @@
       "begin" : "^[ ]{0,3}\\*\\[[^\\^].*(?<!\\\\)\\]:\\s",
       "description" : "[extra] abbr",
       "end" : "(\\R[ \\t]*\\R)|\\z",
+      "isMultiline" : true,
       "regularExpression" : true
     },
     {
       "begin" : "^[ ]{0,3}\\[[^\\^].*(?<!\\\\)\\]:[ \\t]+",
       "description" : "a href",
       "end" : "(\\R[ \\t]*\\R)|\\z",
+      "isMultiline" : true,
       "regularExpression" : true
     }
   ],
   "commands" : [
     {
-      "begin" : "(?<!\\\\)(\\*{2,3})[^ \\t*]((?!\\R{2})(?:.|\\R))*?(?<![\\\\ ])\\1",
+      "begin" : "(?<!\\\\)(\\*{2,3})[^ \\t*](?:[^*\\n\\r\\x0B\\f\\x85\\u2028\\u2029]|(?:(?<=[\\\\ ])|(?!\\1))\\*|(?!\\R{2})\\R)*+(?<![\\\\ ])\\1",
       "description" : "strong",
       "regularExpression" : true
     },
     {
-      "begin" : "(?<!\\\\)\\b(_{2,3})[^ \\t_]((?!\\R{2})(?:.|\\R))*?(?<![\\\\ ])\\1",
+      "begin" : "(?<!\\\\)\\b(_{2,3})[^ \\t_](?:[^_\\n\\r\\x0B\\f\\x85\\u2028\\u2029]|(?:(?<=[\\\\ ])|(?!\\1))_|(?!\\R{2})\\R)*+(?<![\\\\ ])\\1",
       "description" : "strong",
       "regularExpression" : true
     }
   ],
   "keywords" : [
     {
-      "begin" : "(?<!\\\\)~~[^ \\t~]((?!\\R{2})(?:.|\\R))*?(?<![\\\\ ])~~",
+      "begin" : "(?<!\\\\)~~[^ \\t~](?:[^~\\n\\r\\x0B\\f\\x85\\u2028\\u2029]|(?:(?<=[\\\\ ])|(?!~~))~|(?!\\R{2})\\R)*+(?<![\\\\ ])~~",
       "description" : "[github] strikethrough",
       "regularExpression" : true
     },
@@ -101,7 +103,7 @@
       "regularExpression" : true
     },
     {
-      "begin" : "^[ ]{0,3}\\[\\^[a-zA-Z0-9]*\\]:\\s",
+      "begin" : "^[ ]{0,3}\\[\\^[^\\[\\]\\s]+\\]:\\s",
       "description" : "[extra] footnote",
       "regularExpression" : true
     }
@@ -156,27 +158,27 @@
   ],
   "values" : [
     {
-      "begin" : "(?<!(^[ ]{0,3}|\\\\))\\[\\^[a-zA-Z0-9]+\\]",
+      "begin" : "(?<!(^[ ]{0,3}|\\\\))\\[\\^[^\\[\\]\\s]+\\]",
       "description" : "[extra] a footnote",
       "regularExpression" : true
     },
     {
-      "begin" : "(?<!\\\\)\\[[^\\[\\]]*?(?!<\\\\)\\](?=\\()",
+      "begin" : "(?<!\\\\)\\[[^\\[\\]]*?(?<!\\\\)\\](?=\\()",
       "description" : "a",
       "regularExpression" : true
     },
     {
-      "begin" : "(?<!\\\\)\\[[^\\[\\]]*?(?!<\\\\)\\][ ]?(?=\\[)",
+      "begin" : "(?<!\\\\)\\[[^\\[\\]]*?(?<!\\\\)\\][ ]?(?=\\[)",
       "description" : "a",
       "regularExpression" : true
     },
     {
-      "begin" : "<(https?|ftp)(:\\/\\/[-_.!~*\\'()a-zA-Z0-9;\\/?:\\@&=+\\$,%#]+)>",
+      "begin" : "<(mailto:)?[a-zA-Z0-9][a-zA-Z0-9._-]*+@[a-zA-Z0-9_-][a-zA-Z0-9._-]++>",
       "description" : "a",
       "regularExpression" : true
     },
     {
-      "begin" : "<(mailto:)?[a-zA-Z0-9]+[a-zA-Z0-9\\._-]*@[a-zA-Z0-9_-]+([a-zA-Z0-9\\._-]+)+>",
+      "begin" : "<[a-zA-Z][a-zA-Z0-9+.\\-]{1,31}:[^\\s<>]*>",
       "description" : "a",
       "regularExpression" : true
     }
