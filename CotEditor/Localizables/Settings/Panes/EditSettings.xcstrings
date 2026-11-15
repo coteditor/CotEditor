@@ -2102,7 +2102,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Spacje"
+            "value" : "spacje"
           }
         },
         "pt" : {
@@ -2215,7 +2215,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tabulatory"
+            "value" : "tabulatory"
           }
         },
         "pt" : {

@@ -64,6 +64,12 @@
             "value" : "Sta rmate-verbindingen toe"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Akceptuj połączenia rmate"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -162,6 +168,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Sta toe dat bestanden op afstand in CotEditor worden geopend via het `rmate`-protocol."
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zezwól na otwieranie plików zdalnych w CotEditorze z użyciem protokołu `rmate`."
           }
         },
         "ru" : {
@@ -949,6 +961,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Bewerken op afstand:"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Edycja zdalna:"
           }
         },
         "ru" : {

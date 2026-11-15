@@ -7754,7 +7754,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Zastąp wszystko"
+            "value" : "Zastąp wszystkie"
           }
         },
         "pt" : {
@@ -9465,7 +9465,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Opcja W zaznaczeniu jest włączona, chociaż nic nie jest zaznaczone."
+            "value" : "Opcja „W zaznaczeniu” jest włączona, chociaż nic nie jest zaznaczone."
           }
         },
         "pt" : {
@@ -9584,7 +9584,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Zaznacz zakres wyszukiwania w dokumencie lub wyłącz opcję W zaznaczeniu."
+            "value" : "Zaznacz zakres wyszukiwania w dokumencie lub wyłącz opcję „W zaznaczeniu”."
           }
         },
         "pt" : {

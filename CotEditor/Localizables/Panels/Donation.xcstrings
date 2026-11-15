@@ -657,7 +657,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Jako dowód Twojego wsparcia w okresie ciągłego wsparcia na pasku statusu pojawi się odznaka kawy"
+            "value" : "Jako dowód Twojego wsparcia, w okresie stałego wsparcia, na pasku statusu pojawi się odznaka kawy"
           }
         },
         "pt" : {
@@ -881,7 +881,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "CotEditor udostępnia wszystkie funkcje za darmo dla każdego.\nMożesz wesprzeć ten projekt, oferując kawę"
+            "value" : "CotEditor udostępnia wszystkie funkcje za darmo dla każdego.\nMożesz wesprzeć ten projekt, oferując kawę."
           }
         },
         "pt" : {

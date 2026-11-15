@@ -180,7 +180,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Automatycznie"
+            "value" : "autom."
           }
         },
         "pt" : {
@@ -1192,7 +1192,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Wcięcie zawijanej linii o"
+            "value" : "Wcięcie zawijanego wiersza:"
           }
         },
         "pt" : {
@@ -2770,7 +2770,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "px"
+            "value" : "piks."
           }
         },
         "pt" : {
@@ -3221,7 +3221,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "sp."
+            "value" : "spacje"
           }
         },
         "pt" : {
@@ -4480,7 +4480,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Pionowa"
+            "value" : "Pionowo"
           }
         },
         "pt" : {

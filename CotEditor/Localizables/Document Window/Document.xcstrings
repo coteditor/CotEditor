@@ -2697,6 +2697,12 @@
             "value" : "Verbinding verbroken"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rozłączony"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5015,25 +5021,25 @@
             "plural" : {
               "few" : {
                 "stringUnit" : {
-                  "state" : "needs_review",
+                  "state" : "translated",
                   "value" : "Znaleziono tylko pierwsze %lld dopasowania."
                 }
               },
               "many" : {
                 "stringUnit" : {
-                  "state" : "needs_review",
+                  "state" : "translated",
                   "value" : "Znaleziono tylko pierwszych %lld dopasowań."
                 }
               },
               "one" : {
                 "stringUnit" : {
-                  "state" : "needs_review",
+                  "state" : "translated",
                   "value" : "Znaleziono tylko pierwsze dopasowanie."
                 }
               },
               "other" : {
                 "stringUnit" : {
-                  "state" : "needs_review",
+                  "state" : "translated",
                   "value" : "Znaleziono tylko pierwsze %lld dopasowania."
                 }
               }
@@ -5246,7 +5252,7 @@
         },
         "pl" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Osiągnięto limit wyszukiwania"
           }
         },
@@ -6780,7 +6786,7 @@
         },
         "pl" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "%#@maches@ w %#@files@"
           },
           "substitutions" : {
@@ -6823,25 +6829,25 @@
                 "plural" : {
                   "few" : {
                     "stringUnit" : {
-                      "state" : "needs_review",
+                      "state" : "translated",
                       "value" : "%arg+ dopasowania"
                     }
                   },
                   "many" : {
                     "stringUnit" : {
-                      "state" : "needs_review",
+                      "state" : "translated",
                       "value" : "%arg+ dopasowań"
                     }
                   },
                   "one" : {
                     "stringUnit" : {
-                      "state" : "needs_review",
+                      "state" : "translated",
                       "value" : "%arg+ dopasowanie"
                     }
                   },
                   "other" : {
                     "stringUnit" : {
-                      "state" : "needs_review",
+                      "state" : "translated",
                       "value" : "%arg+ dopasowania"
                     }
                   }
@@ -14223,6 +14229,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Op afstand"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zdalny"
           }
         },
         "ru" : {
@@ -22663,7 +22675,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Pozioma"
+            "value" : "Poziomo"
           }
         },
         "pt" : {
@@ -22782,7 +22794,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Pozioma"
+            "value" : "Poziomy kierunek tekstu"
           }
         },
         "pt" : {
@@ -23139,7 +23151,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Pionowa"
+            "value" : "Pionowo"
           }
         },
         "pt" : {
@@ -23258,7 +23270,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Pionowa"
+            "value" : "Pionowy kierunek tekstu"
           }
         },
         "pt" : {

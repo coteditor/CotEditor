@@ -404,7 +404,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Domyślne końce wierszy:"
+            "value" : "Domyślny format końca wiersza:"
           }
         },
         "pt" : {
