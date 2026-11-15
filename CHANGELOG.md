@@ -6,7 +6,7 @@
 ### Improvements
 
 - Improve the performance of undo and redo in large documents.
-- Update the JSON, DTD, XML and Markdown syntaxes to improve performance and highlighting accuracy.
+- Update the JSON, DTD, XML, Markdown and YAML syntaxes to improve performance and highlighting accuracy.
 - [beta] Optimize regular-expression-based syntax highlighting in large documents.
 
 
