@@ -11,7 +11,7 @@
 
 ### Known Issues
 
-- The text added in CotEditor 7.2.0 is not yet localized in Polish and Portuguese.
+- The text added in CotEditor 7.2.0 is not yet localized in Portuguese.
 
 
 
