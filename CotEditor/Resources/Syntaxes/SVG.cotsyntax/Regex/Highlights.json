@@ -1115,44 +1115,8 @@
   ],
   "characters" : [
     {
-      "begin" : "&#[0-9]+;",
+      "begin" : "&[^\\s&<>;]++;",
       "regularExpression" : true
-    },
-    {
-      "begin" : "&amp;"
-    },
-    {
-      "begin" : "&copy;"
-    },
-    {
-      "begin" : "&gt;"
-    },
-    {
-      "begin" : "&hearts;"
-    },
-    {
-      "begin" : "&infin;"
-    },
-    {
-      "begin" : "&laquo;"
-    },
-    {
-      "begin" : "&lt;"
-    },
-    {
-      "begin" : "&nbsp;"
-    },
-    {
-      "begin" : "&quot;"
-    },
-    {
-      "begin" : "&raquo;"
-    },
-    {
-      "begin" : "&reg;"
-    },
-    {
-      "begin" : "&yen;"
     },
     {
       "begin" : "<![CDATA[",

@@ -13,7 +13,8 @@
   "stringDelimiters" : [
     {
       "begin" : "\"",
-      "end" : "\""
+      "end" : "\"",
+      "isMultiline" : true
     }
   ]
 }
