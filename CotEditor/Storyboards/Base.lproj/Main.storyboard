@@ -26,7 +26,6 @@
                                                 <action selector="showSettingsWindow:" target="Ady-hI-5gd" id="B5S-pE-Q9J"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem isSeparatorItem="YES" id="4LK-AN-eJy"/>
                                         <menuItem title="Donate to CotEditor…" secondaryImage="mug" catalog="system" id="qPX-5r-cB2">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
