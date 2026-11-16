@@ -46,9 +46,10 @@ struct WhatsNewView: View {
                     
                     if let prerelease = self.prerelease {
                         Text(prerelease.label)
-                            .fontDesign(.rounded)
+                            .font(.system(size: 16, weight: .medium, design: .rounded))
                             .kerning(0.5)
-                            .padding(.horizontal, 4)
+                            .padding(.vertical, 1)
+                            .padding(.horizontal, 5)
                             .overlay(RoundedRectangle(cornerRadius: 5).stroke())
                             .foregroundStyle(.tint)
                     }
