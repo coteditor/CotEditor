@@ -65,6 +65,23 @@ struct OpenPanelAccessory: View {
     var body: some View {
         
         Form {
+            Toggle(.init("Show invisible files", table: "OpenPanelAccessory", comment: "verb; checkbox"), isOn: $showsHiddenFiles)
+                .onChange(of: self.showsHiddenFiles) { _, newValue in
+                    guard let openPanel = self.openPanel else { return }
+                    
+                    openPanel.showsHiddenFiles = newValue
+                    openPanel.treatsFilePackagesAsDirectories = newValue
+                    openPanel.validateVisibleColumns()
+                }
+            
+            Toggle(.init("Open as read-only", table: "OpenPanelAccessory", comment: "verb; checkbox"), isOn: $model.options.isReadOnly)
+                .disabled(self.model.selectsOnlyDirectories)
+                .onChange(of: self.model.selectsOnlyDirectories) { _, newValue in
+                    if newValue {
+                        self.model.options.isReadOnly = false
+                    }
+                }
+            
             Picker(.init("Text encoding:", table: "OpenPanelAccessory"), selection: $model.options.encoding) {
                 Text("Automatic", tableName: "OpenPanelAccessory", comment: "menu item title for automatic encoding detection")
                     .tag(String.Encoding?.none)
@@ -80,23 +97,6 @@ struct OpenPanelAccessory: View {
                 }
             }
             .disabled(self.model.selectsOnlyDirectories)
-            
-            Toggle(.init("Open as read-only", table: "OpenPanelAccessory", comment: "verb; checkbox"), isOn: $model.options.isReadOnly)
-                .disabled(self.model.selectsOnlyDirectories)
-                .onChange(of: self.model.selectsOnlyDirectories) { _, newValue in
-                    if newValue {
-                        self.model.options.isReadOnly = false
-                    }
-                }
-            
-            Toggle(.init("Show invisible files", table: "OpenPanelAccessory", comment: "verb; checkbox"), isOn: $showsHiddenFiles)
-                .onChange(of: self.showsHiddenFiles) { _, newValue in
-                    guard let openPanel = self.openPanel else { return }
-                    
-                    openPanel.showsHiddenFiles = newValue
-                    openPanel.treatsFilePackagesAsDirectories = newValue
-                    openPanel.validateVisibleColumns()
-                }
         }
     }
 }
