@@ -246,8 +246,10 @@ extension FileNode {
     /// - Returns: The node updated, or `nil` if the tree did not change.
     func invalidateChildren(at fileURL: URL) -> FileNode? {
         
+        let filename = fileURL.lastPathComponent
+        
         guard
-            Self.accepts(filename: fileURL.lastPathComponent),
+            Self.accepts(filename: filename),
             self.file.isDirectory,
             let children = self.cachedChildren
         else { return nil }
@@ -258,11 +260,10 @@ extension FileNode {
                 .first
         }
         
-        if fileURL.isReachable,
-           // -> The old name of a case-only renaming is also reachable on case-insensitive volumes.
-           (try? fileURL.resourceValues(forKeys: [.nameKey]).name) == fileURL.lastPathComponent
-        {
-            if let child = children.first(where: { $0.file.fileURL == fileURL }) {
+        // compare the name, as the old name of a case-only renaming is also reachable on case-insensitive volumes
+        if (try? fileURL.resourceValues(forKeys: [.nameKey]).name) == filename {
+            // -> Find by name, as the URL has a trailing slash only while the item is a folder.
+            if let child = children.first(where: { $0.file.name == filename }) {
                 let file: File
                 do {
                     file = try File(at: fileURL)
@@ -296,7 +297,7 @@ extension FileNode {
             }
             
         } else {
-            if let index = children.firstIndex(where: { $0.file.fileURL.lastPathComponent == fileURL.lastPathComponent }) {
+            if let index = children.firstIndex(where: { $0.file.name == filename }) {
                 // -> The file is deleted.
                 self.cachedChildren?.remove(at: index)
                 return self

@@ -153,7 +153,7 @@ struct FileNodeTests {
         let originalNode = try #require(rootNode.node(at: urls.itemURL))
         
         let replacementLeafURL = try self.replaceItem(at: urls.itemURL, withDirectory: true)
-        let updatedNode = rootNode.invalidateChildren(at: urls.itemURL)
+        let updatedNode = rootNode.invalidateChildren(at: urls.rootURL.appending(path: "item", directoryHint: .isDirectory))
         
         #expect(updatedNode === rootNode)
         
@@ -175,7 +175,7 @@ struct FileNodeTests {
         #expect(rootNode.node(at: originalLeafURL) != nil)
         
         try self.replaceItem(at: urls.itemURL, withDirectory: false)
-        let updatedNode = rootNode.invalidateChildren(at: urls.itemURL)
+        let updatedNode = rootNode.invalidateChildren(at: urls.rootURL.appending(path: "item", directoryHint: .notDirectory))
         
         #expect(updatedNode === rootNode)
         
