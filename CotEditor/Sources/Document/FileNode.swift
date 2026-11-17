@@ -396,10 +396,14 @@ extension FileNode {
     /// - Returns: `true` if this node’s name directly matches `searchString`; otherwise, `false`.
     @discardableResult func updateFilter(with searchString: String, hasMatchedDescendant: Bool) -> Bool {
         
-        let match: NSRange = (self.parent == nil)
+        var match: NSRange = (self.parent == nil)
             ? .notFound
             : (self.file.name as NSString).range(of: searchString, options: .caseInsensitive)
-        let isMatched = !match.isNotFound
+        // workaround the issue that combining marks can be found as an empty range (2026-11, macOS 27.2, FB25611882)
+        if !match.isNotFound && match.isEmpty {
+            match = (self.file.name as NSString).range(of: searchString, options: .literal)
+        }
+        let isMatched = !match.isNotFound && !match.isEmpty
         
         self.filterState = FilterState(matchedRange: isMatched ? match : nil,
                                        hasMatchedDescendant: hasMatchedDescendant)

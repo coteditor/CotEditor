@@ -274,6 +274,45 @@ struct FileNodeTests {
     }
     
     
+    @Test func filteringDoesNotMatchCombiningMarkFoundAsEmptyRange() throws {
+        
+        let urls = try self.makeDirectoryTree()
+        defer { try? FileManager.default.removeItem(at: urls.rootURL) }
+        
+        let rootNode = FileNode(file: try File(at: urls.rootURL))
+        let leafNode = try #require(rootNode.node(at: urls.leafURL))
+        
+        #expect(!leafNode.updateFilter(with: "\u{0902}", hasMatchedDescendant: false))
+    }
+    
+    
+    /// Finds a combining mark in a filename without matching unrelated names.
+    ///
+    /// - Parameters:
+    ///   - filename: The filename containing the combining mark.
+    ///   - expectedRange: The UTF-16 range to highlight in the filename.
+    /// - Throws: An error if preparing the files or filtering fails.
+    @Test(arguments: [
+        ("\u{0902}", NSRange(location: 0, length: 1)),
+        ("k\u{0902}m.txt", NSRange(location: 1, length: 1)),
+        ("😀\u{0902}.txt", NSRange(location: 2, length: 1)),
+    ])
+    func filteringFindsCombiningMarkInFilename(filename: String, expectedRange: NSRange) async throws {
+        
+        let rootURL = try FileManager.default.makeTemporaryDirectory()
+        defer { try? FileManager.default.removeItem(at: rootURL) }
+        
+        try Data().write(to: rootURL.appending(path: filename, directoryHint: .notDirectory))
+        try Data().write(to: rootURL.appending(path: "plain.txt", directoryHint: .notDirectory))
+        
+        let rootNode = FileNode(file: try File(at: rootURL))
+        let matchedNodes = try await rootNode.filter(with: "\u{0902}", includesHiddenFiles: false)
+        
+        #expect(matchedNodes.map(\.file.name) == [filename])
+        #expect(matchedNodes.first?.filterState?.matchedRange == expectedRange)
+    }
+    
+    
     // MARK: Private Methods
     
     private struct DirectoryTree {
