@@ -12,9 +12,9 @@
 @import "common.css";
 
 :root {
-	--accent-blue: hsl(198, 40%, 45%);
-	--accent-green: hsl(80, 60%, 35%);
-	--accent-background: light-dark(hsl(206, 50%, 97%), hsl(206, 30%, 20%));
+	--accent-blue: hsl(198 40% 45%);
+	--accent-green: hsl(80 60% 35%);
+	--accent-background: light-dark(hsl(206 50% 97%), hsl(206 30% 20%));
 }
 
 img {
@@ -228,7 +228,7 @@ span.invisible {
 }
 
 pre.source {
-	background: light-dark(hsl(0, 0%, 98%), hsl(0, 0%, 10%));
+	background: light-dark(hsl(0 0% 98%), hsl(0 0% 10%));
 	border: 1px solid -apple-system-separator;
 	border-radius: 0.5rem;
 	max-inline-size: 50rem;
@@ -238,7 +238,7 @@ pre.source {
 }
 
 code.AppleScript {
-	color: light-dark(hsl(213, 50%, 25%), hsl(213, 30%, 75%));
+	color: light-dark(hsl(213 50% 25%), hsl(213 30% 75%));
 }
 
 code span {
