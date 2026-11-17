@@ -463,7 +463,7 @@ public struct TextFind: Equatable, Sendable {
             searchRange.length = range.upperBound - searchRange.location
             let foundRange = string.range(of: self.findString, options: options, range: searchRange)
             
-            // workaround the issue that combining marks can be found as an empty range or a range beyond the search range (2026-11, macOS 27.2)
+            // workaround the issue that combining marks can be found as an empty range or a range beyond the search range (2026-11, macOS 27.2, FB25611882 and FB25612109)
             guard !foundRange.isEmpty, foundRange.upperBound <= range.upperBound else { break }
             
             guard self.checkFullWord(in: foundRange) else {
