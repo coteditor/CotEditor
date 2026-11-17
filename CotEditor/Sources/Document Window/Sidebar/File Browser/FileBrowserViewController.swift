@@ -691,7 +691,7 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
     ///
     /// - Parameters:
     ///   - updatesExpansion: Whether to expand matched parent nodes after filtering.
-    /// - Throws: `CancellationError` or errors on file reading.
+    /// - Throws: `CancellationError`.
     private func updateFilter(updatesExpansion: Bool = true) async throws {
         
         assert(self.isFiltering)

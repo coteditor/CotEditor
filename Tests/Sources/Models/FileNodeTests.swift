@@ -186,6 +186,23 @@ struct FileNodeTests {
     }
     
     
+    @Test func filteringSkipsUnreadableFolder() async throws {
+        
+        let urls = try self.makeDirectoryTree()
+        defer { try? FileManager.default.removeItem(at: urls.rootURL) }
+        
+        let lockedURL = urls.rootURL.appending(path: "locked", directoryHint: .isDirectory)
+        try FileManager.default.createDirectory(at: lockedURL, withIntermediateDirectories: true)
+        try FileManager.default.setAttributes([.posixPermissions: 0o000], ofItemAtPath: lockedURL.path(percentEncoded: false))
+        defer { try? FileManager.default.setAttributes([.posixPermissions: 0o755], ofItemAtPath: lockedURL.path(percentEncoded: false)) }
+        
+        let rootNode = FileNode(file: try File(at: urls.rootURL))
+        let matchedNodes = try await rootNode.filter(with: "leaf", includesHiddenFiles: false)
+        
+        #expect(matchedNodes.map(\.file.name) == ["leaf.txt"])
+    }
+    
+    
     // MARK: Private Methods
     
     private struct DirectoryTree {

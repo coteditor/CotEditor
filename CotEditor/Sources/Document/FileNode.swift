@@ -414,24 +414,28 @@ extension FileNode {
     ///   - searchString: The text to search for within the file name.
     ///   - includesHiddenFiles: If `true`, includes hidden files and folders in the search.
     /// - Returns: An array of nodes that match the search string within this subtree.
-    /// - Throws: `CancellationError` or errors on file reading.
-    @discardableResult func filter(with searchString: String, includesHiddenFiles: Bool) async throws -> [FileNode] {
+    /// - Throws: `CancellationError`.
+    @discardableResult func filter(with searchString: String, includesHiddenFiles: Bool) async throws(CancellationError) -> [FileNode] {
         
         assert(!searchString.isEmpty)
         
-        try Task.checkCancellation()
+        guard !Task.isCancelled else { throw CancellationError() }
         
         var matchedDescendants: [FileNode] = []
         if self.file.isDirectory {
             // async read files in background
             if self.cachedChildren == nil {
-                self.cachedChildren = try await { @concurrent [fileURL = self.file.fileURL] () async throws -> [File] in
-                    try Self.readChildFiles(at: fileURL)
-                }()
-                .map { FileNode(file: $0, parent: self) }
+                do {
+                    self.cachedChildren = try await { @concurrent [fileURL = self.file.fileURL] () async throws -> [File] in
+                        try Self.readChildFiles(at: fileURL)
+                    }()
+                    .map { FileNode(file: $0, parent: self) }
+                } catch {
+                    Logger.app.error("Failed reading folder contents: \(error)")
+                }
             }
             
-            if let children {
+            if let children = self.cachedChildren {
                 for child in children where includesHiddenFiles || !child.file.isHidden {
                     matchedDescendants += try await child.filter(with: searchString, includesHiddenFiles: includesHiddenFiles)
                 }
