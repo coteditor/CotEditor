@@ -13,6 +13,7 @@
 
 ### Fixes
 
+- Fix an issue in the file browser where the item with the old name remained after changing only the capitalization of its name.
 - Fix an issue in the file browser where changes in subfolders were no longer reflected after renaming or moving their parent folder.
 
 

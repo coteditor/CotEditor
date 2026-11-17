@@ -258,7 +258,10 @@ extension FileNode {
                 .first
         }
         
-        if fileURL.isReachable {
+        if fileURL.isReachable,
+           // -> The old name of a case-only renaming is also reachable on case-insensitive volumes.
+           (try? fileURL.resourceValues(forKeys: [.nameKey]).name) == fileURL.lastPathComponent
+        {
             if let child = children.first(where: { $0.file.fileURL == fileURL }) {
                 let file: File
                 do {

@@ -122,6 +122,28 @@ struct FileNodeTests {
     }
     
     
+    @Test func renamingOnlyCaseLeavesNoNodeWithOldName() throws {
+        
+        let rootURL = try FileManager.default.makeTemporaryDirectory()
+        defer { try? FileManager.default.removeItem(at: rootURL) }
+        
+        let oldURL = rootURL.appending(path: "readme", directoryHint: .notDirectory)
+        let newURL = rootURL.appending(path: "README", directoryHint: .notDirectory)
+        try Data().write(to: oldURL)
+        
+        let rootNode = FileNode(file: try File(at: rootURL))
+        let node = try #require(rootNode.node(at: oldURL))
+        
+        try FileManager.default.moveItem(at: oldURL, to: newURL)
+        node.rename(with: "README")
+        
+        _ = rootNode.invalidateChildren(at: newURL)
+        _ = rootNode.invalidateChildren(at: oldURL)
+        
+        #expect(rootNode.children?.map(\.file.name) == ["README"])
+    }
+    
+    
     @Test func invalidatingChildrenDropsParentCacheWhenFileBecomesFolder() throws {
         
         let urls = try self.makeTypeChangeTree(itemIsDirectory: false)
