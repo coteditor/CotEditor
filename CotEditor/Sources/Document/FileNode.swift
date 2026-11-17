@@ -458,7 +458,7 @@ extension FileNode {
         guard let children = self.cachedChildren else { return }
         
         for child in children {
-            child.file.fileURL = fileURL.appending(component: child.file.name)
+            child.file.fileURL = fileURL.appending(component: child.file.name, directoryHint: child.file.isDirectory ? .isDirectory : .notDirectory)
             child.moveChildren(to: child.file.fileURL)
         }
     }

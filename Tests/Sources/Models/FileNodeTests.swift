@@ -100,6 +100,28 @@ struct FileNodeTests {
     }
     
     
+    @Test func renamingFolderKeepsReflectingChangesInSubfolder() throws {
+        
+        let urls = try self.makeDirectoryTree()
+        defer { try? FileManager.default.removeItem(at: urls.rootURL) }
+        
+        let rootNode = FileNode(file: try File(at: urls.rootURL))
+        let folderNode = try #require(rootNode.node(at: urls.folderURL))
+        let childNode = try #require(rootNode.node(at: urls.childFolderURL))
+        _ = childNode.children
+        
+        let renamedFolderURL = urls.rootURL.appending(path: "renamed", directoryHint: .isDirectory)
+        try FileManager.default.moveItem(at: urls.folderURL, to: renamedFolderURL)
+        folderNode.rename(with: "renamed")
+        
+        let newFileURL = renamedFolderURL.appending(path: "child/new.txt", directoryHint: .notDirectory)
+        try Data().write(to: newFileURL)
+        
+        #expect(rootNode.invalidateChildren(at: newFileURL) === childNode)
+        #expect(childNode.children?.contains { $0.file.name == "new.txt" } == true)
+    }
+    
+    
     @Test func invalidatingChildrenDropsParentCacheWhenFileBecomesFolder() throws {
         
         let urls = try self.makeTypeChangeTree(itemIsDirectory: false)

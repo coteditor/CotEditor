@@ -11,6 +11,11 @@
 - [beta] Update Czech and Polish localizations.
 
 
+### Fixes
+
+- Fix an issue in the file browser where changes in subfolders were no longer reflected after renaming or moving their parent folder.
+
+
 ### Known Issues
 
 - The text added in CotEditor 7.2.0 is not yet localized in Portuguese.
