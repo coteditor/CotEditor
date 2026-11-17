@@ -237,6 +237,21 @@ struct FileNodeTests {
     }
     
     
+    @Test @MainActor func filteringKeepsChildrenReadDuringFiltering() async throws {
+        
+        let urls = try self.makeDirectoryTree()
+        defer { try? FileManager.default.removeItem(at: urls.rootURL) }
+        
+        let rootNode = FileNode(file: try File(at: urls.rootURL))
+        let task = Task { _ = try await rootNode.filter(with: "leaf", includesHiddenFiles: false) }
+        await Task.yield()
+        let children = rootNode.children
+        try await task.value
+        
+        #expect(rootNode.children?.first === children?.first)
+    }
+    
+    
     // MARK: Private Methods
     
     private struct DirectoryTree {

@@ -432,10 +432,14 @@ extension FileNode {
             // async read files in background
             if self.cachedChildren == nil {
                 do {
-                    self.cachedChildren = try await { @concurrent [fileURL = self.file.fileURL] () async throws -> [File] in
+                    let files = try await { @concurrent [fileURL = self.file.fileURL] () async throws -> [File] in
                         try Self.readChildFiles(at: fileURL)
                     }()
-                    .map { FileNode(file: $0, parent: self) }
+                    
+                    // keep the children if already read synchronously during the await
+                    if self.cachedChildren == nil {
+                        self.cachedChildren = files.map { FileNode(file: $0, parent: self) }
+                    }
                 } catch {
                     Logger.app.error("Failed reading folder contents: \(error)")
                 }
