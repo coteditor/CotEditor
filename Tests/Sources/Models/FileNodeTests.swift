@@ -160,6 +160,28 @@ struct FileNodeTests {
     }
     
     
+    @Test func renamingDotFileKeepsHiddenFlag() throws {
+        
+        let rootURL = try FileManager.default.makeTemporaryDirectory()
+        defer { try? FileManager.default.removeItem(at: rootURL) }
+        
+        var oldURL = rootURL.appending(path: ".hidden", directoryHint: .notDirectory)
+        let newURL = rootURL.appending(path: "hidden", directoryHint: .notDirectory)
+        try Data().write(to: oldURL)
+        var resourceValues = URLResourceValues()
+        resourceValues.isHidden = true
+        try oldURL.setResourceValues(resourceValues)
+        
+        let rootNode = FileNode(file: try File(at: rootURL))
+        let node = try #require(rootNode.node(at: oldURL))
+        
+        try FileManager.default.moveItem(at: oldURL, to: newURL)
+        node.rename(with: "hidden")
+        
+        #expect(node.file.isHidden)
+    }
+    
+    
     @Test func invalidatingChildrenReplacesNodeWhenFileBecomesFolder() throws {
         
         let urls = try self.makeTypeChangeTree(itemIsDirectory: false)

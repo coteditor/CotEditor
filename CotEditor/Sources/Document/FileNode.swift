@@ -340,15 +340,11 @@ extension FileNode {
         
         assert(!newName.isEmpty)
         
-        let keepsHidden = self.file.isHidden && !self.file.name.starts(with: ".")
-        
         self.file.name = newName
         self.file.fileURL = self.file.fileURL.deletingLastPathComponent()
             .appending(path: newName, directoryHint: self.file.isDirectory ? .isDirectory : .notDirectory)
         self.file.invalidateKind()
-        if !keepsHidden {
-            self.file.isHidden = newName.starts(with: ".")
-        }
+        self.file.isHidden = (try? self.file.fileURL.resourceValues(forKeys: [.isHiddenKey]).isHidden) ?? newName.starts(with: ".")
         self.moveChildren(to: self.file.fileURL)
         
         self.parent?.cachedChildren?.sort(using: Self.sortOrder)
