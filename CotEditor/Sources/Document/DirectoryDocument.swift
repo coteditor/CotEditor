@@ -68,6 +68,12 @@ final class DirectoryDocument: NSDocument {
         didSet {
             Task { @MainActor in
                 NotificationCenter.default.post(NSDocument.DidChangeFileURLMessage(), subject: self)
+                
+                // workaround the issue that subitem changes are notified only for the location where the presenter was registered (2026-11, macOS 27.2, FB25612177)
+                if NSFileCoordinator.filePresenters.contains(where: { $0 === self }) {
+                    NSFileCoordinator.removeFilePresenter(self)
+                    NSFileCoordinator.addFilePresenter(self)
+                }
             }
         }
     }
