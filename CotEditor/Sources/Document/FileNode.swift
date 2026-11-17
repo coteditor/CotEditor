@@ -255,7 +255,11 @@ extension FileNode {
         else { return nil }
         
         guard fileURL.deletingLastPathComponent() == self.file.fileURL else {
+            let path = fileURL.path(percentEncoded: false)
+            
             return children
+                // skip the folders that cannot contain the fileURL not to traverse the whole cache
+                .filter { $0.cachedChildren != nil && path.utf8.starts(with: $0.file.fileURL.path(percentEncoded: false).utf8) }
                 .compactMap { $0.invalidateChildren(at: fileURL) }
                 .first
         }
@@ -367,15 +371,16 @@ extension FileNode {
     }
     
     
-    /// Adds a node at the receiver.
+    /// Adds a node at the receiver by keeping the sort order.
     ///
     /// - Parameter node: The file node to add.
     func addNode(_ node: FileNode) {
         
         assert(self.file.isDirectory)
         
-        self.cachedChildren?.append(node)
-        self.cachedChildren?.sort(using: Self.sortOrder)
+        guard let index = self.cachedChildren?.partitioningIndex(where: { Self.sortOrder.compare($0, node) == .orderedDescending }) else { return }
+        
+        self.cachedChildren?.insert(node, at: index)
     }
     
     

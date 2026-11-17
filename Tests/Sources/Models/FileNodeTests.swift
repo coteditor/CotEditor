@@ -122,6 +122,22 @@ struct FileNodeTests {
     }
     
     
+    @Test func invalidatingChildrenReflectsItemStartingWithCombiningMark() throws {
+        
+        let urls = try self.makeDirectoryTree()
+        defer { try? FileManager.default.removeItem(at: urls.rootURL) }
+        
+        let rootNode = FileNode(file: try File(at: urls.rootURL))
+        let childNode = try #require(rootNode.node(at: urls.childFolderURL))
+        _ = childNode.children
+        
+        let newFileURL = urls.childFolderURL.appending(path: "\u{0301}new.txt", directoryHint: .notDirectory)
+        try Data().write(to: newFileURL)
+        
+        #expect(rootNode.invalidateChildren(at: newFileURL) === childNode)
+    }
+    
+    
     @Test func renamingOnlyCaseLeavesNoNodeWithOldName() throws {
         
         let rootURL = try FileManager.default.makeTemporaryDirectory()
