@@ -202,9 +202,10 @@ final class EditorTextViewController: NSViewController, NSServicesMenuRequestor,
         ]
         
         // apply initial document settings immediately
+        let mode = self.document.mode
         self.textView.applySyntax(self.document.syntaxController.syntax)
         self.textView.lineEnding = self.document.lineEnding
-        self.textView.applyMode(ModeManager.shared.setting(for: self.document.mode))
+        self.textView.applyMode(ModeManager.shared.setting(for: mode))
         
         // observe document setting changes
         self.documentObservers = [
@@ -219,7 +220,8 @@ final class EditorTextViewController: NSViewController, NSServicesMenuRequestor,
                 }
             },
             Task { [textView, document] in
-                for await modeName in Observations({ document.mode }) {
+                // skip the mode already applied above so as not to override the editor states set afterward
+                for await modeName in Observations({ document.mode }).drop(while: { $0 == mode }) {
                     textView.applyMode(ModeManager.shared.setting(for: modeName))
                 }
             },
