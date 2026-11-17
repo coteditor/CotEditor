@@ -131,9 +131,9 @@ struct PortableSettingsDocument: FileDocument, Identifiable, Sendable {
         
         self.menuKeyBindings = fileWrappers[WrapperKey.keyBindings]?.fileWrappers?[WrapperKey.shortcuts]?.regularFileContents
         self.textKeyBindings = fileWrappers[WrapperKey.keyBindings]?.fileWrappers?[WrapperKey.textKeyBindings]?.regularFileContents
-        self.replacements = fileWrappers[WrapperKey.replacements]?.fileWrappers?.compactMapValues(\.persistable) ?? [:]
-        self.syntaxes = fileWrappers[WrapperKey.syntaxes]?.fileWrappers?.compactMapValues(\.persistable) ?? [:]
-        self.themes = fileWrappers[WrapperKey.themes]?.fileWrappers?.compactMapValues(\.persistable) ?? [:]
+        self.replacements = fileWrappers[WrapperKey.replacements]?.persistableChildren ?? [:]
+        self.syntaxes = fileWrappers[WrapperKey.syntaxes]?.persistableChildren ?? [:]
+        self.themes = fileWrappers[WrapperKey.themes]?.persistableChildren ?? [:]
     }
     
     
@@ -347,6 +347,15 @@ extension PortableSettingsDocument.Info {
 
 
 private extension FileWrapper {
+    
+    /// The persisted representations of the child items except hidden files, keyed by filename.
+    var persistableChildren: [String: any Persistable] {
+        
+        (self.fileWrappers ?? [:])
+            .filter { !$0.key.hasPrefix(".") }
+            .compactMapValues(\.persistable)
+    }
+    
     
     /// The persisted representation of the receiver, if supported for settings archives.
     var persistable: any Persistable? {

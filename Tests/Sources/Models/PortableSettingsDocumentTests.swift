@@ -161,6 +161,19 @@ import SyntaxFormat
         #expect(syntax.kind == .code)
         #expect(syntax.fileMap.extensions == ["sample"])
     }
+    
+    
+    @Test func settingsArchiveIgnoresHiddenFiles() throws {
+        
+        let archiveURL = try self.createSettingsArchive()
+        defer { try? FileManager.default.removeItem(at: archiveURL.deletingLastPathComponent()) }
+        
+        try Data().write(to: archiveURL.appending(components: "Syntaxes", ".DS_Store"))
+        
+        let document = try PortableSettingsDocument(contentsOf: archiveURL)
+        
+        #expect(document.bundledSettings[.syntaxes] == ["Sample.cotsyntax"])
+    }
 
 
     @Test func defaultWindowSizeIsPortable() {
