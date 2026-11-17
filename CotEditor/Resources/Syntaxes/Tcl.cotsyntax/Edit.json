@@ -23,11 +23,6 @@
       "end" : "\"",
       "escapeCharacter" : "\\",
       "isMultiline" : true
-    },
-    {
-      "begin" : "'",
-      "end" : "'",
-      "escapeCharacter" : "\\"
     }
   ]
 }

@@ -21,12 +21,14 @@
     {
       "begin" : "\"",
       "end" : "\"",
-      "escapeCharacter" : "\\"
+      "escapeCharacter" : "\\",
+      "isMultiline" : true
     },
     {
       "begin" : "'",
       "end" : "'",
-      "escapeCharacter" : "\\"
+      "escapeCharacter" : "\\",
+      "isMultiline" : true
     }
   ]
 }

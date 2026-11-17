@@ -5,10 +5,12 @@
     ],
     "inlines" : [
       {
-        "begin" : "#"
+        "begin" : "#",
+        "leadingOnly" : true
       },
       {
-        "begin" : ";"
+        "begin" : ";",
+        "leadingOnly" : true
       }
     ]
   },

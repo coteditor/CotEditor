@@ -45,16 +45,9 @@
       "begin" : "&quot;"
     },
     {
-      "begin" : "\\\\"
-    },
-    {
-      "begin" : "\\n"
-    },
-    {
-      "begin" : "\\r"
-    },
-    {
-      "begin" : "\\t"
+      "begin" : "\\\\(?:[\\\\/\"bfnrt]|u[0-9A-Fa-f]{4})",
+      "description" : "escape sequence",
+      "regularExpression" : true
     }
   ],
   "commands" : [

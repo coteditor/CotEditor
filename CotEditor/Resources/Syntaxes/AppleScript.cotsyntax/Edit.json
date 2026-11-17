@@ -3,12 +3,16 @@
     "blocks" : [
       {
         "begin" : "(*",
-        "end" : "*)"
+        "end" : "*)",
+        "isNestable" : true
       }
     ],
     "inlines" : [
       {
         "begin" : "--"
+      },
+      {
+        "begin" : "#"
       }
     ]
   },

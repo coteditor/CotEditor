@@ -40,6 +40,11 @@
       "escapeCharacter" : "\\"
     },
     {
+      "begin" : "\"\"\"",
+      "end" : "\"\"\"",
+      "isMultiline" : true
+    },
+    {
       "begin" : "'",
       "end" : "'",
       "escapeCharacter" : "\\"

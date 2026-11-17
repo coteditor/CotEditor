@@ -4,6 +4,50 @@
       {
         "begin" : "=pod",
         "end" : "=cut"
+      },
+      {
+        "begin" : "=head1 ",
+        "end" : "=cut"
+      },
+      {
+        "begin" : "=head2 ",
+        "end" : "=cut"
+      },
+      {
+        "begin" : "=head3 ",
+        "end" : "=cut"
+      },
+      {
+        "begin" : "=head4 ",
+        "end" : "=cut"
+      },
+      {
+        "begin" : "=over ",
+        "end" : "=cut"
+      },
+      {
+        "begin" : "=item ",
+        "end" : "=cut"
+      },
+      {
+        "begin" : "=back",
+        "end" : "=cut"
+      },
+      {
+        "begin" : "=begin ",
+        "end" : "=cut"
+      },
+      {
+        "begin" : "=end ",
+        "end" : "=cut"
+      },
+      {
+        "begin" : "=for ",
+        "end" : "=cut"
+      },
+      {
+        "begin" : "=encoding ",
+        "end" : "=cut"
       }
     ],
     "inlines" : [
@@ -29,8 +73,7 @@
     {
       "begin" : "'",
       "end" : "'",
-      "escapeCharacter" : "\\",
-      "isMultiline" : true
+      "escapeCharacter" : "\\"
     },
     {
       "begin" : "qq/",

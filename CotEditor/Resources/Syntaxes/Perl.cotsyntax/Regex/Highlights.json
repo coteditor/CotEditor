@@ -1,7 +1,7 @@
 {
   "characters" : [
     {
-      "begin" : "(?s)<<\\s*'([0-9a-zA-Z_]+)'\\s*;.+?\\R\\1\\R",
+      "begin" : "(?s)(?<![<])(?<!\\b[A-Z])<<~?[ \\t]*'([A-Za-z_]\\w*+)'(?!>)[^\\r\\n]*\\R.*?^[ \\t]*\\1$",
       "regularExpression" : true
     },
     {
@@ -636,6 +636,13 @@
       "begin" : "write"
     }
   ],
+  "comments" : [
+    {
+      "begin" : "(?s)^__(?:END|DATA)__[ \\t]*\\R.*",
+      "description" : "after __END__",
+      "regularExpression" : true
+    }
+  ],
   "keywords" : [
     {
       "begin" : "__DATA__"
@@ -778,7 +785,7 @@
   ],
   "strings" : [
     {
-      "begin" : "(?s)<<[ \\t]*\"?([0-9a-zA-Z_]+)\"?[ \\t]*;.+?\\R\\1\\R",
+      "begin" : "(?s)(?<![<])(?<!\\b[A-Z])<<~?(?:[ \\t]*\")?([A-Za-z_]\\w*+)\"?+(?!>)[^\\r\\n]*\\R.*?^[ \\t]*\\1$",
       "description" : "here-doc",
       "regularExpression" : true
     },

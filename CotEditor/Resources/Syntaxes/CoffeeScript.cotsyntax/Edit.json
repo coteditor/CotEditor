@@ -33,12 +33,20 @@
     {
       "begin" : "\"",
       "end" : "\"",
-      "escapeCharacter" : "\\"
+      "escapeCharacter" : "\\",
+      "isMultiline" : true
+    },
+    {
+      "begin" : "\"\"\"",
+      "end" : "\"\"\"",
+      "escapeCharacter" : "\\",
+      "isMultiline" : true
     },
     {
       "begin" : "'",
       "end" : "'",
-      "escapeCharacter" : "\\"
+      "escapeCharacter" : "\\",
+      "isMultiline" : true
     },
     {
       "begin" : "'''",

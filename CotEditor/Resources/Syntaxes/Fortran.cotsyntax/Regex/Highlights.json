@@ -988,36 +988,10 @@
   ],
   "keywords" : [
     {
-      "begin" : ".AND.",
-      "ignoreCase" : true
-    },
-    {
-      "begin" : ".EQ.",
-      "ignoreCase" : true
-    },
-    {
-      "begin" : ".GE.",
-      "ignoreCase" : true
-    },
-    {
-      "begin" : ".GT.",
-      "ignoreCase" : true
-    },
-    {
-      "begin" : ".LE.",
-      "ignoreCase" : true
-    },
-    {
-      "begin" : ".LT.",
-      "ignoreCase" : true
-    },
-    {
-      "begin" : ".NE.",
-      "ignoreCase" : true
-    },
-    {
-      "begin" : ".OR.",
-      "ignoreCase" : true
+      "begin" : "\\.(?:AND|EQ|GE|GT|LE|LT|NE|OR)\\.",
+      "description" : "dot operators",
+      "ignoreCase" : true,
+      "regularExpression" : true
     },
     {
       "begin" : "\\bsync (all|images|memory)\\b",
