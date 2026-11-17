@@ -51,6 +51,7 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
     
     private var contextMenuSession = 0
     private var isContextMenuShown = false
+    private var needsFilterExpansion = false
     
     private var filterTask: Task<Void, any Error>?
     private var defaultObservers: Set<AnyCancellable> = []
@@ -253,7 +254,7 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
                     self.showsHiddenFiles = showsHiddenFiles
                     self.filterTask?.cancel()
                     if self.isFiltering {
-                        self.filterTask = Task { try await self.updateFilter(updatesExpansion: false) }
+                        self.filterTask = Task { try await self.updateFilter() }
                     } else {
                         self.outlineView.reloadData()
                     }
@@ -369,6 +370,15 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
         guard self.viewIfLoaded?.isHiddenOrHasHiddenAncestor == false else { return }
         
         self.outlineView.reloadItem(self.outlineParentItem(for: node), reloadChildren: true)
+        
+        // apply the filter also to the updated nodes
+        if self.isFiltering {
+            self.filterTask?.cancel()
+            self.filterTask = Task { [weak self] in
+                try await Task.sleep(for: .seconds(0.5))  // wait for successive changes
+                try await self?.updateFilter()
+            }
+        }
     }
     
     
@@ -647,6 +657,7 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
     
     @objc private func filterTextDidChange(_ sender: NSSearchField) {
         
+        self.needsFilterExpansion = true
         self.filterTask?.cancel()
         self.filterTask = Task { [weak self] in
             try await Task.sleep(for: .seconds(0.5))
@@ -689,10 +700,8 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
     
     /// Filters nodes in the outline view.
     ///
-    /// - Parameters:
-    ///   - updatesExpansion: Whether to expand matched parent nodes after filtering.
     /// - Throws: `CancellationError`.
-    private func updateFilter(updatesExpansion: Bool = true) async throws {
+    private func updateFilter() async throws(CancellationError) {
         
         assert(self.isFiltering)
         
@@ -716,15 +725,15 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
         
         // filter
         let matchedNodes: [FileNode]
-        do {
+        do throws(CancellationError) {
             matchedNodes = try await rootNode.filter(with: filterQuery, includesHiddenFiles: showsHiddenFiles)
                 .filter { $0 != rootNode }
-            try Task.checkCancellation()
-        } catch is CancellationError {
+            guard !Task.isCancelled else { throw CancellationError() }
+        } catch {
             if !self.isFiltering {
                 rootNode.removeFilterStates()
             }
-            throw CancellationError()
+            throw error
         }
         
         guard
@@ -742,7 +751,7 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
             self.outlineView.selectRowIndexes([row], byExtendingSelection: false)
         }
         
-        if updatesExpansion {
+        if self.needsFilterExpansion {
             var seenNodeKeys: Set<FileNode.IdentityKey> = []
             let nodesToExpand = matchedNodes.flatMap(\.parents)
                 .filter { seenNodeKeys.insert($0.identityKey).inserted }
@@ -751,6 +760,7 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
             for node in nodesToExpand {
                 self.outlineView.expandItem(node)
             }
+            self.needsFilterExpansion = false
         }
     }
     
@@ -759,6 +769,8 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
     private func endFilter() {
         
         assert(!self.isFiltering)
+        
+        self.needsFilterExpansion = false
         
         guard let rootNode = self.document.fileNode else { return assertionFailure() }
         
@@ -1282,7 +1294,7 @@ extension FileBrowserViewController: NSTextFieldDelegate {
         if self.isFiltering {
             node.updateFilter(with: self.filterQuery, hasMatchedDescendant: node.filterState?.hasMatchedDescendant ?? false)
             self.filterTask?.cancel()
-            self.filterTask = Task { try await self.updateFilter(updatesExpansion: false) }
+            self.filterTask = Task { try await self.updateFilter() }
             return true
         }
         

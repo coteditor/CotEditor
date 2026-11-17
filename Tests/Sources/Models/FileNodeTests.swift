@@ -160,7 +160,7 @@ struct FileNodeTests {
     }
     
     
-    @Test func invalidatingChildrenDropsParentCacheWhenFileBecomesFolder() throws {
+    @Test func invalidatingChildrenReplacesNodeWhenFileBecomesFolder() throws {
         
         let urls = try self.makeTypeChangeTree(itemIsDirectory: false)
         defer { try? FileManager.default.removeItem(at: urls.rootURL) }
@@ -180,7 +180,7 @@ struct FileNodeTests {
     }
     
     
-    @Test func invalidatingChildrenDropsParentCacheWhenFolderBecomesFile() throws {
+    @Test func invalidatingChildrenReplacesNodeWhenFolderBecomesFile() throws {
         
         let urls = try self.makeTypeChangeTree(itemIsDirectory: true)
         defer { try? FileManager.default.removeItem(at: urls.rootURL) }
@@ -199,6 +199,24 @@ struct FileNodeTests {
         #expect(reloadedNode !== originalNode)
         #expect(!reloadedNode.file.isDirectory)
         #expect(rootNode.node(at: originalLeafURL) == nil)
+    }
+    
+    
+    @Test func invalidatingChildrenKeepsSiblingNodesWhenItemKindChanges() throws {
+        
+        let urls = try self.makeDirectoryTree()
+        defer { try? FileManager.default.removeItem(at: urls.rootURL) }
+        
+        let itemURL = urls.rootURL.appending(path: "item", directoryHint: .notDirectory)
+        try Data().write(to: itemURL)
+        
+        let rootNode = FileNode(file: try File(at: urls.rootURL))
+        let folderNode = try #require(rootNode.node(at: urls.folderURL))
+        
+        try self.replaceItem(at: itemURL, withDirectory: true)
+        _ = rootNode.invalidateChildren(at: urls.rootURL.appending(path: "item", directoryHint: .isDirectory))
+        
+        #expect(rootNode.node(at: urls.folderURL) === folderNode)
     }
     
     

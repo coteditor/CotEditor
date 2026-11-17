@@ -277,7 +277,8 @@ extension FileNode {
                 }
                 
                 if child.file.isDirectory != file.isDirectory || child.file.isAlias != file.isAlias || child.file.kind != file.kind {
-                    self.cachedChildren = nil
+                    child.removeFromParent()
+                    self.addNode(FileNode(file: file, parent: self))
                     return self
                 }
                 

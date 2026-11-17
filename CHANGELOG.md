@@ -18,6 +18,7 @@
 - Fix an issue in the file browser where changes in subfolders were no longer reflected after renaming or moving their parent folder.
 - Fix an issue in the file browser where both a file and a folder with the same name appeared after one replaced the other.
 - Fix an issue in the file browser where filtering did not work when the folder contained a subfolder that could not be read.
+- Fix an issue in the file browser where the filter results were not updated correctly after files were changed outside the app.
 
 
 ### Known Issues
