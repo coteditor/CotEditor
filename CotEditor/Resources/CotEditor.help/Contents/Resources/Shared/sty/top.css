@@ -6,7 +6,7 @@
  CotEditor
  https://coteditor.com
  
- © 2014-2025 1024jp
+ © 2014-2026 1024jp
 */
 
 @import "common.css";
@@ -16,34 +16,35 @@ header {
 	position: relative;
 	block-size: 170px;
 	border-block-end: 1px solid -apple-system-separator;
-}
-header img {
-	position: absolute;
-	inset-block-start: 0;
-	inset-inline-end: 40px;
-	inline-size: 150px;
-}
-header h1 {
-	font-size: 40px;
-	font-weight: 500;
-	line-height: 1.4;
-	margin-block: 0;
-}
-header p {
-	font-size: 23px;
-	margin-block: 0;
-}
-header a.toc::before {
-	display: inline-block;
-	content: url(../gfx/toc.svg);
-	vertical-align: -0.1em;
-	padding-inline-end: 0.3rem;
-}
-header a.toc {
-	display: inline-block;
-	font-weight: 400;
-	text-decoration-line: none;
-	margin-block-start: 0.8rem;
+	
+	& img {
+		position: absolute;
+		inset-block-start: 0;
+		inset-inline-end: 40px;
+		inline-size: 150px;
+	}
+	& h1 {
+		font-size: 40px;
+		font-weight: 500;
+		line-height: 1.4;
+		margin-block: 0;
+	}
+	& p {
+		font-size: 23px;
+		margin-block: 0;
+	}
+	& a.toc::before {
+		display: inline-block;
+		content: url(../gfx/toc.svg);
+		vertical-align: -0.1em;
+		padding-inline-end: 0.3rem;
+	}
+	& a.toc {
+		display: inline-block;
+		font-weight: 400;
+		text-decoration-line: none;
+		margin-block-start: 0.8rem;
+	}
 }
 
 
@@ -52,41 +53,45 @@ header a.toc {
 main > section {
 	padding-block: 1.5rem;
 	border-block-end: solid 1px -apple-system-separator;
-}
-main > section:first-child {
-	text-align: center;
-}
-main > section:not(:first-child) {
-	display: flex;
-	flex-direction: row;
-	gap: 2rem;
-}
-main > section:nth-child(odd) {
-	flex-direction: row-reverse;
-}
-
-main > section h2 {
-	font-weight: 500;
-	font-size: 2rem;
-	line-height: 1.3;
-	margin-block: 0 1rem;
-}
-main > section:first-child h2 {
-	font-size: 2.2rem;
+	
+	&:first-child {
+		text-align: center;
+	}
+	&:not(:first-child) {
+		display: flex;
+		flex-direction: row;
+		gap: 2rem;
+	}
+	&:nth-child(odd) {
+		flex-direction: row-reverse;
+	}
+	
+	& h2 {
+		font-weight: 500;
+		font-size: 2rem;
+		line-height: 1.3;
+		margin-block: 0 1rem;
+	}
+	&:first-child h2 {
+		font-size: 2.2rem;
+	}
 }
 
 section figure {
 	margin: 0;
+	
+	& img {
+		border: 0.5px solid -apple-system-tertiary-label;
+		border-radius: 0.3rem;
+	}
 }
-section figure img {
-	border: 0.5px solid -apple-system-tertiary-label;
-	border-radius: 0.3rem;
-}
+
 
 section ul {
 	list-style-type: none;
 	padding-inline-start: 0;
-}
-section ul li a::after {
-	content: ' ›';
+	
+	& li a::after {
+		content: ' ›';
+	}
 }

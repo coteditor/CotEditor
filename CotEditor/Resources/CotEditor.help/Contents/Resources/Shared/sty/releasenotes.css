@@ -6,7 +6,7 @@
  CotEditor
  https://coteditor.com
  
- © 2014-2025 1024jp
+ © 2014-2026 1024jp
 */
 
 article ul li {
@@ -28,22 +28,22 @@ footer::before {
 
 article {
 	margin-block-end: 3rem;
-}
-
-article > header h1 {
-	font-size: 1.6rem;
-	font-weight: 500;
-	margin-block: 1rem 0;
-}
-article > header p {
-	color: -apple-system-secondary-label;
-	margin-block: 0;
-}
-article h2 {
-	margin-block: 1.5rem 0.5rem;
-}
-article h2 + * {
-	margin-block-start: 0.5rem;
+	
+	& > header h1 {
+		font-size: 1.6rem;
+		font-weight: 500;
+		margin-block: 1rem 0;
+	}
+	& > header p {
+		color: -apple-system-secondary-label;
+		margin-block: 0;
+	}
+	& h2 {
+		margin-block: 1.5rem 0.5rem;
+	}
+	& h2 + * {
+		margin-block-start: 0.5rem;
+	}
 }
 
 .trivial,

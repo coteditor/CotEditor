@@ -6,7 +6,7 @@
  CotEditor
  https://coteditor.com
  
- © 2014-2025 1024jp
+ © 2014-2026 1024jp
 */
 
 @import "common.css";
@@ -48,12 +48,11 @@ summary::before {
 	display: inline-block;
 	vertical-align: middle;
 	padding-inline-end: 0.4rem;
+	
+	@media (prefers-color-scheme: dark) {
+		content: url(../gfx/chevron-dark.svg);
+	}
 }
 details[open] > summary::before {
 	transform: translateY(1.5px) rotate(90deg);
-}
-@media (prefers-color-scheme: dark) {
-	summary::before {
-		content: url(../gfx/chevron-dark.svg);
-	}
 }

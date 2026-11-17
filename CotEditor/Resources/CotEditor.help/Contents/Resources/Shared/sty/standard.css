@@ -33,12 +33,13 @@ body > h1 {
 	display: flex;
 	align-items: flex-start;
 	gap: 15px;
-}
-body > h1::before {
-	content: image-set(url(../gfx/icon_32x32@2x.png) 2x);
-	display: inline-block;
-	position: relative;
-	inset-block-start: 4px;
+	
+	&::before {
+		content: image-set(url(../gfx/icon_32x32@2x.png) 2x);
+		display: inline-block;
+		position: relative;
+		inset-block-start: 4px;
+	}
 }
 
 body > section,
@@ -95,49 +96,50 @@ table {
 	border-collapse: collapse;
 	empty-cells: show;
 	margin-block: 1rem;
-}
-table tr {
-	border-block: 1px solid -apple-system-quaternary-label;
-}
-table thead tr:first-child {
-	border-block-start: 2.5px solid -apple-system-quaternary-label;
-}
-table tr > * {
-	padding-block: 0.5rem;
-	padding-inline: 0.6rem;
-	text-align: start;
-}
-table tr > :first-child {
-	padding-inline-start: 0;
-}
-table tr > :last-child {
-	padding-inline-end: 0;
-}
-table thead th {
-	padding-block: 0.4rem;
-	font-weight: bold;
-}
-table th {
-	font-weight: normal;
-	white-space: nowrap;
-}
-table tbody {
-	vertical-align: baseline;
-}
-table tbody td > * {
-	margin-block: 0.5rem;
-}
-table tbody td > :first-child {
-	margin-block-start: 0;
-}
-table tbody td > :last-child {
-	margin-block-end: 0;
-}
-table tbody ul li {
-	margin-block-start: 0.2em;
-}
-tbody td.center {
-	text-align: center;
+	
+	& tr {
+		border-block: 1px solid -apple-system-quaternary-label;
+	}
+	& thead tr:first-child {
+		border-block-start: 2.5px solid -apple-system-quaternary-label;
+	}
+	& tr > * {
+		padding-block: 0.5rem;
+		padding-inline: 0.6rem;
+		text-align: start;
+	}
+	& tr > :first-child {
+		padding-inline-start: 0;
+	}
+	& tr > :last-child {
+		padding-inline-end: 0;
+	}
+	& thead th {
+		padding-block: 0.4rem;
+		font-weight: bold;
+	}
+	& th {
+		font-weight: normal;
+		white-space: nowrap;
+	}
+	& tbody {
+		vertical-align: baseline;
+	}
+	& tbody td > * {
+		margin-block: 0.5rem;
+	}
+	& tbody td > :first-child {
+		margin-block-start: 0;
+	}
+	& tbody td > :last-child {
+		margin-block-end: 0;
+	}
+	& tbody ul li {
+		margin-block-start: 0.2em;
+	}
+	& tbody td.center {
+		text-align: center;
+	}
 }
 
 
@@ -168,36 +170,37 @@ p.addition {
 	padding-inline: 1.2rem;
 	border-radius: 0.8rem;
 	background: var(--accent-background);
-}
-p.addition::after {
-	content: '';
-	position: absolute;
-	inset-block-start: -1.8rem;
-	inset-inline-start: 4rem;
-	margin-inline-start: -1rem;
-	border: 1rem solid transparent;
-	border-block-end: 15px solid var(--accent-background);
-}
-p.addition > span:first-child {
-	color: -apple-system-secondary-label;
+	
+	&::after {
+		content: '';
+		position: absolute;
+		inset-block-start: -1.8rem;
+		inset-inline-start: 4rem;
+		margin-inline-start: -1rem;
+		border: 1rem solid transparent;
+		border-block-end: 15px solid var(--accent-background);
+	}
+	& > span:first-child {
+		color: -apple-system-secondary-label;
+	}
 }
 
-a.toc::before {
-	display: inline-block;
-	content: url(../gfx/toc_secondary.svg);
-	vertical-align: -1px;
-	padding-inline-end: 0.3rem;
-}
 a.toc {
 	font-size: 15px;
 	font-weight: 400;
 	position: absolute;
 	inset-block-start: 5px;
 	color: -apple-system-secondary-label;
-}
-@media (prefers-color-scheme: dark) {
-	a.toc::before {
-		content: url(../gfx/toc_secondary-dark.svg);
+	
+	&::before {
+		display: inline-block;
+		content: url(../gfx/toc_secondary.svg);
+		vertical-align: -1px;
+		padding-inline-end: 0.3rem;
+		
+		@media (prefers-color-scheme: dark) {
+			content: url(../gfx/toc_secondary-dark.svg);
+		}
 	}
 }
 
@@ -237,15 +240,18 @@ pre.source {
 code.AppleScript {
 	color: light-dark(hsl(213, 50%, 25%), hsl(213, 30%, 75%));
 }
-code span.keyword   { color: light-dark(#1b556b, #5199b3); font-weight: bold; }
-code span.tag       { color: light-dark(#1b556b, #5199b3) }
-code span.command   { color: light-dark(#947231, #d4a046) }
-code span.type      { color: light-dark(#ae3d16, #ed734c) }
-code span.attribute { color: light-dark(#862753, #c76090) }
-code span.variable  { color: light-dark(#348986, #75c9c6); font-style: italic; }
-code span.value     { color: light-dark(#b22729, #f26669) }
-code span.string    { color: light-dark(#526e2a, #90ad65) }
-code span.comment   { color: light-dark(#66747a, #808080) }
+
+code span {
+	&.keyword   { color: light-dark(#1b556b, #5199b3); font-weight: bold; }
+	&.tag       { color: light-dark(#1b556b, #5199b3) }
+	&.command   { color: light-dark(#947231, #d4a046) }
+	&.type      { color: light-dark(#ae3d16, #ed734c) }
+	&.attribute { color: light-dark(#862753, #c76090) }
+	&.variable  { color: light-dark(#348986, #75c9c6); font-style: italic; }
+	&.value     { color: light-dark(#b22729, #f26669) }
+	&.string    { color: light-dark(#526e2a, #90ad65) }
+	&.comment   { color: light-dark(#66747a, #808080) }
+}
 
 
 /* See also */
@@ -253,27 +259,30 @@ code span.comment   { color: light-dark(#66747a, #808080) }
 #cf {
 	border-block-start: none;
 	margin-block-start: 2.5rem;
-}
-#cf > * {
-	margin-block: 0;
-}
-#cf ul {
-	list-style-type: none;
-	padding-inline-start: 0;
-}
-#cf ul li {
-	margin-block: 0.4rem;
+	
+	& > * {
+		margin-block: 0;
+	}
+	& ul {
+		list-style-type: none;
+		padding-inline-start: 0;
+	}
+	& ul li {
+		margin-block: 0.4rem;
+	}
 }
 
 
 /* Settings */
 
-table.settings tbody th {
-	inline-size: 30%;
-	white-space: normal;
-}
-table.settings caption {
-	font-weight: 500;
-	text-align: start;
-	margin-block: 0.4rem;
+table.settings {
+	& tbody th {
+		inline-size: 30%;
+		white-space: normal;
+	}
+	& caption {
+		font-weight: 500;
+		text-align: start;
+		margin-block: 0.4rem;
+	}
 }

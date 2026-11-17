@@ -6,7 +6,7 @@
  CotEditor
  https://coteditor.com
  
- © 2016-2025 1024jp
+ © 2016-2026 1024jp
 */
 
 p.type {
@@ -29,23 +29,28 @@ h2 {
 	color: -apple-system-secondary-label;
 }
 
-dl dd {
-	margin-inline-start: 0;
-}
-dl ul li {
-	list-style-type: '– ';
-}
-dl ul li::marker {
-	color: -apple-system-secondary-label;
-	font-weight: 200;
-}
-dl ul li p {
-	margin-block: 0.2em;
-}
-dl ul li em {
-	font-weight: normal !important;
-	font-style: inherit;
-}
-dl ul li em code {
-	font-weight: bold;
+dl {
+	& dd {
+		margin-inline-start: 0;
+	}
+	
+	& ul li {
+		list-style-type: '– ';
+		
+		&::marker {
+			color: -apple-system-secondary-label;
+			font-weight: 200;
+		}
+		& p {
+			margin-block: 0.2em;
+		}
+		& em {
+			font-weight: normal !important;
+			font-style: inherit;
+			
+			& code {
+				font-weight: bold;
+			}
+		}
+	}
 }
