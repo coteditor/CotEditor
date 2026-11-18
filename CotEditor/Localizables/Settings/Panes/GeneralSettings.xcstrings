@@ -295,6 +295,12 @@
             "value" : "Wybierz archiwum ustawień…"
           }
         },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Escolher Arquivo de Ajustes…"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1212,6 +1218,12 @@
             "value" : "Pozostaw kopię w iCloud"
           }
         },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Manter uma Cópia no iCloud"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1432,6 +1444,12 @@
             "value" : "Wczytuję kopie ustawień z iCloud…"
           }
         },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Carregando Cópias de Ajustes do iCloud…"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1543,6 +1561,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Zarządzaj kopiami w iCloud…"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gerenciar Cópias no iCloud…"
           }
         },
         "ru" : {
@@ -2120,6 +2144,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Brak kopii ustawień w iCloud"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nenhuma Cópia dos Ajustes no iCloud"
           }
         },
         "ru" : {
@@ -3038,6 +3068,12 @@
             "value" : "Import i eksport ustawień:"
           }
         },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Importação e exportação de ajustes:"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3254,6 +3290,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Zachowaj kopię tych ustawień, aby inne urządzenia mogły je zaimportować."
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Armazena uma cópia destes ajustes para que outros dispositivos possam importá-la."
           }
         },
         "ru" : {

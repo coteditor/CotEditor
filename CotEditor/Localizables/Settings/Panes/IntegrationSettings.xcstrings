@@ -70,6 +70,12 @@
             "value" : "Akceptuj połączenia rmate"
           }
         },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aceitar conexões rmate"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -174,6 +180,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Zezwól na otwieranie plików zdalnych w CotEditorze z użyciem protokołu `rmate`."
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Permitir que arquivos remotos sejam abertos no CotEditor usando o protocolo `rmate`."
           }
         },
         "ru" : {
@@ -967,6 +979,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Edycja zdalna:"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Edição remota:"
           }
         },
         "ru" : {

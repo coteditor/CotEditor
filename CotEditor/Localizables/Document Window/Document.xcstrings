@@ -2703,6 +2703,12 @@
             "value" : "Rozłączony"
           }
         },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Desconectado"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5258,7 +5264,7 @@
         },
         "pt" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Limite de Busca Atingido"
           }
         },
@@ -14235,6 +14241,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Zdalny"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Remoto"
           }
         },
         "ru" : {
