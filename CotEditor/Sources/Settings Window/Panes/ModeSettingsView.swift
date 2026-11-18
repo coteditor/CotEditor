@@ -140,6 +140,7 @@ private struct ModeListView: View {
             self.syntaxModes = self.manager.syntaxModes
         }
         .alert(error: $error)
+        .accessibilityElement(children: .contain)
         .accessibilityLabel(.init("Mode", table: "ModeSettings"))
     }
     
