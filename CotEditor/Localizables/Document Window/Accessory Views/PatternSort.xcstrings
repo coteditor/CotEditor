@@ -40,6 +40,12 @@
             "value" : "हाल के साफ़ करें"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Legutóbbiak törlése"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -153,6 +159,12 @@
             "value" : "कॉलम"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Oszlop"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -263,6 +275,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "सीमांकक :"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Határoló:"
           }
         },
         "it" : {
@@ -378,6 +396,12 @@
             "value" : "खाली पैटर्न"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Üres minta"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -489,6 +513,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "संपूर्ण पंक्ति"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Teljes sor"
           }
         },
         "it" : {
@@ -604,6 +634,12 @@
             "value" : "केस अनदेखा करें"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A kis- és nagybetűk azonosak"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -715,6 +751,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "अवरोही क्रम में"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Csökkenő sorrendben"
           }
         },
         "it" : {
@@ -830,6 +872,12 @@
             "value" : "अमान्य पैटर्न"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Érvénytelen minta"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -941,6 +989,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "पहली पंक्ति को सबसे ऊपर रखें"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Első sor megtartása legfelül"
           }
         },
         "it" : {
@@ -1055,6 +1109,12 @@
             "value" : "पैटर्न :"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Minta:"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1165,6 +1225,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "स्थिति :"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pozíció:"
           }
         },
         "it" : {
@@ -1280,6 +1346,12 @@
             "value" : "हाल के"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Legutóbbiak"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1391,6 +1463,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "रेगुलर एक्सप्रेशन"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reguláris kifejezés"
           }
         },
         "it" : {
@@ -1506,6 +1584,12 @@
             "value" : "रेगुलर एक्सप्रेशन"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reguláris kifejezés"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1617,6 +1701,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "भाषा नियमों का पालन करें"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nyelvi szabályok követése"
           }
         },
         "it" : {
@@ -1732,6 +1822,12 @@
             "value" : "नमूना पंक्ति यह जाँचने के लिए कि पंक्ति का कौन-सा भाग क्रमबद्ध करने के लिए उपयोग होगा।"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Példasor, amelyen ellenőrizheti, hogy a rendezés a sor melyik részét veszi alapul."
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1842,6 +1938,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "नमूना :"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Példa:"
           }
         },
         "it" : {
@@ -1957,6 +2059,12 @@
             "value" : "सॉर्ट करें"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rendezés"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2069,6 +2177,12 @@
             "value" : "क्रम कुंजी :"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rendezési kulcs:"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2179,6 +2293,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "क्रम विकल्प :"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Beállítások:"
           }
         },
         "it" : {
@@ -2294,6 +2414,12 @@
             "value" : "संख्याओं को संख्यात्मक मानों के रूप में मानें"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Számok kezelése számértékként"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2404,6 +2530,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "कैप्चर किया समूह उपयोग करें :"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zárójeles csoport használata:"
           }
         },
         "it" : {

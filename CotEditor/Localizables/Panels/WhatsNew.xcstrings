@@ -40,6 +40,12 @@
             "value" : "जारी रखें"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Folytatás"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -159,6 +165,12 @@
             "value" : "अपनी सेटिंग की ताज़ा कॉपी iCloud में रखें, ताकि जब चाहें अपने दूसरे Mac पर इंपोर्ट कर सकें।"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tartson naprakész másolatot a beállításokról az iCloudban, és bármikor importálja őket a többi Macen."
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -270,6 +282,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "आपकी सेटिंग, बस एक इंपोर्ट दूर"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A beállítások egyetlen importálásnyira"
           }
         },
         "it" : {
@@ -385,6 +403,12 @@
             "value" : "SSH के ज़रिए `rmate` से किसी रिमोट कंप्यूटर की फ़ाइलें खोलें, और बदलाव सीधे वहीं सहेजें।"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Távoli számítógépen lévő fájlokat nyithat meg SSH-n keresztül az `rmate` programmal, és a módosításokat egyenesen oda mentheti vissza."
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -496,6 +520,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "अपने Mac पर ही रिमोट फ़ाइलें संपादित करें"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Távoli fájlok szerkesztése közvetlenül a Macen"
           }
         },
         "it" : {
@@ -611,6 +641,12 @@
             "value" : "सम्मिलन बिंदु हिलाने, टेक्स्ट चुनने और डिलीट करने के शॉर्टकट अपनी पसंद से बदलें, ताकि आपकी उँगलियाँ सहज रहें।"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Testre szabhatja a kurzor mozgatásának, a szöveg kijelölésének és törlésének billentyűparancsait, hogy minden a megszokott helyén legyen."
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -724,6 +760,12 @@
             "value" : "आपकी कीज़, आपके नियम"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Saját billentyűk, saját szabályok"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -834,6 +876,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "रिलीज़ नोट्स"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kiadási megjegyzések"
           }
         },
         "it" : {
@@ -955,6 +1003,12 @@
             "value" : "अल्फ़ा"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Alfa"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1072,6 +1126,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "बीटा"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Béta"
           }
         },
         "it" : {
@@ -1193,6 +1253,12 @@
             "value" : "RC"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "RC"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1304,6 +1370,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "CotEditor %@ में नया क्या है"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A CotEditor %@ újdonságai"
           }
         },
         "it" : {

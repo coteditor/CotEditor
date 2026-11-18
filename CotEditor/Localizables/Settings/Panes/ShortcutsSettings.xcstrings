@@ -40,6 +40,12 @@
             "value" : "शॉर्टकट जोड़ें"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Billentyűparancs hozzáadása"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -157,6 +163,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "मेन्यू"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Menü"
           }
         },
         "it" : {
@@ -278,6 +290,12 @@
             "value" : "टेक्स्ट संपादन"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Szövegszerkesztés"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -389,6 +407,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "कमांड"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Parancs"
           }
         },
         "it" : {
@@ -504,6 +528,12 @@
             "value" : "कुंजी"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Billentyű"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -614,6 +644,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "शॉर्टकट बदलने के लिए, कुंजी कॉलम पर क्लिक करें, फिर नई कुंजियाँ टाइप करें।"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bármelyik billentyűparancsot módosíthatja, ha a billentyűk oszlopába kattint, majd lenyomja az új billentyűket."
           }
         },
         "it" : {

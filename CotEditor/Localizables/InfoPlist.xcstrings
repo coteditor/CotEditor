@@ -39,6 +39,12 @@
             "value" : "AWK स्क्रिप्ट"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "AWK-szkript"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -149,6 +155,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "BibTeX ग्रंथसूची"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "BibTeX-irodalomjegyzék"
           }
         },
         "it" : {
@@ -263,6 +275,12 @@
             "value" : "C हेडर"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "C-fejléc"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -373,6 +391,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "C सोर्स"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "C-forráskód"
           }
         },
         "it" : {
@@ -487,6 +511,12 @@
             "value" : "C# सोर्स"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "C#-forráskód"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -597,6 +627,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "C++ हेडर"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "C++-fejléc"
           }
         },
         "it" : {
@@ -711,6 +747,12 @@
             "value" : "C++ सोर्स"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "C++-forráskód"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -821,6 +863,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "कैस्केडिंग स्टाइल शीट"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CSS-stíluslap"
           }
         },
         "it" : {
@@ -1040,6 +1088,12 @@
             "value" : "कॉट एडिटर"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cot editor"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1150,6 +1204,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "कॉन्फ़िगरेशन"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Konfigurációs fájl"
           }
         },
         "it" : {
@@ -1264,6 +1324,12 @@
             "value" : "CotEditor रिप्लेस परिभाषा"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CotEditor-cseredefiníció"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1374,6 +1440,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "CotEditor सेटिंग आर्काइव"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CotEditor-beállításarchívum"
           }
         },
         "it" : {
@@ -1488,6 +1560,12 @@
             "value" : "CotEditor सिंटैक्स"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CotEditor-szintaxis"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1598,6 +1676,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "CotEditor थीम"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CotEditor-téma"
           }
         },
         "it" : {
@@ -1712,6 +1796,12 @@
             "value" : "D सोर्स"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "D-forráskód"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1824,6 +1914,12 @@
             "value" : "Dart स्क्रिप्ट"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dart-szkript"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1931,6 +2027,12 @@
           }
         },
         "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Diff"
+          }
+        },
+        "hu" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Diff"
@@ -2048,6 +2150,12 @@
             "value" : "Fortran सोर्स"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fortran-forráskód"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2158,6 +2266,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Go स्क्रिप्ट"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Go-szkript"
           }
         },
         "it" : {
@@ -2272,6 +2386,12 @@
             "value" : "Haskell स्क्रिप्ट"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Haskell-szkript"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2384,6 +2504,12 @@
             "value" : "HTML दस्तावेज़"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "HTML-dokumentum"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2491,6 +2617,12 @@
           }
         },
         "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "INI"
+          }
+        },
+        "hu" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "INI"
@@ -2608,6 +2740,12 @@
             "value" : "Java सोर्स"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Java-forráskód"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2715,6 +2853,12 @@
           }
         },
         "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "JavaScript"
+          }
+        },
+        "hu" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "JavaScript"
@@ -2832,6 +2976,12 @@
             "value" : "JSON दस्तावेज़"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "JSON-dokumentum"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2942,6 +3092,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Julia स्क्रिप्ट"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Julia-szkript"
           }
         },
         "it" : {
@@ -3056,6 +3212,12 @@
             "value" : "Kotlin स्क्रिप्ट"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kotlin-szkript"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3166,6 +3328,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Lisp स्क्रिप्ट"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lisp-szkript"
           }
         },
         "it" : {
@@ -3280,6 +3448,12 @@
             "value" : "Lua स्क्रिप्ट"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lua-szkript"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3392,6 +3566,12 @@
             "value" : "Markdown दस्तावेज़"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Markdown-dokumentum"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3502,6 +3682,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Mojo स्क्रिप्ट"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mojo-szkript"
           }
         },
         "it" : {
@@ -3622,6 +3808,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "अन्य एप्लिकेशन को AppleScript से नियंत्रित करने के लिए CotEditor को आपकी स्वीकृति चाहिए।"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A CotEditornak engedélyre van szüksége ahhoz, hogy AppleScripttel más alkalmazásokat vezéreljen."
           }
         },
         "it" : {
@@ -3749,6 +3941,12 @@
             "value" : "Perl स्क्रिप्ट"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Perl-szkript"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3859,6 +4057,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "PHP स्क्रिप्ट"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "PHP-szkript"
           }
         },
         "it" : {
@@ -3973,6 +4177,12 @@
             "value" : "प्लेन टेक्स्ट दस्तावेज़"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Egyszerű szöveges dokumentum"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4083,6 +4293,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Python स्क्रिप्ट"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Python-szkript"
           }
         },
         "it" : {
@@ -4197,6 +4413,12 @@
             "value" : "reStructured Text दस्तावेज़"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "reStructuredText-dokumentum"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4307,6 +4529,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ruby स्क्रिप्ट"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ruby-szkript"
           }
         },
         "it" : {
@@ -4421,6 +4649,12 @@
             "value" : "Rust स्क्रिप्ट"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rust-szkript"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4531,6 +4765,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Scala सोर्स"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Scala-forráskód"
           }
         },
         "it" : {
@@ -4645,6 +4885,12 @@
             "value" : "स्केलेबल वेक्टर ग्राफ़िक्स"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "SVG-kép"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4755,6 +5001,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Scheme स्क्रिप्ट"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Scheme-szkript"
           }
         },
         "it" : {
@@ -4869,6 +5121,12 @@
             "value" : "शेल स्क्रिप्ट"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Héjszkript"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4979,6 +5237,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "SQL सोर्स"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "SQL-forráskód"
           }
         },
         "it" : {
@@ -5093,6 +5357,12 @@
             "value" : "Swift सोर्स"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Swift-forráskód"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5203,6 +5473,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "TeX दस्तावेज़"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "TeX-dokumentum"
           }
         },
         "it" : {
@@ -5317,6 +5593,12 @@
             "value" : "Textile दस्तावेज़"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Textile-dokumentum"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5429,6 +5711,12 @@
             "value" : "TOML दस्तावेज़"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "TOML-dokumentum"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5536,6 +5824,12 @@
           }
         },
         "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "UUID"
+          }
+        },
+        "hu" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "UUID"
@@ -5653,6 +5947,12 @@
             "value" : "Verilog सोर्स"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Verilog-forráskód"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5763,6 +6063,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "VHDL सोर्स"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "VHDL-forráskód"
           }
         },
         "it" : {
@@ -5877,6 +6183,12 @@
             "value" : "XML दस्तावेज़"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "XML-dokumentum"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5987,6 +6299,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "YAML दस्तावेज़"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "YAML-dokumentum"
           }
         },
         "it" : {

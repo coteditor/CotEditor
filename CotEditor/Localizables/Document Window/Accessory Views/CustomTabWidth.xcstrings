@@ -40,6 +40,12 @@
             "value" : "टैब चौड़ाई :"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tabulátorszélesség:"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",

@@ -40,6 +40,12 @@
             "value" : "कलर कोड"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Színkód"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -154,6 +160,12 @@
           }
         },
         "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CSS HSL"
+          }
+        },
+        "hu" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "CSS HSL"
@@ -278,6 +290,12 @@
             "value" : "CSS HSLa"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CSS HSLa"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -392,6 +410,12 @@
           }
         },
         "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CSS HWB"
+          }
+        },
+        "hu" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "CSS HWB"
@@ -516,6 +540,12 @@
             "value" : "अल्फ़ा के साथ CSS HWB"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CSS HWB alfával"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -635,6 +665,12 @@
             "value" : "CSS कीवर्ड"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CSS-kulcsszó"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -749,6 +785,12 @@
           }
         },
         "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CSS RGB"
+          }
+        },
+        "hu" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "CSS RGB"
@@ -873,6 +915,12 @@
             "value" : "CSS RGBa"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CSS RGBa"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -990,6 +1038,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "हेक्साडेसिमल"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hexadecimális"
           }
         },
         "it" : {
@@ -1111,6 +1165,12 @@
             "value" : "अल्फ़ा के साथ हेक्साडेसिमल"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hexadecimális alfával"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1228,6 +1288,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "हेक्साडेसिमल (लघु)"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hexadecimális (rövid)"
           }
         },
         "it" : {
@@ -1349,6 +1415,12 @@
             "value" : "अल्फ़ा के साथ हेक्साडेसिमल (लघु)"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hexadecimális alfával (rövid)"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1460,6 +1532,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "स्टाइलशीट कीवर्ड"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CSS-kulcsszavak"
           }
         },
         "it" : {

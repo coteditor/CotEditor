@@ -40,6 +40,12 @@
             "value" : "स्पेस"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Szóköz"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",

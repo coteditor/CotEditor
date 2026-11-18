@@ -39,6 +39,12 @@
             "value" : "सभी"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Összes"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -150,6 +156,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "कमांड"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Parancs"
           }
         },
         "it" : {
@@ -265,6 +277,12 @@
             "value" : "विवरण"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Leírás"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -376,6 +394,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "एक्सटेंशन"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kiterjesztések"
           }
         },
         "it" : {
@@ -491,6 +515,12 @@
             "value" : "फ़ाइल ड्रॉप"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fájl behúzása"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -602,6 +632,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ड्रॉप की गई फ़ाइल के एक्सटेंशन (अल्पविराम से अलग)।"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A behúzott fájlok kiterjesztései (vesszővel elválasztva)."
           }
         },
         "it" : {
@@ -717,6 +753,12 @@
             "value" : "इमेज फ़ाइल"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Képfájl"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -830,6 +872,12 @@
             "value" : "वेरिएबल सम्मिलित करें"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Változó beszúrása"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -940,6 +988,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "सम्मिलन फ़ॉर्मैट :"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Beszúrási formátum:"
           }
         },
         "it" : {
@@ -1061,6 +1115,12 @@
             "value" : "कुंजी"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Billentyű"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1180,6 +1240,12 @@
             "value" : "नाम"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Név"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1291,6 +1357,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "सिंटैक्स"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Szintaxis"
           }
         },
         "it" : {
@@ -1406,6 +1478,12 @@
             "value" : "वह सिंटैक्स जिसमें यह फ़ाइल ड्रॉप सेटिंग उपयोग होती है।"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Az a szintaxis, amelyben ez a beállítás érvényes."
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1517,6 +1595,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "टेक्स्ट फ़ाइल"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Szövegfájl"
           }
         },
         "it" : {
@@ -1631,6 +1715,12 @@
             "value" : "मेन्यू में किसी कमांड या कीबोर्ड शॉर्टकट द्वारा डाला जाने वाला टेक्स्ट :"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Menüparanccsal vagy billentyűparanccsal beszúrható szöveg:"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1741,6 +1831,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "एडिटर में फ़ाइलें ड्रॉप करके डाला जाने वाला टेक्स्ट :"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fájlok szerkesztőbe húzásával beszúrható szöveg:"
           }
         },
         "it" : {

@@ -40,6 +40,12 @@
             "value" : "डुप्लिकेट सिंटैक्स"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ütköző szintaxisok"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -151,6 +157,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "एक्सटेंशन"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kiterjesztés"
           }
         },
         "it" : {
@@ -266,6 +278,12 @@
             "value" : "फ़ाइल नाम"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fájlnév"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -377,6 +395,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "इंटरप्रेटर"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Értelmező"
           }
         },
         "it" : {
@@ -492,6 +516,12 @@
             "value" : "सिंटैक्स मैपिंग विरोध"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fájltársítási ütközések"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -602,6 +632,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "निम्नलिखित फ़ाइल मैपिंग नियम कई सिंटैक्स में पंजीकृत हैं। CotEditor स्वचालित रूप से पहले सिंटैक्स का उपयोग करता है। विरोध हल करने के लिए, प्रत्येक सिंटैक्स परिभाषा संपादित करें।"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Az alábbi fájltársítási szabályok több szintaxisban is szerepelnek. A CotEditor automatikusan az elsőt használja. Az ütközések feloldásához szerkessze egyenként a szintaxisdefiníciókat."
           }
         },
         "it" : {
@@ -715,6 +751,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "उपयोग किया सिंटैक्स"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Használt szintaxis"
           }
         },
         "it" : {

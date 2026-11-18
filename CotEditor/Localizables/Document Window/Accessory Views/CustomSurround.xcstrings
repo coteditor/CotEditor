@@ -39,6 +39,12 @@
             "value" : "आरंभ :"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kezdet:"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -151,6 +157,12 @@
             "value" : "अंत :"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vég:"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -261,6 +273,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "इससे घेरें :"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kijelölés körülvétele:"
           }
         },
         "it" : {

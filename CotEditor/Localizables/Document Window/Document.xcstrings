@@ -40,6 +40,12 @@
             "value" : " (डिफ़ॉल्ट)"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : " (alapértelmezett)"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -150,6 +156,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "%@ पिक्सेल/इंच"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ pixel/hüvelyk"
           }
         },
         "it" : {
@@ -265,6 +277,12 @@
             "value" : "एलियस"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Alias"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -376,6 +394,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ब्लॉक"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Blokk"
           }
         },
         "it" : {
@@ -491,6 +515,12 @@
             "value" : "श्रेणी"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kategória"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -602,6 +632,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "वर्ण"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Karakter"
           }
         },
         "it" : {
@@ -717,6 +753,12 @@
             "value" : "फ़ाइल स्कोप साफ़ करें"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hatókör törlése"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -828,6 +870,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "विभाजित एडिटर बंद करें"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Osztott szerkesztő bezárása"
           }
         },
         "it" : {
@@ -943,6 +991,12 @@
             "value" : "विभाजित एडिटर बंद करें"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Osztott szerkesztő bezárása"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1054,6 +1108,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "कोड पॉइंट"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kódpont"
           }
         },
         "it" : {
@@ -1169,6 +1229,12 @@
             "value" : "कोड पॉइंट्स"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kódpontok"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1280,6 +1346,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "रंग प्रोफ़ाइल"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Színprofil"
           }
         },
         "it" : {
@@ -1395,6 +1467,12 @@
             "value" : "कलर स्पेस"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Színtér"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1508,6 +1586,12 @@
             "value" : "परिवर्तित"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Átalakított"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1619,6 +1703,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "गणना"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Számlálás"
           }
         },
         "it" : {
@@ -1740,6 +1830,12 @@
             "value" : "वर्ण"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Karakterek"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1857,6 +1953,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "कॉलम"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Oszlop"
           }
         },
         "it" : {
@@ -1978,6 +2080,12 @@
             "value" : "पंक्ति"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sor"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2095,6 +2203,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "पंक्तियाँ"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sorok"
           }
         },
         "it" : {
@@ -2216,6 +2330,12 @@
             "value" : "स्थान"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pozíció"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2335,6 +2455,12 @@
             "value" : "शब्द"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Szavak"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2448,6 +2574,12 @@
             "value" : "बनाया गया"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Létrehozva"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2558,6 +2690,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "आयाम"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Méretek"
           }
         },
         "it" : {
@@ -2673,6 +2811,12 @@
             "value" : "डिस्कनेक्ट किया गया"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nincs kapcsolat"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2778,6 +2922,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "दस्तावेज़ में सहेजे न गए बदलाव हैं"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A dokumentumban nem mentett módosítások vannak"
           }
         },
         "it" : {
@@ -2893,6 +3043,12 @@
             "value" : "नक़ल बनाएँ"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Megkettőzés"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3003,6 +3159,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "अवधि"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Időtartam"
           }
         },
         "it" : {
@@ -3118,6 +3280,12 @@
             "value" : "फ़ाइल स्कोप संपादित करें…"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hatókör szerkesztése…"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3229,6 +3397,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "एडिटर"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Szerkesztő"
           }
         },
         "it" : {
@@ -3344,6 +3518,12 @@
             "value" : "एनकोडिंग"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kódolás"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3454,6 +3634,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "आउटलाइन निकाली जा रही है…"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vázlat kinyerése…"
           }
         },
         "it" : {
@@ -3569,6 +3755,12 @@
             "value" : "फ़ाइल"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fájl"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3682,6 +3874,12 @@
             "value" : "फ़ाइल ब्राउज़र फ़िल्टर"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fájlböngésző szűrője"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3793,6 +3991,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "फ़ाइल आकार"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fájlméret"
           }
         },
         "it" : {
@@ -3914,6 +4118,12 @@
             "value" : "आर्काइव"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Archívum"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4031,6 +4241,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ऑडियो"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hang"
           }
         },
         "it" : {
@@ -4152,6 +4368,12 @@
             "value" : "Unix निष्पादन फ़ाइल"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unix végrehajtható fájl"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4269,6 +4491,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "फ़ोल्डर"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mappa"
           }
         },
         "it" : {
@@ -4390,6 +4618,12 @@
             "value" : "दस्तावेज़"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dokumentum"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4507,6 +4741,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "इमेज"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kép"
           }
         },
         "it" : {
@@ -4628,6 +4868,12 @@
             "value" : "मूवी"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Film"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4739,6 +4985,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "फ़ाइलें"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fájlok"
           }
         },
         "it" : {
@@ -4951,6 +5203,24 @@
                 "stringUnit" : {
                   "state" : "translated",
                   "value" : "केवल पहले %lld मिलान मिले।"
+                }
+              }
+            }
+          }
+        },
+        "hu" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Csak az első találat látható."
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Csak az első %lld találat látható."
                 }
               }
             }
@@ -5224,6 +5494,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "खोज सीमा तक पहुँच गई"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Keresési korlát elérve"
           }
         },
         "it" : {
@@ -5656,6 +5932,54 @@
                     "stringUnit" : {
                       "state" : "translated",
                       "value" : "%arg मिलान"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%#@matches@ %#@files@"
+          },
+          "substitutions" : {
+            "files" : {
+              "argNum" : 2,
+              "formatSpecifier" : "lld",
+              "variations" : {
+                "plural" : {
+                  "one" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg fájlban"
+                    }
+                  },
+                  "other" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg fájlban"
+                    }
+                  }
+                }
+              }
+            },
+            "matches" : {
+              "argNum" : 1,
+              "formatSpecifier" : "lld",
+              "variations" : {
+                "plural" : {
+                  "one" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg találat"
+                    }
+                  },
+                  "other" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg találat"
                     }
                   }
                 }
@@ -6616,6 +6940,54 @@
             }
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%#@maches@ %#@files@"
+          },
+          "substitutions" : {
+            "files" : {
+              "argNum" : 2,
+              "formatSpecifier" : "lld",
+              "variations" : {
+                "plural" : {
+                  "one" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg fájlban"
+                    }
+                  },
+                  "other" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg fájlban"
+                    }
+                  }
+                }
+              }
+            },
+            "maches" : {
+              "argNum" : 1,
+              "formatSpecifier" : "lld",
+              "variations" : {
+                "plural" : {
+                  "one" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg+ találat"
+                    }
+                  },
+                  "other" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg+ találat"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7251,6 +7623,12 @@
             "value" : "खोज नहीं हो सकी"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sikertelen keresés"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7368,6 +7746,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "“%@” से मेल खाने वाला कुछ नहीं है।"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nincs találat erre: „%@”."
           }
         },
         "it" : {
@@ -7489,6 +7873,12 @@
             "value" : "कोई परिणाम नहीं"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nincs találat"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7608,6 +7998,12 @@
             "value" : "फ़ोल्डर में खोजा जा रहा है…"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Keresés a mappában…"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7725,6 +8121,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "फ़ोल्डर नहीं मिला।"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A mappa nem található."
           }
         },
         "it" : {
@@ -7937,6 +8339,24 @@
                 "stringUnit" : {
                   "state" : "translated",
                   "value" : "%lld असंगत वर्ण मिले।"
+                }
+              }
+            }
+          }
+        },
+        "hu" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Egy nem kompatibilis karakter található."
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld nem kompatibilis karakter található."
                 }
               }
             }
@@ -8307,6 +8727,24 @@
             }
           }
         },
+        "hu" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Egy sorvég eltér ettől: %2$@."
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%1$lld sorvég eltér ettől: %2$@."
+                }
+              }
+            }
+          }
+        },
         "it" : {
           "variations" : {
             "plural" : {
@@ -8570,6 +9008,12 @@
             "value" : "पूरा पथ"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Teljes útvonal"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8681,6 +9125,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "इमेज DPI"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kép DPI"
           }
         },
         "it" : {
@@ -8796,6 +9246,12 @@
             "value" : "छिपी हुई फ़ाइलें शामिल करें"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rejtett fájlok bevonása"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8907,6 +9363,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "अन्य फ़ाइल प्रकार शामिल करें"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Egyéb fájltípusok bevonása"
           }
         },
         "it" : {
@@ -9022,6 +9484,12 @@
             "value" : "असंगत वर्ण"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nem kompatibilis karakterek"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9133,6 +9601,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "असंगत लाइन एंडिंग"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nem egységes sorvégek"
           }
         },
         "it" : {
@@ -9248,6 +9722,12 @@
             "value" : "जानकारी"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Információk"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9359,6 +9839,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "इंस्पेक्टर"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vizsgáló"
           }
         },
         "it" : {
@@ -9481,6 +9967,12 @@
             "value" : "दस्तावेज़ इंस्पेक्टर"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dokumentumvizsgáló"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9599,6 +10091,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "आउटलाइन"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vázlat"
           }
         },
         "it" : {
@@ -9721,6 +10219,12 @@
             "value" : "चेतावनियाँ"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Figyelmeztetések"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9832,6 +10336,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "अगले आइटम पर जाएँ"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ugrás a következő vázlatelemre"
           }
         },
         "it" : {
@@ -9947,6 +10457,12 @@
             "value" : "पिछले आइटम पर जाएँ"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ugrás az előző vázlatelemre"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10057,6 +10573,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "प्रकार"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fajta"
           }
         },
         "it" : {
@@ -10172,6 +10694,12 @@
             "value" : "पंक्ति"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sor"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10283,6 +10811,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "लाइन एंडिंग"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sorvég"
           }
         },
         "it" : {
@@ -10398,6 +10932,12 @@
             "value" : "लाइन एंडिंग"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sorvégek"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10509,6 +11049,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "पंक्ति संख्याएँ"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sorszámok"
           }
         },
         "it" : {
@@ -10624,6 +11170,12 @@
             "value" : "सहेजे गए स्कोप प्रबंधित करें…"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mentett hatókörök kezelése…"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10735,6 +11287,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "मोड"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mód"
           }
         },
         "it" : {
@@ -10850,6 +11408,12 @@
             "value" : "संशोधित"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Módosítva"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10961,6 +11525,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "रद्दी में मूव करें"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Áthelyezés a kukába"
           }
         },
         "it" : {
@@ -11083,6 +11653,12 @@
             "value" : "यह ऑपरेशन पहले जैसा नहीं हो सकेगा।"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ez a művelet nem vonható vissza."
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11200,6 +11776,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "क्या “%@” को रद्दी में ले जाएँ?"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Áthelyezi a kukába a következőt: „%@”?"
           }
         },
         "it" : {
@@ -11375,6 +11957,18 @@
                 "stringUnit" : {
                   "state" : "translated",
                   "value" : "क्या चयनित %lld आइटम रद्दी में ले जाएँ?"
+                }
+              }
+            }
+          }
+        },
+        "hu" : {
+          "variations" : {
+            "plural" : {
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Áthelyezi a kukába a kijelölt %lld elemet?"
                 }
               }
             }
@@ -11613,6 +12207,12 @@
             "value" : "नाम"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Név"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11724,6 +12324,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "नेविगेशन बार"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Navigációs sáv"
           }
         },
         "it" : {
@@ -11839,6 +12445,12 @@
             "value" : "नई फ़ाइल"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Új fájl"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11950,6 +12562,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "नया फ़ोल्डर"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Új mappa"
           }
         },
         "it" : {
@@ -12065,6 +12683,12 @@
             "value" : "अगला आउटलाइन आइटम"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Következő vázlatelem"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12175,6 +12799,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "कोई दस्तावेज़ चयनित नहीं"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nincs kijelölt dokumentum"
           }
         },
         "it" : {
@@ -12290,6 +12920,12 @@
             "value" : "कोई फ़िल्टर परिणाम नहीं"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nincs szűrési találat"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12400,6 +13036,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "कोई समस्या नहीं मिली।"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nem található probléma."
           }
         },
         "it" : {
@@ -12515,6 +13157,12 @@
             "value" : "कोई चयन नहीं"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nincs kijelölés"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12625,6 +13273,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "संपादन योग्य नहीं"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nem szerkeszthető"
           }
         },
         "it" : {
@@ -12740,6 +13394,12 @@
             "value" : "चयनित नहीं"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nincs kijelölve"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12851,6 +13511,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "प्लेन टेक्स्ट के रूप में खोलें"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Megnyitás egyszerű szövegként"
           }
         },
         "it" : {
@@ -12966,6 +13632,12 @@
             "value" : "नई विंडो में खोलें"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Megnyitás új ablakban"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13077,6 +13749,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "मूल खोलें"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Eredeti megnyitása"
           }
         },
         "it" : {
@@ -13192,6 +13870,12 @@
             "value" : "बाहरी एडिटर से खोलें"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Megnyitás külső szerkesztőben"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13302,6 +13986,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "विकल्प"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Beállítások"
           }
         },
         "it" : {
@@ -13417,6 +14107,12 @@
             "value" : "मूल"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Eredeti"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13527,6 +14223,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "अन्य…"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Egyéb…"
           }
         },
         "it" : {
@@ -13642,6 +14344,12 @@
             "value" : "आउटलाइन"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vázlat"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13753,6 +14461,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "आउटलाइन मेन्यू"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vázlatmenü"
           }
         },
         "it" : {
@@ -13868,6 +14582,12 @@
             "value" : "स्वामी"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tulajdonos"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13979,6 +14699,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "अनुमतियाँ"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Engedélyek"
           }
         },
         "it" : {
@@ -14094,6 +14820,12 @@
             "value" : "पिछला आउटलाइन आइटम"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Előző vázlatelem"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14207,6 +14939,12 @@
             "value" : "रिमोट"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Távoli"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14312,6 +15050,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "फ़ाइल ब्राउज़र में दिखाएँ"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Megjelenítés a fájlböngészőben"
           }
         },
         "it" : {
@@ -14427,6 +15171,12 @@
             "value" : "सहेजे गए स्कोप"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mentett hatókörök"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14539,6 +15289,12 @@
             "value" : "सहेजे गए स्कोप :"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mentett hatókörök:"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14649,6 +15405,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "असंगत वर्ण स्कैन किए जा रहे हैं…"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nem kompatibilis karakterek keresése…"
           }
         },
         "it" : {
@@ -14764,6 +15526,12 @@
             "value" : "स्कोप"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hatókör"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14875,6 +15643,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "फ़ोल्डर में खोजें"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Keresés a mappában"
           }
         },
         "it" : {
@@ -14990,6 +15764,12 @@
             "value" : "खोज विधि"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Keresési mód"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15100,6 +15880,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "फ़ोल्डर में खोजा जा रहा है…"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Keresés a mappában…"
           }
         },
         "it" : {
@@ -15215,6 +16001,12 @@
             "value" : "यूनिकोड जानकारी दिखाने के लिए केवल एक वर्ण चुनें।"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A Unicode-információk megjelenítéséhez jelöljön ki egyetlen karaktert."
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15326,6 +16118,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "छिपी हुई फ़ाइलें दिखाएँ"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rejtett fájlok megjelenítése"
           }
         },
         "it" : {
@@ -15441,6 +16239,12 @@
             "value" : "Finder में दिखाएँ"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Megjelenítés a Finderben"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15552,6 +16356,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "साइडबार"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Oldalsáv"
           }
         },
         "it" : {
@@ -15671,6 +16481,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "फ़ाइल ब्राउज़र"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fájlböngésző"
           }
         },
         "it" : {
@@ -15793,6 +16609,12 @@
             "value" : "फ़ोल्डर खोज"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Keresés a mappában"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15904,6 +16726,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "आकार"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Méret"
           }
         },
         "it" : {
@@ -16019,6 +16847,12 @@
             "value" : "एडिटर विभाजित करें"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Szerkesztő felosztása"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -16130,6 +16964,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "एडिटर विभाजित करें"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Szerkesztő felosztása"
           }
         },
         "it" : {
@@ -16245,6 +17085,12 @@
             "value" : "स्टेटस बार"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Állapotsor"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -16356,6 +17202,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "टैग"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Címkék"
           }
         },
         "it" : {
@@ -16471,6 +17323,12 @@
             "value" : "टेक्स्ट एनकोडिंग"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Szövegkódolás"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -16582,6 +17440,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "टेक्स्ट सेटिंग"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Szövegbeállítások"
           }
         },
         "it" : {
@@ -16697,6 +17561,12 @@
             "value" : "आपके सहयोग के लिए धन्यवाद!"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Köszönjük a kedves támogatását!"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -16808,6 +17678,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "यह दस्तावेज़ संपादन योग्य नहीं है।"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A dokumentum nem szerkeszthető."
           }
         },
         "it" : {
@@ -16930,6 +17806,12 @@
             "value" : "कमेंट"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Megjegyzés"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -17047,6 +17929,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "चयन को कमेंट आउट/कमेंट हटाएँ"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kijelölés megjegyzéssé alakítása vagy a megjegyzés megszüntetése"
           }
         },
         "it" : {
@@ -17168,6 +18056,12 @@
             "value" : "पीछे"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vissza"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -17285,6 +18179,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "पिछले दस्तावेज़ पर लौटें"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ugrás az előző dokumentumra"
           }
         },
         "it" : {
@@ -17406,6 +18306,12 @@
             "value" : "आगे"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Előre"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -17523,6 +18429,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "अगले दस्तावेज़ पर जाएँ"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ugrás a következő dokumentumra"
           }
         },
         "it" : {
@@ -17644,6 +18556,12 @@
             "value" : "पीछे/आगे"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vissza/Előre"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -17761,6 +18679,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "दस्तावेज़ इतिहास में पीछे/आगे जाएँ"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Visszalépés vagy előrelépés a dokumentumelőzményekben"
           }
         },
         "it" : {
@@ -17882,6 +18806,12 @@
             "value" : "संपादन"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Szerkesztés"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -17999,6 +18929,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "दस्तावेज़ का संपादन रोकें"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dokumentum szerkesztésének tiltása"
           }
         },
         "it" : {
@@ -18120,6 +19056,12 @@
             "value" : "दस्तावेज़ को संपादन योग्य बनाएँ"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dokumentum szerkesztésének engedélyezése"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -18237,6 +19179,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "इमोजी और चिह्न"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Emojik és szimbólumok"
           }
         },
         "it" : {
@@ -18358,6 +19306,12 @@
             "value" : "“इमोजी और चिह्न” दिखाएँ"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Emojik és szimbólumok megjelenítése"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -18475,6 +19429,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ढूँढें"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Keresés"
           }
         },
         "it" : {
@@ -18596,6 +19556,12 @@
             "value" : "“खोजें और बदलें” दिखाएँ"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Keresés és csere megjelenítése"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -18713,6 +19679,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "फ़ॉन्ट"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Betűtípusok"
           }
         },
         "it" : {
@@ -18835,6 +19807,12 @@
             "value" : "फ़ॉन्ट प्रकार"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Betűtípus fajtája"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -18952,6 +19930,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "मोनोस्पेस्ड"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rögzített szélességű"
           }
         },
         "it" : {
@@ -19073,6 +20057,12 @@
             "value" : "फ़ॉन्ट दिखाएँ"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Betűtípusok megjelenítése"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -19190,6 +20180,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "मानक"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Szabványos"
           }
         },
         "it" : {
@@ -19311,6 +20307,12 @@
             "value" : "फ़ॉन्ट बदलें"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Betűtípus módosítása"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -19428,6 +20430,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "इंडेंट"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Behúzás"
           }
         },
         "it" : {
@@ -19549,6 +20557,12 @@
             "value" : "बाएँ शिफ़्ट करें"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Behúzás csökkentése"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -19666,6 +20680,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "पंक्तियाँ बाएँ शिफ़्ट करें"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sorok eltolása balra"
           }
         },
         "it" : {
@@ -19787,6 +20807,12 @@
             "value" : "दाएँ शिफ़्ट करें"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Behúzás növelése"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -19904,6 +20930,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "पंक्तियाँ दाएँ शिफ़्ट करें"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sorok eltolása jobbra"
           }
         },
         "it" : {
@@ -20025,6 +21057,12 @@
             "value" : "चयन को इंडेंट करें"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kijelölés behúzása"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -20142,6 +21180,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "इंडेंट गाइड"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Behúzási segédvonalak"
           }
         },
         "it" : {
@@ -20263,6 +21307,12 @@
             "value" : "इंडेंट गाइड दिखाएँ"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Behúzási segédvonalak megjelenítése"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -20380,6 +21430,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "इंडेंट गाइड छिपाएँ"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Behúzási segédvonalak elrejtése"
           }
         },
         "it" : {
@@ -20501,6 +21557,12 @@
             "value" : "अदृश्य वर्ण"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Láthatatlan karakterek"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -20618,6 +21680,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "अदृश्य वर्ण दिखाएँ"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Láthatatlan karakterek megjelenítése"
           }
         },
         "it" : {
@@ -20739,6 +21807,12 @@
             "value" : "अदृश्य वर्ण छिपाएँ"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Láthatatlan karakterek elrejtése"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -20858,6 +21932,12 @@
             "value" : "सबसे ऊपर रखें"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mindig legfelül"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -20975,6 +22055,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "विंडो को हमेशा सबसे ऊपर रखें"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Az ablak mindig legfelül tartása"
           }
         },
         "it" : {
@@ -21097,6 +22183,12 @@
             "value" : "दस्तावेज़ फ़ाइल शेयर करें"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dokumentumfájl megosztása"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -21214,6 +22306,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "स्पेल चेक"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Helyesírás-ellenőrzés"
           }
         },
         "it" : {
@@ -21335,6 +22433,12 @@
             "value" : "वर्तनी और व्याकरण दिखाएँ"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Helyesírás és nyelvtan megjelenítése"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -21452,6 +22556,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "सिंटैक्स"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Szintaxis"
           }
         },
         "it" : {
@@ -21574,6 +22684,12 @@
             "value" : "मिटाए गए आइटम"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Törölt"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -21694,6 +22810,12 @@
             "value" : "हाल में उपयोग किए आइटम"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Legutóbb használt"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -21811,6 +22933,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "सिंटैक्स बदलें"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Szintaxis módosítása"
           }
         },
         "it" : {
@@ -21933,6 +23061,12 @@
             "value" : "टैब स्टाइल"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tabulátorstílus"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -22050,6 +23184,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "कस्टम…"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Egyéni…"
           }
         },
         "it" : {
@@ -22172,6 +23312,12 @@
             "value" : "टैब चौड़ाई"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tabulátorszélesség"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -22289,6 +23435,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "इंडेंटेशन के लिए स्पेस उपयोग करें"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Szóközök használata behúzáshoz"
           }
         },
         "it" : {
@@ -22410,6 +23562,12 @@
             "value" : "इंडेंटेशन के लिए स्पेस उपयोग करें"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Szóközök használata behúzáshoz"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -22527,6 +23685,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "इंडेंटेशन के लिए टैब उपयोग करें"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tabulátorok használata behúzáshoz"
           }
         },
         "it" : {
@@ -22648,6 +23812,12 @@
             "value" : "क्षैतिज"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vízszintes"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -22765,6 +23935,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "क्षैतिज"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vízszintes"
           }
         },
         "it" : {
@@ -22886,6 +24062,12 @@
             "value" : "क्षैतिज/लंबवत"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Szöveg tájolása"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -23003,6 +24185,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "क्षैतिज/लंबवत टेक्स्ट टॉगल करें"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Szöveg tájolásának váltása"
           }
         },
         "it" : {
@@ -23124,6 +24312,12 @@
             "value" : "लंबवत"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Függőleges"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -23241,6 +24435,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "लंबवत"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Függőleges"
           }
         },
         "it" : {
@@ -23363,6 +24563,12 @@
             "value" : "वास्तविक आकार"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tényleges méret"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -23480,6 +24686,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "और बड़ा"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nagyobb"
           }
         },
         "it" : {
@@ -23601,6 +24813,12 @@
             "value" : "टेक्स्ट आकार बड़ा करें"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Szövegméret növelése"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -23718,6 +24936,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "टेक्स्ट आकार"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Szövegméret"
           }
         },
         "it" : {
@@ -23839,6 +25063,12 @@
             "value" : "और छोटा"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kisebb"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -23956,6 +25186,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "टेक्स्ट आकार छोटा करें"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Szövegméret csökkentése"
           }
         },
         "it" : {
@@ -24077,6 +25313,12 @@
             "value" : "टेक्स्ट आकार बदलें"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Szövegméret módosítása"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -24194,6 +25436,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "पंक्ति रैपिंग"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sortörés"
           }
         },
         "it" : {
@@ -24315,6 +25563,12 @@
             "value" : "पंक्तियाँ रैप करें"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sorok tördelése"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -24432,6 +25686,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "पंक्तियाँ रैप न करें"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sortördelés kikapcsolása"
           }
         },
         "it" : {
@@ -24553,6 +25813,12 @@
             "value" : "लिखने की दिशा"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Írás iránya"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -24670,6 +25936,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "बाएँ से दाएँ"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Balról jobbra"
           }
         },
         "it" : {
@@ -24791,6 +26063,12 @@
             "value" : "बाएँ से दाएँ"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Balról jobbra"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -24908,6 +26186,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "दाएँ से बाएँ"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jobbról balra"
           }
         },
         "it" : {
@@ -25029,6 +26313,12 @@
             "value" : "दाएँ से बाएँ"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jobbról balra"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -25146,6 +26436,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "लिखने की दिशा बदलें"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Írás irányának módosítása"
           }
         },
         "it" : {

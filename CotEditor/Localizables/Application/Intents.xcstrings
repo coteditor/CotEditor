@@ -46,6 +46,12 @@
             "value" : "CotEditor में निर्दिष्ट टेक्स्ट के साथ एक नया दस्तावेज़ बनाएँ।"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Létrehoz egy új dokumentumot a megadott szöveggel a CotEditorban."
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -163,6 +169,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "सामग्री"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tartalom"
           }
         },
         "it" : {
@@ -284,6 +296,12 @@
             "value" : "दस्तावेज़ बनाएँ"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dokumentum létrehozása"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -401,6 +419,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "दस्तावेज़ बनाएँ"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dokumentum létrehozása"
           }
         },
         "it" : {

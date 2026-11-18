@@ -40,6 +40,12 @@
             "value" : "<%lld वर्णों से बना एक अक्षर>"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "<%lld kódpontból álló karakter>"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -150,6 +156,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ब्लॉक :"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Blokk:"
           }
         },
         "it" : {
@@ -264,6 +276,12 @@
             "value" : "श्रेणी :"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kategória:"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -374,6 +392,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "कोड पॉइंट :"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kódpont:"
           }
         },
         "it" : {
@@ -489,6 +513,12 @@
             "value" : "अप्रचलित"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "elavult"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -599,6 +629,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "कोई ब्लॉक नहीं"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nincs blokk"
           }
         },
         "it" : {
@@ -713,6 +749,12 @@
             "value" : "अज्ञात"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ismeretlen"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -823,6 +865,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "वर्शन :"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Verzió:"
           }
         },
         "it" : {

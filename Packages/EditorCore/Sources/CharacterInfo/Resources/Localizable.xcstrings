@@ -47,6 +47,12 @@
             "value" : "इमोजी शैली"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Emojistílus"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -165,6 +171,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "टेक्स्ट शैली"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Szövegstílus"
           }
         },
         "it" : {
@@ -287,6 +299,12 @@
             "value" : "त्वचा रंग III"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "III. típusú bőrtónus"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -405,6 +423,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "त्वचा रंग IV"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "IV. típusú bőrtónus"
           }
         },
         "it" : {
@@ -527,6 +551,12 @@
             "value" : "त्वचा रंग V"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "V. típusú bőrtónus"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -645,6 +675,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "त्वचा रंग VI"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "VI. típusú bőrtónus"
           }
         },
         "it" : {
@@ -767,6 +803,12 @@
             "value" : "त्वचा रंग I-II"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "I–II. típusú bőrtónus"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -878,6 +920,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "वेरिएंट"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Változat"
           }
         },
         "it" : {

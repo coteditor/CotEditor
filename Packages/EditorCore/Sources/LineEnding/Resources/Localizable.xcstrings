@@ -46,6 +46,12 @@
             "value" : "क्लासिक Mac OS"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Klasszikus Mac OS"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -165,6 +171,12 @@
             "value" : "Windows"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Windows"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -279,6 +291,12 @@
           }
         },
         "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "macOS / Unix"
+          }
+        },
+        "hu" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "macOS / Unix"
@@ -404,6 +422,12 @@
             "value" : "Unix लाइन सेपरेटर"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unix Line Separator"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -524,6 +548,12 @@
             "value" : "Unix नेक्स्ट लाइन"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unix Next Line"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -642,6 +672,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Unix पैराग्राफ़ सेपरेटर"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unix Paragraph Separator"
           }
         },
         "it" : {

@@ -46,6 +46,12 @@
             "value" : "कोड"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kód"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -163,6 +169,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "सामान्य"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Általános"
           }
         },
         "it" : {
@@ -284,6 +296,12 @@
             "value" : "कंटेनर"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tároló"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -401,6 +419,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "फ़ंक्शन"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Függvény"
           }
         },
         "it" : {
@@ -522,6 +546,12 @@
             "value" : "हेडिंग"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Címsor"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -639,6 +669,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "हेडिंग %lld"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Címsor %lld"
           }
         },
         "it" : {
@@ -760,6 +796,12 @@
             "value" : "मार्क"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jelölő"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -877,6 +919,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "विभाजक"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Elválasztó"
           }
         },
         "it" : {
@@ -998,6 +1046,12 @@
             "value" : "शीर्षक"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cím"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1115,6 +1169,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "मान"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Érték"
           }
         },
         "it" : {
@@ -1236,6 +1296,12 @@
             "value" : "एट्रिब्यूट"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Attribútumok"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1353,6 +1419,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "वर्ण"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Karakterek"
           }
         },
         "it" : {
@@ -1474,6 +1546,12 @@
             "value" : "कमांड"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Parancsok"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1591,6 +1669,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "कमेंट"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Megjegyzések"
           }
         },
         "it" : {
@@ -1712,6 +1796,12 @@
             "value" : "कीवर्ड"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kulcsszavak"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1829,6 +1919,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "संख्याएँ"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Számok"
           }
         },
         "it" : {
@@ -1950,6 +2046,12 @@
             "value" : "स्ट्रिंग"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Karakterláncok"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2067,6 +2169,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "प्रकार"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Típusok"
           }
         },
         "it" : {
@@ -2188,6 +2296,12 @@
             "value" : "मान"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Értékek"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2305,6 +2419,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "वेरिएबल"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Változók"
           }
         },
         "it" : {

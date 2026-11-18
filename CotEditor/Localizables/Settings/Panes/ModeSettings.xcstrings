@@ -40,6 +40,12 @@
             "value" : "डबल-स्पेस से फ़ुल स्टॉप जोड़ें"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pont beszúrása dupla szóközzel"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -151,6 +157,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "समापन ब्रैकेट और उद्धरण स्वचालित रूप से सम्मिलित करें"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zárójelek és idézőjelek automatikus lezárása"
           }
         },
         "it" : {
@@ -266,6 +278,12 @@
             "value" : "वर्तनी के साथ व्याकरण जाँचें"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nyelvtan ellenőrzése a helyesírással együtt"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -377,6 +395,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "टाइप करते समय वर्तनी जाँचें"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Helyesírás ellenőrzése gépelés közben"
           }
         },
         "it" : {
@@ -491,6 +515,12 @@
             "value" : "पूर्णता सूची में शामिल है :"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kiegészítési lista tartalma:"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -602,6 +632,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "पूर्णता :"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kiegészítés:"
           }
         },
         "it" : {
@@ -723,6 +759,12 @@
             "value" : "दस्तावेज़ में शब्द"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A dokumentum szavai"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -840,6 +882,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "मानक शब्द"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Szótári szavak"
           }
         },
         "it" : {
@@ -961,6 +1009,12 @@
             "value" : "सिंटैक्स में परिभाषित शब्द"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A szintaxisban megadott szavak"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1074,6 +1128,12 @@
             "value" : "वर्तनी को ऑटोमैटिकली सुधारें"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Helyesírás automatikus javítása"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1184,6 +1244,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "फ़ॉन्ट :"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Betűtípus:"
           }
         },
         "it" : {
@@ -1305,6 +1371,12 @@
             "value" : "मोनोस्पेस्ड"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rögzített szélességű"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1424,6 +1496,12 @@
             "value" : "मानक"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Szabványos"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1536,6 +1614,12 @@
             "value" : "इंडेंटेशन :"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Behúzás:"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1646,6 +1730,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "मोड"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mód"
           }
         },
         "it" : {
@@ -1761,6 +1851,12 @@
             "value" : "नहीं मिला"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nem található"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1872,6 +1968,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "स्मार्ट कॉपी/पेस्ट"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Intelligens másolás/beillesztés"
           }
         },
         "it" : {
@@ -1987,6 +2089,12 @@
             "value" : "स्मार्ट डैश"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Intelligens kötőjelek"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2098,6 +2206,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "स्मार्ट कोट"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Intelligens idézőjelek"
           }
         },
         "it" : {
@@ -2212,6 +2326,12 @@
             "value" : "वर्तनी :"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Helyesírás:"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2322,6 +2442,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "सब्स्टिट्यूशन :"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Helyettesítés:"
           }
         },
         "it" : {
@@ -2437,6 +2563,12 @@
             "value" : "टाइप करते समय पूर्णता सुझाएँ"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kiegészítési javaslatok írás közben"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2547,6 +2679,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "सिंटैक्स"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Szintaxis"
           }
         },
         "it" : {
@@ -2662,6 +2800,12 @@
             "value" : "टेक्स्ट प्रतिस्थापन"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Szövegcsere"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2775,6 +2919,12 @@
             "value" : "यह सिंटैक्स मौजूद नहीं है"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ez a szintaxis nem létezik"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2886,6 +3036,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "कस्टम सेटिंग उपयोग करें"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Egyéni beállítások használata"
           }
         },
         "it" : {

@@ -40,6 +40,12 @@
             "value" : "%@ pt"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ pt"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -157,6 +163,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "मध्य"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Középre igazítás"
           }
         },
         "it" : {
@@ -278,6 +290,12 @@
             "value" : "बाईं ओर अलाइन करें"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Balra igazítás"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -397,6 +415,12 @@
             "value" : "दाईं ओर अलाइन करें"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jobbra igazítás"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -508,6 +532,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "श्वेत-श्याम"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fekete-fehér"
           }
         },
         "it" : {
@@ -623,6 +653,12 @@
             "value" : "रंग"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Szín"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -734,6 +770,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "फ़ॉन्ट आकार"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Betűméret"
           }
         },
         "it" : {
@@ -849,6 +891,12 @@
             "value" : "फ़ुटर"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lábléc"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -960,6 +1008,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "हेडर"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fejléc"
           }
         },
         "it" : {
@@ -1075,6 +1129,12 @@
             "value" : "अदृश्य वर्ण"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Láthatatlan karakterek"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1186,6 +1246,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "पंक्ति संख्या"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sorszámok"
           }
         },
         "it" : {
@@ -1300,6 +1366,12 @@
             "value" : "चालू"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Be"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1411,6 +1483,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "पृष्ठभूमि प्रिंट करें"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hátterek nyomtatása"
           }
         },
         "it" : {
@@ -1532,6 +1610,12 @@
             "value" : "दस्तावेज़ नाम"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dokumentum neve"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1649,6 +1733,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "फ़ाइल पथ"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fájl útvonala"
           }
         },
         "it" : {
@@ -1770,6 +1860,12 @@
             "value" : "अंतिम संशोधित तिथि"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Utolsó módosítás dátuma"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1889,6 +1985,12 @@
             "value" : "कोई नहीं"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nincs"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2006,6 +2108,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "पेज संख्या"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Oldalszám"
           }
         },
         "it" : {
@@ -2128,6 +2236,12 @@
             "value" : "प्रिंट तिथि"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nyomtatás dátuma"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2247,6 +2361,12 @@
             "value" : "सिंटैक्स नाम"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Szintaxis neve"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2358,6 +2478,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "थीम"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Téma"
           }
         },
         "it" : {

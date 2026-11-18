@@ -39,6 +39,12 @@
             "value" : "उपलब्ध सिंटैक्स :"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Elérhető szintaxisok:"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -150,6 +156,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "सिंटैक्स मेन्यू कस्टमाइज़ करें…"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Szintaxis menü testreszabása…"
           }
         },
         "it" : {
@@ -265,6 +277,12 @@
             "value" : "कस्टमाइज़ किए सिंटैक्स"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Testreszabott szintaxisok"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -375,6 +393,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "डिफ़ॉल्ट लाइन एंडिंग :"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Alapértelmezett sorvég:"
           }
         },
         "it" : {
@@ -489,6 +513,12 @@
             "value" : "डिफ़ॉल्ट सिंटैक्स :"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Alapértelmezett szintaxis:"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -599,6 +629,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "डिफ़ॉल्ट टेक्स्ट एनकोडिंग :"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Alapértelmezett szövegkódolás:"
           }
         },
         "it" : {
@@ -714,6 +750,12 @@
             "value" : "सूची संपादित करें…"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lista szerkesztése…"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -824,6 +866,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "एनकोडिंग प्राथमिकताएँ :"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kódolások sorrendje:"
           }
         },
         "it" : {
@@ -937,6 +985,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "दस्तावेज़ में एनकोडिंग घोषणा देखें"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A dokumentumban megadott kódolás követése"
           }
         },
         "it" : {
@@ -1058,6 +1112,12 @@
             "value" : "सभी सिंटैक्स फिर से लोड करें"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Összes szintaxis újratöltése"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1177,6 +1237,12 @@
             "value" : "फ़ाइल मैपिंग विरोध दिखाएँ"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fájltársítási ütközések megjelenítése"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1288,6 +1354,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "यह सिंटैक्स मौजूद नहीं है"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ez a szintaxis nem létezik"
           }
         },
         "it" : {
@@ -1406,6 +1478,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "यह सिंटैक्स कस्टमाइज़ किया गया है।"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ez a szintaxis testre van szabva."
           }
         },
         "it" : {

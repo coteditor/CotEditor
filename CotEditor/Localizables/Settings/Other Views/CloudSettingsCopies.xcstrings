@@ -46,6 +46,12 @@
             "value" : "क्या आप निश्चित हैं कि आप iCloud से “%@” डिलीट करना चाहते हैं?"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Biztos benne, hogy a(z) „%@” elemet törölni szeretné az iCloudból?"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -163,6 +169,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "कॉपी डिलीट करें"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Másolat törlése"
           }
         },
         "it" : {
@@ -284,6 +296,12 @@
             "value" : "यह Mac"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ez a Mac"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -402,6 +420,12 @@
             "value" : "कॉपी रखना बंद करने के लिए, जिस Mac से वह आई है उस पर “iCloud में कॉपी रखें” बंद करें।"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A másolat mentésének leállításához kapcsolja ki a „Másolat megőrzése az iCloudban” beállítást azon a Macen, amelyről a másolat származik."
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -507,6 +531,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "संस्करण %@"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ verzió"
           }
         },
         "it" : {

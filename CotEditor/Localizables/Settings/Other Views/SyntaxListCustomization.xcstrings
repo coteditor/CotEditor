@@ -39,6 +39,12 @@
             "value" : "छिपे हुए सिंटैक्स अभी भी स्वचालित पहचान के लिए उपयोग होते हैं।"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Az automatikus felismerés a rejtett szintaxisokat is használja."
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -152,6 +158,12 @@
             "value" : "सभी चुनें"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Összes kijelölése"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -262,6 +274,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "वे सिंटैक्स चुनें जिन्हें आप सिंटैक्स मेन्यू में दिखाना चाहते हैं :"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Válassza ki a szintaxismenükben megjelenítendő szintaxisokat:"
           }
         },
         "it" : {

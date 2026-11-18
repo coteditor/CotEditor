@@ -46,6 +46,12 @@
             "value" : "एक स्वादिष्ट कप"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Egy finom csésze"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -163,6 +169,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "एस्प्रेसो"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Eszpresszó"
           }
         },
         "it" : {
@@ -284,6 +296,12 @@
             "value" : "एकमुश्त दान"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Egyszeri adomány"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -401,6 +419,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "निरंतर सहयोग"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Folyamatos támogatás"
           }
         },
         "it" : {
@@ -522,6 +546,12 @@
             "value" : "रोज़ाना विकास के लिए कॉफ़ी"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kávé a mindennapi fejlesztéshez"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -639,6 +669,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "कॉफ़ी बीन्स"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kávébab"
           }
         },
         "it" : {

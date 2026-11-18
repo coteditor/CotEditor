@@ -40,6 +40,12 @@
             "value" : "ऑटोमैटिक"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Automatikus"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -151,6 +157,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "केवल-पढ़ने के लिए खोलें"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Megnyitás írásvédett módban"
           }
         },
         "it" : {
@@ -266,6 +278,12 @@
             "value" : "अदृश्य फ़ाइलें दिखाएँ"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rejtett fájlok megjelenítése"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -376,6 +394,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "टेक्स्ट एनकोडिंग :"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Szövegkódolás:"
           }
         },
         "it" : {

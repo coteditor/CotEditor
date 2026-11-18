@@ -178,6 +178,30 @@
             }
           }
         },
+        "hu" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld parancs található"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld parancs található"
+                }
+              },
+              "zero" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Nem található parancs"
+                }
+              }
+            }
+          }
+        },
         "it" : {
           "variations" : {
             "plural" : {
@@ -520,6 +544,12 @@
             "value" : "कमांड"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Parancs"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -640,6 +670,12 @@
             "value" : "स्क्रिप्ट"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Szkript"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -750,6 +786,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "क्विक एक्शन"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gyorsműveletek"
           }
         },
         "it" : {
