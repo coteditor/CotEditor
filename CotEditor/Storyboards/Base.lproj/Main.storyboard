@@ -762,7 +762,6 @@ Gw
                                 </menu>
                             </menuItem>
                             <menuItem title="Text" id="579">
-                                <attributedString key="attributedTitle"/>
                                 <menu key="submenu" title="Text" id="578">
                                     <items>
                                         <menuItem title="Insert Snippet" secondaryImage="text.viewfinder" catalog="system" id="15m-xz-4oB">

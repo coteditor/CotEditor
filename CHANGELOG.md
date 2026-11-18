@@ -14,6 +14,7 @@
 
 ### Fixes
 
+- Fix an issue where Keyboard Maestro and other accessibility tools could not find the Text menu.
 - Fix an issue in the file browser where the item with the old name remained after changing only the capitalization of its name.
 - Fix an issue in the file browser where changes were no longer reflected after renaming or moving the opened folder or its subfolders.
 - Fix an issue in the file browser where both a file and a folder with the same name appeared after one replaced the other.
