@@ -320,14 +320,10 @@ extension FileNode {
     /// - Parameter fileURL: The new file URL.
     func move(to fileURL: URL) {
         
-        let keepsHidden = self.file.isHidden && !self.file.name.starts(with: ".")
-        
         self.file.name = fileURL.lastPathComponent
         self.file.fileURL = fileURL.standardizedFileURL
         self.file.invalidateKind()
-        if !keepsHidden {
-            self.file.isHidden = self.file.name.starts(with: ".")
-        }
+        self.file.isHidden = (try? self.file.fileURL.resourceValues(forKeys: [.isHiddenKey]).isHidden) ?? self.file.name.starts(with: ".")
         
         self.moveChildren(to: self.file.fileURL)
     }
