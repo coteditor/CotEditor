@@ -112,6 +112,28 @@ import SyntaxFormat
     }
     
     
+    @Test func importLegacyYAMLSyntaxPayloadSavesInNativeFormat() throws {
+        
+        let manager = TestSyntaxManager()
+        let name = "Legacy YAML Payload \(UUID().uuidString)"
+        
+        try self.cleanUp(manager)
+        defer { try? self.cleanUp(manager) }
+        
+        let data = Data("""
+            kind: code
+            extensions:
+              - keyString: legacy
+            """.utf8)
+        
+        try manager.importSetting(.payload(data), name: name, type: .yaml, overwrite: true)
+        
+        manager.cachedSettings.removeAll()
+        
+        #expect(try manager.setting(name: name).fileMap.extensions == ["legacy"])
+    }
+    
+    
     @Test func importNativeSyntaxPackageSucceedsWithContentType() throws {
         
         let manager = TestSyntaxManager()

@@ -394,11 +394,11 @@ extension SettingFileManaging {
                         try FileManager.default.copyItem(at: url, to: destURL)
                     }
                     
-                case .url:
-                    let payload = try setting.makePayload()  // transform to native format
+                case .payload(let payload) where type.conforms(to: Setting.fileType):
                     try payload.write(to: destURL)
                     
-                case .payload(let payload):
+                case .url, .payload:
+                    let payload = try setting.makePayload()  // transform to native format
                     try payload.write(to: destURL)
             }
             

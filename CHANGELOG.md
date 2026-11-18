@@ -26,6 +26,7 @@
 - Fix an issue in the file browser where both a file and a folder with the same name appeared after one replaced the other.
 - Fix an issue in the file browser where filtering did not work when the folder contained a subfolder that could not be read.
 - Fix an issue in the file browser where the filter results were not updated correctly after files were changed outside the app.
+- Fix an issue where importing a settings archive exported from CotEditor 6.2 failed if it included custom syntaxes.
 - [trivial] Fix an issue in the file browser where filtering with only certain combining marks showed all items.
 
 

@@ -293,7 +293,9 @@ struct PortableSettingsDocument: FileDocument, Identifiable, Sendable {
         
         if types.contains(.syntaxes) {
             for (name, payload) in self.syntaxes {
-                try SyntaxManager.shared.importSetting(.payload(payload), name: name.deletingPathExtension, overwrite: true)
+                // -> Packages don't conform to `.data`.
+                let type = name.pathExtension.flatMap { UTType(filenameExtension: $0, conformingTo: .item) }
+                try SyntaxManager.shared.importSetting(.payload(payload), name: name.deletingPathExtension, type: type, overwrite: true)
             }
         }
         
