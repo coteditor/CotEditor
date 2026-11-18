@@ -266,16 +266,16 @@ extension FileNode {
         
         // compare the name, as the old name of a case-only renaming is also reachable on case-insensitive volumes
         if (try? fileURL.resourceValues(forKeys: [.nameKey]).name) == filename {
+            let file: File
+            do {
+                file = try File(at: fileURL)
+            } catch {
+                Logger.app.error("Failed reading file metadata: \(error)")
+                return self
+            }
+            
             // -> Find by name, as the URL has a trailing slash only while the item is a folder.
             if let child = children.first(where: { $0.file.name == filename }) {
-                let file: File
-                do {
-                    file = try File(at: fileURL)
-                } catch {
-                    Logger.app.error("Failed reading file metadata: \(error)")
-                    return self
-                }
-                
                 if child.file.isDirectory != file.isDirectory || child.file.isAlias != file.isAlias || child.file.kind != file.kind {
                     child.removeFromParent()
                     self.addNode(FileNode(file: file, parent: self))
@@ -289,14 +289,6 @@ extension FileNode {
                 
             } else {
                 // -> The fileURL is added.
-                let file: File
-                do {
-                    file = try File(at: fileURL)
-                } catch {
-                    Logger.app.error("Failed reading file metadata: \(error)")
-                    return self
-                }
-                
                 self.addNode(FileNode(file: file, parent: self))
                 return self
             }
