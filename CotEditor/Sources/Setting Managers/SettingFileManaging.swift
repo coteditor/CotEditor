@@ -353,21 +353,18 @@ extension SettingFileManaging {
     ///   - item: The representation to import.
     ///   - name: The name of the setting to import.
     ///   - type: The UTType of the provided payload. If `nil`, defaults to the manager’s file type.
-    ///   - overwrite: Whether to overwrite an existing setting if one exists.
+    ///   - overwrite: Whether to overwrite an existing setting if one exists. An existing setting whose name differs only in case is renamed to `name`.
     /// - Throws: `ImportDuplicationError` (only when `overwrite` is `false` and a duplicate exists), or any other error that occurs.
     func importSetting(_ item: ImportingItem, name: String, type: UTType? = nil, overwrite: Bool) throws {
         
         try self.validate(settingName: name, checksDuplicate: false)
         
         // check duplication
-        if !overwrite {
-            for existingName in self.settingNames {
-                guard existingName.caseInsensitiveCompare(name) == .orderedSame else { continue }
-                
-                guard self.urlForUserSetting(name: existingName) == nil else {  // duplicated
-                    throw ImportDuplicationError(name: existingName, item: item, type: type)
-                }
-            }
+        let duplicateName = self.settingNames.first {
+            $0.caseInsensitiveCompare(name) == .orderedSame && self.urlForUserSetting(name: $0) != nil
+        }
+        if let duplicateName, !overwrite {
+            throw ImportDuplicationError(name: duplicateName, item: item, type: type)
         }
         
         // test if the setting file can be read correctly
@@ -385,6 +382,12 @@ extension SettingFileManaging {
         let destURL = self.preparedURLForUserSetting(name: name)
         do {
             try FileManager.default.createIntermediateDirectories(to: destURL)
+            
+            // rename the existing setting whose name differs only in case
+            if let duplicateName, duplicateName != name {
+                try FileManager.default.moveItem(at: self.preparedURLForUserSetting(name: duplicateName), to: destURL)
+            }
+            
             switch item {
                 case .url(let url) where type.conforms(to: Setting.fileType):
                     if url.standardizedFileURL != destURL.standardizedFileURL {
@@ -406,11 +409,18 @@ extension SettingFileManaging {
             throw SettingFileError(.importFailed, name: name, underlyingError: error)
         }
         
+        if let duplicateName {
+            self.cachedSettings[duplicateName] = nil
+        }
         self.cachedSettings[name] = setting
         
-        let change: SettingChange = self.settingNames.contains(name)
-            ? .updated(from: name, to: name)
-            : .added(name)
+        let change: SettingChange = if let duplicateName, !self.bundledSettingNames.contains(duplicateName) {
+            .updated(from: duplicateName, to: name)
+        } else if self.settingNames.contains(name) {
+            .updated(from: name, to: name)
+        } else {
+            .added(name)
+        }
         self.updateSettingList(change: change)
     }
     

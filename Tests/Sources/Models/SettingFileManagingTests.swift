@@ -81,6 +81,26 @@ import SyntaxFormat
     }
     
     
+    @Test func overwriteImportedSettingInDifferentCaseTakesImportedName() throws {
+        
+        let manager = TestReplacementManager()
+        let name = "Case Import \(UUID().uuidString)"
+        
+        try self.cleanUp(manager)
+        defer { try? self.cleanUp(manager) }
+        
+        try manager.save(setting: MultipleReplace(replacements: [.init(findString: "before", replacementString: "old")]), name: name.uppercased())
+        
+        let importedSetting = MultipleReplace(replacements: [.init(findString: "after", replacementString: "new")])
+        
+        try manager.importSetting(.payload(importedSetting.makePayload()), name: name, overwrite: true)
+        
+        #expect(manager.settingNames == [name])
+        #expect(manager.listAvailableSettings() == [name])
+        #expect(try manager.setting(name: name) == importedSetting)
+    }
+    
+    
     @Test func importLegacyYAMLSyntaxConvertsAndSavesInNativeFormat() throws {
         
         let manager = TestSyntaxManager()
