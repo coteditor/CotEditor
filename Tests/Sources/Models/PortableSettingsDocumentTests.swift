@@ -174,6 +174,23 @@ import SyntaxFormat
         
         #expect(document.bundledSettings[.syntaxes] == ["Sample.cotsyntax"])
     }
+    
+    
+    @Test func settingsArchiveIgnoresItemsOfUnexpectedKinds() throws {
+        
+        let archiveURL = try self.createSettingsArchive()
+        defer { try? FileManager.default.removeItem(at: archiveURL.deletingLastPathComponent()) }
+        
+        let syntaxesURL = archiveURL.appending(component: "Syntaxes")
+        try FileManager.default.removeItem(at: syntaxesURL)
+        try Data().write(to: syntaxesURL)
+        try FileManager.default.createDirectory(at: archiveURL.appending(components: "KeyBindings", "Shortcuts.plist"), withIntermediateDirectories: true)
+        
+        let document = try PortableSettingsDocument(contentsOf: archiveURL)
+        
+        #expect(document.syntaxes.isEmpty)
+        #expect(document.menuKeyBindings == nil)
+    }
 
 
     @Test func defaultWindowSizeIsPortable() {

@@ -117,20 +117,21 @@ struct PortableSettingsDocument: FileDocument, Identifiable, Sendable {
         guard
             file.isDirectory,
             let fileWrappers = file.fileWrappers,
-            let infoData = fileWrappers[Info.filename]?.regularFileContents
+            let infoData = fileWrappers[Info.filename]?.fileContents
         else { throw CocoaError(.fileReadCorruptFile) }
         
         self.info = try PropertyListDecoder().decode(Info.self, from: infoData)
         
         guard
-            let defaultsData = fileWrappers[WrapperKey.defaults]?.regularFileContents,
+            let defaultsData = fileWrappers[WrapperKey.defaults]?.fileContents,
             let plist = try PropertyListSerialization.propertyList(from: defaultsData, format: nil) as? [String: Any]
         else { throw CocoaError(.propertyListReadCorrupt) }
         
         self.defaults = plist.compactMapValues(PropertyListValue.init)
         
-        self.menuKeyBindings = fileWrappers[WrapperKey.keyBindings]?.fileWrappers?[WrapperKey.shortcuts]?.regularFileContents
-        self.textKeyBindings = fileWrappers[WrapperKey.keyBindings]?.fileWrappers?[WrapperKey.textKeyBindings]?.regularFileContents
+        let keyBindings = fileWrappers[WrapperKey.keyBindings]?.directoryContents
+        self.menuKeyBindings = keyBindings?[WrapperKey.shortcuts]?.fileContents
+        self.textKeyBindings = keyBindings?[WrapperKey.textKeyBindings]?.fileContents
         self.replacements = fileWrappers[WrapperKey.replacements]?.persistableChildren ?? [:]
         self.syntaxes = fileWrappers[WrapperKey.syntaxes]?.persistableChildren ?? [:]
         self.themes = fileWrappers[WrapperKey.themes]?.persistableChildren ?? [:]
@@ -348,10 +349,18 @@ extension PortableSettingsDocument.Info {
 
 private extension FileWrapper {
     
+    /// The contents of the regular file, or `nil` for the other types (`regularFileContents` raises an exception for them).
+    var fileContents: Data?  { self.isRegularFile ? self.regularFileContents : nil }
+    
+    
+    /// The child file wrappers of the directory, or `nil` for the other types (`fileWrappers` raises an exception for them).
+    var directoryContents: [String: FileWrapper]?  { self.isDirectory ? self.fileWrappers : nil }
+    
+    
     /// The persisted representations of the child items except hidden files, keyed by filename.
     var persistableChildren: [String: any Persistable] {
         
-        (self.fileWrappers ?? [:])
+        (self.directoryContents ?? [:])
             .filter { !$0.key.hasPrefix(".") }
             .compactMapValues(\.persistable)
     }
@@ -360,12 +369,6 @@ private extension FileWrapper {
     /// The persisted representation of the receiver, if supported for settings archives.
     var persistable: any Persistable? {
         
-        if self.isDirectory {
-            self
-        } else if self.isRegularFile {
-            self.regularFileContents
-        } else {
-            nil
-        }
+        self.isDirectory ? self : self.fileContents
     }
 }
