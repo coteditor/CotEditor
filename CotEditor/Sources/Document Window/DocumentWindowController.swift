@@ -512,8 +512,9 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
     private func updateSyntaxPopUpButtonWidth(_ popUpButton: NSPopUpButton) {
         
         guard #available(macOS 27, *) else { return }
+        guard #unavailable(macOS 27.2.1) else { return }
         
-        // Work around an AppKit layout loop near the toolbar overflow threshold (2026-09, macOS 27, FB25001982).
+        // Work around an AppKit layout loop near the toolbar overflow threshold (2026-09, macOS 27, fixed in macOS 27.2.1, FB25001982).
         // -> The pop-up button's intrinsic width alternates depending on its toolbar layout, so constrain it explicitly.
         let identifier = "syntaxPopUpButtonWidth"
         let width = popUpButton.intrinsicContentSize.width
