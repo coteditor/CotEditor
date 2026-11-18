@@ -399,7 +399,7 @@ extension FileNode {
         if !match.isNotFound && match.isEmpty {
             match = (self.file.name as NSString).range(of: searchString, options: .literal)
         }
-        let isMatched = !match.isNotFound && !match.isEmpty
+        let isMatched = !match.isNotFound
         
         self.filterState = FilterState(matchedRange: isMatched ? match : nil,
                                        hasMatchedDescendant: hasMatchedDescendant)
