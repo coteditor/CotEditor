@@ -303,8 +303,6 @@ private struct SettingsImportMenu: View {
                 Button(.init("Choose Settings Archive…", table: "GeneralSettings", comment: "verb; menu item")) {
                     self.isImporterPresented = true
                 }
-            } primaryAction: {
-                self.isImporterPresented.toggle()
             }
             .menuStyle(.button)
             .menuOrder(.fixed)
