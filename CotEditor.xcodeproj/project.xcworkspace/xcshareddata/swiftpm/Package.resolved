@@ -1,5 +1,5 @@
 {
-  "originHash" : "e5bb124740c315f7a1014930799f276c2edeb6cea8870d0b57c701d0fe3447de",
+  "originHash" : "3bbc1078f1edf539ab41887067e997f232205d48420a430e6fcbac9469455c82",
   "pins" : [
     {
       "identity" : "sparkle",
@@ -78,8 +78,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/tree-sitter/tree-sitter-c-sharp",
       "state" : {
-        "revision" : "cac6d5fb595f5811a076336682d5d595ac1c9e85",
-        "version" : "0.23.5"
+        "revision" : "d4bbe18103c3380c6454085e589d2610938da142",
+        "version" : "0.24.0"
       }
     },
     {

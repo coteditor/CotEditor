@@ -14,6 +14,7 @@
 - Improve the performance of the file browser when many files in the opened folder change at once.
 - Update the AppleScript, BBCode, CoffeeScript, Dart, Erlang, Fortran, Git Config, INI, jq, JSON, Markdown, Perl, R, reStructuredText, SVG, Tcl, Verilog, XML, DTD, and YAML syntaxes to improve performance and highlighting accuracy.
 - Improve VoiceOver support (thanks to Torma Zsolt!).
+- Update tree-sitter-c-sharp to 0.24.0.
 - Update tree-sitter-php to 0.25.2.
 - [trivial] Display the setting name in the error message when importing a setting fails.
 - [beta] Optimize regular-expression-based syntax highlighting in large documents.
