@@ -8,6 +8,7 @@
 - Improve the performance of undo and redo in large documents.
 - Improve the performance of the file browser when many files in the opened folder change at once.
 - Update the AppleScript, BBCode, CoffeeScript, Dart, Erlang, Fortran, Git Config, INI, jq, JSON, Markdown, Perl, R, reStructuredText, SVG, Tcl, Verilog, XML, DTD, and YAML syntaxes to improve performance and highlighting accuracy.
+- Improve VoiveOver support (thanks to tormazs!).
 - [beta] Optimize regular-expression-based syntax highlighting in large documents.
 - [beta] Update Czech, Polish, and Portuguese localizations.
 
