@@ -223,7 +223,7 @@ struct PortableSettingsDocument: FileDocument, Identifiable, Sendable {
     /// The names of file scopes bundled in the receiver.
     private var fileScopes: [String] {
         
-        switch self.defaults[DefaultKeys.folderFindSavedScopes.rawValue] {
+        switch self.defaults[DefaultKeys.folderFindSavedScopes] {
             case .dictionary(let dictionary):
                 Array(dictionary.keys)
             default:
@@ -311,8 +311,7 @@ struct PortableSettingsDocument: FileDocument, Identifiable, Sendable {
             let defaults = self.defaults.filter { portableKeys.contains($0.key) }
             
             userDefaults.setValuesForKeys(defaults.mapValues(\.any))
-        }
-        if types.contains(.settings) {
+            
             if let menuKeyBindings {
                 try KeyBindingManager.shared.importMenuSetting(data: menuKeyBindings)
             }

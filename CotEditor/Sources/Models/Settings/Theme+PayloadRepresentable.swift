@@ -40,7 +40,7 @@ extension Theme: PayloadRepresentable {
     init(payload: any Persistable, type: UTType) throws {
         
         switch payload {
-            case let data as Data where type.conforms(to: UTType.cotTheme):
+            case let data as Data where type.conforms(to: .cotTheme):
                 let decoder = JSONDecoder()
                 decoder.allowsJSON5 = true
                 self = try decoder.decode(Self.self, from: data)
