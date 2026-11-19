@@ -89,6 +89,7 @@ Currently, we already have maintainers for:
 - Czech
 - German
 - Hindi
+- Hungarian
 - Italian
 - Japanese
 - Korean

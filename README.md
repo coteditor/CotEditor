@@ -16,6 +16,7 @@ CotEditor is a lightweight plain text editor designed for macOS. The project aim
     French,
     German,
     Hindi,
+    Hungarian,
     Italian,
     Japanese,
     Korean,

@@ -39,6 +39,12 @@
             "value" : "अदलाम"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Adlam"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -151,6 +157,12 @@
             "value" : "ईचेयन संख्याएँ"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Égei számok"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -258,6 +270,12 @@
           }
         },
         "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ahom"
+          }
+        },
+        "hu" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ahom"
@@ -375,6 +393,12 @@
             "value" : "कीमियाई चिह्न"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Alkímiai szimbólumok"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -485,6 +509,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "वर्णानुक्रम प्रेज़ेंटेशन रूप"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Betűrendes ligatúrák és egyéb írásjelek"
           }
         },
         "it" : {
@@ -599,6 +629,12 @@
             "value" : "ऐनातोलियाई हाइरोग्लिफ़्स"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Anatóliai hieroglifák"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -709,6 +745,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "प्राचीन यूनानी संगीतमय चिह्नांकन"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ógörög hangjegyek"
           }
         },
         "it" : {
@@ -823,6 +865,12 @@
             "value" : "प्राचीन यूनानी संख्याएँ"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ógörög számok"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -933,6 +981,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "प्राचीन चिह्न"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ősi szimbólumok"
           }
         },
         "it" : {
@@ -1047,6 +1101,12 @@
             "value" : "अरबी"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Arab"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1157,6 +1217,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "अरबी विस्तारित-A"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Arab kibővített - A"
           }
         },
         "it" : {
@@ -1271,6 +1337,12 @@
             "value" : "अरबी विस्तारित-B"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Arab kibővített – B"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1381,6 +1453,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "अरबी विस्तारित-C"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Arab kibővített – C"
           }
         },
         "it" : {
@@ -1495,6 +1573,12 @@
             "value" : "अरबी गणित वर्णानुक्रम चिह्न"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Arab matematikai alfabetikus szimbólumok"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1605,6 +1689,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "अरबी प्रेज़ेंटेशन रूप-A"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Arab ligatúrák és egyéb írásjelek – A"
           }
         },
         "it" : {
@@ -1719,6 +1809,12 @@
             "value" : "अरबी प्रेज़ेंटेशन रूप-B"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Arab ligatúrák és egyéb írásjelek – B"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1829,6 +1925,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "अरबी पूरक"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Arab kiegészítés"
           }
         },
         "it" : {
@@ -1943,6 +2045,12 @@
             "value" : "आर्मेनियाई"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Örmény"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2053,6 +2161,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "तीर"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nyilak"
           }
         },
         "it" : {
@@ -2167,6 +2281,12 @@
             "value" : "अवेस्तन"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Avesztán"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2277,6 +2397,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "बाली"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Balinéz"
           }
         },
         "it" : {
@@ -2391,6 +2517,12 @@
             "value" : "बामम"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bamum"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2501,6 +2633,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "बामम पूरक"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bamum kiegészítés"
           }
         },
         "it" : {
@@ -2615,6 +2753,12 @@
             "value" : "मूल लैटिन"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Latin (alap)"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2725,6 +2869,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "बस्सा वा"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bassa Vah"
           }
         },
         "it" : {
@@ -2839,6 +2989,12 @@
             "value" : "बटकी"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Batak"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2949,6 +3105,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "बंगाली"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bengáli"
           }
         },
         "it" : {
@@ -3073,6 +3235,12 @@
             "value" : "भैक्षुकी"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bhaiksuki"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3183,6 +3351,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ब्लॉक एलिमेंट"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Blokkelemek"
           }
         },
         "it" : {
@@ -3297,6 +3471,12 @@
             "value" : "बोपोमोफ़ो"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bopomofo"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3407,6 +3587,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "बोपोमोफ़ो विस्तारित"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bopomofo kibővített"
           }
         },
         "it" : {
@@ -3521,6 +3707,12 @@
             "value" : "बॉक्स ड्रॉइंग"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Téglalaprajzolás"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3631,6 +3823,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ब्रह्मी"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Brahmi"
           }
         },
         "it" : {
@@ -3745,6 +3943,12 @@
             "value" : "ब्रेल पैटर्न"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Braille-minták"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3855,6 +4059,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "बगिनीस"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Buginéz"
           }
         },
         "it" : {
@@ -3969,6 +4179,12 @@
             "value" : "बुहिद"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Buhid"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4079,6 +4295,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "बाइज़ेन्टाइन संगीतमय चिह्न"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bizánci zenei szimbólumok"
           }
         },
         "it" : {
@@ -4193,6 +4415,12 @@
             "value" : "करैन"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kari"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4303,6 +4531,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "कॉकेशियन अल्बानियाई"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kaukázusi albán"
           }
         },
         "it" : {
@@ -4417,6 +4651,12 @@
             "value" : "चकमा"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Chakma"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4527,6 +4767,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "चाम"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Csám"
           }
         },
         "it" : {
@@ -4641,6 +4887,12 @@
             "value" : "चेरोकी"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cseroki"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4751,6 +5003,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "चेरोकी पूरक"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cseroki kiegészítő"
           }
         },
         "it" : {
@@ -4865,6 +5123,12 @@
             "value" : "शतरंज चिह्न"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sakkszimbólumok"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4975,6 +5239,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "कोरेज्मियन"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Chorasmian"
           }
         },
         "it" : {
@@ -5089,6 +5359,12 @@
             "value" : "CJK संगतता"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kompatibilis kínai, japán és koreai"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5199,6 +5475,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "CJK संगतता रूप"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kompatibilis kínai, japán és koreai jelek"
           }
         },
         "it" : {
@@ -5313,6 +5595,12 @@
             "value" : "CJK संगतता आइडियोग्राफ़"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kompatibilis kínai, japán és koreai képírásjelek"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5423,6 +5711,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "CJK संगतता आइडियोग्राफ़ पूरक"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kompatibilis kínai, japán és koreai képírásjelek kiegészítői"
           }
         },
         "it" : {
@@ -5537,6 +5831,12 @@
             "value" : "CJK मूलशब्द पूरक"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kínai, japán és koreai szótövek kiegészítése"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5647,6 +5947,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "CJK स्ट्रोक"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kínai, japán és koreai vonások"
           }
         },
         "it" : {
@@ -5761,6 +6067,12 @@
             "value" : "CJK चिह्न और विरामचिह्र"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kínai, japán és koreai szimbólumok és írásjelek"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5871,6 +6183,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "CJK यूनिफ़ाइड आइडियोग्राफ़"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kínai, japán és koreai egységes képírásjelek"
           }
         },
         "it" : {
@@ -5985,6 +6303,12 @@
             "value" : "CJK यूनिफ़ाइड आइडियोग्राफ़ विस्तारित A"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kínai, japán és koreai egységes képírásjelek (A)"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6095,6 +6419,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "CJK यूनिफ़ाइड आइडियोग्राफ़ विस्तारित B"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kínai, japán és koreai egységes képírásjelek (B)"
           }
         },
         "it" : {
@@ -6209,6 +6539,12 @@
             "value" : "CJK यूनिफ़ाइड आइडियोग्राफ़ विस्तारित C"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kínai, japán és koreai egységes képírásjelek (C)"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6319,6 +6655,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "CJK यूनिफ़ाइड आइडियोग्राफ़ विस्तारित D"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kínai, japán és koreai egységes képírásjelek (D)"
           }
         },
         "it" : {
@@ -6433,6 +6775,12 @@
             "value" : "CJK यूनिफ़ाइड आइडियोग्राफ़ विस्तारित E"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kínai, japán és koreai egységes képírásjelek (E)"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6543,6 +6891,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "CJK Unified Ideographs Ext. F"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kínai, japán és koreai egységes képírásjelek (F)"
           }
         },
         "it" : {
@@ -6657,6 +7011,12 @@
             "value" : "CJK Unified Ideographs Ext. G"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kínai, japán és koreai egységes képírásjelek (G)"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6767,6 +7127,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "CJK Unified Ideographs Ext. H"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kínai, japán és koreai egységes képírásjelek (H)"
           }
         },
         "it" : {
@@ -6881,6 +7247,12 @@
             "value" : "CJK Unified Ideographs Ext. I"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kínai, japán és koreai egységes képírásjelek (I)"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6991,6 +7363,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "CJK Unified Ideographs Ext. J"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kínai, japán és koreai egységes képírásjelek (J)"
           }
         },
         "it" : {
@@ -7105,6 +7483,12 @@
             "value" : "संयोजक विशेषक चिह्न"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Összekapcsolható mellékjelek"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7215,6 +7599,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "संयोजक विशेषक चिह्न विस्तारित"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Összekapcsolható mellékjelek bővítése"
           }
         },
         "it" : {
@@ -7329,6 +7719,12 @@
             "value" : "चिह्नों के लिए संयोजक विशेषक चिह्न"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Összekapcsolható mellékjelek szimbólumokhoz"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7439,6 +7835,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "संयोजक विशेषक चिह्न पूरक"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Összekapcsolható mellékjelek kiegészítés"
           }
         },
         "it" : {
@@ -7553,6 +7955,12 @@
             "value" : "संयोजक अर्द्ध चिह्न"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Összekapcsolható féljelek"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7663,6 +8071,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "सामान्य भारतीय संख्या रूप"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Általános indiai számalakok"
           }
         },
         "it" : {
@@ -7777,6 +8191,12 @@
             "value" : "कंट्रोल तस्वीरें"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vezérlőképek"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7887,6 +8307,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "कॉप्टिक"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kopt"
           }
         },
         "it" : {
@@ -8001,6 +8427,12 @@
             "value" : "कॉप्टिक इपेक्ट संख्याएँ"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kopt epacta számok"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8111,6 +8543,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "गिनती रॉड अंक"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Számolórúd számjegyei"
           }
         },
         "it" : {
@@ -8225,6 +8663,12 @@
             "value" : "क्यूनीफ़ॉर्म"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ékírás"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8335,6 +8779,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "क्यूनीफ़ॉर्म संख्या और विरामचिह्र"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ékírásos számok és központozás"
           }
         },
         "it" : {
@@ -8449,6 +8899,12 @@
             "value" : "मुद्रा चिह्न"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pénznemek szimbólumai"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8559,6 +9015,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "सिप्रिएट सिलेबरी"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ciprusi szótagírás"
           }
         },
         "it" : {
@@ -8673,6 +9135,12 @@
             "value" : "Cypro-Minoan"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ciprusi-minószi"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8783,6 +9251,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "सिरिलिक"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cirill"
           }
         },
         "it" : {
@@ -8897,6 +9371,12 @@
             "value" : "सिरिलिक विस्तारित-A"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cirill kibővített – A"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9007,6 +9487,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "सिरिलिक विस्तारित-B"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cirill kibővített – B"
           }
         },
         "it" : {
@@ -9121,6 +9607,12 @@
             "value" : "सिरिलिक विस्तारित-C"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cirill kibővített – C"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9231,6 +9723,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "सिरिलिक विस्तारित-D"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cirill kibővített – D"
           }
         },
         "it" : {
@@ -9345,6 +9843,12 @@
             "value" : "सिरिलिक पूरक"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cirill kiegészítés"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9455,6 +9959,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "डेसरेट"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Deseret"
           }
         },
         "it" : {
@@ -9569,6 +10079,12 @@
             "value" : "देवनागरी"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dévanágari"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9679,6 +10195,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "देवनागरी विस्तारित"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dévanágari kibővített"
           }
         },
         "it" : {
@@ -9793,6 +10315,12 @@
             "value" : "देवनागरी विस्तारित-A"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dévanágari kibővített – A"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9903,6 +10431,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "डिंगबैट्स"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Grafikus jelek"
           }
         },
         "it" : {
@@ -10017,6 +10551,12 @@
             "value" : "डाइव्स अकुरू"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dives Akuru"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10127,6 +10667,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "डोगरा"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dogra"
           }
         },
         "it" : {
@@ -10241,6 +10787,12 @@
             "value" : "डॉमिनो टाइल्स"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dominók"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10351,6 +10903,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "डुप्लोयन"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Duploy"
           }
         },
         "it" : {
@@ -10465,6 +11023,12 @@
             "value" : "आरंभिक शाही क्यूनीफ़ॉर्म"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Korai dinasztiabeli ékírás"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10575,6 +11139,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "मिस्री हाइरोग्लिफ़्स फ़ॉर्मैट कंट्रोल"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Egyiptomi hieroglifa formátumú vezérlők"
           }
         },
         "it" : {
@@ -10689,6 +11259,12 @@
             "value" : "मिस्री हाइरोग्लिफ़्स"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Egyiptomi hieroglifák"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10799,6 +11375,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "मिस्री हाइरोग्लिफ़्स विस्तारित-A"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Egyiptomi kibővített hieroglifák – A"
           }
         },
         "it" : {
@@ -10913,6 +11495,12 @@
             "value" : "एल्बासान"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Elbasan"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11023,6 +11611,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "एलामेयस"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Elymaic"
           }
         },
         "it" : {
@@ -11137,6 +11731,12 @@
             "value" : "इमोटिकॉन्स"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hangulatjelek"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11247,6 +11847,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "बंद अल्फ़ान्यूमैरिक पूरक"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Befoglalt alfanumerikus jelek kiegészítés"
           }
         },
         "it" : {
@@ -11361,6 +11967,12 @@
             "value" : "बंद अल्फ़ान्यूमैरिक"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Befoglalt alfanumerikus"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11471,6 +12083,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "बंद CJK अक्षर और महीने"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Befoglalt kínai, japán és koreai betűk és hónapok"
           }
         },
         "it" : {
@@ -11585,6 +12203,12 @@
             "value" : "बंद आइडियोग्राफ़िक पूरक"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Befoglalt ideogrammatikus jelek kiegészítés"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11695,6 +12319,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ईथिओपिक"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Etióp"
           }
         },
         "it" : {
@@ -11809,6 +12439,12 @@
             "value" : "इथियोपिक विस्तारित"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Etióp kibővített"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11919,6 +12555,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "इथियोपिक विस्तारित-A"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Etióp kibővített (A)"
           }
         },
         "it" : {
@@ -12033,6 +12675,12 @@
             "value" : "इथियोपिक विस्तारित-B"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Etióp kibővített – B"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12143,6 +12791,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "इथियोपिक पूरक"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Etióp kiegészítés"
           }
         },
         "it" : {
@@ -12257,6 +12911,12 @@
             "value" : "गैरे"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Garay"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12367,6 +13027,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "सामान्य विराम चिह्न"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Általános írásjelek"
           }
         },
         "it" : {
@@ -12481,6 +13147,12 @@
             "value" : "ज्यामितीय आकृतियाँ"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Geometriai formák"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12591,6 +13263,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ज्यामितीय आकृतियाँ विस्तारित"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bővített geometriai alakzatok"
           }
         },
         "it" : {
@@ -12705,6 +13383,12 @@
             "value" : "जॉर्जियन"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Grúz"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12815,6 +13499,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "जॉर्जियन विस्तारित"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Grúz kibővített"
           }
         },
         "it" : {
@@ -12929,6 +13619,12 @@
             "value" : "जॉर्जियन पूरक"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Grúz kiegészítés"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13039,6 +13735,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ग्लेगोलिटिक"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Glagolitikus"
           }
         },
         "it" : {
@@ -13153,6 +13855,12 @@
             "value" : "ग्लैगोलिटिक पूरक"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Glagolitikus kiegészítés"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13263,6 +13971,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "गॉथिक"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gót"
           }
         },
         "it" : {
@@ -13377,6 +14091,12 @@
             "value" : "ग्रन्थ"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Grantha"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13487,6 +14207,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "यूनानी और कॉप्टिक"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Görög és kopt"
           }
         },
         "it" : {
@@ -13601,6 +14327,12 @@
             "value" : "यूनानी विस्तारित"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Görög kibővített"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13711,6 +14443,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "गुजराती"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gudzsarati"
           }
         },
         "it" : {
@@ -13825,6 +14563,12 @@
             "value" : "गुंजला गोंडी"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gunjala Gondi"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13935,6 +14679,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "गुरमुखी"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gurmuki"
           }
         },
         "it" : {
@@ -14049,6 +14799,12 @@
             "value" : "गुरुंग खेमा"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gurung Khema"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14159,6 +14915,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "अर्द्धचौड़ाई और पूर्ण चौड़ाई रूप"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Keskeny és teljes szélességű alakok"
           }
         },
         "it" : {
@@ -14273,6 +15035,12 @@
             "value" : "हंगुल संगतता जामो"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hangul-kompatibilis Jamo"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14383,6 +15151,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "हंगुल जामो"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hangul Jamo"
           }
         },
         "it" : {
@@ -14497,6 +15271,12 @@
             "value" : "हंगुल जामो विस्तारित-A"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hangul Jamo kibővített – A"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14607,6 +15387,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "हंगुल जामो विस्तारित-B"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hangul Jamo kibővített – B"
           }
         },
         "it" : {
@@ -14721,6 +15507,12 @@
             "value" : "हंगुल सिलेबल"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hangul szótagok"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14831,6 +15623,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "हनीफ़ी रोहिंग्या"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hanifi Rohingja"
           }
         },
         "it" : {
@@ -14945,6 +15743,12 @@
             "value" : "हानुनू"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hanunoo"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15055,6 +15859,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "हातरन"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hatra"
           }
         },
         "it" : {
@@ -15169,6 +15979,12 @@
             "value" : "हिब्रू"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Héber"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15279,6 +16095,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "उच्च निजी उपयोग सरोगेट"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Felső felhasználói helyettesítő párok"
           }
         },
         "it" : {
@@ -15393,6 +16215,12 @@
             "value" : "उच्च सरोगेट"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Felső helyettesítő párok"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15503,6 +16331,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "हिरागाना"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hiragana"
           }
         },
         "it" : {
@@ -15617,6 +16451,12 @@
             "value" : "आइडियोग्राफ़िक विवरण वर्ण"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ideogrammatikus leíró karakterek"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15727,6 +16567,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "आइडियोग्राफ़िक चिह्न और विरामचिह्र"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ideogrammatikus szimbólumok és írásjelek"
           }
         },
         "it" : {
@@ -15841,6 +16687,12 @@
             "value" : "शाही ऐरेमेक"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Birodalmi arámi"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15951,6 +16803,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "भारतीय सियक संख्या"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Indiai Siyaq számok"
           }
         },
         "it" : {
@@ -16065,6 +16923,12 @@
             "value" : "इंस्क्रिपश्नल पाहलवी"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Feliratos pahlavi"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -16175,6 +17039,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "इंस्क्रिपश्नल पार्थियन"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Feliratos párthus"
           }
         },
         "it" : {
@@ -16289,6 +17159,12 @@
             "value" : "IPA एक्सटेंशन"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "IPA-kiterjesztések"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -16399,6 +17275,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "जावानीस"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jávai"
           }
         },
         "it" : {
@@ -16513,6 +17395,12 @@
             "value" : "कैथी"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kaithi"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -16623,6 +17511,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ककतोविक अंक"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kaktovik számok"
           }
         },
         "it" : {
@@ -16737,6 +17631,12 @@
             "value" : "काना विस्तारित-A"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kana kibővített – A"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -16847,6 +17747,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "काना विस्तारित-B"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kana kibővített – B"
           }
         },
         "it" : {
@@ -16961,6 +17867,12 @@
             "value" : "काना पूरक"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kana kiegészítés"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -17071,6 +17983,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "कानबुन"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kanbun"
           }
         },
         "it" : {
@@ -17185,6 +18103,12 @@
             "value" : "कांग्सी मूलशब्द"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kangxi szótövek"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -17295,6 +18219,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "कन्नड़"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kannada"
           }
         },
         "it" : {
@@ -17409,6 +18339,12 @@
             "value" : "काताकाना"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Katakana"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -17519,6 +18455,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "काताकाना फ़ोनेटिक्स एक्सटेंशन"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Katakana fonetikus kiegészítések"
           }
         },
         "it" : {
@@ -17633,6 +18575,12 @@
             "value" : "कावी"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kavi"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -17743,6 +18691,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "कायाह ली"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kajah li"
           }
         },
         "it" : {
@@ -17857,6 +18811,12 @@
             "value" : "खारोशथी"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kharoshthi"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -17967,6 +18927,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "किडन लघु लिपि"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Khitan kisbetűk"
           }
         },
         "it" : {
@@ -18081,6 +19047,12 @@
             "value" : "खमेर"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kambodzsai"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -18191,6 +19163,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "खमेर चिह्न"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kambodzsai szimbólumok"
           }
         },
         "it" : {
@@ -18305,6 +19283,12 @@
             "value" : "खोजकी"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Khojki"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -18415,6 +19399,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "खुदाबादी"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Khudawadi"
           }
         },
         "it" : {
@@ -18539,6 +19529,12 @@
             "value" : "लाओ"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lao"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -18649,6 +19645,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "लैटिन विस्तारित अतिरिक्त"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Latin kibővített – További"
           }
         },
         "it" : {
@@ -18763,6 +19765,12 @@
             "value" : "लैटिन विस्तारित-A"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Latin kibővített – A"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -18873,6 +19881,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "लैटिन विस्तारित-B"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Latin kibővített – B"
           }
         },
         "it" : {
@@ -18987,6 +20001,12 @@
             "value" : "लैटिन विस्तारित-C"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Latin kibővített – C"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -19097,6 +20117,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "लैटिन विस्तारित-D"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Latin kibővített – D"
           }
         },
         "it" : {
@@ -19211,6 +20237,12 @@
             "value" : "लैटिन विस्तारित-E"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Latin kibővített – E"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -19321,6 +20353,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "लैटिन विस्तारित-F"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Latin kibővített – F"
           }
         },
         "it" : {
@@ -19435,6 +20473,12 @@
             "value" : "लैटिन विस्तारित-G"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Latin kibővített – G"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -19545,6 +20589,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "लैटिन-1 पूरक"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Latin-1 kiegészítés"
           }
         },
         "it" : {
@@ -19659,6 +20709,12 @@
             "value" : "लेप्चा"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lepcha"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -19769,6 +20825,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "वर्णसदृश चिह्न"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Betűszerű szimbólumok"
           }
         },
         "it" : {
@@ -19883,6 +20945,12 @@
             "value" : "लिम्बू"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Limbu"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -19993,6 +21061,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "लीनियर A"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lineáris A"
           }
         },
         "it" : {
@@ -20107,6 +21181,12 @@
             "value" : "लीनियर B आइडियोग्राम"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lineáris B képírásjelek"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -20217,6 +21297,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "लीनियर B सिलेबरी"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lineáris B szótagírás"
           }
         },
         "it" : {
@@ -20331,6 +21417,12 @@
             "value" : "लीसु"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lisu"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -20441,6 +21533,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "लिसु पूरक"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lisu kiegészítés"
           }
         },
         "it" : {
@@ -20555,6 +21653,12 @@
             "value" : "निम्न सरोगेट"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Alsó helyettesítő párok"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -20665,6 +21769,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "लिशियन"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Líciai"
           }
         },
         "it" : {
@@ -20779,6 +21889,12 @@
             "value" : "लिडियन"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lídiai"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -20889,6 +22005,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "महाजनी"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mahajani"
           }
         },
         "it" : {
@@ -21003,6 +22125,12 @@
             "value" : "माहजोंग टाइल"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Madzsong dominók"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -21113,6 +22241,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "मकस्सर"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Makasszár"
           }
         },
         "it" : {
@@ -21227,6 +22361,12 @@
             "value" : "मलयालम"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Malajálam"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -21337,6 +22477,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "मेंडाइक"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mandeus"
           }
         },
         "it" : {
@@ -21451,6 +22597,12 @@
             "value" : "मेनिचाएन"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Manichaean"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -21561,6 +22713,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "मार्चेन"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Marchen"
           }
         },
         "it" : {
@@ -21675,6 +22833,12 @@
             "value" : "मसाराम गोंडी"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Masaram Gondi"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -21785,6 +22949,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "गणित वर्णानुक्रम चिह्न"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Matematikai alfanumerikus szimbólumok"
           }
         },
         "it" : {
@@ -21899,6 +23069,12 @@
             "value" : "गणितीय ऑपरेटर"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Matematikai műveleti jelek"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -22009,6 +23185,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "माया अंक"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Maja számok"
           }
         },
         "it" : {
@@ -22123,6 +23305,12 @@
             "value" : "मेदेफ़ाइद्रिन"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Medefaidrin"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -22233,6 +23421,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "मेइतेइ मायेक"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Meitei mayek"
           }
         },
         "it" : {
@@ -22347,6 +23541,12 @@
             "value" : "मेइतेइ मायेक विस्तारित"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Meetei mayek kiterjesztések"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -22457,6 +23657,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "मेंदे कीकाकुई"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mende Kikakui"
           }
         },
         "it" : {
@@ -22571,6 +23777,12 @@
             "value" : "मेरोटिक प्रवाही"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Meroita kurzív"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -22681,6 +23893,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "मेरोटिक हाइरोग्लिफ़्स"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Meroita hieroglifák"
           }
         },
         "it" : {
@@ -22795,6 +24013,12 @@
             "value" : "मियाओ"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Miaó"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -22905,6 +24129,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "विविध गणित चिह्न-A"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Egyéb matematikai szimbólumok – A"
           }
         },
         "it" : {
@@ -23019,6 +24249,12 @@
             "value" : "विविध गणित चिह्न-B"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Egyéb matematikai szimbólumok – B"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -23129,6 +24365,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "विविध चिह्न"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Egyéb szimbólumok"
           }
         },
         "it" : {
@@ -23243,6 +24485,12 @@
             "value" : "विविध चिह्न और तीर के निशान"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Egyéb szimbólumok és nyilak"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -23353,6 +24601,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "विविध चिह्न और चित्रलिपि"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Egyéb szimbólumok és írásjelek"
           }
         },
         "it" : {
@@ -23477,6 +24731,12 @@
             "value" : "विविध तकनीकी"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Egyéb műszaki szimbólumok"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -23587,6 +24847,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "मॉडिफ़ायर"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Modi"
           }
         },
         "it" : {
@@ -23701,6 +24967,12 @@
             "value" : "मॉडिफ़ायर टोन अक्षर"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Módosító hangjelölő betűk"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -23811,6 +25083,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "मंगोलियाई"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mongol"
           }
         },
         "it" : {
@@ -23925,6 +25203,12 @@
             "value" : "मंगोलियाई पूरक"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mongol kiegészítés"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -24035,6 +25319,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "म्रो"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mro"
           }
         },
         "it" : {
@@ -24149,6 +25439,12 @@
             "value" : "मुल्तानी"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Multani"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -24259,6 +25555,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "संगीतमय चिह्न"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zenei szimbólumok"
           }
         },
         "it" : {
@@ -24373,6 +25675,12 @@
             "value" : "म्यांमार"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mianmari"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -24483,6 +25791,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "म्यांमार विस्तारित-A"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mianmari kibővített – A"
           }
         },
         "it" : {
@@ -24597,6 +25911,12 @@
             "value" : "म्यांमार विस्तारित-B"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mianmari kibővített – B"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -24707,6 +26027,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "म्यांमार विस्तारित-C"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mianmari kibővített – C"
           }
         },
         "it" : {
@@ -24821,6 +26147,12 @@
             "value" : "एन्को"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "N’ko"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -24931,6 +26263,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "नाबातायेन"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nabateus"
           }
         },
         "it" : {
@@ -25045,6 +26383,12 @@
             "value" : "नाग मुंडारी"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nag mundari"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -25155,6 +26499,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "नंदीनागरी"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nandinagari"
           }
         },
         "it" : {
@@ -25269,6 +26619,12 @@
             "value" : "न्यू ताई ल्यू"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Új tai lue"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -25379,6 +26735,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "नेवा"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Newa"
           }
         },
         "it" : {
@@ -25493,6 +26855,12 @@
             "value" : "संख्या रूप"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Számalakok"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -25603,6 +26971,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "नुशु"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nushu"
           }
         },
         "it" : {
@@ -25717,6 +27091,12 @@
             "value" : "नियाकेंग पुआचे ह्माँग"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nyiakeng Puachue Hmong"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -25829,6 +27209,12 @@
             "value" : "ओघम"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ogam"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -25939,6 +27325,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ओल चिकी"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ol chiki"
           }
         },
         "it" : {
@@ -26063,6 +27455,12 @@
             "value" : "ऑल्ड हंगेरियन"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ómagyar"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -26173,6 +27571,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "पुरानी इटली"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Régi olasz"
           }
         },
         "it" : {
@@ -26287,6 +27691,12 @@
             "value" : "पुरानी उत्तरी अरबी"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ősi észak-arábiai"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -26397,6 +27807,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ओल्ड परमिक"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ópermi"
           }
         },
         "it" : {
@@ -26511,6 +27927,12 @@
             "value" : "पुरानी फारसी"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Óperzsa"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -26621,6 +28043,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "पुरानी सोग्डिएन"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ószogd"
           }
         },
         "it" : {
@@ -26735,6 +28163,12 @@
             "value" : "पुरानी दक्षिणी अरबी"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ősi dél-arábiai"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -26845,6 +28279,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "पुरानी तुर्की"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ótörök"
           }
         },
         "it" : {
@@ -26959,6 +28399,12 @@
             "value" : "ओल्ड उईग़ूर"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Óujgur"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -27069,6 +28515,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ऑप्टिकल कैरेक्टर रिकॉग्निशन"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Optikai karakterfelismerés"
           }
         },
         "it" : {
@@ -27183,6 +28635,12 @@
             "value" : "ओडिया"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Orija"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -27293,6 +28751,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ऑर्नामेंटल डिंगबैट्स"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Díszes grafikus jelek"
           }
         },
         "it" : {
@@ -27407,6 +28871,12 @@
             "value" : "ओसेज"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Oszázs"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -27517,6 +28987,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ओस्मान्या"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Oszmán"
           }
         },
         "it" : {
@@ -27631,6 +29107,12 @@
             "value" : "उस्मानी सियक संख्या"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Oszmán Siyaq számok"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -27741,6 +29223,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "पाहो ह्मोन्ग"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pahawh Hmong"
           }
         },
         "it" : {
@@ -27855,6 +29343,12 @@
             "value" : "पामीरिन"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Palmürai"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -27965,6 +29459,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "पाउ सिन हाउ"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pau Cin Hau"
           }
         },
         "it" : {
@@ -28079,6 +29579,12 @@
             "value" : "फाग्स-पा"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Phagspa"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -28189,6 +29695,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "फ़ेसटॉस डिस्क"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Phaisztosz lemez"
           }
         },
         "it" : {
@@ -28303,6 +29815,12 @@
             "value" : "फोनिशियन"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Föníciai"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -28413,6 +29931,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "फ़ोनेटिक एक्सटेंशन"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fonetikus kiegészítések"
           }
         },
         "it" : {
@@ -28527,6 +30051,12 @@
             "value" : "फ़ोनेटिक एक्सटेंशन पूरक"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fonetikus kiegészítések bővítménye"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -28637,6 +30167,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ताश के पत्ते"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kártyák"
           }
         },
         "it" : {
@@ -28751,6 +30287,12 @@
             "value" : "निजी उपयोग क्षेत्र"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Felhasználói karakterek területe"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -28861,6 +30403,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "सॉल्टर पाहलवी"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Psalter Pahlavi"
           }
         },
         "it" : {
@@ -28975,6 +30523,12 @@
             "value" : "रीजांग"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Redzsang"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -29085,6 +30639,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "रूमी अंक चिह्न"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rumi számjegyek"
           }
         },
         "it" : {
@@ -29199,6 +30759,12 @@
             "value" : "रूनिक"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Runikus"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -29309,6 +30875,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "समरिटन"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Szamaritán"
           }
         },
         "it" : {
@@ -29423,6 +30995,12 @@
             "value" : "सौराष्ट्र"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Szaurastra"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -29533,6 +31111,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "शारदा"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sarada"
           }
         },
         "it" : {
@@ -29657,6 +31241,12 @@
             "value" : "शावियान"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Shaw ábécé"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -29769,6 +31359,12 @@
             "value" : "शॉर्टहेंड फ़ॉर्मैट कंट्रोल"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gyorsírásformátum vezérlői"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -29879,6 +31475,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "सिद्धम"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Siddham"
           }
         },
         "it" : {
@@ -30003,6 +31605,12 @@
             "value" : "सिंहली"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Szingaléz"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -30113,6 +31721,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "सिंहली पुरातन संख्याएँ"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Szingaléz archaikus számok"
           }
         },
         "it" : {
@@ -30227,6 +31841,12 @@
             "value" : "लघु रूप भिन्नता"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kis méretű változatok"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -30337,6 +31957,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "लघु काना एक्सटेंशन"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kis kana kibővített"
           }
         },
         "it" : {
@@ -30451,6 +32077,12 @@
             "value" : "सोग्डिएन"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Szogd"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -30561,6 +32193,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "सोरा सोम्पेंग"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sora Sompeng"
           }
         },
         "it" : {
@@ -30675,6 +32313,12 @@
             "value" : "सोयोंबो"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Szojombo"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -30785,6 +32429,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "रिक्ति मॉडिफ़ायर अक्षर"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Szóközmódosító betűk"
           }
         },
         "it" : {
@@ -30899,6 +32549,12 @@
             "value" : "विशेष"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Speciális"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -31009,6 +32665,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "सूडानी"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Szundanéz"
           }
         },
         "it" : {
@@ -31123,6 +32785,12 @@
             "value" : "सूडानी पूरक"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Szundanéz kiegészítő"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -31233,6 +32901,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "सुनुवार"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sunuwar"
           }
         },
         "it" : {
@@ -31347,6 +33021,12 @@
             "value" : "सुपरस्क्रिप्ट और सबस्क्रिप्ट"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Alsó és felső indexek"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -31457,6 +33137,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "पूरक तीर के निशान-A"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kiegészítő nyilak – A"
           }
         },
         "it" : {
@@ -31571,6 +33257,12 @@
             "value" : "पूरक तीर के निशान-B"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kiegészítő nyilak – B"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -31681,6 +33373,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "पूरक तीर के निशान-C"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kiegészítő nyilak – C"
           }
         },
         "it" : {
@@ -31795,6 +33493,12 @@
             "value" : "सप्लीमेंटल मैथ ऑपरेटर"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kiegészítő matematikai műveleti jelek"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -31905,6 +33609,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "पूरक विराम चिह्न"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kiegészítő írásjelek"
           }
         },
         "it" : {
@@ -32019,6 +33729,12 @@
             "value" : "पूरक चिह्न और चित्रलिपि"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kiegészítő szimbólumok és írásjelek"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -32129,6 +33845,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "पूरक निजी उपयोग क्षेत्र-A"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Felhasználói karakterek területének kiegészítése – A"
           }
         },
         "it" : {
@@ -32243,6 +33965,12 @@
             "value" : "पूरक निजी उपयोग क्षेत्र-B"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Felhasználói karakterek területének kiegészítése – B"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -32353,6 +34081,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "सटन SignWriting"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sutton SignWriting"
           }
         },
         "it" : {
@@ -32467,6 +34201,12 @@
             "value" : "सिलोती नागरी"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sylheti nagári"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -32579,6 +34319,12 @@
             "value" : "चिह्न और चित्रलिपि विस्तारित-A"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Szimbólumok és piktogrammok, kibővített – A"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -32689,6 +34435,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "लेगसी कंप्यूटिंग के लिए चिह्न"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Régi számítástechnikai szimbólumok"
           }
         },
         "it" : {
@@ -32813,6 +34565,12 @@
             "value" : "सिरियेक"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Szíriai"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -32923,6 +34681,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "सिरियक पूरक"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Szír kiegészítés"
           }
         },
         "it" : {
@@ -33037,6 +34801,12 @@
             "value" : "टैगलॉग"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tagalog"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -33147,6 +34917,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "तगबन्वा"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tagbanwa"
           }
         },
         "it" : {
@@ -33261,6 +35037,12 @@
             "value" : "टैग"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Címkék"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -33371,6 +35153,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ताई ली"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dai"
           }
         },
         "it" : {
@@ -33485,6 +35273,12 @@
             "value" : "ताई थाम"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tai Tham"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -33597,6 +35391,12 @@
             "value" : "ताई विएत"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tai Viet"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -33707,6 +35507,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ताई ज़ुआन जिंग चिह्न"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tai Xuan Jing szimbólumok"
           }
         },
         "it" : {
@@ -33837,6 +35643,12 @@
             "value" : "टकरी"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Takri"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -33947,6 +35759,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "तमिल"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tamil"
           }
         },
         "it" : {
@@ -34061,6 +35879,12 @@
             "value" : "तमिल पूरक"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tamil kiegészítés"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -34171,6 +35995,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "तांग्सा"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tangsza"
           }
         },
         "it" : {
@@ -34285,6 +36115,12 @@
             "value" : "टंगुट"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tangut"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -34395,6 +36231,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "टंगुट घटक"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tangut komponensek"
           }
         },
         "it" : {
@@ -34519,6 +36361,12 @@
             "value" : "टंगुट पूरक"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tangut kiegészítés"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -34629,6 +36477,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "तेलुगू"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Telugu"
           }
         },
         "it" : {
@@ -34743,6 +36597,12 @@
             "value" : "थाना"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Thaana"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -34853,6 +36713,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "थाई"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Thai"
           }
         },
         "it" : {
@@ -34967,6 +36833,12 @@
             "value" : "तिब्बती"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tibeti"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -35077,6 +36949,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "तिफ़िनाघ"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Berber"
           }
         },
         "it" : {
@@ -35191,6 +37069,12 @@
             "value" : "तिरहुता"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tirhuta"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -35301,6 +37185,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "टोधरी"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Todhri"
           }
         },
         "it" : {
@@ -35441,6 +37331,12 @@
             "value" : "परिवहन और नक़्शा चिह्न"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Szállítási és térképszimbólumok"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -35551,6 +37447,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "तुलू-तिगालारी"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tulu-Tigalari"
           }
         },
         "it" : {
@@ -35665,6 +37567,12 @@
             "value" : "युगारिटिक"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ugari"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -35775,6 +37683,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "यूनिफ़ाइड कैनेडियन एबोरिजनल सिलेबिक्स"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Egyesített kanadai őslakos jelek"
           }
         },
         "it" : {
@@ -35889,6 +37803,12 @@
             "value" : "यूनिफ़ाइड कैनेडियन एबोरिजनल सिलेबिक्स विस्तारित"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Egyesített kanadai őslakos jelek kibővített változata"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -35999,6 +37919,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "यूनिफ़ाइड कैनेडियन एबोरिजनल सिलेबिक्स विस्तारित-A"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Egyesített kanadai őslakos jelek kibővített változata – A"
           }
         },
         "it" : {
@@ -36113,6 +38039,12 @@
             "value" : "वाई"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vai"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -36223,6 +38155,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "भिन्नता चयनकर्ता"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Változatválasztók"
           }
         },
         "it" : {
@@ -36337,6 +38275,12 @@
             "value" : "भिन्नता चयनकर्ता पूरक"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Változatválasztók kiegészítése"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -36447,6 +38391,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "वेदिक एक्सटेंशन"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Védikus kiegészítések"
           }
         },
         "it" : {
@@ -36561,6 +38511,12 @@
             "value" : "लंबवत रूप"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Függőleges alakok"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -36671,6 +38627,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "विथककी"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vithkuqi"
           }
         },
         "it" : {
@@ -36785,6 +38747,12 @@
             "value" : "वान्चो"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wancho"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -36895,6 +38863,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "वारंग सिटी"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Warang Citi"
           }
         },
         "it" : {
@@ -37009,6 +38983,12 @@
             "value" : "यज़ीदी"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Yezidi"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -37119,6 +39099,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Yi मूलशब्द"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ji szótövek"
           }
         },
         "it" : {
@@ -37233,6 +39219,12 @@
             "value" : "Yi सिलेबल"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ji szótagok"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -37343,6 +39335,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "यिजिंग हेक्साग्राम चिह्न"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Yijing hatszögszimbólumok"
           }
         },
         "it" : {
@@ -37457,6 +39455,12 @@
             "value" : "जनाबज़ार स्क्वेयर"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zanabazar – négyzet"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -37567,6 +39571,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "अज़्नामेनी संगीतमय चिह्नांकन"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Krjuki-notáció"
           }
         },
         "it" : {
