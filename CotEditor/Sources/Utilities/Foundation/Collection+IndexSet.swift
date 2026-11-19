@@ -44,7 +44,7 @@ extension RangeReplaceableCollection where Index == Int {
     /// - Returns: The elements at `indexes`.
     func elements(at indexes: IndexSet) -> [Element] {
         
-        assert((indexes.max() ?? .max) <= self.endIndex)
+        assert(indexes.last.map { $0 <= self.endIndex } ?? true)
         
         return indexes
             .filter { $0 < self.endIndex }

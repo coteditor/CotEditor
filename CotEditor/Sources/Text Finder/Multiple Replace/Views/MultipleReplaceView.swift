@@ -660,7 +660,7 @@ extension MultipleReplaceViewController: NSTableViewDataSource {
         // obtain original rows from pasteboard
         guard let sourceRows = info.draggingPasteboard.rows else { return false }
         
-        let destinationRow = row - sourceRows.count(in: 0...row)  // real insertion point after removing items to move
+        let destinationRow = row - sourceRows.count(in: 0..<row)  // real insertion point after removing items to move
         let destinationRows = IndexSet(destinationRow..<(destinationRow + sourceRows.count))
         
         self.moveReplacements(from: sourceRows, to: destinationRows)
