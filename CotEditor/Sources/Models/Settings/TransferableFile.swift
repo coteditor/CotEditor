@@ -33,8 +33,6 @@ protocol TransferableFile: Transferable, Identifiable {
     
     var name: String { get }
     var url: URL { get }
-    
-    init(name: String, url: URL)
 }
 
 
@@ -45,17 +43,8 @@ extension TransferableFile {
     
     static var transferRepresentation: some TransferRepresentation {
         
-        FileRepresentation(contentType: Self.fileType) { item in
-            return SentTransferredFile(item.url)
-            
-        } importing: { received throws -> Self in
-            let name = received.file.deletingPathExtension().lastPathComponent
-            let destination = FileManager.default.temporaryDirectory
-                .appendingPathComponent(UUID().uuidString)
-                .appendingPathExtension(received.file.pathExtension)
-            try FileManager.default.copyItem(at: received.file, to: destination)
-            
-            return Self(name: name, url: destination)
+        FileRepresentation(exportedContentType: Self.fileType) { (item: Self) in
+            SentTransferredFile(item.url)
         }
         .suggestedFileName(\.name)
     }
