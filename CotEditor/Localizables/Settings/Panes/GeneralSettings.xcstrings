@@ -1129,6 +1129,12 @@
             "value" : "यहाँ से इंपोर्ट करें"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Importálás innen:"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
