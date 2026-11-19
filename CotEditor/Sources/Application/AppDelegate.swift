@@ -520,6 +520,13 @@ extension Logger {
         SnippetManager.shared.menu = self.snippetMenu!
         ScriptManager.shared.menu = self.scriptMenu!
         
+        // name the Script menu by its title for VoiceOver, instead of the description of its image
+        if let scriptMenu = self.scriptMenu,
+           let menuItem = scriptMenu.supermenu?.items.first(where: { $0.submenu === scriptMenu })
+        {
+            menuItem.setAccessibilityTitle(menuItem.title)
+        }
+        
         // build Unicode normalization menu items
         self.normalizationMenu?.items = (UnicodeNormalizationForm.standardForms + [nil] +
                                          UnicodeNormalizationForm.modifiedForms)
