@@ -953,6 +953,8 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
             // Change the font in characters.md to reproduce this issue (2022-05, macOS 12)
             super.font = font
             self.typingAttributes[.font] = font
+            
+            self.invalidateRestorableState()
         }
     }
     
