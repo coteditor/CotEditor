@@ -23,6 +23,7 @@
 
 - Fix an issue where the “Detect indent style on document opening” option did not work.
 - Fix an issue where a new split editor did not inherit the font and indentation settings changed in the original editor.
+- Fix an issue where the font and indentation settings changed in a document were not restored after relaunching the app.
 - Fix an issue where Keyboard Maestro and other accessibility tools could not find the Text menu.
 - Fix an issue in the file browser where the item with the old name remained after changing only the capitalization of its name.
 - Fix an issue in the file browser where changes were no longer reflected after renaming or moving the opened folder or its subfolders.

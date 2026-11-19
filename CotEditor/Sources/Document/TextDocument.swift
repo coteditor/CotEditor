@@ -209,6 +209,19 @@ extension NSTextView: EditorCounter.Source { }
     }
     
     
+    override func restoreWindow(withIdentifier identifier: NSUserInterfaceItemIdentifier, state: NSCoder, completionHandler: @escaping @Sendable (NSWindow?, (any Error)?) -> Void) {
+        
+        // apply the syntax before making the window so that the mode applied afterward does not override the restored editor states
+        if let syntaxName = state.decodeObject(of: NSString.self, forKey: SerializationKey.syntax) as? String,
+           (try? SyntaxManager.shared.setting(name: syntaxName)) != nil
+        {
+            self.setSyntax(name: syntaxName)
+        }
+        
+        super.restoreWindow(withIdentifier: identifier, state: state, completionHandler: completionHandler)
+    }
+    
+    
     // MARK: Document Methods
     
     override nonisolated static var autosavesInPlace: Bool {
