@@ -29,6 +29,20 @@ import Testing
 
 struct CollectionTests {
     
+    @Test func removeFirst() {
+        
+        var array = ["a", "b", "c", "b"]
+        
+        let index = array.removeFirst("b")
+        #expect(index == 1)
+        #expect(array == ["a", "c", "b"])
+        
+        let missingIndex = array.removeFirst("x")
+        #expect(missingIndex == nil)
+        #expect(array == ["a", "c", "b"])
+    }
+    
+    
     @Test func appendUnique() {
         
         var array = [0, 1, 2, 3, 4]
@@ -44,6 +58,22 @@ struct CollectionTests {
         
         array.appendUnique(6, maximum: 3)
         #expect(array == [0, 7, 6])
+    }
+    
+    
+    @Test func safeSubscript() {
+        
+        let array = [0, 1, 2]
+        
+        #expect(array[safe: 0] == 0)
+        #expect(array[safe: 2] == 2)
+        #expect(array[safe: 3] == nil)
+        #expect(array[safe: -1] == nil)
+        
+        let slice = array[1...]
+        
+        #expect(slice[safe: 0] == nil)
+        #expect(slice[safe: 1] == 1)
     }
     
     
