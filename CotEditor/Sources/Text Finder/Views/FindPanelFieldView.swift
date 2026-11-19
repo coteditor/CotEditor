@@ -343,6 +343,7 @@ private struct FindTextField: NSViewRepresentable {
         textView.allowsUndo = true
         textView.delegate = context.coordinator
         textView.setValue(String(localized: self.prompt), forKey: "placeholderString")  // private property in NSTextView
+        textView.setAccessibilityLabel(String(localized: self.prompt))
         textView.action = self.action
         
         let scrollView = SynchronizedScrollView()
