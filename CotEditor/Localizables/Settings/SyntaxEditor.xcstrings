@@ -1164,7 +1164,7 @@
         },
         "hu" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Kezdet"
           }
         },
@@ -1402,7 +1402,7 @@
         },
         "hu" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Blokkhatárolók:"
           }
         },
@@ -1759,7 +1759,7 @@
         },
         "hu" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Karakterhatárolók:"
           }
         },
@@ -2116,7 +2116,7 @@
         },
         "hu" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Határolók"
           }
         },
@@ -2472,7 +2472,7 @@
         },
         "hu" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Címminta"
           }
         },
@@ -2590,7 +2590,7 @@
         },
         "hu" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Terjesztési URL:"
           }
         },
@@ -2709,7 +2709,7 @@
         },
         "hu" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Vég"
           }
         },
@@ -2947,7 +2947,7 @@
         },
         "hu" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Escape-karakter"
           }
         },
@@ -3541,7 +3541,7 @@
         },
         "hu" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Kiemelés"
           }
         },
@@ -3779,7 +3779,7 @@
         },
         "hu" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Ha itt nincs megadva szó, a kiegészítés szavai a kiemelési beállításokból készülnek."
           }
         },
@@ -4964,7 +4964,7 @@
         },
         "hu" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Csak a sor elején"
           }
         },
@@ -5320,7 +5320,7 @@
         },
         "hu" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Beágyazás"
           }
         },
@@ -6039,7 +6039,7 @@
         },
         "hu" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Reguláris kifejezés"
           }
         },
@@ -6158,7 +6158,7 @@
         },
         "hu" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Karakterlánc-határolók:"
           }
         },
@@ -6651,7 +6651,7 @@
         },
         "hu" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Az escape-karakter csak egyetlen UTF-16 kódegység lehet."
           }
         },
@@ -7514,7 +7514,7 @@
         },
         "hu" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Az itt megadott határolókat a szintaxiskiemelés is használja."
           }
         },
@@ -7633,7 +7633,7 @@
         },
         "hu" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Az értelmezők alapján a szintaxis a dokumentum `#!` fejlécéből állapítható meg."
           }
         },

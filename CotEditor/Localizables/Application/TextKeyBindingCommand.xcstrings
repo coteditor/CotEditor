@@ -1423,7 +1423,7 @@
         },
         "hu" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Mozgás visszafelé egy karakterrel"
           }
         },
@@ -1548,7 +1548,7 @@
         },
         "hu" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Kijelölés kibővítése visszafelé egy karakterrel"
           }
         },
@@ -1798,7 +1798,7 @@
         },
         "hu" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Kijelölés kibővítése lefelé egy sorral"
           }
         },
@@ -1923,7 +1923,7 @@
         },
         "hu" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Mozgás előre egy karakterrel"
           }
         },
@@ -2048,7 +2048,7 @@
         },
         "hu" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Kijelölés kibővítése előre egy karakterrel"
           }
         },
@@ -2173,7 +2173,7 @@
         },
         "hu" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Kijelölés kibővítése balra egy karakterrel"
           }
         },
@@ -2298,7 +2298,7 @@
         },
         "hu" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Kijelölés kibővítése visszafelé egy bekezdéssel"
           }
         },
@@ -2423,7 +2423,7 @@
         },
         "hu" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Kijelölés kibővítése előre egy bekezdéssel"
           }
         },
@@ -2548,7 +2548,7 @@
         },
         "hu" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Kijelölés kibővítése jobbra egy karakterrel"
           }
         },
@@ -2673,7 +2673,7 @@
         },
         "hu" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Mozgás a dokumentum elejére"
           }
         },
@@ -2798,7 +2798,7 @@
         },
         "hu" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Kijelölés kibővítése a dokumentum elejéig"
           }
         },
@@ -2923,7 +2923,7 @@
         },
         "hu" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Mozgás a bekezdés elejére"
           }
         },
@@ -3048,7 +3048,7 @@
         },
         "hu" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Kijelölés kibővítése a bekezdés elejéig"
           }
         },
@@ -3173,7 +3173,7 @@
         },
         "hu" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Mozgás a dokumentum végére"
           }
         },
@@ -3298,7 +3298,7 @@
         },
         "hu" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Kijelölés kibővítése a dokumentum végéig"
           }
         },
@@ -3423,7 +3423,7 @@
         },
         "hu" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Mozgás a bekezdés végére"
           }
         },
@@ -3548,7 +3548,7 @@
         },
         "hu" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Kijelölés kibővítése a bekezdés végéig"
           }
         },
@@ -3673,7 +3673,7 @@
         },
         "hu" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Mozgás a sor bal szélére"
           }
         },
@@ -3798,7 +3798,7 @@
         },
         "hu" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Kijelölés kibővítése a sor bal széléig"
           }
         },
@@ -3923,7 +3923,7 @@
         },
         "hu" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Mozgás a sor jobb szélére"
           }
         },
@@ -4048,7 +4048,7 @@
         },
         "hu" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Kijelölés kibővítése a sor jobb széléig"
           }
         },
@@ -4298,7 +4298,7 @@
         },
         "hu" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Kijelölés kibővítése felfelé egy sorral"
           }
         },
@@ -4548,7 +4548,7 @@
         },
         "hu" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Kijelölés kibővítése visszafelé egy szóval"
           }
         },
@@ -4798,7 +4798,7 @@
         },
         "hu" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Kijelölés kibővítése előre egy szóval"
           }
         },
@@ -5048,7 +5048,7 @@
         },
         "hu" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Kijelölés kibővítése balra egy szóval"
           }
         },
@@ -5298,7 +5298,7 @@
         },
         "hu" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Kijelölés kibővítése jobbra egy szóval"
           }
         },
@@ -5548,7 +5548,7 @@
         },
         "hu" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Kijelölés kibővítése lefelé egy oldallal"
           }
         },
@@ -5798,7 +5798,7 @@
         },
         "hu" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Kijelölés kibővítése felfelé egy oldallal"
           }
         },
@@ -5923,7 +5923,7 @@
         },
         "hu" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Görgetés lefelé egy sorral"
           }
         },
@@ -6048,7 +6048,7 @@
         },
         "hu" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Görgetés felfelé egy sorral"
           }
         },
@@ -6173,7 +6173,7 @@
         },
         "hu" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Görgetés lefelé egy oldallal"
           }
         },
@@ -6298,7 +6298,7 @@
         },
         "hu" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Görgetés felfelé egy oldallal"
           }
         },
@@ -6673,7 +6673,7 @@
         },
         "hu" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Karakterek felcserélése"
           }
         },
@@ -6798,7 +6798,7 @@
         },
         "hu" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Törölt szöveg beillesztése"
           }
         },
