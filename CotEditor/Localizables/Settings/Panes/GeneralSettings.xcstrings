@@ -313,6 +313,12 @@
             "value" : "Wybierz archiwum ustawień…"
           }
         },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Escolher Arquivo de Ajustes…"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1084,6 +1090,119 @@
         }
       }
     },
+    "Import From" : {
+      "comment" : "verb; accessibility menu title; refer to the same expression in Safari",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Importovat"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Importieren von"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Import From"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Importar"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Importer depuis"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "यहाँ से इंपोर्ट करें"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Importa da"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "読み込む"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "가져오기"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Importeer uit"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Importuj"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Importar de"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Импортировать из"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Şuradan İçe Aktar:"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Імпортувати з"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "导入自"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "輸入來源"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "輸入來源"
+          }
+        }
+      }
+    },
     "Inconsistent line endings" : {
       "comment" : "checkbox",
       "localizations" : {
@@ -1276,6 +1395,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Pozostaw kopię w iCloud"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Manter uma Cópia no iCloud"
           }
         },
         "ru" : {
@@ -1510,6 +1635,12 @@
             "value" : "Wczytuję kopie ustawień z iCloud…"
           }
         },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Carregando Cópias de Ajustes do iCloud…"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1627,6 +1758,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Zarządzaj kopiami w iCloud…"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gerenciar Cópias no iCloud…"
           }
         },
         "ru" : {
@@ -2234,6 +2371,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Brak kopii ustawień w iCloud"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nenhuma Cópia dos Ajustes no iCloud"
           }
         },
         "ru" : {
@@ -3200,6 +3343,12 @@
             "value" : "Import i eksport ustawień:"
           }
         },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Importação e exportação de ajustes:"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3428,6 +3577,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Zachowaj kopię tych ustawień, aby inne urządzenia mogły je zaimportować."
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Armazena uma cópia destes ajustes para que outros dispositivos possam importá-la."
           }
         },
         "ru" : {

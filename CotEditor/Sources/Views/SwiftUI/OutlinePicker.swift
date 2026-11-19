@@ -82,6 +82,8 @@ struct OutlinePicker: NSViewRepresentable {
                         menuItem.action = #selector(Coordinator.itemSelected)
                         menuItem.representedObject = item
                         menuItem.attributedTitle = item.attributedTitle(font: font)
+                        menuItem.setAccessibilityTitle(item.title)  // exclude the icon attachment and indent
+                        menuItem.setAccessibilityHelp(item.kind.map { String(localized: $0.label) })
                         menuItem.indentationLevel = item.indent.level ?? 0
                         return menuItem
                     }

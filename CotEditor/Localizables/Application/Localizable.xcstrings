@@ -4193,7 +4193,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "O iCloud Drive Não Está Disponível."
+            "value" : "O iCloud Drive não está disponível."
           }
         },
         "ru" : {
@@ -4314,6 +4314,12 @@
             "value" : "Brak dostępu do wybranej kopii ustawień."
           }
         },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Não foi possível acessar a cópia dos ajustes selecionada."
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4430,6 +4436,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Nie można znaleźć kopii ustawień w iCloud."
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Não foi possível encontrar cópias dos ajustes no iCloud."
           }
         },
         "ru" : {
@@ -15205,6 +15217,12 @@
             "value" : "Połączenie zdalne zostało przerwane. Twoje zmiany nie zostały przesłane."
           }
         },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A conexão remota está desconectada. Suas alterações não foram enviadas."
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15322,6 +15340,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Zapisać zmiany w „%@” na tym Macu?"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Deseja salvar as alterações de “%@” neste Mac?"
           }
         },
         "ru" : {
@@ -15569,6 +15593,12 @@
             "value" : "Zmian nie można już zapisać zdalnie. Aby zachować zmiany, zapisz dokument na tym Macu."
           }
         },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "As alterações não podem mais ser salvas remotamente. Para manter suas alterações, salve o documento neste Mac."
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15688,6 +15718,12 @@
             "value" : "Połączenie zdalne dla „%@” zostało przerwane."
           }
         },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A conexão remota de “%@” foi desconectada."
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15805,6 +15841,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Wybrany port jest już używany."
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A porta já está em uso."
           }
         },
         "ru" : {
@@ -16052,6 +16094,12 @@
             "value" : "Wprowadź numer portu z zakresu od 1 do 65535."
           }
         },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Digite um número de porta entre 1 e 65535."
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -16169,6 +16217,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Plik zdalny jest zbyt duży, aby go otworzyć."
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "O arquivo remoto é grande demais para ser aberto."
           }
         },
         "ru" : {
@@ -16289,6 +16343,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Edycja zdalna obsługuje pliki o rozmiarze do %@."
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A edição remota é compatível com arquivos de até %@."
           }
         },
         "ru" : {
@@ -16660,6 +16720,12 @@
             "value" : "Niektórych plików zdalnych nie udało się otworzyć."
           }
         },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Não foi possível abrir alguns arquivos remotos."
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -16942,6 +17008,24 @@
                 "stringUnit" : {
                   "state" : "translated",
                   "value" : "Pojedyncze polecenie rmate może otworzyć jednocześnie do %lld pliku."
+                }
+              }
+            }
+          }
+        },
+        "pt" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Um único comando rmate pode abrir até %lld arquivo por vez."
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Um único comando rmate pode abrir até %lld arquivos por vez."
                 }
               }
             }

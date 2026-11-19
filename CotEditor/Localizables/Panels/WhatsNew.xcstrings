@@ -201,6 +201,12 @@
             "value" : "Przechowuj w iCloud aktualną kopię swoich ustawień, aby w każdej chwili zaimportować je na innych Twoich Macach."
           }
         },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mantenha uma cópia atualizada dos seus ajustes no iCloud para importá-la nos seus outros Macs a qualquer momento."
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -318,6 +324,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Twoje ustawienia – wystarczy jeden import"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Seus ajustes a uma importação de distância"
           }
         },
         "ru" : {
@@ -439,6 +451,12 @@
             "value" : "Otwieraj pliki na komputerze zdalnym za pomocą `rmate` przez SSH i zapisuj zmiany bezpośrednio na nim."
           }
         },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Abra arquivos de um computador remoto usando o `rmate` via SSH e salve suas alterações diretamente nele."
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -556,6 +574,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Edytuj zdalne pliki bezpośrednio na Twoim Macu"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Edite arquivos remotos diretamente no seu Mac"
           }
         },
         "ru" : {
@@ -677,6 +701,12 @@
             "value" : "Dostosuj skróty do przemieszczania punktu wstawiania, zaznaczania i usuwania tekstu, aby Twoje palce czuły się jak w domu."
           }
         },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Personalize os atalhos para mover o ponto de inserção, selecionar e apagar texto, para que seus dedos se sintam em casa."
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -794,6 +824,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Twoje klawisze, twoje zasady"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Suas teclas, suas regras"
           }
         },
         "ru" : {

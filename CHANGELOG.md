@@ -9,22 +9,18 @@
 - Improve the performance of the file browser when many files in the opened folder change at once.
 - Update the AppleScript, BBCode, CoffeeScript, Dart, Erlang, Fortran, Git Config, INI, jq, JSON, Markdown, Perl, R, reStructuredText, SVG, Tcl, Verilog, XML, DTD, and YAML syntaxes to improve performance and highlighting accuracy.
 - [beta] Optimize regular-expression-based syntax highlighting in large documents.
-- [beta] Update Czech and Polish localizations.
+- [beta] Update Czech, Polish, and Portuguese localizations.
 
 
 ### Fixes
 
+- Fix an issue where Keyboard Maestro and other accessibility tools could not find the Text menu.
 - Fix an issue in the file browser where the item with the old name remained after changing only the capitalization of its name.
 - Fix an issue in the file browser where changes were no longer reflected after renaming or moving the opened folder or its subfolders.
 - Fix an issue in the file browser where both a file and a folder with the same name appeared after one replaced the other.
 - Fix an issue in the file browser where filtering did not work when the folder contained a subfolder that could not be read.
 - Fix an issue in the file browser where the filter results were not updated correctly after files were changed outside the app.
 - [trivial] Fix an issue in the file browser where filtering with only certain combining marks showed all items.
-
-
-### Known Issues
-
-- The text added in CotEditor 7.2.0 is not yet localized in Portuguese.
 
 
 

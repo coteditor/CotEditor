@@ -245,21 +245,21 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
         
         super.viewWillAppear()
         
-        self.outlineView.reloadData()
-        self.invalidateSeparatorVisibility()
-        
+        // apply the changes also while the view was hidden
         self.defaultObservers = [
-            UserDefaults.standard.publisher(for: .fileBrowserShowsHiddenFiles)
+            UserDefaults.standard.publisher(for: .fileBrowserShowsHiddenFiles, initial: true)
                 .sink { [unowned self] showsHiddenFiles in
                     self.showsHiddenFiles = showsHiddenFiles
-                    self.filterTask?.cancel()
                     if self.isFiltering {
+                        self.filterTask?.cancel()
                         self.filterTask = Task { try await self.updateFilter() }
                     } else {
+                        // -> Keep the pending task that ends filtering after the filter field was cleared.
                         self.outlineView.reloadData()
                     }
                 },
         ]
+        self.invalidateSeparatorVisibility()
         
         let scrollView = self.outlineView.enclosingScrollView!
         self.scrollObservers.forEach(NotificationCenter.default.removeObserver)

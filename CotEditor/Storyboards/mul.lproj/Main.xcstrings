@@ -25661,6 +25661,12 @@
             "value" : "Wesprzyj CotEditor darowizną…"
           }
         },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Doe ao CotEditor…"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",

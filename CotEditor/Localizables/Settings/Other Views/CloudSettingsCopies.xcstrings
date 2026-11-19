@@ -456,6 +456,12 @@
             "value" : "Aby zatrzymać zapisywanie kopii, wyłącz opcję „Pozostaw kopię w iCloud” na Macu, z którego pochodzi kopia."
           }
         },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Para deixar de salvar uma cópia, desative “Manter uma Cópia no iCloud” no Mac de origem."
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
