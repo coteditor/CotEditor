@@ -54,7 +54,7 @@ import LineEnding
         
         let source = Source(string: self.testString, selectedRange: NSRange(0..<3))
         
-        let counter = EditorCounter()
+        let counter = EditorCounter(lineRangeCalculator: LineCounter(string: source.string))
         counter.source = { source }
         counter.invalidateContent()
         counter.invalidateSelection()
@@ -72,7 +72,7 @@ import LineEnding
         
         let source = Source(string: self.testString, selectedRange: NSRange(11..<21))
         
-        let counter = EditorCounter()
+        let counter = EditorCounter(lineRangeCalculator: LineCounter(string: source.string))
         defer { counter.cancel() }
         counter.source = { source }
         
@@ -98,7 +98,7 @@ import LineEnding
         
         let source = Source(string: self.testString, selectedRange: NSRange(11..<21))
         
-        let counter = EditorCounter()
+        let counter = EditorCounter(lineRangeCalculator: LineCounter(string: source.string))
         defer { counter.cancel() }
         counter.source = { source }
         counter.updatesAll = true
@@ -126,7 +126,7 @@ import LineEnding
         
         let source = Source(string: "a\r\nb", selectedRange: NSRange(1..<4))
         
-        let counter = EditorCounter()
+        let counter = EditorCounter(lineRangeCalculator: LineCounter(string: source.string))
         defer { counter.cancel() }
         counter.source = { source }
         
@@ -154,10 +154,9 @@ import LineEnding
         let lineCounter = LineCounter(string: string)
         let source = Source(string: string, selectedRange: NSRange(location: string.utf16.count, length: 0))
         
-        let counter = EditorCounter()
+        let counter = EditorCounter(lineRangeCalculator: lineCounter)
         defer { counter.cancel() }
         counter.source = { source }
-        counter.lineRangeCalculator = lineCounter
         
         counter.statusBarRequirements = [.lines]
         
@@ -174,10 +173,9 @@ import LineEnding
         let lineCounter = LineCounter(string: string)
         let source = Source(string: string, selectedRange: NSRange(0..<5))  // "a\n🐕b"
         
-        let counter = EditorCounter()
+        let counter = EditorCounter(lineRangeCalculator: lineCounter)
         defer { counter.cancel() }
         counter.source = { source }
-        counter.lineRangeCalculator = lineCounter
         
         counter.statusBarRequirements = [.lines]
         
@@ -194,10 +192,9 @@ import LineEnding
         let lineCounter = LineCounter(string: string)
         let source = Source(string: string, selectedRange: (string as NSString).range(of: "b"))
         
-        let counter = EditorCounter()
+        let counter = EditorCounter(lineRangeCalculator: lineCounter)
         defer { counter.cancel() }
         counter.source = { source }
-        counter.lineRangeCalculator = lineCounter
         
         counter.statusBarRequirements = [.line]
         

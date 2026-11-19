@@ -132,12 +132,11 @@ extension NSTextView: EditorCounter.Source { }
         
         self.syntaxController = SyntaxController(textStorage: self.textStorage, syntax: Syntax.none, name: SyntaxName.none)
         self.lineEndingScanner = LineEndingScanner(textStorage: self.textStorage, lineEnding: lineEnding)
-        self.counter = EditorCounter()
+        self.counter = EditorCounter(lineRangeCalculator: self.lineEndingScanner)
         
         super.init()
         
         self.counter.source = { [weak self] in self?.textView }
-        self.counter.lineRangeCalculator = self.lineEndingScanner
         
         self.defaultObservers = [
             UserDefaults.standard.publisher(for: .autoLinkDetection, initial: true)

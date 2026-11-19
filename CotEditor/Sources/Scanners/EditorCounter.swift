@@ -85,7 +85,6 @@ import StringUtils
     let result: Result = .init()
     
     var source: () -> any Source? = { nil }
-    var lineRangeCalculator: any LineRangeCalculating?
     
     var updatesAll = false  { didSet { self.updateTypes() } }
     var statusBarRequirements: Types = []  { didSet { self.updateTypes() } }
@@ -95,8 +94,18 @@ import StringUtils
     
     private var types: Types = []
     
+    private let lineRangeCalculator: any LineRangeCalculating
+    
     private var contentTask: Task<Void, any Error>?
     private var selectionTask: Task<Void, any Error>?
+    
+    
+    // MARK: Lifecycle
+    
+    init(lineRangeCalculator: any LineRangeCalculating) {
+        
+        self.lineRangeCalculator = lineRangeCalculator
+    }
     
     
     // MARK: Public Methods
@@ -138,18 +147,7 @@ import StringUtils
                 }
                 
                 if self.types.contains(.lines) {
-                    if let lineRangeCalculator = self.lineRangeCalculator {
-                        self.result.lines.entire = lineRangeCalculator.numberOfLines
-                    } else {
-                        group.addTask {
-                            try Task.checkCancellation()
-                            let count = string.numberOfLines
-                            try await MainActor.run {
-                                try Task.checkCancellation()
-                                self.result.lines.entire = count
-                            }
-                        }
-                    }
+                    self.result.lines.entire = self.lineRangeCalculator.numberOfLines
                 }
                 
                 if self.types.contains(.words) {
@@ -204,18 +202,7 @@ import StringUtils
                 }
                 
                 if self.types.contains(.lines) {
-                    if let lineRangeCalculator = self.lineRangeCalculator {
-                        self.result.lines.selected = lineRangeCalculator.numberOfLines(in: selectedNSRanges)
-                    } else {
-                        group.addTask {
-                            try Task.checkCancellation()
-                            let count = string.numberOfLines(in: selectedRanges)
-                            try await MainActor.run {
-                                try Task.checkCancellation()
-                                self.result.lines.selected = count
-                            }
-                        }
-                    }
+                    self.result.lines.selected = self.lineRangeCalculator.numberOfLines(in: selectedNSRanges)
                 }
                 
                 if self.types.contains(.words) {
@@ -241,18 +228,7 @@ import StringUtils
                 }
                 
                 if self.types.contains(.line) {
-                    if let lineRangeCalculator = self.lineRangeCalculator, let nsLocation = selectedNSRanges.first?.location {
-                        self.result.line = lineRangeCalculator.lineNumber(at: nsLocation)
-                    } else {
-                        group.addTask {
-                            try Task.checkCancellation()
-                            let line = string.lineNumber(at: location)
-                            try await MainActor.run {
-                                try Task.checkCancellation()
-                                self.result.line = line
-                            }
-                        }
-                    }
+                    self.result.line = self.lineRangeCalculator.lineNumber(at: selectedNSRanges.first?.location ?? 0)
                 }
                 
                 if self.types.contains(.column) {
