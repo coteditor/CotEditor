@@ -1006,14 +1006,12 @@ CA
                                                         </connections>
                                                     </menuItem>
                                                     <menuItem title="Convert Alphanumeric Text to Full Width" id="586">
-                                                        <attributedString key="attributedTitle"/>
                                                         <modifierMask key="keyEquivalentModifierMask"/>
                                                         <connections>
                                                             <action selector="exchangeFullwidthRoman:" target="Ady-hI-5gd" id="0zm-yg-bCm"/>
                                                         </connections>
                                                     </menuItem>
                                                     <menuItem title="Convert Alphanumeric Text to Half Width" id="588">
-                                                        <attributedString key="attributedTitle"/>
                                                         <modifierMask key="keyEquivalentModifierMask"/>
                                                         <connections>
                                                             <action selector="exchangeHalfwidthRoman:" target="Ady-hI-5gd" id="U4C-sa-ALD"/>
