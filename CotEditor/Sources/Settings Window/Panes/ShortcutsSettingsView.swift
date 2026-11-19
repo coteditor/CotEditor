@@ -81,7 +81,15 @@ struct ShortcutsSettingsView: View {
                     } label: {
                         EmptyView()
                     }
-                    .pickerStyle(.segmented)
+                    .modifier { container in
+                        if #available(macOS 27, *) {
+                            container
+                                .pickerStyle(.tabs)
+                        } else {
+                            container
+                                .pickerStyle(.segmented)
+                        }
+                    }
                 }
                 .padding(.horizontal)
                 .padding(.vertical, 6)
