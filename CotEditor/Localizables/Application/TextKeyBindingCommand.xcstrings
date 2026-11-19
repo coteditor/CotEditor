@@ -46,6 +46,12 @@
             "value" : "डिलीट"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Törlés"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -163,6 +169,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "संपादन"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Szerkesztés"
           }
         },
         "it" : {
@@ -284,6 +296,12 @@
             "value" : "मूवमेंट"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mozgás"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -401,6 +419,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "स्क्रॉलिंग"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Görgetés"
           }
         },
         "it" : {
@@ -522,6 +546,12 @@
             "value" : "चयन"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kijelölés"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -639,6 +669,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "पंक्ति के आरंभ तक डिलीट करें"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Törlés a sor elejéig"
           }
         },
         "it" : {
@@ -760,6 +796,12 @@
             "value" : "अनुच्छेद के आरंभ तक डिलीट करें"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Törlés a bekezdés elejéig"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -877,6 +919,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "पंक्ति के अंत तक डिलीट करें"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Törlés a sor végéig"
           }
         },
         "it" : {
@@ -998,6 +1046,12 @@
             "value" : "अनुच्छेद के अंत तक डिलीट करें"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Törlés a bekezdés végéig"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1115,6 +1169,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "पिछला शब्द डिलीट करें"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Szó törlése visszafelé"
           }
         },
         "it" : {
@@ -1236,6 +1296,12 @@
             "value" : "अगला शब्द डिलीट करें"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Szó törlése előre"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1353,6 +1419,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "एक वर्ण पीछे जाएँ"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Mozgás visszafelé egy karakterrel"
           }
         },
         "it" : {
@@ -1474,6 +1546,12 @@
             "value" : "चयन बढ़ाते हुए एक वर्ण पीछे जाएँ"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Kijelölés kibővítése visszafelé egy karakterrel"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1591,6 +1669,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "एक पंक्ति नीचे जाएँ"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mozgás lefelé egy sorral"
           }
         },
         "it" : {
@@ -1712,6 +1796,12 @@
             "value" : "चयन बढ़ाते हुए एक पंक्ति नीचे जाएँ"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Kijelölés kibővítése lefelé egy sorral"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1829,6 +1919,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "एक वर्ण आगे जाएँ"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Mozgás előre egy karakterrel"
           }
         },
         "it" : {
@@ -1950,6 +2046,12 @@
             "value" : "चयन बढ़ाते हुए एक वर्ण आगे जाएँ"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Kijelölés kibővítése előre egy karakterrel"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2067,6 +2169,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "चयन बढ़ाते हुए बाएँ जाएँ"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Kijelölés kibővítése balra egy karakterrel"
           }
         },
         "it" : {
@@ -2188,6 +2296,12 @@
             "value" : "चयन बढ़ाते हुए एक अनुच्छेद पीछे जाएँ"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Kijelölés kibővítése visszafelé egy bekezdéssel"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2305,6 +2419,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "चयन बढ़ाते हुए एक अनुच्छेद आगे जाएँ"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Kijelölés kibővítése előre egy bekezdéssel"
           }
         },
         "it" : {
@@ -2426,6 +2546,12 @@
             "value" : "चयन बढ़ाते हुए दाएँ जाएँ"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Kijelölés kibővítése jobbra egy karakterrel"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2543,6 +2669,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "दस्तावेज़ के आरंभ में जाएँ"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Mozgás a dokumentum elejére"
           }
         },
         "it" : {
@@ -2664,6 +2796,12 @@
             "value" : "चयन बढ़ाते हुए दस्तावेज़ के आरंभ में जाएँ"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Kijelölés kibővítése a dokumentum elejéig"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2781,6 +2919,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "अनुच्छेद के आरंभ में जाएँ"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Mozgás a bekezdés elejére"
           }
         },
         "it" : {
@@ -2902,6 +3046,12 @@
             "value" : "चयन बढ़ाते हुए अनुच्छेद के आरंभ में जाएँ"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Kijelölés kibővítése a bekezdés elejéig"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3019,6 +3169,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "दस्तावेज़ के अंत में जाएँ"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Mozgás a dokumentum végére"
           }
         },
         "it" : {
@@ -3140,6 +3296,12 @@
             "value" : "चयन बढ़ाते हुए दस्तावेज़ के अंत में जाएँ"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Kijelölés kibővítése a dokumentum végéig"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3257,6 +3419,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "अनुच्छेद के अंत में जाएँ"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Mozgás a bekezdés végére"
           }
         },
         "it" : {
@@ -3378,6 +3546,12 @@
             "value" : "चयन बढ़ाते हुए अनुच्छेद के अंत में जाएँ"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Kijelölés kibővítése a bekezdés végéig"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3495,6 +3669,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "पंक्ति के बाएँ छोर पर जाएँ"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Mozgás a sor bal szélére"
           }
         },
         "it" : {
@@ -3616,6 +3796,12 @@
             "value" : "चयन बढ़ाते हुए पंक्ति के बाएँ छोर पर जाएँ"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Kijelölés kibővítése a sor bal széléig"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3733,6 +3919,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "पंक्ति के दाएँ छोर पर जाएँ"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Mozgás a sor jobb szélére"
           }
         },
         "it" : {
@@ -3854,6 +4046,12 @@
             "value" : "चयन बढ़ाते हुए पंक्ति के दाएँ छोर पर जाएँ"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Kijelölés kibővítése a sor jobb széléig"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3971,6 +4169,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "एक पंक्ति ऊपर जाएँ"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mozgás felfelé egy sorral"
           }
         },
         "it" : {
@@ -4092,6 +4296,12 @@
             "value" : "चयन बढ़ाते हुए एक पंक्ति ऊपर जाएँ"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Kijelölés kibővítése felfelé egy sorral"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4209,6 +4419,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "एक शब्द पीछे जाएँ"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mozgás visszafelé egy szóval"
           }
         },
         "it" : {
@@ -4330,6 +4546,12 @@
             "value" : "चयन बढ़ाते हुए एक शब्द पीछे जाएँ"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Kijelölés kibővítése visszafelé egy szóval"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4447,6 +4669,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "एक शब्द आगे जाएँ"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mozgás előre egy szóval"
           }
         },
         "it" : {
@@ -4568,6 +4796,12 @@
             "value" : "चयन बढ़ाते हुए एक शब्द आगे जाएँ"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Kijelölés kibővítése előre egy szóval"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4685,6 +4919,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "एक शब्द बाएँ जाएँ"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mozgás balra egy szóval"
           }
         },
         "it" : {
@@ -4806,6 +5046,12 @@
             "value" : "चयन बढ़ाते हुए एक शब्द बाएँ जाएँ"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Kijelölés kibővítése balra egy szóval"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4923,6 +5169,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "एक शब्द दाएँ जाएँ"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mozgás jobbra egy szóval"
           }
         },
         "it" : {
@@ -5044,6 +5296,12 @@
             "value" : "चयन बढ़ाते हुए एक शब्द दाएँ जाएँ"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Kijelölés kibővítése jobbra egy szóval"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5161,6 +5419,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "एक पृष्ठ नीचे जाएँ"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mozgás lefelé egy oldallal"
           }
         },
         "it" : {
@@ -5282,6 +5546,12 @@
             "value" : "चयन बढ़ाते हुए एक पृष्ठ नीचे जाएँ"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Kijelölés kibővítése lefelé egy oldallal"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5399,6 +5669,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "एक पृष्ठ ऊपर जाएँ"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mozgás felfelé egy oldallal"
           }
         },
         "it" : {
@@ -5520,6 +5796,12 @@
             "value" : "चयन बढ़ाते हुए एक पृष्ठ ऊपर जाएँ"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Kijelölés kibővítése felfelé egy oldallal"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5637,6 +5919,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "एक पंक्ति नीचे स्क्रॉल करें"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Görgetés lefelé egy sorral"
           }
         },
         "it" : {
@@ -5758,6 +6046,12 @@
             "value" : "एक पंक्ति ऊपर स्क्रॉल करें"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Görgetés felfelé egy sorral"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5875,6 +6169,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "एक पृष्ठ नीचे स्क्रॉल करें"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Görgetés lefelé egy oldallal"
           }
         },
         "it" : {
@@ -5996,6 +6296,12 @@
             "value" : "एक पृष्ठ ऊपर स्क्रॉल करें"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Görgetés felfelé egy oldallal"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6113,6 +6419,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "दस्तावेज़ के आरंभ तक स्क्रॉल करें"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Görgetés a dokumentum elejére"
           }
         },
         "it" : {
@@ -6234,6 +6546,12 @@
             "value" : "दस्तावेज़ के अंत तक स्क्रॉल करें"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Görgetés a dokumentum végére"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6353,6 +6671,12 @@
             "value" : "कर्सर के आसपास के दो वर्ण आपस में बदलें"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Karakterek felcserélése"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6470,6 +6794,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Yank"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Törölt szöveg beillesztése"
           }
         },
         "it" : {

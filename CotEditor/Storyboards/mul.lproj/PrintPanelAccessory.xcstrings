@@ -47,6 +47,12 @@
             "value" : "पृष्ठभूमि प्रिंट करें"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hátterek nyomtatása"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -165,6 +171,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "फ़ॉन्ट आकार"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Betűméret"
           }
         },
         "it" : {
@@ -287,6 +299,12 @@
             "value" : "हेडर"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fejléc"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -405,6 +423,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "हेडर और फ़ुटर प्रिंट करें"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fejléc és lábléc nyomtatása"
           }
         },
         "it" : {
@@ -527,6 +551,12 @@
             "value" : "पंक्ति संख्याएँ प्रिंट करें"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sorszámok nyomtatása"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -645,6 +675,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "अदृश्य वर्ण प्रिंट करें"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Láthatatlan karakterek nyomtatása"
           }
         },
         "it" : {
@@ -780,6 +816,12 @@
             "value" : "फ़ुटर"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lábléc"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -898,6 +940,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "श्वेत-श्याम"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fekete-fehér"
           }
         },
         "it" : {
@@ -1028,6 +1076,12 @@
           }
         },
         "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "pt"
+          }
+        },
+        "hu" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "pt"
@@ -1177,6 +1231,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "रंग"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Szín"
           }
         },
         "it" : {

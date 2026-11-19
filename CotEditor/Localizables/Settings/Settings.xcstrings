@@ -46,6 +46,12 @@
             "value" : "रूप"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Megjelenés"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -163,6 +169,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "संपादन"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Szerkesztés"
           }
         },
         "it" : {
@@ -284,6 +296,12 @@
             "value" : "फ़ॉर्मैट"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Formátum"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -401,6 +419,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "सामान्य"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Általános"
           }
         },
         "it" : {
@@ -522,6 +546,12 @@
             "value" : "इंटीग्रेशन"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Integráció"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -639,6 +669,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "मोड"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mód"
           }
         },
         "it" : {
@@ -760,6 +796,12 @@
             "value" : "शॉर्टकट"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Billentyűk"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -879,6 +921,12 @@
             "value" : "स्निपेट"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kódrészletek"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -996,6 +1044,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "विंडो"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ablak"
           }
         },
         "it" : {

@@ -40,6 +40,12 @@
             "value" : "%@ पॉइंट"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ pont"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -151,6 +157,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "%@ गुना"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ x"
           }
         },
         "it" : {
@@ -266,6 +278,12 @@
             "value" : "एंटीअलियास"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Élsimítás"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -376,6 +394,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "रूप :"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Megjelenés:"
           }
         },
         "it" : {
@@ -498,6 +522,12 @@
             "value" : "सिस्टम से मिलाएँ"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rendszer szerint"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -615,6 +645,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "डार्क"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sötét"
           }
         },
         "it" : {
@@ -736,6 +772,12 @@
             "value" : "लाइट"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Világos"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -848,6 +890,12 @@
             "value" : "एडिटर अपारदर्शिता :"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Szerkesztő átlátszatlansága:"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -958,6 +1006,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "फ़ॉन्ट आकार"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Betűméret"
           }
         },
         "it" : {
@@ -1073,6 +1127,12 @@
             "value" : "संयुक्ताक्षर"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ligatúrák"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1185,6 +1245,12 @@
             "value" : "पंक्ति ऊँचाई :"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sormagasság:"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1295,6 +1361,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "मोनोस्पेस्ड फ़ॉन्ट :"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rögzített szélességű betűtípus:"
           }
         },
         "it" : {
@@ -1417,6 +1489,12 @@
             "value" : "क्या आप इसे मोनोस्पेस्ड फ़ॉन्ट के लिए उपयोग करना चाहते हैं?"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ezt használja rögzített szélességű betűtípusként?"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1534,6 +1612,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "चयनित फ़ॉन्ट मोनोस्पेस्ड प्रतीत नहीं होता।"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A kiválasztott betűtípus valószínűleg nem rögzített szélességű."
           }
         },
         "it" : {
@@ -1655,6 +1739,12 @@
             "value" : "अपारदर्शी"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Átlátszatlan"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1774,6 +1864,12 @@
             "value" : "पारदर्शी"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Átlátszó"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1885,6 +1981,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "अपारदर्शी"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Átlátszatlan"
           }
         },
         "it" : {
@@ -2000,6 +2102,12 @@
             "value" : "चुनें…"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kiválasztás…"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2112,6 +2220,12 @@
             "value" : "मानक फ़ॉन्ट :"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Szabványos betűtípus:"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2222,6 +2336,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "स्टेटस बार :"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Állapotsor:"
           }
         },
         "it" : {
@@ -2337,6 +2457,12 @@
             "value" : "गुना"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "x"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2448,6 +2574,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "रंगीन"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Színezett"
           }
         },
         "it" : {

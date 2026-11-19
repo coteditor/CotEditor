@@ -39,6 +39,12 @@
             "value" : "पहचान विफल"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A felismerés nem sikerült"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -149,6 +155,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "कोई टेक्स्ट नहीं मिला"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nem található szöveg"
           }
         },
         "it" : {

@@ -46,6 +46,12 @@
             "value" : "कमेंट सीमांककों में स्पेस जोड़ें"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Szóköz hozzáadása a megjegyzésjelekhez"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -157,6 +163,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "टाइप करते समय स्वचालित इंडेंट करें"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Automatikus behúzás gépelés közben"
           }
         },
         "it" : {
@@ -272,6 +284,12 @@
             "value" : "पंक्ति-अंत का खाली स्थान स्वतः हटाएँ"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sorvégi térközök automatikus eltávolítása"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -382,6 +400,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "कमेंट :"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Megjegyzés:"
           }
         },
         "it" : {
@@ -496,6 +520,12 @@
             "value" : "सामग्री पार्स :"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tartalomelemzés:"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -606,6 +636,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "विलंब :"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Késleltetés:"
           }
         },
         "it" : {
@@ -721,6 +757,12 @@
             "value" : "दस्तावेज़ खोलने पर इंडेंट स्टाइल पहचानें"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Behúzásstílus felismerése a dokumentum megnyitásakor"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -832,6 +874,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "चयनित टेक्स्ट के अन्य मिलान हाइलाइट करें"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A kijelölt szöveg előfordulásainak kiemelése"
           }
         },
         "it" : {
@@ -947,6 +995,12 @@
             "value" : "मिलान करने वाले ब्रेस हाइलाइट करें"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Egymáshoz tartozó zárójelek kiemelése"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1058,6 +1112,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "केवल-खाली-स्थान पंक्तियाँ शामिल करके"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A csak térközökből álló sorokban is"
           }
         },
         "it" : {
@@ -1173,6 +1233,12 @@
             "value" : "टैब-की से चयन इंडेंट करें"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kijelölés behúzása a Tab billentyűvel"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1285,6 +1351,12 @@
             "value" : "इंडेंट चौड़ाई :"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Behúzás szélessége:"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1395,6 +1467,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "इंडेंटेशन :"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Behúzás:"
           }
         },
         "it" : {
@@ -1510,6 +1588,12 @@
             "value" : "इंडेंट के बाद कमेंट सीमांकक सम्मिलित करें"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Megjegyzésjelek beszúrása a behúzás után"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1621,6 +1705,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "दस्तावेज़ में URL लिंक करें"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "URL-ek linkekké alakítása a dokumentumban"
           }
         },
         "it" : {
@@ -1736,6 +1826,12 @@
             "value" : "उपयोग को प्राथमिकता दें"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Behúzás ezzel:"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1847,6 +1943,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "सेकंड"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "másodperc"
           }
         },
         "it" : {
@@ -1962,6 +2064,12 @@
             "value" : "स्पेस"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "szóköz"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2073,6 +2181,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "स्पेस"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Szóközök"
           }
         },
         "it" : {
@@ -2188,6 +2302,12 @@
             "value" : "टैब"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tabulátorok"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2298,6 +2418,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "खाली स्थान :"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Térközök:"
           }
         },
         "it" : {

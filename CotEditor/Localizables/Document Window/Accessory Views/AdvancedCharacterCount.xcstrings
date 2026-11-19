@@ -142,6 +142,24 @@
             }
           }
         },
+        "hu" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "*%lld* karakter"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "*%lld* karakter"
+                }
+              }
+            }
+          }
+        },
         "it" : {
           "variations" : {
             "plural" : {
@@ -405,6 +423,12 @@
             "value" : "उन्नत वर्ण गणना…"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Részletes karakterszámlálás…"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -523,6 +547,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "निर्दिष्ट एनकोडिंग से एन्कोड किए गए टेक्स्ट के बाइट गिनें।"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A megadott kódolással kódolt szöveg bájtjait számolja."
           }
         },
         "it" : {
@@ -645,6 +675,12 @@
             "value" : "बाइट"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bájt"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -763,6 +799,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "यूनिकोड में परिभाषित सहज तरीके से गिनें। कई यूनिकोड कोड पॉइंट से बना वर्ण, जैसे इमोजी, एक वर्ण के रूप में गिना जाता है।"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A Unicode által meghatározott, természetes módon számol: a több Unicode-kódpontból álló karakter, például egy emoji, egy karakternek számít."
           }
         },
         "it" : {
@@ -885,6 +927,12 @@
             "value" : "ग्राफ़ीम क्लस्टर"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Grafémaklaszter"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1003,6 +1051,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "यूनिकोड कोड पॉइंट गिनें। UTF-32 गिनने के समान।"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A Unicode-kódpontokat számolja. Ugyanaz, mint az UTF-32 szerinti számolás."
           }
         },
         "it" : {
@@ -1125,6 +1179,12 @@
             "value" : "यूनिकोड स्केलर"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unicode-skalár"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1243,6 +1303,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "यूनिकोड कोड पॉइंट गिनें लेकिन एक सरोगेट जोड़ी को दो वर्णों के रूप में।"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A Unicode-kódpontokat számolja, de a helyettesítő párt két karakternek veszi."
           }
         },
         "it" : {
@@ -1365,6 +1431,12 @@
             "value" : "UTF-16"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "UTF-16"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1478,6 +1550,12 @@
             "value" : "कॉपी"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Másolás"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1588,6 +1666,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "एनकोडिंग :"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kódolás:"
           }
         },
         "it" : {
@@ -1703,6 +1787,12 @@
             "value" : "विफल"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "sikertelen"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1814,6 +1904,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "लाइन एंडिंग अनदेखा करें"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sorvégek figyelmen kívül hagyása"
           }
         },
         "it" : {
@@ -1929,6 +2025,12 @@
             "value" : "खाली स्थान अनदेखा करें"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Térközök figyelmen kívül hagyása"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2039,6 +2141,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "नॉर्मलाइज़ेशन :"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Normalizálás:"
           }
         },
         "it" : {
@@ -2154,6 +2262,12 @@
             "value" : "विकल्प दिखाएँ"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Beállítások megjelenítése"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2265,6 +2379,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "आरंभ करें"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Indítás"
           }
         },
         "it" : {
@@ -2380,6 +2500,12 @@
             "value" : "उन्नत वर्ण गणना रोकें"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Részletes karakterszámlálás leállítása"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2491,6 +2617,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "गणना रोकें"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Számlálás leállítása"
           }
         },
         "it" : {
@@ -2606,6 +2738,12 @@
             "value" : "लगातार खाली स्थान को एक स्पेस के रूप में मानें"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Egymást követő térközök kezelése egy szóközként"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2718,6 +2856,12 @@
             "value" : "इकाई :"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Egység:"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2828,6 +2972,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "खाली स्थान :"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Térközök:"
           }
         },
         "it" : {

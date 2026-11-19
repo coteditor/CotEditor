@@ -39,6 +39,12 @@
             "value" : "क्रम बदलने के लिए एनकोडिंग खींचें :"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A sorrend módosításához húzza át a kódolásokat:"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -156,6 +162,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "डिफ़ॉल्ट के रूप में सेट एनकोडिंग हटाई नहीं जा सकती।"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Az alapértelmezettként beállított kódolás nem távolítható el."
           }
         },
         "it" : {
@@ -278,6 +290,12 @@
             "value" : "%@ हटाई नहीं जा सकती।"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ez a kódolás nem távolítható el: %@."
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -389,6 +407,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "विभाजक"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Elválasztó"
           }
         },
         "it" : {
@@ -504,6 +528,12 @@
             "value" : "टेक्स्ट एनकोडिंग"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Szövegkódolás"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -614,6 +644,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "यह क्रम एनकोडिंग मेन्यू और एनकोडिंग पहचान के लिए उपयोग होता है। पहचान के दौरान केवल यहाँ सूचीबद्ध एनकोडिंग पर विचार किया जाता है, जिसमें ऊपरी आइटम को प्राथमिकता मिलती है।"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ezt a sorrendet követi a Szövegkódolás menü és a kódolás felismerése. A felismeréskor csak az itt felsorolt kódolások jönnek számításba, és a feljebb lévők elsőbbséget kapnak."
           }
         },
         "it" : {

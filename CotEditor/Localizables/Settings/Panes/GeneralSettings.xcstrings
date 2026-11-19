@@ -39,6 +39,12 @@
             "value" : "एक सिस्टम सुविधा जो संपादन के दौरान आपकी फ़ाइलों को स्वचालित रूप से अधिलेखित करती है। बंद होने पर भी, CotEditor अप्रत्याशित रूप से बंद होने की स्थिति में गुप्त रूप से एक बैकअप बनाता है।"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rendszerfunkció, amely szerkesztés közben automatikusan felülírja a fájlokat. Ha ki van kapcsolva, a CotEditor akkor is készít a háttérben biztonsági másolatot arra az esetre, ha váratlanul kilépne."
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -150,6 +156,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "अपडेट के लिए स्वतः जाँचें"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Frissítések automatikus keresése"
           }
         },
         "it" : {
@@ -265,6 +277,12 @@
             "value" : "सेटिंग आर्काइव चुनें…"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Beállításarchívum kiválasztása…"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -377,6 +395,12 @@
             "value" : "डायलॉग चेतावनियाँ :"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Figyelmeztetések:"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -487,6 +511,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "दस्तावेज़ सहेजना :"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dokumentum mentése:"
           }
         },
         "it" : {
@@ -609,6 +639,12 @@
             "value" : "CotEditor का वर्शन रखें"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A CotEditorban lévő változat megtartása"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -727,6 +763,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "समाधान कैसे करें पूछें"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rákérdezés a teendőre"
           }
         },
         "it" : {
@@ -849,6 +891,12 @@
             "value" : "संशोधित वर्शन में अपडेट करें"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Frissítés a módosított változatra"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -960,6 +1008,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "वर्शन के साथ ऑटो सेव सक्षम करें"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Automatikus mentés verziókkal"
           }
         },
         "it" : {
@@ -1075,6 +1129,12 @@
             "value" : "यहाँ से इंपोर्ट करें"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Importálás innen:"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1186,6 +1246,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "असंगत लाइन एंडिंग"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nem egységes sorvégek"
           }
         },
         "it" : {
@@ -1301,6 +1367,12 @@
             "value" : "iCloud में कॉपी रखें"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Másolat megőrzése az iCloudban"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1414,6 +1486,12 @@
             "value" : "बाद में"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Később"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1525,6 +1603,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "iCloud से सेटिंग कॉपियाँ लोड हो रही हैं…"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Beállításmásolatok betöltése az iCloudból…"
           }
         },
         "it" : {
@@ -1646,6 +1730,12 @@
             "value" : "iCloud पर कॉपियाँ प्रबंधित करें…"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Másolatok kezelése az iCloudban…"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1757,6 +1847,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "चेतावनियाँ प्रबंधित करें…"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Figyelmeztetések kezelése…"
           }
         },
         "it" : {
@@ -1878,6 +1974,12 @@
             "value" : "क्या आप अभी CotEditor पुनः आरंभ करना चाहते हैं?"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Újraindítja most a CotEditort?"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1995,6 +2097,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ऐप का व्यवहार उसके बाद वाले लॉन्च से बदल जाएगा।"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Az app működése csak a következő utáni indítástól változik meg."
           }
         },
         "it" : {
@@ -2116,6 +2224,12 @@
             "value" : "बदलाव पहली बार अगले लॉन्च पर लागू होगा।"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A módosítás csak a következő indításkor lép életbe."
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2227,6 +2341,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "iCloud में कोई सेटिंग कॉपी नहीं है"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nincs beállításmásolat az iCloudban"
           }
         },
         "it" : {
@@ -2349,6 +2469,12 @@
             "value" : "कुछ न करें"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nincs művelet"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2467,6 +2593,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ओपन डायलॉग दिखाएँ"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A Megnyitás ablak megjelenítése"
           }
         },
         "it" : {
@@ -2589,6 +2721,12 @@
             "value" : "नया दस्तावेज़ बनाएँ"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Új dokumentum létrehozása"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2701,6 +2839,12 @@
             "value" : "शुरुआत पर :"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Indításkor:"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2811,6 +2955,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "इस सेटिंग के बावजूद, प्रीरिलीज़ का उपयोग करते समय नई प्रीरिलीज़ हमेशा शामिल होती हैं।"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Előzetes kiadás használatakor az új előzetes kiadások e beállítástól függetlenül mindig megjelennek a frissítések között."
           }
         },
         "it" : {
@@ -2926,6 +3076,12 @@
             "value" : "पिछले सत्र की विंडो फिर से खोलें"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Az előző munkamenet ablakainak újbóli megnyitása"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3037,6 +3193,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "अभी पुनः आरंभ करें"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Újraindítás most"
           }
         },
         "it" : {
@@ -3151,6 +3313,12 @@
             "value" : "सेटिंग इंपोर्ट और एक्सपोर्ट :"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Beállítások importálása és exportálása:"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3261,6 +3429,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "सॉफ़्टवेयर अपडेट :"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Szoftverfrissítés:"
           }
         },
         "it" : {
@@ -3375,6 +3549,12 @@
             "value" : "इन सेटिंग की एक कॉपी रखें, ताकि दूसरे डिवाइस उसे इंपोर्ट कर सकें।"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A beállításokról másolat készül, amelyet más eszközökön importálhat."
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3485,6 +3665,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "निम्नलिखित चेतावनियाँ दबाएँ :"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A következő figyelmeztetések elrejtése:"
           }
         },
         "it" : {
@@ -3600,6 +3786,12 @@
             "value" : "उपलब्ध होने पर प्रीरिलीज़ में अपडेट करें"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Frissítés előzetes kiadásokra, ha elérhetők"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3712,6 +3904,12 @@
             "value" : "जब दस्तावेज़ किसी अन्य एप्लिकेशन द्वारा बदला जाए :"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ha egy másik alkalmazás módosítja a dokumentumot:"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3822,6 +4020,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "जब और कुछ भी खुला न हो :"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ha nincs más megnyitva:"
           }
         },
         "it" : {

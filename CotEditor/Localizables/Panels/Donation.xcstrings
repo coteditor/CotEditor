@@ -142,6 +142,24 @@
             }
           }
         },
+        "hu" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld csésze"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld csésze"
+                }
+              }
+            }
+          }
+        },
         "it" : {
           "variations" : {
             "plural" : {
@@ -405,6 +423,12 @@
             "value" : "× %lld"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "× %lld"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -516,6 +540,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "दान करने के लिए इंटरनेट कनेक्शन आवश्यक है।"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Az adományozáshoz internetkapcsolat szükséges."
           }
         },
         "it" : {
@@ -630,6 +660,12 @@
             "value" : "आपके सहयोग के प्रमाण के रूप में, निरंतर सहयोग के दौरान स्टेटस बार पर एक कॉफ़ी बैज दिखाई देता है।"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kedves támogatása jeléül a folyamatos támogatás ideje alatt kávéjelvény jelenik meg az állapotsoron."
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -742,6 +778,12 @@
             "value" : "बैज प्रकार :"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jelvény típusa:"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -852,6 +894,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "CotEditor सभी को सभी सुविधाएँ मुफ़्त प्रदान करता है। आप कॉफ़ी देकर इस परियोजना का समर्थन कर सकते हैं।"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A CotEditor minden funkciója mindenki számára ingyenes. A projektet egy kávé felajánlásával támogathatja."
           }
         },
         "it" : {
@@ -973,6 +1021,12 @@
             "value" : "दान"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Adományozás"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1083,6 +1137,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "दान वर्तमान में उपलब्ध नहीं है।"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Az adományozás jelenleg nem érhető el."
           }
         },
         "it" : {
@@ -1198,6 +1258,12 @@
             "value" : "सदस्यताएँ प्रबंधित करें"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Előfizetések kezelése"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1309,6 +1375,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "GitHub Sponsors खोलें"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "GitHub Sponsors megnyitása"
           }
         },
         "it" : {
@@ -1424,6 +1496,12 @@
             "value" : "App Store में खोलें"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Megnyitás az App Store-ban"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1534,6 +1612,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "गोपनीयता नीति"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Adatvédelmi szabályzat"
           }
         },
         "it" : {
@@ -1649,6 +1733,12 @@
             "value" : "मात्रा"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mennyiség"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1760,6 +1850,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "सदस्यता पुनर्स्थापित करें"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Előfizetés visszaállítása"
           }
         },
         "it" : {
@@ -1874,6 +1970,12 @@
             "value" : "सेवा की शर्तें"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Szolgáltatási feltételek"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1984,6 +2086,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "इन-ऐप दान सुविधा केवल App Store में वितरित CotEditor में उपलब्ध है।"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Az appbeli adományozás csak az App Store-ból letöltött CotEditorban érhető el."
           }
         },
         "it" : {

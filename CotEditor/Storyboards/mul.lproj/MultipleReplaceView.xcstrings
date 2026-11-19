@@ -47,6 +47,12 @@
             "value" : "चयन में"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A kijelölésben"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -165,6 +171,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "इन नियमों का उपयोग करके ऊपर से नीचे क्रमिक रूप से प्रतिस्थापन करें :"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Csere ezekkel a szabályokkal, sorban, fentről lefelé:"
           }
         },
         "it" : {
@@ -287,6 +299,12 @@
             "value" : "प्रतिस्थापन नियमों के सभी मिलान हाइलाइट करें।"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A csereszabályok összes találatának kiemelése."
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -405,6 +423,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "IC"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "KN"
           }
         },
         "it" : {
@@ -527,6 +551,12 @@
             "value" : "केस अनदेखा करें"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A kis- és nagybetűk azonosak"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -645,6 +675,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "अमान्य नियम छोड़ दिए जाएँगे।"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Az érvénytelen szabályok kimaradnak."
           }
         },
         "it" : {
@@ -780,6 +816,12 @@
             "value" : "उन्नत विकल्प"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Haladó beállítások"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -898,6 +940,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "उन्नत विकल्प दिखाएँ"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Haladó beállítások megjelenítése"
           }
         },
         "it" : {
@@ -1020,6 +1068,12 @@
             "value" : "खोज में वर्ण केस अनदेखा करने के लिए चुनें।"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ha bejelöli, a keresés nem különbözteti meg a kis- és nagybetűket."
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1138,6 +1192,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "सभी हाइलाइट करें"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Összes kiemelése"
           }
         },
         "it" : {
@@ -1260,6 +1320,12 @@
             "value" : "सक्षम करें"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Engedélyezés"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1378,6 +1444,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "सभी बदलें"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Összes cseréje"
           }
         },
         "it" : {
@@ -1500,6 +1572,12 @@
             "value" : "रेगुलर एक्सप्रेशन से खोजने के लिए चुनें।"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ha bejelöli, a keresés reguláris kifejezéssel történik."
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1618,6 +1696,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "इससे बदलें"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Csere erre"
           }
         },
         "it" : {
@@ -1740,6 +1824,12 @@
             "value" : "प्रतिस्थापन नियमों के अनुसार सभी मिलान बदलें।"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Az összes találat cseréje a csereszabályok szerint."
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1858,6 +1948,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "केवल चयन में टेक्स्ट बदलने के लिए चुनें।"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ha bejelöli, a csere csak a kijelölt szövegre terjed ki."
           }
         },
         "it" : {
@@ -1980,6 +2076,12 @@
             "value" : "इस प्रतिस्थापन नियम को उपयोग करने के लिए चुनें।"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ha bejelöli, a csere ezt a szabályt is alkalmazza."
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2098,6 +2200,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "विवरण"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Leírás"
           }
         },
         "it" : {
@@ -2220,6 +2328,12 @@
             "value" : "RE"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "RK"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2340,6 +2454,12 @@
             "value" : "रेगुलर एक्सप्रेशन"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reguláris kifejezés"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2458,6 +2578,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ढूँढें"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Keresés"
           }
         },
         "it" : {

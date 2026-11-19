@@ -41,6 +41,12 @@
             "value" : "चयन वाली नई CotEditor विंडो"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A kijelölést tartalmazó új CotEditor-ablak"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -152,6 +158,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "CotEditor में खोलें"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Megnyitás a CotEditorban"
           }
         },
         "it" : {

@@ -40,6 +40,12 @@
             "value" : "संपादन की अनुमति दें"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Szerkesztés engedélyezése"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -151,6 +157,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "और बड़ा"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nagyobb"
           }
         },
         "it" : {
@@ -266,6 +278,12 @@
             "value" : "अपडेट के लिए जाँचें…"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Frissítések keresése…"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -377,6 +395,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "कमेंट आउट करें"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Megjegyzéssé alakítás"
           }
         },
         "it" : {
@@ -492,6 +516,12 @@
             "value" : "इंडेंटेशन बदलें"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Behúzás átalakítása"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -603,6 +633,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "रिच टेक्स्ट के रूप में कॉपी करें"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Másolás Rich Textként"
           }
         },
         "it" : {
@@ -718,6 +754,12 @@
             "value" : "एनकोडिंग सूची कस्टमाइज़ करें…"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kódolási lista testreszabása…"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -829,6 +871,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "डुप्लिकेट पंक्तियाँ डिलीट करें"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ismétlődő sorok törlése"
           }
         },
         "it" : {
@@ -944,6 +992,12 @@
             "value" : "पंक्ति डिलीट करें"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sor törlése"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1055,6 +1109,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "पंक्ति की नक़ल बनाएँ"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sor megkettőzése"
           }
         },
         "it" : {
@@ -1170,6 +1230,12 @@
             "value" : "एनकोडिंग “%@” में बदलें"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kódolás módosítása („%@”)"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1281,6 +1347,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "इंडेंट गाइड छिपाएँ"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Behúzási segédvonalak elrejtése"
           }
         },
         "it" : {
@@ -1396,6 +1468,12 @@
             "value" : "इंस्पेक्टर छिपाएँ"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vizsgáló elrejtése"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1507,6 +1585,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "अदृश्य वर्ण छिपाएँ"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Láthatatlan karakterek elrejtése"
           }
         },
         "it" : {
@@ -1622,6 +1706,12 @@
             "value" : "पंक्ति संख्याएँ छिपाएँ"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sorszámok elrejtése"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1733,6 +1823,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "नेविगेशन बार छिपाएँ"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Navigációs sáv elrejtése"
           }
         },
         "it" : {
@@ -1848,6 +1944,12 @@
             "value" : "पेज गाइड छिपाएँ"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Oldalhatár elrejtése"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1959,6 +2061,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "साइडबार छिपाएँ"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Oldalsáv elrejtése"
           }
         },
         "it" : {
@@ -2074,6 +2182,12 @@
             "value" : "स्टेटस बार छिपाएँ"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Állapotsor elrejtése"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2185,6 +2299,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "कलर कोड सम्मिलित करें"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Színkód beszúrása"
           }
         },
         "it" : {
@@ -2300,6 +2420,12 @@
             "value" : "स्निपेट सम्मिलित करें"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kódrészlet beszúrása"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2411,6 +2537,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "वर्ण का निरीक्षण करें"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Karakter vizsgálata"
           }
         },
         "it" : {
@@ -2526,6 +2658,12 @@
             "value" : "पंक्तियाँ जोड़ें"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sorok összevonása"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2637,6 +2775,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "लाइन एंडिंग %@ में बदलें"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sorvégek módosítása (%@)"
           }
         },
         "it" : {
@@ -2752,6 +2896,12 @@
             "value" : "पंक्ति ले जाएँ"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sor áthelyezése"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2863,6 +3013,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "स्क्रिप्ट फ़ोल्डर खोलें"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Szkriptmappa megnyitása"
           }
         },
         "it" : {
@@ -2978,6 +3134,12 @@
             "value" : "स्क्रिप्ट को एडिटर में खोलने के लिए ऑप्शन दबाकर क्लिक करें।"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Az Option lenyomása mellett kattintva a szkript megnyílik a szerkesztőben."
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3089,6 +3251,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "संपादन रोकें"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Szerkesztés tiltása"
           }
         },
         "it" : {
@@ -3204,6 +3372,12 @@
             "value" : "डिफ़ॉल्ट पर रीसेट करें"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Visszaállítás alapértelmezettre"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3315,6 +3489,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "पंक्तियाँ उलटें"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sorok megfordítása"
           }
         },
         "it" : {
@@ -3430,6 +3610,12 @@
             "value" : "सभी चुनें"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Összes kijelölése"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3541,6 +3727,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "नीचे का कॉलम चुनें"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Oszlop kijelölése lefelé"
           }
         },
         "it" : {
@@ -3656,6 +3848,12 @@
             "value" : "बायाँ कॉलम चुनें"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Oszlop kijelölése balra"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3767,6 +3965,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "दायाँ कॉलम चुनें"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Oszlop kijelölése jobbra"
           }
         },
         "it" : {
@@ -3882,6 +4086,12 @@
             "value" : "ऊपर का कॉलम चुनें"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Oszlop kijelölése felfelé"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3993,6 +4203,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "बाएँ शिफ़्ट करें"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Behúzás csökkentése"
           }
         },
         "it" : {
@@ -4108,6 +4324,12 @@
             "value" : "दाएँ शिफ़्ट करें"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Behúzás növelése"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4219,6 +4441,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "इंडेंट गाइड दिखाएँ"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Behúzási segédvonalak megjelenítése"
           }
         },
         "it" : {
@@ -4334,6 +4562,12 @@
             "value" : "इंस्पेक्टर दिखाएँ"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vizsgáló megjelenítése"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4445,6 +4679,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "अदृश्य वर्ण दिखाएँ"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Láthatatlan karakterek megjelenítése"
           }
         },
         "it" : {
@@ -4560,6 +4800,12 @@
             "value" : "पंक्ति संख्याएँ दिखाएँ"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sorszámok megjelenítése"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4671,6 +4917,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "नेविगेशन बार दिखाएँ"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Navigációs sáv megjelenítése"
           }
         },
         "it" : {
@@ -4786,6 +5038,12 @@
             "value" : "पेज गाइड दिखाएँ"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Oldalhatár megjelenítése"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4897,6 +5155,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "साइडबार दिखाएँ"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Oldalsáv megjelenítése"
           }
         },
         "it" : {
@@ -5012,6 +5276,12 @@
             "value" : "स्टेटस बार दिखाएँ"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Állapotsor megjelenítése"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5123,6 +5393,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "पंक्तियाँ शफ़ल करें"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sorok összekeverése"
           }
         },
         "it" : {
@@ -5238,6 +5514,12 @@
             "value" : "और छोटा"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kisebb"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5349,6 +5631,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "पंक्तियाँ सॉर्ट करें"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sorok rendezése"
           }
         },
         "it" : {
@@ -5464,6 +5752,12 @@
             "value" : "एडिटर क्षैतिज रूप से रखें"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Szerkesztők egymás alá rendezése"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5575,6 +5869,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "एडिटर लंबवत रूप से रखें"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Szerkesztők egymás mellé rendezése"
           }
         },
         "it" : {
@@ -5690,6 +5990,12 @@
             "value" : "उद्धरण चिह्न सीधे करें"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Átalakítás egyenes idézőjelekké"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5801,6 +6107,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "टेक्स्ट आकार"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Szövegméret"
           }
         },
         "it" : {
@@ -5916,6 +6228,12 @@
             "value" : "साइडबार केवल तभी उपलब्ध है जब कोई फ़ोल्डर दस्तावेज़ के रूप में खोला गया हो।"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Az oldalsáv csak akkor érhető el, ha egy mappa dokumentumként van megnyitva."
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6027,6 +6345,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "अदृश्य वर्ण दिखाने के लिए, उन्हें “विंडो” सेटिंग में सेट करें"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A láthatatlan karakterek megjelenítéséhez válassza ki őket az Ablak beállításai között"
           }
         },
         "it" : {
@@ -6142,6 +6466,12 @@
             "value" : "पंक्ति-अंत का खाली स्थान हटाएँ"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sorvégi térközök eltávolítása"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6253,6 +6583,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "कमेंट हटाएँ"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Megjegyzés megszüntetése"
           }
         },
         "it" : {
@@ -6368,6 +6704,12 @@
             "value" : "पंक्तियाँ रैप न करें"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sortördelés kikapcsolása"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6479,6 +6821,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "पंक्तियाँ रैप करें"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sorok tördelése"
           }
         },
         "it" : {

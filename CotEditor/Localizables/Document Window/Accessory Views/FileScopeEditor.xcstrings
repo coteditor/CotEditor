@@ -47,6 +47,12 @@
             "value" : "सभी"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "az összes"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -165,6 +171,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "किसी एक"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "bármely"
           }
         },
         "it" : {
@@ -287,6 +299,12 @@
             "value" : "नीचे दी गई शर्तों में से"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fájlok, amelyek megfelelnek"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -405,6 +423,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "से मेल खाएँ :"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "alábbi feltételnek:"
           }
         },
         "it" : {
@@ -526,6 +550,12 @@
             "value" : "स्कोप में बिना मान वाला एक नियम है।"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A hatókör érték nélküli szabályt tartalmaz."
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -643,6 +673,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "स्कोप में एक अमान्य रेगुलर एक्सप्रेशन है।"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A hatókör érvénytelen reguláris kifejezést tartalmaz."
           }
         },
         "it" : {
@@ -765,6 +801,12 @@
             "value" : "शामिल है"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "tartalmazza"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -883,6 +925,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "शामिल नहीं है"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "nem tartalmazza"
           }
         },
         "it" : {
@@ -1005,6 +1053,12 @@
             "value" : "इससे समाप्त होता है"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "így végződik"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1123,6 +1177,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "है"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ez"
           }
         },
         "it" : {
@@ -1245,6 +1305,12 @@
             "value" : "नहीं है"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "nem ez"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1363,6 +1429,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "रेगुलर एक्सप्रेशन से मेल खाता है"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "egyezik a reguláris kifejezéssel"
           }
         },
         "it" : {
@@ -1485,6 +1557,12 @@
             "value" : "इससे शुरू होता है"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "így kezdődik"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1602,6 +1680,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "फ़ाइल एक्सटेंशन"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fájlkiterjesztés"
           }
         },
         "it" : {
@@ -1723,6 +1807,12 @@
             "value" : "फ़ाइल नाम"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fájlnév"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1842,6 +1932,12 @@
             "value" : "फ़ाइल पथ"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fájl útvonala"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1953,6 +2049,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "नामित स्कोप के रूप में सहेजें…"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mentés elnevezett hatókörként…"
           }
         },
         "it" : {
@@ -2074,6 +2176,12 @@
             "value" : "नाम"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Név"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2192,6 +2300,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ऐसे सहेजें :"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mentés mint:"
           }
         },
         "it" : {

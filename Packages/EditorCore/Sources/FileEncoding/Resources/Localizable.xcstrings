@@ -40,6 +40,12 @@
             "value" : "BOM के साथ %@"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ BOM-mal"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",

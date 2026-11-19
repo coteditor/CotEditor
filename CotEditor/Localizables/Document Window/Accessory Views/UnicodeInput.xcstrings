@@ -40,6 +40,12 @@
             "value" : "हाल के साफ़ करें"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Legutóbbiak törlése"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -153,6 +159,12 @@
             "value" : "अमान्य कोड"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Érvénytelen kód"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -264,6 +276,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "हाल के"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Legutóbbiak"
           }
         },
         "it" : {

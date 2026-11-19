@@ -39,6 +39,12 @@
             "value" : "0 या अधिक बार"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "0 vagy több alkalommal"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -151,6 +157,12 @@
             "value" : "1 या 0 बार"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "1 vagy 0 alkalommal"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -261,6 +273,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "1 या अधिक बार"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "1 vagy több alkalommal"
           }
         },
         "it" : {
@@ -376,6 +394,12 @@
             "value" : "एंकर"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Horgonyok"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -486,6 +510,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "कोई भी वर्ण"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "tetszőleges karakter"
           }
         },
         "it" : {
@@ -600,6 +630,12 @@
             "value" : "A से Z की सीमा में कोई भी वर्ण"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "tetszőleges karakter az A–Z tartományban"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -710,6 +746,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "A से Z की सीमा में न होने वाला कोई भी वर्ण"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "tetszőleges karakter az A–Z tartományon kívül"
           }
         },
         "it" : {
@@ -824,6 +866,12 @@
             "value" : "कम से कम 0 लेकिन n बार से अधिक नहीं"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "legalább 0, de legfeljebb n alkalommal"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -936,6 +984,12 @@
             "value" : "कम से कम n लेकिन m बार से अधिक नहीं"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "legalább n, de legfeljebb m alkalommal"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1046,6 +1100,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "कम से कम n बार"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "legalább n alkalommal"
           }
         },
         "it" : {
@@ -1161,6 +1221,12 @@
             "value" : "बैक रेफ़रेंस"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Visszahivatkozás"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1274,6 +1340,12 @@
             "value" : "मूल रेगुलर एक्सप्रेशन सिंटैक्स"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A reguláris kifejezések alapvető szintaxisa"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1384,6 +1456,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "पंक्ति का आरंभ"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "a sor eleje"
           }
         },
         "it" : {
@@ -1499,6 +1577,12 @@
             "value" : "वर्ण"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Karakterek"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1611,6 +1695,12 @@
             "value" : "दशमलव संख्या"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "számjegy"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1721,6 +1811,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "पंक्ति का अंत"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "a sor vége"
           }
         },
         "it" : {
@@ -1836,6 +1932,12 @@
             "value" : "विस्तारित समूह"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kiterjesztett csoportok"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1946,6 +2048,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "पहला मिलान"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "az első csoport találata"
           }
         },
         "it" : {
@@ -2060,6 +2168,12 @@
             "value" : "ICU रेगुलर एक्सप्रेशन"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ICU reguláris kifejezések"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2170,6 +2284,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "लुक-अहेड"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "előretekintés"
           }
         },
         "it" : {
@@ -2284,6 +2404,12 @@
             "value" : "लुक-बिहाइंड"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "visszatekintés"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2394,6 +2520,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "n बार"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "n alkalommal"
           }
         },
         "it" : {
@@ -2508,6 +2640,12 @@
             "value" : "न्यूलाइन वर्ण"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "sortörés"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2618,6 +2756,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "गैर-खाली-स्थान वर्ण"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "nem térközkarakter"
           }
         },
         "it" : {
@@ -2733,6 +2877,12 @@
             "value" : "क्वांटिफ़ायर"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kvantorok"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2843,6 +2993,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "टैब वर्ण"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "tabulátorkarakter"
           }
         },
         "it" : {
@@ -2958,6 +3114,12 @@
             "value" : "सिंटैक्स %@ विनिर्देशों के अनुरूप है।"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A szintaxis a következő előírásokat követi: %@."
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3068,6 +3230,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "खाली स्थान वर्ण"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "térközkarakter"
           }
         },
         "it" : {
@@ -3182,6 +3350,12 @@
             "value" : "शब्द सीमा"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "szóhatár"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3292,6 +3466,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "शब्द वर्ण"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "szókarakter"
           }
         },
         "it" : {

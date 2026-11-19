@@ -141,6 +141,24 @@
             }
           }
         },
+        "hu" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld egyéni szintaxis"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld egyéni szintaxis"
+                }
+              }
+            }
+          }
+        },
         "it" : {
           "variations" : {
             "plural" : {
@@ -500,6 +518,24 @@
                 "stringUnit" : {
                   "state" : "translated",
                   "value" : "%lld कस्टम थीम"
+                }
+              }
+            }
+          }
+        },
+        "hu" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld egyéni téma"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld egyéni téma"
                 }
               }
             }
@@ -870,6 +906,24 @@
             }
           }
         },
+        "hu" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld definíció"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld definíció"
+                }
+              }
+            }
+          }
+        },
         "it" : {
           "variations" : {
             "plural" : {
@@ -1235,6 +1289,24 @@
             }
           }
         },
+        "hu" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld elem"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld elem"
+                }
+              }
+            }
+          }
+        },
         "it" : {
           "variations" : {
             "plural" : {
@@ -1497,6 +1569,12 @@
             "value" : "इंपोर्ट करने के लिए एक CotEditor सेटिंग आर्काइव चुनें।"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Válassza ki az importálandó CotEditor-beállításarchívumot."
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1614,6 +1692,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "यह सेटिंग आर्काइव CotEditor के किसी भिन्न वर्शन (%@) द्वारा बनाया गया था।"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ez a beállításarchívum a CotEditor egy másik verziójával készült (%@)."
           }
         },
         "it" : {
@@ -1735,6 +1819,12 @@
             "value" : "आप फिर भी इन आइटम को इंपोर्ट कर सकते हैं, लेकिन कुछ सेटिंग असंगत हो सकती हैं।"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Az elemeket így is importálhatja, de előfordulhat, hogy egyes beállítások nem kompatibilisek."
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1845,6 +1935,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "अन्य कंप्यूटरों में इंपोर्ट करने की अनुमति देने के लिए चयनित सेटिंग को आर्काइव के रूप में एक्सपोर्ट करें।"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A kiválasztott beállításokat archívumba exportálhatja, így más számítógépeken is importálhatja őket."
           }
         },
         "it" : {
@@ -1960,6 +2056,12 @@
             "value" : "सेटिंग एक्सपोर्ट करें"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Beállítások exportálása"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2073,6 +2175,12 @@
             "value" : "सेटिंग इंपोर्ट करें"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Beállítások importálása"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2183,6 +2291,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "इंपोर्ट करने के लिए आइटम चुनें :"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Válassza ki az importálandó elemeket:"
           }
         },
         "it" : {
@@ -2304,6 +2418,12 @@
             "value" : "फ़ाइल स्कोप"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mentett hatókörök"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2421,6 +2541,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "मल्टीपल रिप्लेस परिभाषाएँ"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cseredefiníciók"
           }
         },
         "it" : {
@@ -2542,6 +2668,12 @@
             "value" : "सेटिंग विंडो में सभी सेटिंग"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A Beállítások ablak összes beállítása"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2659,6 +2791,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "सेटिंग"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Beállítások"
           }
         },
         "it" : {
@@ -2780,6 +2918,12 @@
             "value" : "सिंटैक्स"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Szintaxisok"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2897,6 +3041,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "थीम"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Témák"
           }
         },
         "it" : {

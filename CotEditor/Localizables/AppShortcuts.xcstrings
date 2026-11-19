@@ -59,6 +59,14 @@
             "value" : "${applicationName} में एक दस्तावेज़ बनाएँ"
           }
         },
+        "hu" : {
+          "stringSet" : {
+            "state" : "translated",
+            "values" : [
+              "Dokumentum létrehozása itt: ${applicationName}"
+            ]
+          }
+        },
         "it" : {
           "stringSet" : {
             "state" : "translated",

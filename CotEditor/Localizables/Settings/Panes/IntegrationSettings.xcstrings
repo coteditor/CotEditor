@@ -40,6 +40,12 @@
             "value" : "rmate कनेक्शन स्वीकार करें"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "rmate-kapcsolatok fogadása"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -152,6 +158,12 @@
             "value" : "`rmate` प्रोटोकॉल से रिमोट फ़ाइलों को CotEditor में खोलने की अनुमति दें।"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Engedélyezi, hogy távoli fájlokat `rmate` protokollal nyisson meg a CotEditorban."
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -262,6 +274,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "कमांड-लाइन टूल :"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Parancssori eszköz:"
           }
         },
         "it" : {
@@ -383,6 +401,12 @@
             "value" : "मौजूदा `cot` सिंबॉलिक लिंक चल रहे CotEditor को लक्षित नहीं करता।"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A jelenlegi `cot` szimbolikus link nem a futó CotEditorra mutat."
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -502,6 +526,12 @@
             "value" : "मौजूदा `cot` सिंबॉलिक लिंक किसी अमान्य पथ को लक्षित कर सकता है।"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A jelenlegi `cot` szimbolikus link érvénytelen útvonalra mutathat."
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -612,6 +642,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "%@ पर इंस्टॉल किया गया"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Telepítve: %@"
           }
         },
         "it" : {
@@ -727,6 +763,12 @@
             "value" : "और जानें…"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bővebben…"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -837,6 +879,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "पोर्ट :"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Port:"
           }
         },
         "it" : {
@@ -951,6 +999,12 @@
             "value" : "रिमोट एडिटिंग :"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Távoli szerkesztés:"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1061,6 +1115,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "`cot` कमांड-लाइन टूल से, आप CotEditor लॉन्च कर सकते हैं और इसे कमांड लाइन से फ़ाइलें खुलवा सकते हैं।"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A `cot` parancssori eszközzel a parancssorból is elindíthatja a CotEditort, és fájlokat nyithat meg vele."
           }
         },
         "it" : {

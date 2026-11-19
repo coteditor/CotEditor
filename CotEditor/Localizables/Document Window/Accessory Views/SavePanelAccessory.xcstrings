@@ -40,6 +40,12 @@
             "value" : "फ़ाइल को निष्पादन योग्य बनाएँ"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fájl végrehajthatóvá tétele"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",

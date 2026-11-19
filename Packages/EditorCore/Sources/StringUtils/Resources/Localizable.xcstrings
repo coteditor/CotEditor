@@ -47,6 +47,12 @@
             "value" : "संशोधित NFD के अनुरूप अनौपचारिक NFC-आधारित नॉर्मलाइज़ेशन रूप"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nem hivatalos, NFC-alapú normalizálási forma, a módosított NFD megfelelője"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -165,6 +171,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "संशोधित NFC"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Módosított NFC"
           }
         },
         "it" : {
@@ -287,6 +299,12 @@
             "value" : "HFS+ में उपयोग किया जाने वाला अनौपचारिक NFD-आधारित नॉर्मलाइज़ेशन रूप"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nem hivatalos, NFD-alapú normalizálási forma, amelyet a HFS+ használ"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -405,6 +423,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "संशोधित NFD"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Módosított NFD"
           }
         },
         "it" : {
@@ -527,6 +551,12 @@
             "value" : "कैनोनिकल डीकम्पोज़िशन, उसके बाद कैनोनिकल कम्पोज़िशन"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kanonikus felbontás, majd kanonikus összetétel"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -641,6 +671,12 @@
           }
         },
         "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "NFC"
+          }
+        },
+        "hu" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "NFC"
@@ -766,6 +802,12 @@
             "value" : "कैनोनिकल डीकम्पोज़िशन"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kanonikus felbontás"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -880,6 +922,12 @@
           }
         },
         "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "NFD"
+          }
+        },
+        "hu" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "NFD"
@@ -1005,6 +1053,12 @@
             "value" : "कम्पैटिबिलिटी डीकम्पोज़िशन, उसके बाद कैनोनिकल कम्पोज़िशन"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kompatibilitási felbontás, majd kanonikus összetétel"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1119,6 +1173,12 @@
           }
         },
         "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "NFKC"
+          }
+        },
+        "hu" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "NFKC"
@@ -1244,6 +1304,12 @@
             "value" : "NFKC, केस फ़ोल्डिंग, और डिफ़ॉल्ट-अनदेखा-योग्य कोड पॉइंट हटाना लागू करना"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Az NFKC alkalmazása, a kis- és nagybetűk egységesítése és az alapértelmezés szerint figyelmen kívül hagyható kódpontok eltávolítása"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1361,6 +1427,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "NFKC केस-फ़ोल्ड"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "NFKC Case-Fold"
           }
         },
         "it" : {
@@ -1483,6 +1555,12 @@
             "value" : "कम्पैटिबिलिटी डीकम्पोज़िशन"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kompatibilitási felbontás"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1597,6 +1675,12 @@
           }
         },
         "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "NFKD"
+          }
+        },
+        "hu" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "NFKD"

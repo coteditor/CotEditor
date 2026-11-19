@@ -40,6 +40,12 @@
             "value" : "नियम डिलीट करें"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Szabályok törlése"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -151,6 +157,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "नियम संपादित करें"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Szabály szerkesztése"
           }
         },
         "it" : {
@@ -273,6 +285,12 @@
             "value" : "CotEditor रिप्लेस परिभाषा या TSV (टैब-पृथक मान) फ़ाइलें चुनें।"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Válasszon CotEditor-cseredefiníciót vagy TSV-fájlt (tabulátorral elválasztott értékek)."
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -384,6 +402,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "नियम सम्मिलित करें"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Szabály beszúrása"
           }
         },
         "it" : {
@@ -499,6 +523,12 @@
             "value" : "नियम ले जाएँ"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Szabályok áthelyezése"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -610,6 +640,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "मल्टीपल रिप्लेस"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Többszörös csere"
           }
         },
         "it" : {
@@ -731,6 +767,12 @@
             "value" : "सभी परिभाषाएँ फिर से लोड करें"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Összes definíció újratöltése"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -842,6 +884,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "साइडबार"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Oldalsáv"
           }
         },
         "it" : {

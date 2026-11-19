@@ -40,6 +40,12 @@
             "value" : "%@ आइकन"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ ikon"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -151,6 +157,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "%@ के बारे में"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A %@ névjegye"
           }
         },
         "it" : {
@@ -266,6 +278,12 @@
             "value" : "और उन सभी को जो CotEditor का समर्थन करते हैं!"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "és mindenki, aki támogatja a CotEditort!"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -377,6 +395,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "कोड योगदानकर्ता"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A kód közreműködői"
           }
         },
         "it" : {
@@ -491,6 +515,12 @@
             "value" : "CotEditor एक ओपन सोर्स प्रोग्राम है\nजो Apache License, Version 2.0 के अंतर्गत लाइसेंस प्राप्त है।"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A CotEditor nyílt forráskódú program,\namely az Apache License 2.0 licenc alatt érhető el."
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -601,6 +631,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "CotEditor निम्नलिखित बेहतरीन तकनीकों का उपयोग करता है। हम उन लोगों के गहराई से आभारी हैं जो अपना बहुमूल्य कार्य हमें उपलब्ध कराते हैं।"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A CotEditor az alábbi nagyszerű technológiákat használja. Őszintén hálásak vagyunk mindazoknak, akik értékes munkájukat elérhetővé teszik számunkra."
           }
         },
         "it" : {
@@ -716,6 +752,12 @@
             "value" : "क्रेडिट"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Közreműködők"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -826,6 +868,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "लाइसेंस"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Licenc"
           }
         },
         "it" : {
@@ -941,6 +989,12 @@
             "value" : "लाइसेंस"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Licencek"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1052,6 +1106,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "लोकलाइज़ेशन"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Honosítás"
           }
         },
         "it" : {
@@ -1167,6 +1227,12 @@
             "value" : "केवल गैर-AppStore वर्शन पर"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "csak az App Store-on kívüli verzióban"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1277,6 +1343,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "मूल डेवलपर"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "eredeti fejlesztő"
           }
         },
         "it" : {
@@ -1392,6 +1464,12 @@
             "value" : "विशेष धन्यवाद"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Külön köszönet"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1503,6 +1581,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "CotEditor परियोजना"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A CotEditor-projekt"
           }
         },
         "it" : {
@@ -1622,6 +1706,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "वर्शन %1$@ (%2$@)"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ (%2$@) verzió"
           }
         },
         "it" : {

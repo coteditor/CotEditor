@@ -40,6 +40,12 @@
             "value" : " (%@)"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : " (%@)"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -151,6 +157,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "%@ :"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@:"
           }
         },
         "it" : {
@@ -272,6 +284,12 @@
             "value" : "%1$@ : %2$@"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@: %2$@"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -383,6 +401,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "%lld चयनित"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld kijelölve"
           }
         },
         "it" : {
@@ -504,6 +528,12 @@
             "value" : "जोड़ें"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hozzáadás"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -621,6 +651,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "नया आइटम जोड़ें"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Új elem hozzáadása"
           }
         },
         "it" : {
@@ -742,6 +778,12 @@
             "value" : "डिलीट करें"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Törlés"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -859,6 +901,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "चयनित आइटम डिलीट करें"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kijelölt elemek törlése"
           }
         },
         "it" : {
@@ -980,6 +1028,12 @@
             "value" : "नक़ल बनाएँ"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Megkettőzés"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1097,6 +1151,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "“%@” की नक़ल बनाएँ"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "„%@” megkettőzése"
           }
         },
         "it" : {
@@ -1218,6 +1278,12 @@
             "value" : "संपादित करें…"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Szerkesztés…"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1335,6 +1401,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "संपादित करें"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Szerkesztés"
           }
         },
         "it" : {
@@ -1456,6 +1528,12 @@
             "value" : "चयनित आइटम संपादित करें"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kijelölt elem szerkesztése"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1573,6 +1651,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "एक्सपोर्ट करें…"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Exportálás…"
           }
         },
         "it" : {
@@ -1694,6 +1778,12 @@
             "value" : "“%@” एक्सपोर्ट करें…"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "„%@” exportálása…"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1811,6 +1901,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "इंपोर्ट करें…"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Importálás…"
           }
         },
         "it" : {
@@ -1932,6 +2028,12 @@
             "value" : "इंपोर्ट करें"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Importálás"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2049,6 +2151,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "सम्मिलित करें"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Beszúrás"
           }
         },
         "it" : {
@@ -2170,6 +2278,12 @@
             "value" : "नाम बदलें"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Átnevezés"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2287,6 +2401,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "“%@” का नाम बदलें"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "„%@” átnevezése"
           }
         },
         "it" : {
@@ -2408,6 +2528,12 @@
             "value" : "बदलें"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Csere"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2525,6 +2651,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "पुनर्स्थापित करें"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Visszaállítás"
           }
         },
         "it" : {
@@ -2646,6 +2778,12 @@
             "value" : "“%@” पुनर्स्थापित करें"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "„%@” visszaállítása"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2763,6 +2901,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "डिफ़ॉल्ट पुनर्स्थापित करें"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Alapértékek visszaállítása"
           }
         },
         "it" : {
@@ -2884,6 +3028,12 @@
             "value" : "Finder में दिखाएँ"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Megjelenítés a Finderben"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3001,6 +3151,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "“%@” को Finder में दिखाएँ"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "„%@” megjelenítése a Finderben"
           }
         },
         "it" : {
@@ -3122,6 +3278,12 @@
             "value" : "सहेजें"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mentés"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3239,6 +3401,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ऐसे सहेजें…"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mentés mint…"
           }
         },
         "it" : {
@@ -3360,6 +3528,12 @@
             "value" : "शेयर करें…"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Megosztás…"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3479,6 +3653,12 @@
             "value" : "अदृश्य कॉफ़ी"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Láthatatlan kávé"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3596,6 +3776,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "कॉफ़ी मग"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kávésbögre"
           }
         },
         "it" : {
@@ -3718,6 +3904,12 @@
             "value" : "क्रियाएँ"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Műveletek"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3835,6 +4027,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "रद्द करें"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mégsem"
           }
         },
         "it" : {
@@ -3956,6 +4154,12 @@
             "value" : "iCloud Drive उपलब्ध नहीं है।"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Az iCloud Drive nem érhető el."
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4074,6 +4278,12 @@
             "value" : "चुनी गई सेटिंग कॉपी तक पहुँचा नहीं जा सका।"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A kiválasztott beállításmásolat nem érhető el."
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4190,6 +4400,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "iCloud में सेटिंग कॉपियाँ नहीं मिलीं।"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Az iCloudban nem találhatók beállításmásolatok."
           }
         },
         "it" : {
@@ -4312,6 +4528,12 @@
             "value" : "यह क्रिया पहले जैसी नहीं की जा सकेगी।"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ez a művelet nem vonható vissza."
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4432,6 +4654,12 @@
             "value" : "क्या आप वाक़ई “%@” को डिलीट करना चाहते हैं?"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Biztosan törli a következőt: „%@”?"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4549,6 +4777,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "फ़ाइल “%@” पहले से किसी अन्य विंडो में खुली है।"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ez a fájl már meg van nyitva egy másik ablakban: „%@”."
           }
         },
         "it" : {
@@ -4671,6 +4905,12 @@
             "value" : "इसे इस विंडो में खोलने के लिए, पहले मौजूदा विंडो बंद करें।"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ha ebben az ablakban szeretné megnyitni, előbb zárja be a másik ablakot."
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4789,6 +5029,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "न सहेजें"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mentés mellőzése"
           }
         },
         "it" : {
@@ -4911,6 +5157,12 @@
             "value" : "यदि आप अपने परिवर्तन नहीं सहेजते हैं, तो वे अनुपलब्ध हो जाएँगे। सहेजते समय असंगत वर्ण या तो प्रतिस्थापित कर दिए जाते हैं या हटा दिए जाते हैं।"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A módosításai el fognak veszni, ha nem menti azokat. Mentéskor a nem kompatibilis karakterek lecserélődnek vagy törlődnek."
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5029,6 +5281,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "क्या आप दस्तावेज़ “%@” में किए गए परिवर्तन सहेजना चाहते हैं?"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Szeretné menteni a(z) „%@” dokumentumban végrehajtott módosításokat?"
           }
         },
         "it" : {
@@ -5150,6 +5408,12 @@
             "value" : "यह दस्तावेज़ संपादन योग्य नहीं है।"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A dokumentum nem szerkeszthető."
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5269,6 +5533,12 @@
             "value" : "दस्तावेज़ में बदलाव करने के लिए, पहले संपादन की अनुमति दें।"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A dokumentum módosításához előbb engedélyezze a szerkesztést."
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5386,6 +5656,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "फ़ाइल “%@” टेक्स्ट डेटा प्रतीत नहीं होती।"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Úgy tűnik, ez a fájl nem szöveges adat: „%@”."
           }
         },
         "it" : {
@@ -5508,6 +5784,12 @@
             "value" : "फ़ाइल %@ प्रतीत होती है।\n\nक्या आप वाकई यह फ़ाइल खोलना चाहते हैं?"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A fájl típusa valószínűleg: %@.\n\nBiztosan meg szeretné nyitni a fájlt?"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5626,6 +5908,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "अज्ञात प्रकार"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ismeretlen"
           }
         },
         "it" : {
@@ -5748,6 +6036,12 @@
             "value" : "खोलें"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Megnyitás"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5867,6 +6161,12 @@
             "value" : "फ़ाइल “%1$@” का आकार %2$@ है।"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A(z) „%1$@” fájl mérete %2$@."
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5984,6 +6284,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "इतनी बड़ी फ़ाइल खोलने से एप्लिकेशन धीमा या अनुत्तरदायी हो सकता है।\n\nक्या आप वाकई यह फ़ाइल खोलना चाहते हैं?"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ilyen nagy fájl megnyitásakor az alkalmazás lelassulhat, vagy előfordulhat, hogy nem válaszol.\n\nBiztosan meg szeretné nyitni a fájlt?"
           }
         },
         "it" : {
@@ -6106,6 +6412,12 @@
             "value" : "असंगत वर्णों की समीक्षा करें"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nem kompatibilis karakterek áttekintése"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6224,6 +6536,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "उपलब्ध टेक्स्ट सहेजें"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mentés mindenképp"
           }
         },
         "it" : {
@@ -6346,6 +6664,12 @@
             "value" : "सहेजते समय असंगत वर्ण या तो प्रतिस्थापित कर दिए जाते हैं या हटा दिए जाते हैं। क्या आप फिर भी सहेजना चाहते हैं?"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mentéskor a nem kompatibilis karakterek lecserélődnek vagy törlődnek. Mindenképp menti?"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6463,6 +6787,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "पूर्ण"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kész"
           }
         },
         "it" : {
@@ -6585,6 +6915,12 @@
             "value" : "बदलें"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Átalakítás"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6703,6 +7039,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "पुनर्व्याख्या करें"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Újraértelmezés"
           }
         },
         "it" : {
@@ -6825,6 +7167,12 @@
             "value" : "क्या आप इस दस्तावेज़ को “%@” का उपयोग करके बदलना या पुनर्व्याख्या करना चाहते हैं?"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Szeretné átalakítani vagy újraértelmezni a dokumentumot ezzel a kódolással: „%@”?"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6942,6 +7290,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "टेक्स्ट एनकोडिंग परिवर्तन"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Szövegkódolás módosítása"
           }
         },
         "it" : {
@@ -7064,6 +7418,12 @@
             "value" : "%1$@ कॉपी %2$lld"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ másolat %2$lld"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7182,6 +7542,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "%@ कॉपी"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ másolat"
           }
         },
         "it" : {
@@ -7303,6 +7669,12 @@
             "value" : "ड्रॉप की गई फ़ाइल का पूर्ण पथ।"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A behúzott fájl abszolút útvonala."
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7420,6 +7792,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ड्रॉप की गई फ़ाइल की मूल डायरेक्टरी का नाम।"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A behúzott fájlt tartalmazó mappa neve."
           }
         },
         "it" : {
@@ -7541,6 +7919,12 @@
             "value" : "फ़ाइल की सामग्री।"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A fájl tartalma."
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7658,6 +8042,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ड्रॉप की गई फ़ाइल का एक्सटेंशन।"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A behúzott fájl kiterjesztése."
           }
         },
         "it" : {
@@ -7779,6 +8169,12 @@
             "value" : "ड्रॉप की गई फ़ाइल का एक्सटेंशन (छोटे अक्षरों में परिवर्तित)।"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A behúzott fájl kiterjesztése (kisbetűssé alakítva)."
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7896,6 +8292,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ड्रॉप की गई फ़ाइल का एक्सटेंशन (बड़े अक्षरों में परिवर्तित)।"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A behúzott fájl kiterjesztése (nagybetűssé alakítva)."
           }
         },
         "it" : {
@@ -8017,6 +8419,12 @@
             "value" : "ड्रॉप की गई फ़ाइल का नाम, एक्सटेंशन सहित (यदि कोई हो)।"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A behúzott fájl neve a kiterjesztéssel együtt (ha van)."
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8134,6 +8542,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ड्रॉप की गई फ़ाइल का नाम, एक्सटेंशन के बिना।"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A behúzott fájl neve kiterjesztés nélkül."
           }
         },
         "it" : {
@@ -8255,6 +8669,12 @@
             "value" : "इमेज की ऊँचाई।"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A kép magassága."
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8372,6 +8792,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "इमेज की चौड़ाई।"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A kép szélessége."
           }
         },
         "it" : {
@@ -8493,6 +8919,12 @@
             "value" : "ड्रॉप की गई फ़ाइल और दस्तावेज़ के बीच सापेक्ष पथ।"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A behúzott fájl és a dokumentum közötti relatív útvonal."
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8610,6 +9042,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "फ़िल्टर"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Szűrés"
           }
         },
         "it" : {
@@ -8732,6 +9170,12 @@
             "value" : "हालिया फ़िल्टर साफ़ करें"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Legutóbbi szűrők törlése"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8850,6 +9294,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "हालिया फ़िल्टर"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Legutóbbi szűrők"
           }
         },
         "it" : {
@@ -8972,6 +9422,12 @@
             "value" : "कोई हालिया फ़िल्टर नहीं"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nincsenek legutóbbi szűrők"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9090,6 +9546,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "CotEditor को पहुँच देने के लिए मूल स्थान खोलें।"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A CotEditor hozzáférésének engedélyezéséhez nyissa meg az eredeti helyet."
           }
         },
         "it" : {
@@ -9212,6 +9674,12 @@
             "value" : "“%@” पहले से मौजूद है। क्या आप उसे बदलना चाहते हैं?"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Már létezik „%@” nevű beállítás. Szeretné lecserélni?"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9330,6 +9798,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "समान नाम की एक कस्टम सेटिंग पहले से मौजूद है। उसे बदलने पर उसका वर्तमान कॉन्टेंट ओवरराइट कर दिया जाएगा।"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Már létezik egy azonos nevű egyéni beállítás. Ha lecseréli, a jelenlegi tartalma felülíródik."
           }
         },
         "it" : {
@@ -9452,6 +9926,12 @@
             "value" : "बदलें"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Átalakítás"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9570,6 +10050,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "अनदेखा करें"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kihagyás"
           }
         },
         "it" : {
@@ -9692,6 +10178,12 @@
             "value" : "समीक्षा करें"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Áttekintés"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9809,6 +10301,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "क्या आप सभी लाइन एंडिंग को %@ में बदलना चाहते हैं, जो इस दस्तावेज़ में सबसे सामान्य लाइन एंडिंग है?"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Szeretné az összes sorvéget %@ sorvégre alakítani? Ez a leggyakoribb sorvég a dokumentumban."
           }
         },
         "it" : {
@@ -9930,6 +10428,12 @@
             "value" : "इस दस्तावेज़ में सबसे सामान्य लाइन एंडिंग %@ है।"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A dokumentumban a leggyakoribb sorvég: %@."
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10047,6 +10551,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "दस्तावेज़ में असंगत लाइन एंडिंग हैं।"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A dokumentum sorvégei nem egységesek."
           }
         },
         "it" : {
@@ -10169,6 +10679,12 @@
             "value" : "इस दस्तावेज़ के लिए दोबारा न पूछें"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ismételt kérdés mellőzése ennél a dokumentumnál"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10289,6 +10805,12 @@
             "value" : "नाम “%@” पहले से लिया जा चुका है।"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ez a név már foglalt: „%@”."
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10406,6 +10928,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "नाम खाली नहीं हो सकता।"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A név nem lehet üres."
           }
         },
         "it" : {
@@ -10528,6 +11056,12 @@
             "value" : "नाम में “%@” नहीं हो सकता।"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A név nem tartalmazhat ilyen karaktert: „%@”."
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10645,6 +11179,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "नाम में नई पंक्तियाँ नहीं हो सकतीं।"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A név nem tartalmazhat sortörést."
           }
         },
         "it" : {
@@ -10767,6 +11307,12 @@
             "value" : "कोई दूसरा नाम चुनें।"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Válasszon másik nevet."
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10884,6 +11430,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "नाम “%@” आरक्षित है।"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ez a név fenntartott: „%@”."
           }
         },
         "it" : {
@@ -11005,6 +11557,12 @@
             "value" : "नाम डॉट “.” से शुरू नहीं हो सकता।"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A név nem kezdődhet ponttal („.”)."
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11122,6 +11680,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "नाम बहुत लंबा है।"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A név túl hosszú."
           }
         },
         "it" : {
@@ -11244,6 +11808,12 @@
             "value" : "निम्नलिखित टेम्पलेट भरें, फिर इसे %1$@ पर पोस्ट करें या %2$@ पर भेजें। ध्यान दें कि आपके ईमेल की सामग्री Issue पेज पर साझा की जा सकती है। अपना संदेश अंग्रेज़ी या जापानी में लिखें।"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Töltse ki az alábbi sablont, majd tegye közzé itt: %1$@, vagy küldje el erre a címre: %2$@. Vegye figyelembe, hogy az e-mail tartalma megjelenhet a hibajelentések oldalán. Az üzenetet angolul vagy japánul írja meg."
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11361,6 +11931,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "एनवायरनमेंट"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Környezet"
           }
         },
         "it" : {
@@ -11482,6 +12058,12 @@
             "value" : "अपेक्षित परिणाम"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Várt eredmény"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11601,6 +12183,12 @@
             "value" : "संक्षिप्त विवरण"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rövid leírás"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11718,6 +12306,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "समस्या दोहराने के चरण"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A hiba előidézésének lépései"
           }
         },
         "it" : {
@@ -11840,6 +12434,12 @@
             "value" : "समस्या रिपोर्ट"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hibajelentés"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11957,6 +12557,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "एकाधिक आइटम चयनित"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Több elem kijelölve"
           }
         },
         "it" : {
@@ -12078,6 +12684,12 @@
             "value" : "कोई आइटम चयनित नहीं"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nincs kijelölt elem"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12189,6 +12801,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "अंतिम बार %@ को संशोधित"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Utolsó módosítás: %@"
           }
         },
         "it" : {
@@ -12311,6 +12929,12 @@
             "value" : "URL पर जाएँ"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "URL megnyitása"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12428,6 +13052,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "दस्तावेज़ में “%@” के साथ असंगत वर्ण हैं।"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A dokumentum olyan karaktereket tartalmaz, amelyek nem kompatibilisek ezzel a kódolással: „%@”."
           }
         },
         "it" : {
@@ -12550,6 +13180,12 @@
             "value" : "एनकोडिंग बदलें"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kódolás módosítása"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12667,6 +13303,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "सहेजते समय असंगत वर्ण या तो प्रतिस्थापित कर दिए जाते हैं या हटा दिए जाते हैं। क्या आप टेक्स्ट एनकोडिंग बदलकर असंगत वर्णों की समीक्षा करना चाहते हैं?"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mentéskor a nem kompatibilis karakterek lecserélődnek vagy törlődnek. Szeretné módosítani a szövegkódolást és áttekinteni a nem kompatibilis karaktereket?"
           }
         },
         "it" : {
@@ -12788,6 +13430,12 @@
             "value" : "कोई नहीं"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nincs"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12903,6 +13551,12 @@
           }
         },
         "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CMYK"
+          }
+        },
+        "hu" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "CMYK"
@@ -13028,6 +13682,12 @@
             "value" : "DeviceN"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "DeviceN"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13145,6 +13805,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ग्रे"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Szürkeárnyalat"
           }
         },
         "it" : {
@@ -13267,6 +13933,12 @@
             "value" : "सूचीबद्ध"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Indexelt"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13385,6 +14057,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "प्रयोगशाला"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lab"
           }
         },
         "it" : {
@@ -13507,6 +14185,12 @@
             "value" : "पैटर्न"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mintázat"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13622,6 +14306,12 @@
           }
         },
         "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "RGB"
+          }
+        },
+        "hu" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "RGB"
@@ -13746,6 +14436,12 @@
             "value" : "ठीक"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "OK"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13857,6 +14553,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "%@ को प्रिंट किया गया"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nyomtatva: %@"
           }
         },
         "it" : {
@@ -13978,6 +14680,12 @@
             "value" : "दस्तावेज़ के पास पुनर्व्याख्या करने के लिए कोई फ़ाइल नहीं है।"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A dokumentumhoz nem tartozik újraértelmezhető fájl."
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14097,6 +14805,12 @@
             "value" : "दस्तावेज़ को टेक्स्ट एनकोडिंग “%@” का उपयोग करके पुनर्व्याख्यायित नहीं किया जा सका।"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A dokumentum nem értelmezhető újra ezzel a szövegkódolással: „%@”."
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14214,6 +14928,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "दस्तावेज़ किसी भिन्न टेक्स्ट एनकोडिंग का उपयोग करके सहेजा गया हो सकता है, या यह टेक्स्ट फ़ाइल नहीं हो सकती।"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lehet, hogy a dokumentumot más szövegkódolással mentették, vagy nem szöveges fájl."
           }
         },
         "it" : {
@@ -14336,6 +15056,12 @@
             "value" : "न सहेजें"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mentés mellőzése"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14455,6 +15181,12 @@
             "value" : "रिमोट कनेक्शन डिस्कनेक्ट किया गया है। आपके बदलाव भेजे नहीं गए हैं।"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A távoli kapcsolat megszakadt. A módosításokat nem sikerült elküldeni."
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14572,6 +15304,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "क्या “%@” के बदलाव इस Mac पर सहेजने हैं?"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Szeretné ezen a Macen menteni a(z) „%@” dokumentumban végrehajtott módosításokat?"
           }
         },
         "it" : {
@@ -14694,6 +15432,12 @@
             "value" : "बाद में"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Később"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14811,6 +15555,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "बदलाव अब रिमोट पर सहेजे नहीं जा सकते। अपने बदलाव रखने के लिए दस्तावेज़ को इस Mac पर सहेजें।"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A módosítások már nem menthetők távolról. A módosítások megtartásához mentse a dokumentumot ezen a Macen."
           }
         },
         "it" : {
@@ -14932,6 +15682,12 @@
             "value" : "“%@” का रिमोट कनेक्शन डिस्कनेक्ट किया गया।"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Megszakadt a távoli kapcsolat: „%@”."
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15049,6 +15805,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "यह पोर्ट पहले से उपयोग में है।"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A port már használatban van."
           }
         },
         "it" : {
@@ -15171,6 +15933,12 @@
             "value" : "पोर्ट नंबर अमान्य है।"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A portszám érvénytelen."
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15290,6 +16058,12 @@
             "value" : "1 से 65535 के बीच का पोर्ट नंबर दर्ज करें।"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Adjon meg egy portszámot 1 és 65535 között."
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15407,6 +16181,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "रिमोट फ़ाइल खोलने के लिए बहुत बड़ी है।"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A távoli fájl túl nagy, nem nyitható meg."
           }
         },
         "it" : {
@@ -15529,6 +16309,12 @@
             "value" : "रिमोट एडिटिंग में %@ तक की फ़ाइलें खोली जा सकती हैं।"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Távoli szerkesztéshez a fájl legfeljebb %@ lehet."
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15646,6 +16432,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "रिमोट फ़ाइलें खोली नहीं जा सकीं क्योंकि rmate से आया अनुरोध सही फ़ॉर्मैट में नहीं है।"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A távoli fájlok nem nyithatók meg, mert az rmate kérése nem megfelelő formátumú."
           }
         },
         "it" : {
@@ -15767,6 +16559,12 @@
             "value" : "हो सकता है कि किसी फ़ाइल के नाम में अमान्य वर्ण शामिल हों। रिमोट कंप्यूटर पर फ़ाइल का नाम बदलें और फिर कोशिश करें।"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lehet, hogy egy fájlnév érvénytelen karaktert tartalmaz. Nevezze át a fájlt a távoli számítógépen, majd próbálja újra."
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15884,6 +16682,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "कुछ रिमोट फ़ाइलें खोली नहीं जा सकीं।"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Néhány távoli fájl nem nyitható meg."
           }
         },
         "it" : {
@@ -16096,6 +16900,24 @@
                 "stringUnit" : {
                   "state" : "translated",
                   "value" : "एक rmate कमांड एक बार में अधिकतम %lld फ़ाइलें खोल सकता है।"
+                }
+              }
+            }
+          }
+        },
+        "hu" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Egy rmate-paranccsal egyszerre legfeljebb %lld fájl nyitható meg."
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Egy rmate-paranccsal egyszerre legfeljebb %lld fájl nyitható meg."
                 }
               }
             }
@@ -16370,6 +17192,12 @@
             "value" : "इनपुट लेने के लिए कोई दस्तावेज़ नहीं।"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nincs dokumentum, amelyből a bemenet beolvasható."
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -16487,6 +17315,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "आउटपुट डालने के लिए कोई दस्तावेज़ नहीं।"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nincs dokumentum, amelybe a kimenet írható."
           }
         },
         "it" : {
@@ -16608,6 +17442,12 @@
             "value" : "यह दस्तावेज़ संपादन योग्य नहीं है।"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A dokumentum nem szerkeszthető."
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -16725,6 +17565,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "स्क्रिप्ट “%@” मौजूद नहीं है।"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ez a szkript nem létezik: „%@”."
           }
         },
         "it" : {
@@ -16846,6 +17692,12 @@
             "value" : "स्क्रिप्ट फ़ाइल “%@” नहीं खोली जा सकी।"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ez a szkriptfájl nem nyitható meg: „%@”."
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -16963,6 +17815,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "स्क्रिप्ट “%@” निष्पादित नहीं की जा सकती क्योंकि आपके पास इसे निष्पादित करने की अनुमति नहीं है।"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nincs jogosultsága a szkript futtatásához: „%@”."
           }
         },
         "it" : {
@@ -17084,6 +17942,12 @@
             "value" : "स्क्रिप्ट फ़ाइल की अनुमति जाँचें।"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ellenőrizze a szkriptfájl jogosultságait."
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -17203,6 +18067,12 @@
             "value" : "स्क्रिप्ट “%@” पढ़ी नहीं जा सकी।"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ez a szkript nem olvasható be: „%@”."
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -17320,6 +18190,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "स्क्रिप्ट फ़ाइल जाँचें।"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ellenőrizze a szkriptfájlt."
           }
         },
         "it" : {
@@ -17442,6 +18318,12 @@
             "value" : "हालिया खोज साफ़ करें"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Legutóbbi keresések törlése"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -17560,6 +18442,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "हालिया खोज"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Legutóbbi keresések"
           }
         },
         "it" : {
@@ -17682,6 +18570,12 @@
             "value" : "कोई हालिया खोज नहीं"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nincsenek legutóbbi keresések"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -17799,6 +18693,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "“%@” डिलीट नहीं की जा सकी।"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nem sikerült törölni: „%@”."
           }
         },
         "it" : {
@@ -17920,6 +18820,12 @@
             "value" : "“%@” इंपोर्ट नहीं की जा सकी।"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nem sikerült importálni: „%@”."
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -18037,6 +18943,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "“%@” लोड नहीं की जा सकी।"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nem sikerült betölteni: „%@”."
           }
         },
         "it" : {
@@ -18158,6 +19070,12 @@
             "value" : "डिकोडिंग त्रुटि : %@"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dekódolási hiba: %@"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -18275,6 +19193,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "“%@” के लिए कोई मूल फ़ाइल नहीं मिली।"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nem található eredeti fájl ehhez: „%@”."
           }
         },
         "it" : {
@@ -18396,6 +19320,12 @@
             "value" : "“%1$@” पहले से “%2$@” कमांड द्वारा लिया गया है।"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A billentyűparancsot („%1$@”) már használja egy másik parancs: „%2$@”."
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -18513,6 +19443,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "शिफ़्ट-की का उपयोग केवल किसी अन्य मॉडिफ़ायर-की के साथ किया जा सकता है।"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A Shift billentyű csak egy másik módosítóbillentyűvel együtt használható."
           }
         },
         "it" : {
@@ -18634,6 +19570,12 @@
             "value" : "शॉर्टकट के लिए एकल टाइप अमान्य है।"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Egyetlen billentyű önmagában nem lehet billentyűparancs."
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -18751,6 +19693,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "संयोजन “%@” शॉर्टकट कस्टमाइज़ेशन के लिए समर्थित नहीं है।"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ez a billentyűkombináció nem használható billentyűparancsként: „%@”."
           }
         },
         "it" : {
@@ -18872,6 +19820,12 @@
             "value" : "स्निपेट डालने के बाद सम्मिलन बिंदु।"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A kurzor helye a kódrészlet beszúrása után."
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -18991,6 +19945,12 @@
             "value" : "चयनित टेक्स्ट।"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A kijelölt szöveg."
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -19108,6 +20068,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "कोई नहीं"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nincs"
           }
         },
         "it" : {
@@ -19230,6 +20196,12 @@
             "value" : "अज्ञात"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ismeretlen"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -19348,6 +20320,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "परिवर्तनों को ख़ारिज करें"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Módosítások elvetése"
           }
         },
         "it" : {
@@ -19470,6 +20448,12 @@
             "value" : "क्या आप वाकई अपने बदलाव रद्द करके दस्तावेज़ को “%@” का उपयोग करके फिर से खोलना चाहते हैं?"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Biztosan elveti a módosításokat, és újra megnyitja a dokumentumot ezzel a kódolással: „%@”?"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -19589,6 +20573,12 @@
             "value" : "दस्तावेज़ में सहेजे न गए बदलाव हैं।"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A dokumentumban nem mentett módosítások vannak."
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -19702,6 +20692,12 @@
             "value" : "अनामांकित"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Névtelen"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -19813,6 +20809,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "शीर्षकहीन फ़ोल्डर"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "névtelen mappa"
           }
         },
         "it" : {
@@ -19935,6 +20937,12 @@
             "value" : "CotEditor का वर्शन रखें"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A CotEditorban lévő változat megtartása"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -20053,6 +21061,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "अपडेट करें"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Frissítés"
           }
         },
         "it" : {
@@ -20175,6 +21189,12 @@
             "value" : "क्या आप CotEditor का वर्शन रखना चाहते हैं या इसे संशोधित वर्शन में अपडेट करना चाहते हैं?"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Megtartja a CotEditorban lévő változatot, vagy frissíti a módosított változatra?"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -20295,6 +21315,12 @@
             "value" : "फ़ाइल अन्य ऐप्लिकेशन द्वारा बदल दी गई है।"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ezt a dokumentumot egy másik alkalmazás módosította."
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -20412,6 +21438,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "फ़ाइल किसी अन्य एप्लिकेशन द्वारा बदल दी गई है। CotEditor में सहेजे न गए बदलाव भी हैं।"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ezt a dokumentumot egy másik alkalmazás módosította. A CotEditorban is vannak nem mentett módosítások."
           }
         },
         "it" : {
