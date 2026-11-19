@@ -234,6 +234,21 @@ import SyntaxFormat
     }
     
     
+    @Test func importBrokenSettingThrowsImportFailedErrorWithName() throws {
+        
+        let manager = TestThemeManager()
+        let name = "Broken Import \(UUID().uuidString)"
+        
+        let error = #expect(throws: SettingFileError.self) {
+            try manager.importSetting(.payload(Data("{".utf8)), name: name, overwrite: true)
+        }
+        
+        #expect(error?.code == .importFailed)
+        #expect(error?.name == name)
+        #expect(error?.recoverySuggestion?.hasPrefix("Decoding Error:") == true)
+    }
+    
+    
     @Test func loadFailedRecoverySuggestionKeepsDecodingError() throws {
         
         let decodingError = DecodingError.dataCorrupted(.init(codingPath: [], debugDescription: "Broken setting"))

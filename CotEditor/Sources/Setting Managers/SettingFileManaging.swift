@@ -369,13 +369,18 @@ extension SettingFileManaging {
         
         // test if the setting file can be read correctly
         let type = type ?? Setting.fileType
-        let setting: Setting = switch item {
-            case .url(let url) where type.conforms(to: Setting.fileType):
-                try Setting(contentsOf: url)
-            case .url(let url):
-                try Setting(payload: Data(contentsOf: url), type: type)
-            case .payload(let payload):
-                try Setting(payload: payload, type: type)
+        let setting: Setting
+        do {
+            setting = switch item {
+                case .url(let url) where type.conforms(to: Setting.fileType):
+                    try Setting(contentsOf: url)
+                case .url(let url):
+                    try Setting(payload: Data(contentsOf: url), type: type)
+                case .payload(let payload):
+                    try Setting(payload: payload, type: type)
+            }
+        } catch {
+            throw SettingFileError(.importFailed, name: name, underlyingError: error)
         }
         
         // write file
@@ -638,7 +643,8 @@ struct SettingFileError: LocalizedError {
     var recoverySuggestion: String? {
         
         switch (self.code, self.underlyingError) {
-            case (.loadFailed, let error as DecodingError):
+            case (.loadFailed, let error as DecodingError),
+                 (.importFailed, let error as DecodingError):
                 String(localized: "SettingFileError.loadFailed.recoverySuggestion.decodingError",
                        defaultValue: "Decoding Error: \(error.localizedDescription)")
             default:
