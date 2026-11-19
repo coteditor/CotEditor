@@ -5,7 +5,7 @@
 
 ### New Features
 
-- Add Hungarian localization (thanks to Torma Zsolt!).
+- Add the Hungarian localization (thanks to Torma Zsolt!).
 
 
 ### Improvements
