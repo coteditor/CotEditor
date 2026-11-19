@@ -446,10 +446,12 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
                     guard let self, self.focusedTextView?.hasMarkedText() != true else { return }
                     
                     self.document.counter.invalidateContent()
+                    self.document.counter.invalidateSelection()
                     self.document.syntaxController.parseIfNeeded()
                 }
             } else {
                 self.document.counter.invalidateContent()
+                self.document.counter.invalidateSelection()
                 self.document.syntaxController.parseIfNeeded()
             }
         }

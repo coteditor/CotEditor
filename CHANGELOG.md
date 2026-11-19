@@ -32,6 +32,7 @@
 - [trivial] Fix an issue in the file browser where filtering with only certain combining marks showed all items.
 - [trivial] Fix an issue where importing a settings archive failed if it contained hidden files, such as .DS_Store.
 - [trivial] Fix an issue where importing a setting listed it twice if a custom setting with the same name but different capitalization already existed.
+- [trivial] Fix an issue where the line and column of the insertion point in the status bar could remain outdated after the document was reloaded with changes made outside the app.
 
 
 
