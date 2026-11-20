@@ -101,6 +101,8 @@
 (when_clause "when" @keywords)
 (catch_filter_clause "when" @keywords)
 (calling_convention ["managed" "unmanaged"] @keywords)
+(extension_declaration "extension" @keywords)
+(struct_declaration "partial" @keywords)
 
 (fixed_statement "fixed" @keywords)
 (unsafe_statement "unsafe" @keywords)
@@ -111,6 +113,7 @@
 ; ----------------------------
 
 (parameter name: (identifier) @variables)
+(receiver_parameter name: (identifier) @variables)
 (variable_declarator name: (identifier) @variables)
 (declaration_expression name: (identifier) @variables)
 (declaration_pattern name: (identifier) @variables)
