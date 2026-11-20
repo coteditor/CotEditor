@@ -53,23 +53,6 @@ struct StringCountingTests {
     }
     
     
-    @Test func numberOfLines() {
-        
-        #expect("".numberOfLines == 0)
-        #expect("a".numberOfLines == 1)
-        #expect("\n".numberOfLines == 1)
-        #expect("\n\n".numberOfLines == 2)
-        #expect("\u{feff}".numberOfLines == 1)
-        #expect("ab\r\ncd".numberOfLines == 2)
-        #expect("a\u{FEFF}\nb".numberOfLines == 2)
-        #expect("\u{FEFF}\nb".numberOfLines == 2)
-        #expect("\u{FEFF}0000000000000000".numberOfLines == 1)
-        
-        let testString = "a\nb c\n\n"
-        #expect(testString.numberOfLines == 3)
-    }
-    
-    
     @Test func numberOfLinesInNSRange() {
         
         let testString = "a\nb c\n\n"
@@ -158,36 +141,5 @@ struct StringCountingTests {
         #expect(string.columnNumber(at: string.index(string.startIndex, offsetBy: 5)) == 0)
         #expect(string.columnNumber(at: string.index(string.startIndex, offsetBy: 6)) == 1)
         #expect(string.columnNumber(at: string.index(string.startIndex, offsetBy: 7)) == 2)
-    }
-    
-    
-    @Test func numberOfLinesInRanges() {
-        
-        let string = "a\nb\n\nc\n"
-        let range1 = string.startIndex..<string.index(string.startIndex, offsetBy: 2)  // "a\n"
-        let range2 = string.index(string.startIndex, offsetBy: 2)..<string.index(string.startIndex, offsetBy: 4)  // "b\n"
-        let range3 = string.index(string.startIndex, offsetBy: 4)..<string.index(string.startIndex, offsetBy: 5)  // "\n"
-        
-        #expect(string.numberOfLines(in: [range1, range2, range3]) == 3)
-        #expect(string.numberOfLines(in: [range1, range2], includesLastBreak: true) == 4)
-        
-        let emptyRange = string.index(string.startIndex, offsetBy: 2)..<string.index(string.startIndex, offsetBy: 2)
-        #expect(string.numberOfLines(in: [emptyRange, emptyRange]) == 0)
-        #expect(string.numberOfLines(in: [range1, emptyRange]) == 1)
-        
-        let bomString = "\u{FEFF}\nb"
-        let bomRange = bomString.startIndex..<bomString.index(bomString.startIndex, offsetBy: 2)
-        #expect(bomString.numberOfLines(in: [bomRange, bomRange]) == 1)  // "\u{FEFF}\n"
-    }
-    
-    
-    @Test func lineNumberAtIndex() {
-        
-        let string = "a\n\n b"
-        
-        #expect(string.lineNumber(at: string.startIndex) == 1)
-        #expect(string.lineNumber(at: string.index(string.startIndex, offsetBy: 1)) == 1)
-        #expect(string.lineNumber(at: string.index(string.startIndex, offsetBy: 2)) == 2)
-        #expect(string.lineNumber(at: string.index(string.startIndex, offsetBy: 3)) == 3)
     }
 }

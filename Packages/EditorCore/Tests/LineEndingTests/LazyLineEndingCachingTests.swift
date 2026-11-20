@@ -62,7 +62,7 @@ struct LazyLineEndingCachingTests {
         for string in ["", "a", "\n", "\n\n", "a\nb", "a\nb\n", "a\r\nb\r\n"] {
             let counter = LineCounter(string: string)
             
-            #expect(counter.numberOfLines == string.numberOfLines,
+            #expect(counter.numberOfLines == string.numberOfLines(),
                     "With string \"\(string)\"")
         }
     }

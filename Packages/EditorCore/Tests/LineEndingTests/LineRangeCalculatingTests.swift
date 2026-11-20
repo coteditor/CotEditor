@@ -88,7 +88,7 @@ struct LineRangeCalculatingTests {
             
             let calculator = Calculator(string: string)
             
-            #expect(calculator.numberOfLines == string.numberOfLines)
+            #expect(calculator.numberOfLines == string.numberOfLines())
         }
         
         
@@ -296,5 +296,26 @@ private struct Calculator: LineRangeCalculating {
         
         self.length = (string as NSString).length
         self.lineEndings = string.lineEndingRanges()
+    }
+}
+
+
+private extension StringProtocol {
+    
+    /// Counts the number of lines in the given ranges without counting a line shared by multiple ranges twice.
+    ///
+    /// - Parameters:
+    ///   - ranges: The character ranges to count lines.
+    /// - Returns: The number of lines.
+    func numberOfLines(in ranges: [Range<Index>]) -> Int {
+        
+        var lineRanges: Set<Range<Index>> = []
+        for range in ranges where !range.isEmpty {
+            self.enumerateSubstrings(in: self.lineRange(for: range), options: [.byLines, .substringNotRequired]) { _, substringRange, _, _ in
+                lineRanges.insert(substringRange)
+            }
+        }
+        
+        return lineRanges.count
     }
 }
