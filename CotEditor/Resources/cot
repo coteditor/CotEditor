@@ -457,22 +457,30 @@ def main(args: argparse.Namespace, stdin: Optional[str]) -> None:
     if app.tell('number of documents') == '0':
         return
     
+    # skip folders for the options to documents
+    #   -> The last opened file is the first document.
+    folder_indexes = {index + 1 for index, path in enumerate(reversed(args.files))
+                      if os.path.isdir(path)}
+    document_indexes = [index for index in range(1, document_count + 1)
+                        if index not in folder_indexes]
+
     # set read-only
     if args.readonly:
-        for index in range(document_count):
-            app.tell_document('set editable to false', index + 1)
+        for index in document_indexes:
+            app.tell_document('set editable to false', index)
 
     # set syntax
     if args.syntax is not None:
         syntax = osa_string(args.syntax)
-        for index in range(document_count):
-            app.tell_document('set coloring style to {}'.format(syntax),
-                              index + 1)
+        for index in document_indexes:
+            app.tell_document('set coloring style to {}'.format(syntax), index)
 
-    # jump to location
-    if args.line is not None or args.column is not None:
+    # jump to location in the frontmost document except folders
+    if ((args.line is not None or args.column is not None)
+            and (document_indexes or not args.files)):
         app.tell_document('jump to line {} column {}'.format(
-            args.line or 1, args.column or 0))
+            args.line or 1, args.column or 0),
+            document_indexes[0] if document_indexes else 1)
 
     # wait for window close
     if args.wait and (len(args.files) == 1 or stdin or args.new_window):
