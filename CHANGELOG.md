@@ -25,7 +25,7 @@
 ### Fixes
 
 - Fix several issues where the editor’s font and indentation were reset, such as when opening documents with the “Detect indent style on document opening” option, splitting the editor, or relaunching the app.
-- Fix several issues in the `cot` command when specifying multiple files or folders, such as where the `--new` option emptied existing files that followed a new file, or where options like `--readonly` failed for folders.
+- Fix several issues in the `cot` command, such as where the `--new` option emptied existing files that followed a new file, options like `--readonly` failed for folders, or the `--wait` option stopped waiting when the window was minimized.
 - Fix an issue where Keyboard Maestro and other accessibility tools could not find the Text menu.
 - Fix an issue in the file browser where the item with the old name remained after changing only the capitalization of its name.
 - Fix an issue in the file browser where changes were no longer reflected after renaming or moving the opened folder or its subfolders.

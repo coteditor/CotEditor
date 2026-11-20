@@ -229,8 +229,9 @@ class ScriptableApplication(object):
         """
         if window_id is None:
             return False
-        script = '(first window whose id is {}) is visible'.format(
-            osa_literal(window_id))
+        # minimized windows are invisible but still open
+        window = '(first window whose id is {})'.format(osa_literal(window_id))
+        script = '{0} is visible or {0} is miniaturized'.format(window)
         result = None
         try:
             result = self.tell(script)
