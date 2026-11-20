@@ -31,6 +31,7 @@
 - Fix an issue in the file browser where filtering did not work when the folder contained a subfolder that could not be read.
 - Fix an issue in the file browser where the filter results were not updated correctly after files were changed outside the app.
 - Fix an issue where importing a settings archive exported from CotEditor 6.2 failed if it included custom syntaxes.
+- Fix an issue where the AppleScript `replace` command could fail to replace a single match when the regular expression used lookahead.
 - [trivial] Fix an issue in the file browser where filtering with only certain combining marks showed all items.
 - [trivial] Fix an issue where importing a settings archive failed if it contained hidden files, such as .DS_Store.
 - [trivial] Fix an issue where importing a setting listed it twice if a custom setting with the same name but different capitalization already existed.

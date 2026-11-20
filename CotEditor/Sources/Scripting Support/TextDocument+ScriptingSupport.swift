@@ -349,16 +349,17 @@ extension TextDocument {
             return count as NSNumber
             
         } else {
-            guard let foundRange = (string as NSString).range(of: searchString, selectedRange: textView.selectedRange,
-                                                              options: options, isWrapSearch: isWrapSearch)
-            else { return 0 }
-            
+            let foundRange: NSRange
             let replacedString: String
             if let regex {
-                guard let match = regex.firstMatch(in: string, options: .withoutAnchoringBounds, range: foundRange) else { return 0 }
+                guard let match = regex.firstMatch(in: string, selectedRange: textView.selectedRange, isWrapSearch: isWrapSearch) else { return 0 }
                 
+                foundRange = match.range
                 replacedString = regex.replacementString(for: match, in: string, offset: 0, template: replacementString)
             } else {
+                guard let range = (string as NSString).range(of: searchString, selectedRange: textView.selectedRange, options: options, isWrapSearch: isWrapSearch) else { return 0 }
+                
+                foundRange = range
                 replacedString = replacementString
             }
             let selectedRange = NSRange(location: foundRange.location, length: replacedString.length)
@@ -526,37 +527,53 @@ private extension NSString {
     ///
     /// - Parameters:
     ///   - searchString: The string to search for.
-    ///   - selectedRange: The range to search in.
+    ///   - selectedRange: The current selection.
     ///   - options: The search option.
     ///   - isWrapSearch: Whether the search should wrap.
-    /// - Returns: The range of found or `nil` if not found.
+    /// - Returns: The range of the first occurrence, or `nil` if not found.
     func range(of searchString: String, selectedRange: NSRange, options: NSString.CompareOptions, isWrapSearch: Bool) -> NSRange? {
         
         guard self.length > 0 else { return nil }
         
-        let targetRange = (options.contains(.backwards) && !options.contains(.regularExpression))
-            ? NSRange(..<selectedRange.lowerBound)
-            : NSRange(selectedRange.upperBound..<self.length)
-        
-        var foundRange: NSRange = .notFound
         if options.contains(.regularExpression) {
             let regexOptions: NSRegularExpression.Options = options.contains(.caseInsensitive) ? .caseInsensitive : []
             guard let regex = try? NSRegularExpression(pattern: searchString, options: regexOptions.union(.anchorsMatchLines)) else { return nil }
             
-            foundRange = regex.rangeOfFirstMatch(in: self as String, options: .withoutAnchoringBounds, range: targetRange)
-            if foundRange.isNotFound, isWrapSearch {
-                foundRange = regex.rangeOfFirstMatch(in: self as String, options: .withoutAnchoringBounds, range: self.range)
-            }
-            
-        } else {
-            foundRange = self.range(of: searchString, options: options, range: targetRange)
-            if foundRange.isNotFound, isWrapSearch {
-                foundRange = self.range(of: searchString, options: options)
-            }
+            return regex.firstMatch(in: self as String, selectedRange: selectedRange, isWrapSearch: isWrapSearch)?.range
         }
         
-        guard foundRange.location != NSNotFound else { return nil }
+        let targetRange = options.contains(.backwards)
+            ? NSRange(..<selectedRange.lowerBound)
+            : NSRange(selectedRange.upperBound..<self.length)
+        var foundRange = self.range(of: searchString, options: options, range: targetRange)
+        if foundRange.isNotFound, isWrapSearch {
+            foundRange = self.range(of: searchString, options: options)
+        }
         
-        return foundRange
+        return foundRange.isNotFound ? nil : foundRange
+    }
+}
+
+
+private extension NSRegularExpression {
+    
+    /// Finds the first match after the current selection, optionally wrapping to the beginning of the string.
+    ///
+    /// - Parameters:
+    ///   - string: The string to search.
+    ///   - selectedRange: The current selection.
+    ///   - isWrapSearch: Whether the search should wrap.
+    /// - Returns: The first match, or `nil` if not found.
+    func firstMatch(in string: String, selectedRange: NSRange, isWrapSearch: Bool) -> NSTextCheckingResult? {
+        
+        if let match = self.firstMatch(in: string, options: [.withTransparentBounds, .withoutAnchoringBounds],
+                                       range: NSRange(selectedRange.upperBound..<string.length))
+        {
+            return match
+        }
+        
+        guard isWrapSearch else { return nil }
+        
+        return self.firstMatch(in: string, options: .withoutAnchoringBounds, range: string.nsRange)
     }
 }
