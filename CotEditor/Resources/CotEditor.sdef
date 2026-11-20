@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE dictionary SYSTEM "file://localhost/System/Library/DTDs/sdef.dtd">
 
-<dictionary title="Dictionary" xmlns:xi="http://www.w3.org/2003/XInclude">
+<dictionary title="Dictionary" xmlns:xi="http://www.w3.org/2001/XInclude">
     <xi:include href="file:///System/Library/ScriptingDefinitions/CocoaStandard.sdef" xpointer="xpointer(/dictionary/suite)"/>
     
     <suite name="CotEditor Suite" code="cEd1" description="CotEditor-specific classes.">
@@ -106,8 +106,9 @@
         
         <class name="folder document" plural="folder documents" code="dDoc" inherits="document" description="A CotEditor folder document.">
             <cocoa class="CotEditor.DirectoryDocument"/>
-            <property name="current document" code="cDoc" type="document" access="r" optional="yes" description="The current document in the folder document.">
+            <property name="current document" code="cDoc" type="document" access="r" description="The text document currently open in the folder document, if any.">
                 <cocoa key="scriptCurrentDocument"/>
+                <access-group identifier="com.coteditor.CotEditor.edit" access="r"/>
             </property>
         </class>
         
@@ -173,7 +174,7 @@
         <command name="write to console" code="cEd1cnsl" description="Display text on the console.">
             <cocoa class="CotEditor.WriteToConsoleCommand"/>
             <access-group identifier="*"/>
-            <direct-parameter code="cLog" type="text" description="The message to display on the console."/>
+            <direct-parameter type="text" description="The message to display on the console."/>
             <parameter name="title" code="cstt" type="boolean" optional="yes" description="Should the script name be displayed?">
                 <cocoa key="title"/>
             </parameter>
@@ -204,7 +205,7 @@
             <parameter name="lossy" code="lOsy" type="boolean" description="Is lossy conversion allowed?" optional="yes">
                 <cocoa key="lossy"/>
             </parameter>
-            <parameter name="BOM" code="wBOM" type="boolean" description="Does the document’s text encoding have a BOM (byte order mark)?" optional="yes">
+            <parameter name="BOM" code="wBOM" type="boolean" description="Whether to add a byte order mark (BOM) when converting to UTF-8. The default is false." optional="yes">
                 <cocoa key="BOM"/>
             </parameter>
             <parameter name="to" code="nEcd" type="text" description="The new encoding, either a localized encoding name or an IANA charset name.">
@@ -234,7 +235,7 @@
             <result type="boolean" description="Was the text found?"/>
         </command>
         
-        <command name="reinterpret" code="cEd1RIpt" description="Reinterpret the document text as new encoding.">
+        <command name="reinterpret" code="cEd1RIpt" description="Reload the document from disk using a different text encoding. This discards any unsaved changes.">
             <access-group identifier="com.coteditor.CotEditor.edit" access="rw"/>
             <direct-parameter type="document" description="The document to reinterpret encoding."/>
             <parameter name="as" code="rEcd" type="text" description="The new encoding, either a localized encoding name or an IANA charset name.">
@@ -275,13 +276,13 @@
             <direct-parameter type="document" description="The document to scroll its caret."/>
         </command>
         
-        <command name="jump" code="cEd1Jump" description="Move the caret to the specified location. At least one parameter is required.">
+        <command name="jump" code="cEd1Jump" description="Move the caret to the specified line and optional column.">
             <access-group identifier="*"/>
             <direct-parameter type="document" description="The document to move."/>
             <parameter name="to line" code="line" type="integer" description="The number of the line to go to. If a negative value is provided, the line is counted from the end of the document.">
                 <cocoa key="line"/>
             </parameter>
-            <parameter name="column" code="colm" type="integer" optional="yes" description="The location in the line to jump to. If a negative value is provided, the column is counted from the end of the line.">
+            <parameter name="column" code="colm" type="integer" optional="yes" description="The zero-based position in the line. Negative values count from the end of the line. The default is 0.">
                 <cocoa key="column"/>
             </parameter>
         </command>
@@ -331,10 +332,10 @@
             <direct-parameter type="text selection" description="The selection to uncomment."/>
         </command>
         
-        <command name="string" code="cEd1STrg" description="Get text in desired range.">
+        <command name="string" code="cEd1STrg" description="Get the text in the specified range.">
             <access-group identifier="com.coteditor.CotEditor.edit" access="rw"/>
             <direct-parameter type="document" description="The document to get string."/>
-            <parameter name="in" code="rAng" description="The range in the document. The format is “{location, length}”.">
+            <parameter name="in" code="rAng" description="The range in Unicode grapheme clusters, as “{location, length}”. The location is zero-based. Negative locations count from the end of the document, with -1 referring to the position after the last character. The length must be 0 or greater.">
                 <cocoa key="range"/>
                 <type type="integer" list="yes"/>
             </parameter>
@@ -380,7 +381,7 @@
     
     
     <!-- imported standard Text Suite -->
-    <suite name="Text Suite" code="????" description="Common text classes for all applications.">
+    <suite name="Text Suite" code="????" description="Standard scripting classes for text. CotEditor applies only plain-text changes to documents and selections, discarding changes to color, font, and size.">
         <access-group identifier="*"/>
         
         <value-type name="RGB color" code="cRGB">
