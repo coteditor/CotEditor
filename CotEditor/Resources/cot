@@ -356,8 +356,9 @@ def parse_args() -> argparse.Namespace:
 
     # check file existence and create if needed
     if args.files and args.files != ['-']:
-        # strip symlink
-        args.files = list(map(os.path.realpath, args.files))
+        # strip symlink and remove duplicates
+        #   -> The options to documents assume one document per file.
+        args.files = list(dict.fromkeys(map(os.path.realpath, args.files)))
         # check readability of each file and collect the files to create
         new_paths = []
         for path in args.files:
