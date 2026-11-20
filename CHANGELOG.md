@@ -17,6 +17,7 @@
 - Update tree-sitter-c-sharp to 0.24.0.
 - Update tree-sitter-php to 0.25.2.
 - [trivial] Display the setting name in the error message when importing a setting fails.
+- [trivial] Display errors from CotEditor in the `cot` command as a brief message instead of a Python traceback.
 - [beta] Optimize regular-expression-based syntax highlighting in large documents.
 - [beta] Update Czech, Polish, and Portuguese localizations.
 

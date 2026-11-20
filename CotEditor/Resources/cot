@@ -516,4 +516,12 @@ if __name__ == "__main__":
     else:  # piped text
         stdin = ''.join(sys.stdin)
 
-    main(args, stdin)
+    try:
+        main(args, stdin)
+    except CalledProcessError as error:
+        # show the error of the script in a line instead of the traceback
+        #   -> osascript reports "START:END: execution error: MESSAGE (CODE)".
+        message = (error.output.strip().split(': ', 1)[-1]
+                   .removeprefix('execution error: '))
+        sys.stderr.write(Style.warning('Error') + ': ' + message + '\n')
+        sys.exit(error.returncode)
