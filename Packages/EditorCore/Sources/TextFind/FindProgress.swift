@@ -102,17 +102,16 @@ import Synchronization
     }
     
     
-    /// Performs the given work in a task that is cancelled together with the progress.
+    /// Performs the given work in a task that is cancelled when the progress or the calling task is cancelled.
     ///
     /// - Parameter operation: The work to perform.
-    /// - Returns: The result of the work.
-    /// - Throws: The error thrown by the work, such as `CancellationError` when cancelled.
-    public func perform<Success: Sendable>(_ operation: @escaping @Sendable () async throws -> Success) async throws -> Success {
+    /// - Returns: The result of the work, or a cancellation error thrown by `operation`.
+    public func perform<Success: Sendable>(_ operation: @escaping @Sendable () async throws(CancellationError) -> Success) async -> Result<Success, CancellationError> {
         
         // -> Create the task in the lock so that `cancel()` in the operation always finds the handler.
         let (task, isCancelled) = self.storage.withLock {
-            let task = Task { try await operation() }
-            $0.cancellationHandler = { task.cancel() }
+            let task = Task { await Result(catching: operation) }
+            $0.cancellationHandler = task.cancel
             return (task, $0.state == .cancelled)
         }
         
@@ -120,11 +119,7 @@ import Synchronization
             task.cancel()
         }
         
-        return try await withTaskCancellationHandler {
-            try await task.value
-        } onCancel: {
-            task.cancel()
-        }
+        return await withTaskCancellationHandler(operation: { await task.value }, onCancel: task.cancel)
     }
     
     

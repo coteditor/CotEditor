@@ -732,7 +732,7 @@ struct FindMatchesCache {
         defer { client.isEditable = wasEditable }
         
         let progress = FindProgress(scope: textFind.scopeRange)
-        async let findResult = progress.perform {
+        async let findResult = progress.perform { () throws(CancellationError) in
             try await Self.findAll(for: textFind, showsList: showsList, progress: progress)
         }
         
@@ -743,11 +743,7 @@ struct FindMatchesCache {
         }
         
         // perform
-        let highlights: [ValueRange<NSColor>]
-        let matches: [FindAllMatch]
-        do {
-            (highlights, matches) = try await findResult
-        } catch {
+        guard case .success(let (highlights, matches)) = await findResult else {
             // -> Mark the progress as cancelled to dismiss the progress sheet.
             progress.cancel()
             return
@@ -798,7 +794,7 @@ struct FindMatchesCache {
         let editorTextView = client as? EditorTextView
         let replacementString = self.settings.replacementString
         let progress = FindProgress(scope: textFind.scopeRange)
-        async let replacementResult = progress.perform {
+        async let replacementResult = progress.perform { () throws(CancellationError) in
             try await Self.replaceAll(for: textFind, with: replacementString, progress: progress)
         }
         
@@ -809,11 +805,7 @@ struct FindMatchesCache {
         }
         
         // perform
-        let replacementItems: [TextFind.ReplacementItem]
-        let selectedRanges: [NSRange]?
-        do {
-            (replacementItems, selectedRanges) = try await replacementResult
-        } catch {
+        guard case .success(let (replacementItems, selectedRanges)) = await replacementResult else {
             // -> Mark the progress as cancelled to dismiss the progress sheet.
             progress.cancel()
             return

@@ -97,17 +97,17 @@ struct FindProgressTests {
         
         let progress = FindProgress(scope: 0..<1)
         let task = Task {
-            try await progress.perform {
+            await progress.perform { () async throws(CancellationError) in
                 while !Task.isCancelled {
                     await Task.yield()
                 }
-                try Task.checkCancellation()
+                throw CancellationError()
             }
         }
         
         progress.cancel()
         
-        await #expect(throws: CancellationError.self) { try await task.value }
+        await #expect(throws: CancellationError.self) { try await task.value.get() }
     }
     
     

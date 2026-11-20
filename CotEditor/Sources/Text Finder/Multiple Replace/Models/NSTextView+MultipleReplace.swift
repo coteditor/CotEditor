@@ -38,7 +38,7 @@ extension NSTextView {
     ///   - inSelection: Whether find string only in selectedRanges.
     /// - Returns: A result message.
     /// - Throws: `CancellationError`.
-    final func highlight(_ definition: MultipleReplace, inSelection: Bool) async throws -> String {
+    final func highlight(_ definition: MultipleReplace, inSelection: Bool) async throws(CancellationError) -> String {
         
         let wasEditable = self.isEditable
         self.isEditable = false
@@ -48,7 +48,7 @@ extension NSTextView {
         let string = self.string.immutable
         let selectedRanges = self.selectedRanges.map(\.rangeValue)
         let progress = FindProgress(scope: 0..<definition.replacements.endIndex)
-        async let foundRanges = progress.perform { @concurrent () async throws -> [NSRange] in
+        async let foundRanges = progress.perform { @concurrent () throws(CancellationError) in
             try definition.find(string: string, ranges: selectedRanges, inSelection: inSelection, lineEnding: lineEnding, progress: progress)
                 .sorted(using: KeyPathComparator(\.location))
         }
@@ -60,7 +60,7 @@ extension NSTextView {
         }
         
         // perform
-        let ranges = try await foundRanges
+        let ranges = try await foundRanges.get()
         
         self.isEditable = wasEditable
         
@@ -91,7 +91,7 @@ extension NSTextView {
     ///   - inSelection: Whether find string only in selectedRanges.
     /// - Returns: A result message.
     /// - Throws: `CancellationError`.
-    @discardableResult final func replaceAll(_ definition: MultipleReplace, inSelection: Bool) async throws -> String {
+    @discardableResult final func replaceAll(_ definition: MultipleReplace, inSelection: Bool) async throws(CancellationError) -> String {
         
         let wasEditable = self.isEditable
         self.isEditable = false
@@ -102,7 +102,7 @@ extension NSTextView {
         let string = self.string.immutable
         let selectedRanges = self.selectedRanges.map(\.rangeValue)
         let progress = FindProgress(scope: 0..<definition.replacements.endIndex)
-        async let replacementResult = progress.perform { @concurrent () async throws -> MultipleReplace.Result in
+        async let replacementResult = progress.perform { @concurrent () throws(CancellationError) in
             try definition.replace(string: string, ranges: selectedRanges, inSelection: inSelection, lineEnding: lineEnding, progress: progress)
         }
         
@@ -113,7 +113,7 @@ extension NSTextView {
         }
         
         // perform
-        let result = try await replacementResult
+        let result = try await replacementResult.get()
         
         self.isEditable = wasEditable
         
