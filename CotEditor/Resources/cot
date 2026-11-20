@@ -26,7 +26,6 @@ limitations under the License.
 """
 
 import argparse
-import errno
 import os
 import sys
 import time
@@ -35,7 +34,7 @@ from typing import Optional
 
 
 # meta data
-__version__ = '7.1.2'
+__version__ = '7.2.0'
 __description__ = 'command-line utility for CotEditor.'
 
 
@@ -359,27 +358,24 @@ def parse_args() -> argparse.Namespace:
     if args.files and args.files != ['-']:
         # strip symlink
         args.files = list(map(os.path.realpath, args.files))
-        # skip file check if file is directory
-        if not args.new and os.path.isdir(args.files[0]):
-            return args
-
-        open_mode = 'r'
-        if args.new and not os.path.exists(args.files[0]):
-            open_mode = 'w'   # overwrite mode to create new file
-            # create directory if not exists yet
-            filepath = args.files[0]
-            dirpath = os.path.dirname(filepath)
-            if dirpath:
-                try:
-                    os.makedirs(dirpath)
-                except OSError as err:  # guard against race condition
-                    if err.errno != errno.EEXIST:
-                        parser.error("argument FILE: {}".format(err))
-        # check readability or create new one
+        # check readability of each file and collect the files to create
+        new_paths = []
         for path in args.files:
+            if os.path.isdir(path):
+                continue
+            if args.new and not os.path.exists(path):
+                new_paths.append(path)
+                continue
             try:
-                open(path, open_mode).close()
+                open(path, 'r').close()
             except IOError as err:
+                parser.error("argument FILE: {}".format(err))
+        # create the new files only after all files passed the check
+        for path in new_paths:
+            try:
+                os.makedirs(os.path.dirname(path), exist_ok=True)
+                open(path, 'a').close()
+            except OSError as err:
                 parser.error("argument FILE: {}".format(err))
 
     return args
