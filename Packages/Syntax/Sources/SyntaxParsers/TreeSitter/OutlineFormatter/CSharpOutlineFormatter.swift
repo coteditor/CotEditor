@@ -34,6 +34,10 @@ enum CSharpOutlineFormatter: TreeSitterOutlineFormatting {
     static func title(for match: QueryMatch, capture: OutlineCapture, source: NSString) -> (title: String, range: NSRange)? {
         
         switch capture.kind {
+            case .container where match.outlineNode?.parent?.nodeType == "extension_declaration":
+                let range = Self.extensionHeaderRange(for: match, keywordRange: capture.range)
+                let title = Self.normalizedSignature(Self.signatureText(in: range, for: match, source: source))
+                return (title, range)
             case .value:
                 let range = capture.range.union(with: [Self.explicitInterfaceRange(for: match)])
                 let title = Self.normalizedSignature(Self.signatureText(in: range, for: match, source: source))
@@ -70,6 +74,25 @@ private extension CSharpOutlineFormatter {
             Self.typeParametersRange(for: match),
             Self.parametersRange(for: match),
         ])
+    }
+    
+    
+    /// Returns the range of a C# extension declaration header from the `extension` keyword through its receiver parameter.
+    ///
+    /// - Parameters:
+    ///   - match: The resolved query match.
+    ///   - keywordRange: The captured `extension` keyword range.
+    /// - Returns: The header range.
+    static func extensionHeaderRange(for match: QueryMatch, keywordRange: NSRange) -> NSRange {
+        
+        guard let declaration = match.outlineNode?.parent else { return keywordRange }
+        
+        let closingParenthesisRange = (0..<declaration.childCount)
+            .compactMap(declaration.child(at:))
+            .first { $0.nodeType == ")" }?
+            .range
+        
+        return keywordRange.union(with: [closingParenthesisRange])
     }
     
     

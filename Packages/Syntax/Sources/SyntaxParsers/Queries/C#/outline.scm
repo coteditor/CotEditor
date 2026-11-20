@@ -30,6 +30,9 @@
 (enum_declaration
   name: (identifier) @outline.container)
 
+(extension_declaration
+  "extension" @outline.container)
+
 ; Properties
 (property_declaration
   name: (identifier) @outline.value)
