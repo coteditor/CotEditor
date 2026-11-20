@@ -33,12 +33,10 @@ struct CollectionTests {
         
         var array = ["a", "b", "c", "b"]
         
-        let index = array.removeFirst("b")
-        #expect(index == 1)
+        array.removeFirst(element: "b")
         #expect(array == ["a", "c", "b"])
         
-        let missingIndex = array.removeFirst("x")
-        #expect(missingIndex == nil)
+        array.removeFirst(element: "x")
         #expect(array == ["a", "c", "b"])
     }
     

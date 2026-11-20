@@ -572,7 +572,7 @@ final class DirectoryDocument: NSDocument {
             }
             
             for document in documentsToClose {
-                self.documents.removeFirst(document)
+                self.documents.removeFirst(element: document)
                 document.close()
             }
             self.invalidateRestorableState()
@@ -641,7 +641,7 @@ final class DirectoryDocument: NSDocument {
                 self.windowController?.fileDocument = nil
                 self.currentDocument = nil
             }
-            self.documents.removeFirst(document)
+            self.documents.removeFirst(element: document)
             self.invalidateRestorableState()
             
             if let document = document as? TextDocument {
@@ -767,7 +767,7 @@ final class DirectoryDocument: NSDocument {
         // -> postpone closing opened document if edited
         for document in self.documents where !document.isDocumentEdited && document != self.currentDocument {
             document.close()
-            self.documents.removeFirst(document)
+            self.documents.removeFirst(element: document)
         }
         self.invalidateRestorableState()
     }

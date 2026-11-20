@@ -498,7 +498,7 @@ extension SettingFileManaging {
         var settingNames = self.settingNames
         
         if let old = change.old {
-            settingNames.removeFirst(old)
+            settingNames.removeFirst(element: old)
         }
         if let new = change.new, !settingNames.contains(new) {
             settingNames.append(new)

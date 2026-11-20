@@ -243,8 +243,8 @@ extension MultiCursorEditing {
         let location = self.characterIndexForInsertion(at: point)
         var ranges = self.insertionRanges
         
-        if let clicked = ranges.first(where: { $0.touches(location) }) {
-            ranges.removeFirst(clicked)
+        if let clickedIndex = ranges.firstIndex(where: { $0.touches(location) }) {
+            ranges.remove(at: clickedIndex)
         } else {
             ranges.append(NSRange(location: location, length: 0))
         }

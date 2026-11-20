@@ -372,7 +372,7 @@ extension FileNode {
     /// Removes the receiver from the node tree.
     func removeFromParent() {
         
-        self.parent?.cachedChildren?.removeFirst(self)
+        self.parent?.cachedChildren?.removeFirst(element: self)
     }
     
     
