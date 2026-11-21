@@ -32,6 +32,7 @@
 			<li>Support <a href="howto_edit_remote.html">editing remote files with <code>rmate</code> over SSH port forwarding</a>, enabled in Integration settings.</li>
 			<li>Automatically <a href="howto_store_settings_in_icloud.html">save a copy of settings to iCloud</a> for manual import on other Macs, configurable in General settings.</li>
 			<li>Support customizing keyboard shortcuts for text editing commands, such as moving the insertion point and deleting text, in <a href="settings_shortcuts.html">Shortcuts settings</a>.</li>
+			<li>Add the Hungarian localization (thanks to Torma Zsolt!).</li>
 		</ul>
 	</section>
 
@@ -52,14 +53,22 @@
 			<li>Change the numbering to avoid name conflicts in the file browser and settings to match Finder, such as using “Foo 2” if “Foo 1” already exists.</li>
 			<li>Change regular expressions in folder search to match <code>^</code> and <code>$</code> at the beginning and end of each line, consistent with the default of the Find window.</li>
 			<li>Optimize regular-expression-based syntax highlighting in large documents.</li>
+			<li>Update the AppleScript, BBCode, CoffeeScript, Dart, Erlang, Fortran, Git Config, INI, jq, JSON, Markdown, Perl, R, reStructuredText, SVG, Tcl, Verilog, XML, DTD, and YAML syntaxes to improve performance and highlighting accuracy.</li>
 			<li>Optimize Replace All when using regular expressions or the “Match only whole words” find option.</li>
 			<li>Optimize the hanging indentation calculation.</li>
+			<li>Improve the performance of undo and redo in large documents.</li>
+			<li>Improve the performance of the file browser when many files in the opened folder change at once.</li>
+			<li>Improve VoiceOver support (thanks to Torma Zsolt!).</li>
 			<li>Improve overall stability and performance.</li>
+			<li>Update tree-sitter-c-sharp to 0.24.0.</li>
 			<li>Update tree-sitter-markdown to 0.5.4.</li>
+			<li>Update tree-sitter-php to 0.25.2.</li>
 			<li>Update tree-sitter-scala to 0.26.13.</li>
 			<li>Update tree-sitter-sql to 0.3.13.</li>
 			<li><span class="trivial">trivial</span>: Improve find results to include as much of a long match as possible in the line excerpt.</li>
 			<li><span class="trivial">trivial</span>: Change File Drop snippets to keep the <code>&lt;&lt;&lt;FILECONTENT&gt;&gt;&gt;</code> variable as is when the file content cannot be read, consistent with the image size variables.</li>
+			<li><span class="trivial">trivial</span>: Display the setting name in the error message when importing a setting fails.</li>
+			<li><span class="trivial">trivial</span>: Display errors in the <code>cot</code> command as a brief message instead of a Python traceback.</li>
 			<li><span class="trivial">dev</span>: Update the build environment to Xcode 27.2.</li>
 		</ul>
 	</section>
@@ -81,7 +90,13 @@
 			<li>Fix an issue where the outline menu in the navigation bar could display an empty or incorrect item when the insertion point was before the first outline item.</li>
 			<li>Fix an issue where the expansion state of folders in the file browser was sometimes not restored from the last session.</li>
 			<li>Fix an issue in the file browser where read-only files in a writable folder could not be renamed and the Move to Trash command was unavailable for them.</li>
+			<li>Fix an issue in the file browser where the item with the old name remained after changing only the capitalization of its name.</li>
+			<li>Fix an issue in the file browser where changes were no longer reflected after renaming or moving the opened folder or its subfolders.</li>
+			<li>Fix an issue in the file browser where both a file and a folder with the same name appeared after one replaced the other.</li>
+			<li>Fix an issue in the file browser where filtering did not work when the folder contained a subfolder that could not be read.</li>
+			<li>Fix an issue in the file browser where the filter results were not updated correctly after files were changed outside the app.</li>
 			<li>Fix an issue where shortcuts using function keys, arrow keys, or other navigation keys could not be set in the Shortcuts and Snippets settings panes.</li>
+			<li>Fix several issues where the editor’s font and indentation were reset, such as when opening documents with the “Detect indent style on document opening” option, splitting the editor, or relaunching the app.</li>
 			<li>Fix an issue where double-clicking a period, comma, or colon selected nothing or the preceding word instead of the character itself.</li>
 			<li>Fix an issue where the Select Enclosing Symbols command did nothing if an unmatched closing symbol, such as <code>&gt;</code> in a comparison, came before the closing symbol of the enclosing pair.</li>
 			<li>Fix an issue where trailing whitespace on the previous line was not automatically trimmed while the insertion point was at the beginning of the next line.</li>
@@ -95,7 +110,11 @@
 			<li>Fix several issues with Sort by Pattern, such as the “In descending order” option reversing the order of lines with the same sort key and moving lines that do not contain the sort key to the top.</li>
 			<li>Fix an issue where File Drop snippets swapped the width and height of rotated images, such as photos taken in portrait orientation.</li>
 			<li>Fix an issue where text was positioned too high in lines with some fonts, such as Raanana.</li>
+			<li>Fix several issues in the <code>cot</code> command, such as where the <code>--new</code> option could empty existing files or the <code>--wait</code> option stopped waiting when the window was minimized.</li>
+			<li>Fix an issue where Keyboard Maestro and other accessibility tools could not find the Text menu.</li>
 			<li>Fix an issue where the AppleScript <code>line range</code> property of the selection could return incorrect lines, such as including the next line when the selection ended with a line ending.</li>
+			<li>Fix an issue where the AppleScript <code>replace</code> command could fail to replace a single match when the regular expression used lookahead.</li>
+			<li>Fix an issue where importing a settings archive exported from CotEditor 6.2 failed if it included custom syntaxes.</li>
 			<li>Fix an issue where the “Refer to encoding declaration in document” option could garble documents that declared UTF-16 but were not saved in UTF-16.</li>
 			<li>Fix an issue where characters that could not be converted were saved as invalid bytes when saving a document in ASCII.</li>
 			<li><span class="label">non-AppStore ver.</span>: Fix an issue where File Drop snippets could make the app unresponsive by downloading dropped web URLs.</li>
@@ -120,9 +139,13 @@
 			<li><span class="trivial">trivial</span>: Fix an issue where the Delete Duplicates command could cause unexpected behavior if lines contained VT (<code>U+000B</code>) or FF (<code>U+000C</code>).</li>
 			<li><span class="trivial">trivial</span>: Fix an issue where the selection after reversing, shuffling, or sorting lines by pattern did not include an empty line moved to the end.</li>
 			<li><span class="trivial">trivial</span>: Fix an issue in the file browser where moving a symbolic link to a folder to the Trash also closed open documents in that folder.</li>
+			<li><span class="trivial">trivial</span>: Fix an issue in the file browser where filtering with only certain combining marks showed all items.</li>
 			<li><span class="trivial">trivial</span>: Fix several issues with snippets, such as replacing variables incorrectly when the name of a dropped file contained a variable, or indenting the subsequent lines too deeply when inserting a snippet with line breaks within the indentation.</li>
 			<li><span class="trivial">trivial</span>: Fix an issue where <kbd>Shift</kbd>-<kbd>Return</kbd> could be assigned as a keyboard shortcut.</li>
 			<li><span class="trivial">trivial</span>: Fix an issue where a customized shortcut for a command no longer in the menu could remove the default shortcut of another menu command.</li>
+			<li><span class="trivial">trivial</span>: Fix an issue where importing a settings archive failed if it contained hidden files, such as .DS_Store.</li>
+			<li><span class="trivial">trivial</span>: Fix an issue where importing a setting listed it twice if a custom setting with the same name but different capitalization already existed.</li>
+			<li><span class="trivial">trivial</span>: Fix an issue where the line and column of the insertion point in the status bar could remain outdated after the document was reloaded with changes made outside the app.</li>
 		</ul>
 	</section>
 </article>
