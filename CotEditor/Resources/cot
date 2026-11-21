@@ -27,6 +27,7 @@ limitations under the License.
 
 import argparse
 import os
+import re
 import sys
 import time
 from subprocess import Popen, PIPE, CalledProcessError
@@ -386,30 +387,21 @@ def parse_args() -> argparse.Namespace:
 def parse_goto(value: str) -> tuple[str, Optional[int], Optional[int]]:
     """Parse FILE[:LINE[:COLUMN]] format.
 
+    LINE and COLUMN are the trailing integers, and the rest is FILE.
+
     Returns:
         (path, line, column)
     """
-    parts = value.rsplit(":", 2)
+    # take the integers from the end since FILE can contain colons
+    parts = value.split(":")
+    numbers = []
+    while (len(parts) > 1 and len(numbers) < 2
+           and re.fullmatch(r"-?[0-9]+", parts[-1])):
+        numbers.insert(0, int(parts.pop()))
 
-    path = parts[0]
-    line = None
-    column = None
-
-    if len(parts) >= 2:
-        try:
-            line = int(parts[1])
-        except ValueError:
-            raise argparse.ArgumentTypeError(
-                "invalid line number: {}".format(repr(parts[1]))
-            )
-
-    if len(parts) == 3:
-        try:
-            column = int(parts[2])
-        except ValueError:
-            raise argparse.ArgumentTypeError(
-                "invalid column number: {}".format(repr(parts[2]))
-            )
+    path = ":".join(parts)
+    line = numbers[0] if numbers else None
+    column = numbers[1] if len(numbers) > 1 else None
 
     return path, line, column
 
