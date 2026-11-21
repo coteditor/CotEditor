@@ -81,18 +81,14 @@ def bundle_path() -> Optional[str]:
 
 # MARK: OSA Script
 
-def run_osascript(script: str, is_async: bool = False) -> str:
+def run_osascript(script: str) -> str:
     """Run OSA script.
 
     Args:
         script (str): OSA script.
-        is_async (bool): If need to wait for finish.
     Returns:
         result (str): Return value of the script.
     """
-    if is_async:
-        script = 'ignoring application responses\n' + script + '\nend ignoring'
-
     p = Popen(['osascript', '-'], stdin=PIPE, stdout=PIPE, stderr=PIPE)
     stdout, stderr = p.communicate(script.encode('utf-8'))
 
@@ -160,18 +156,17 @@ class ScriptableApplication(object):
             self._attempt_recovery(error)
             raise error
 
-    def tell(self, script: str, is_async: bool = False) -> str:
+    def tell(self, script: str) -> str:
         """Tell OSA command to the application.
 
         Args:
             script (str): OSA command
-            is_async (bool): If need to wait for finish.
         Returns:
             result (str): Return value of the script.
         """
         script = 'tell app {} to {}'.format(osa_string(self.name), script)
         try:
-            return run_osascript(script, is_async)
+            return run_osascript(script)
         except CalledProcessError as error:
             self._attempt_recovery(error)
             raise error
