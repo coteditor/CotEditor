@@ -225,9 +225,9 @@ class ScriptableApplication(object):
         """
         if window_id is None:
             return False
-        # minimized windows are invisible but still open
-        window = '(first window whose id is {})'.format(osa_literal(window_id))
-        script = '{0} is visible or {0} is miniaturized'.format(window)
+        # check the document since closed windows remain without it
+        script = 'exists document of (first window whose id is {})'.format(
+            osa_literal(window_id))
         result = None
         try:
             result = self.tell(script)
