@@ -509,13 +509,19 @@ if __name__ == "__main__":
     args = parse_args()
 
     # read standard input if exists
-    if args.files == ['-']:
-        stdin = sys.stdin.read()
-        args.files = []
-    elif args.files or sys.stdin.isatty():
-        stdin = None
-    else:  # piped text
-        stdin = ''.join(sys.stdin)
+    #   -> Decode in UTF-8 regardless of the locale since the text is sent in UTF-8.
+    try:
+        if args.files == ['-']:
+            stdin = sys.stdin.buffer.read().decode('utf-8')
+            args.files = []
+        elif args.files or sys.stdin.isatty():
+            stdin = None
+        else:  # piped text
+            stdin = sys.stdin.buffer.read().decode('utf-8')
+    except UnicodeDecodeError:
+        sys.stderr.write(Style.warning('Error') + ': '
+                         'Standard input must be UTF-8 text.\n')
+        sys.exit(1)
 
     try:
         main(args, stdin)
