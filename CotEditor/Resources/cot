@@ -136,7 +136,7 @@ def osa_literal(value: str) -> str:
         return osa_string(value)
 
 
-class ScriptableApplication(object):
+class ScriptableApplication:
     """OSA-Scriptable macOS application object.
     """
 
@@ -201,19 +201,16 @@ class ScriptableApplication(object):
         """
         return self.tell('tell document {} to {}'.format(index, script))
 
-    def window_id(self, index: int = 1) -> Optional[str]:
-        """Get window identifier.
+    def window_id(self) -> Optional[str]:
+        """Get identifier of the frontmost window.
 
-        Args:
-            index (int): Index number of the window to get id (1-based).
         Returns:
             window_id (str): Identifier of document's window opened.
         """
         try:
-            return self.tell('id of window {}'.format(index))
+            return self.tell('id of window 1')
         except CalledProcessError:
-            pass
-        return None
+            return None
 
     def window_exists(self, window_id: Optional[str]) -> bool:
         """Check if window exists.
@@ -228,12 +225,10 @@ class ScriptableApplication(object):
         # check the document since closed windows remain without it
         script = 'exists document of (first window whose id is {})'.format(
             osa_literal(window_id))
-        result = None
         try:
-            result = self.tell(script)
+            return self.tell(script) == 'true'
         except CalledProcessError:
-            pass
-        return result == 'true'
+            return False
 
     def _attempt_recovery(self, error: CalledProcessError) -> None:
         """Attempt recovery from CalledProcessError.
@@ -244,15 +239,17 @@ class ScriptableApplication(object):
         if '(-1743)' in error.output:
             # show recovery suggestion for authorization error with
             #     Apple events in Mojave (and later)
+            #   -> The name can be a POSIX or HFS path to the app.
+            name = re.split('[/:]', self.name.rstrip('/:'))[-1]
             sys.stderr.write(
                 Style.warning('Error') + ': '
                 'User authorization required. '
                 'To authorize cot command, select ' +
-                Style.bold(self.name) + ' under your client application, '
+                Style.bold(name.removesuffix('.app')) +
+                ' under your client application, '
                 'such as Terminal, in ' +
                 Style.bold('System Settings') + ' > ' +
                 Style.bold('Privacy & Security') + ' > ' +
-                Style.bold('Privacy') + ' > ' +
                 Style.bold('Automation') + '.\n'
             )
             sys.exit(error.returncode)
@@ -275,10 +272,9 @@ def parse_args() -> argparse.Namespace:
     # set positional arguments
     parser.add_argument(
         'files',
-        type=str,
         metavar='FILE',
         nargs='*',  # allow wildcard
-        help="path to file to open"
+        help="path to file or folder to open (- for stdin)"
     )
 
     # set optional arguments
@@ -290,41 +286,36 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         '-w', '--wait',
         action='store_true',
-        default=False,
-        help="wait for opened file to be closed"
+        help="wait for a single opened document to be closed"
     )
     parser.add_argument(
         '-g', '--background',
         action='store_true',
-        default=False,
         help="do not bring the application to the foreground"
     )
     parser.add_argument(
         '-r', '--readonly',
         action='store_true',
-        default=False,
         help="open the document as read-only"
     )
     parser.add_argument(
         '-n', '--new',
         action='store_true',
-        default=False,
-        help="create a new blank document"
+        help="create a new blank document or missing FILE"
     )
     parser.add_argument(
         '-s', '--syntax',
-        type=str,
         help="set specific syntax to opened document"
     )
     parser.add_argument(
         '-l', '--line',
         type=int,
-        help="jump to specific line in opened document"
+        help="jump to specific line in frontmost document"
     )
     parser.add_argument(
         '-c', '--column',
         type=int,
-        help="jump to specific column in opened document"
+        help="jump to specific column in frontmost document"
     )
     parser.add_argument(
         '--goto',  # no short form
@@ -366,7 +357,7 @@ def parse_args() -> argparse.Namespace:
                 continue
             try:
                 open(path, 'r').close()
-            except IOError as err:
+            except OSError as err:
                 parser.error("argument FILE: {}".format(err))
         # create the new files only after all files passed the check
         for path in new_paths:
@@ -445,7 +436,7 @@ def main(args: argparse.Namespace, stdin: Optional[str]) -> None:
 
     if app.tell('number of documents') == '0':
         return
-    
+
     # skip folders for the options to documents
     #   -> The last opened file is the first document.
     folder_indexes = {index + 1 for index, path in enumerate(reversed(args.files))
