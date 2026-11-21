@@ -1,6 +1,6 @@
 # Change Log
 
-7.2.0-beta.2 (unreleased)
+7.2.0-rc (2026-11-21)
 --------------------------
 
 ### New Features
