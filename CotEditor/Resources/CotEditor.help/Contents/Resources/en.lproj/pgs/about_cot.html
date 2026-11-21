@@ -30,7 +30,7 @@ ln -s /Applications/CotEditor.app/Contents/SharedSupport/bin/cot /usr/local/bin/
 
 
 <h3>Security authorization</h3>
-<p>macOS requires your permission when another app controls CotEditor through the <code>cot</code> command. Normally, authorization is requested the first time you run <code>cot</code>. If it isn’t, authorize it manually in System Settings &gt; Privacy &amp; Security &gt; Privacy &gt; Automation. Turn on CotEditor under your client app, such as Terminal. If you use the <code>--wait</code> option, you may also need to turn on System Events.</p>
+<p>macOS requires your permission when another app controls CotEditor through the <code>cot</code> command. Normally, authorization is requested the first time you run <code>cot</code>. If it isn’t, authorize it manually in System Settings &gt; Privacy &amp; Security &gt; Automation. Turn on CotEditor under your client app, such as Terminal. If you use the <code>--wait</code> option, you may also need to turn on System Events.</p>
 
 
 <h3>Install Python 3</h3>
@@ -62,7 +62,7 @@ ln -s /Applications/CotEditor.app/Contents/SharedSupport/bin/cot /usr/local/bin/
 	<tbody>
 		<tr>
 			<th><code>-w</code>, <code>--wait</code></th>
-			<td><p>Wait for the opened document to be closed before returning to the prompt.</p></td>
+			<td><p>Wait for the opened document to be closed before returning to the prompt. If you open multiple files, the command doesn’t wait.</p></td>
 		</tr>
 		<tr>
 			<th><code>-r</code>, <code>--readonly</code></th>
@@ -73,16 +73,16 @@ ln -s /Applications/CotEditor.app/Contents/SharedSupport/bin/cot /usr/local/bin/
 			<td><p>Create a new blank document. If you specify a file that does not exist, create it and open it.</p></td>
 		</tr>
 		<tr>
-			<th><code>-s</code>, <code>--syntax</code></th>
-			<td><p>Set a specific syntax for the opened document.</p></td>
+			<th><code>-s</code>, <code>--syntax</code> <code><var>&lt;syntax&gt;</var></code></th>
+			<td><p>Set a specific syntax for the opened documents. <code><var>&lt;syntax&gt;</var></code> is the name of the syntax.</p></td>
 		</tr>
 		<tr>
 			<th><code>-l</code>, <code>--line</code> <code><var>&lt;line&gt;</var></code></th>
-			<td><p>Jump to a specific line in the opened document. <code><var>&lt;line&gt;</var></code> is an integer specifying the line.</p></td>
+			<td><p>Jump to a specific line in the frontmost document. <code><var>&lt;line&gt;</var></code> is an integer specifying the line.</p></td>
 		</tr>
 		<tr>
 			<th><code>-c</code>, <code>--column</code> <code><var>&lt;column&gt;</var></code></th>
-			<td><p>Jump to a specific column in the opened document. <code><var>&lt;column&gt;</var></code> is an integer specifying the column.</p></td>
+			<td><p>Jump to a specific column in the frontmost document. <code><var>&lt;column&gt;</var></code> is an integer specifying the column.</p></td>
 		</tr>
 		<tr>
 			<th><code>--goto <var>&lt;file[:line[:column]]&gt;</var></code></th>
@@ -125,6 +125,10 @@ ln -s /Applications/CotEditor.app/Contents/SharedSupport/bin/cot /usr/local/bin/
 <p>With the <code>--goto</code> option, you can specify where to move the insertion point using the shortened notation commonly found in compiler error messages. The following command opens the foo.txt file in CotEditor and moves the insertion point to line 200, column 4:</p>
 
 <pre class="shell"><code>cot --goto foo.txt:200:4</code></pre>
+
+<p>The following command opens the current directory in CotEditor as a <a href="howto_open_folder.html">folder document</a>:</p>
+
+<pre class="shell"><code>cot .</code></pre>
 
 <p>Passing a dash (<code>-</code>) in place of a filename enters a mode to receive standard input. The text received is opened as a new document.</p>
 

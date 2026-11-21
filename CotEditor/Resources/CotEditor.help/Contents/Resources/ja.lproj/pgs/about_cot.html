@@ -30,7 +30,7 @@ ln -s /Applications/CotEditor.app/Contents/SharedSupport/bin/cot /usr/local/bin/
 
 
 <h3>セキュリティ認証</h3>
-<p>macOSで別のアプリから<code>cot</code>コマンド経由でCotEditorを操作するには、ユーザの認証が必要です。この認証は通常、<code>cot</code>コマンドを初めて使ったときのダイアログから行えます。認証されなかった場合は、「システム設定」＞「プライバシーとセキュリティ」＞「プライバシー」＞「オートメーション」で、ターミナルなど利用するクライアントアプリの下にある「CotEditor」を有効にしてください。さらに、<code>--wait</code>オプションを使うときは「System Events」も有効にします。</p>
+<p>macOSで別のアプリから<code>cot</code>コマンド経由でCotEditorを操作するには、ユーザの認証が必要です。この認証は通常、<code>cot</code>コマンドを初めて使ったときのダイアログから行えます。認証されなかった場合は、「システム設定」＞「プライバシーとセキュリティ」＞「オートメーション」で、ターミナルなど利用するクライアントアプリの下にある「CotEditor」を有効にしてください。さらに、<code>--wait</code>オプションを使うときは「System Events」も有効にします。</p>
 
 
 <h3>Python 3のインストール</h3>
@@ -61,7 +61,7 @@ ln -s /Applications/CotEditor.app/Contents/SharedSupport/bin/cot /usr/local/bin/
 	<tbody>
 		<tr>
 			<th><code>-w</code>, <code>--wait</code></th>
-			<td><p>開いた書類が閉じるまでコマンドの終了を待ちます。</p></td>
+			<td><p>開いた書類が閉じるまでコマンドの終了を待ちます。複数のファイルを開いたときは待ちません。</p></td>
 		</tr>
 		<tr>
 			<th><code>-r</code>, <code>--readonly</code></th>
@@ -72,16 +72,16 @@ ln -s /Applications/CotEditor.app/Contents/SharedSupport/bin/cot /usr/local/bin/
 			<td><p>空の新規書類を開きます。存在しないファイルを指定した場合は、新規作成して開きます。</p></td>
 		</tr>
 		<tr>
-			<th><code>-s</code>, <code>--syntax</code></th>
-			<td><p>開いた書類に任意のシンタックスをセットします。</p></td>
+			<th><code>-s</code>, <code>--syntax</code> <code><var>&lt;syntax&gt;</var></code></th>
+			<td><p>開いた書類に任意のシンタックスをセットします。<code><var>&lt;syntax&gt;</var></code>はシンタックスの名前です。</p></td>
 		</tr>
 		<tr>
 			<th><code>-l</code>, <code>--line</code> <code><var>&lt;line&gt;</var></code></th>
-			<td><p>開いた書類の指定した行に移動します。<code><var>&lt;line&gt;</var></code>は行を指定する整数型です。</p></td>
+			<td><p>最前面の書類の指定した行に移動します。<code><var>&lt;line&gt;</var></code>は行を指定する整数型です。</p></td>
 		</tr>
 		<tr>
 			<th><code>-c</code>, <code>--column</code> <code><var>&lt;column&gt;</var></code></th>
-			<td><p>開いた書類の指定した列に移動します。<code><var>&lt;column&gt;</var></code>は列を指定する整数型です。</p></td>
+			<td><p>最前面の書類の指定した列に移動します。<code><var>&lt;column&gt;</var></code>は列を指定する整数型です。</p></td>
 		</tr>
 		<tr>
 			<th><code>--goto <var>&lt;file[:line[:column]]&gt;</var></code></th>
@@ -124,6 +124,10 @@ ln -s /Applications/CotEditor.app/Contents/SharedSupport/bin/cot /usr/local/bin/
 <p><code>--goto</code>オプションを使うと、移動する先の行と列をコンパイラメッセージなどでよく使われる短縮記法で指定することもできます。以下のコマンドは、foo.txtファイルをCotEditorで開き、200行4列目に挿入ポイントを移動します。</p>
 
 <pre class="shell"><code>cot --goto foo.txt:200:4</code></pre>
+
+<p>以下のコマンドは、カレントディレクトリをCotEditorで<a href="howto_open_folder.html">フォルダ書類</a>として開きます。</p>
+
+<pre class="shell"><code>cot .</code></pre>
 
 <p>ファイル名の代わりにダッシュ（<code>-</code>）を渡すと、標準入力を受け取るモードになります。受け取った入力は新規書類として開かれます。</p>
 
