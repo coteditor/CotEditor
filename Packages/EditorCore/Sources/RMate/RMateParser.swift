@@ -71,6 +71,7 @@ struct RMateParser {
             return []
         }
         
+        let searchStart = self.buffer.endIndex
         self.buffer.append(data)
         var messages: [RMateMessage] = []
         
@@ -89,7 +90,7 @@ struct RMateParser {
                 continue
             }
             
-            guard let newline = self.buffer[start...].firstIndex(of: 0x0A) else {
+            guard let newline = self.buffer[max(start, searchStart)...].firstIndex(of: 0x0A) else {
                 guard self.buffer.endIndex - start <= Self.maximumHeaderLength else { throw .headerTooLarge }
                 break
             }
