@@ -74,30 +74,34 @@ struct RMateParser {
         self.buffer.append(data)
         var messages: [RMateMessage] = []
         
-        while !self.buffer.isEmpty {
+        // remove the read bytes at once at the end, since removing each line shifts the remaining bytes every time
+        var start = self.buffer.startIndex
+        defer { self.buffer.removeSubrange(..<start) }
+        
+        while start < self.buffer.endIndex {
             if self.remainingDataLength > 0 {
-                let count = min(self.remainingDataLength, self.buffer.count)
-                if !self.message!.isTooLarge {
-                    self.message!.data.append(self.buffer.prefix(count))
+                let count = min(self.remainingDataLength, self.buffer.endIndex - start)
+                if self.message?.isTooLarge == false {
+                    self.message?.data.append(self.buffer[start..<(start + count)])
                 }
-                self.buffer.removeFirst(count)
+                start += count
                 self.remainingDataLength -= count
                 continue
             }
             
-            guard let newline = self.buffer.firstIndex(of: 0x0A) else {
-                guard self.buffer.count <= Self.maximumHeaderLength else { throw .headerTooLarge }
+            guard let newline = self.buffer[start...].firstIndex(of: 0x0A) else {
+                guard self.buffer.endIndex - start <= Self.maximumHeaderLength else { throw .headerTooLarge }
                 break
             }
             
-            let bytes = self.buffer[..<newline]
+            let bytes = self.buffer[start..<newline]
             
             guard
                 bytes.count <= Self.maximumHeaderLength,
                 var line = String(data: bytes, encoding: .utf8)
             else { throw ParseError.invalidMessage }
             
-            self.buffer.removeSubrange(...newline)
+            start = newline + 1
             if line.last == "\r" {
                 line.removeLast()
             }
@@ -106,7 +110,7 @@ struct RMateParser {
                 if line.isEmpty { continue }
                 
                 if line == "." {
-                    guard self.buffer.isEmpty else { throw .invalidMessage }
+                    guard start == self.buffer.endIndex else { throw .invalidMessage }
                     
                     self.isFinished = true
                     break
@@ -121,8 +125,8 @@ struct RMateParser {
                 continue
             }
             
-            if line.isEmpty {
-                messages.append(self.message!)
+            if line.isEmpty, let message = self.message {
+                messages.append(message)
                 self.message = nil
                 continue
             }
@@ -155,15 +159,15 @@ struct RMateParser {
             guard let length = Int(value), length >= 0 else { throw .invalidMessage }
             
             // discard the oversized data but keep parsing the following requests
-            if length > Self.maximumDataLength - self.message!.data.count {
-                self.message!.isTooLarge = true
-                self.message!.data = Data()
+            if length > Self.maximumDataLength - (self.message?.data.count ?? 0) {
+                self.message?.isTooLarge = true
+                self.message?.data = Data()
             }
             self.remainingDataLength = length
         } else {
             guard !key.isEmpty, !value.contains("\r"), !value.contains("\0") else { throw .invalidMessage }
             
-            self.message!.headers[key] = value
+            self.message?.headers[key] = value
         }
     }
 }
