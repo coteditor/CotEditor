@@ -824,7 +824,6 @@ struct FolderFindTests {
         let rule = FileScope.Rule(target: .filename, comparison: .matchesRegularExpression, value: pattern)
         let scope = FileScope(rules: [rule])
         
-        #expect(rule.isValid)
         try rule.validate()
         try scope.validate()
         

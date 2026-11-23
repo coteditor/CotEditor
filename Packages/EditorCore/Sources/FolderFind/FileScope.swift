@@ -78,8 +78,6 @@ public extension FileScope {
         public var comparison: Comparison
         public var value: String
         
-        public var isValid: Bool  { (try? self.validate()) != nil }
-        
         
         /// Initializes a file scope rule.
         ///

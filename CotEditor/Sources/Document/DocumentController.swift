@@ -340,9 +340,8 @@ protocol AdditionalDocumentPreparing: NSDocument {
     /// - Parameters:
     ///   - content: The text to fill in the created document.
     ///   - title: The document title to display in the window, or `nil` to leave it as untitled.
-    ///   - displayDocument: `true` if the user interface for the document should be shown, otherwise `false`.
     /// - Returns: Returns the new TextDocument object.
-    @discardableResult func openUntitledDocument(content: String, title: String? = nil, display displayDocument: Bool) throws -> TextDocument {
+    @discardableResult func openUntitledDocument(content: String, title: String? = nil) throws -> TextDocument {
         
         let document: TextDocument = if let transientDocument,
                                         transientDocument.windowForSheet?.attachedSheet == nil
@@ -361,10 +360,8 @@ protocol AdditionalDocumentPreparing: NSDocument {
             document.displayName = title
         }
         
-        if displayDocument {
-            document.makeWindowControllers()
-            document.showWindows()
-        }
+        document.makeWindowControllers()
+        document.showWindows()
         
         if title != nil {
             document.windowControllers

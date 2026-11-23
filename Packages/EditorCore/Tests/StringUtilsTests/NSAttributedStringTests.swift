@@ -89,14 +89,10 @@ struct NSAttributedStringTests {
     }
     
     
-    @Test func rangeAndMutable() {
+    @Test func range() {
         
         let string = NSAttributedString(string: "abc")
         #expect(string.range == NSRange(0..<3))
-        
-        let mutable = string.mutable
-        mutable.append(NSAttributedString(string: "d"))
-        #expect(mutable.string == "abcd")
     }
     
     

@@ -301,38 +301,6 @@ public extension NSString {
 
 extension NSString {
     
-    /// Returns the lower bound of the composed character sequence by moving the bound toward the start by the given offset in composed character sequences.
-    ///
-    /// - Parameters:
-    ///   - index: The reference character index in UTF-16.
-    ///   - offset: The number of composed character sequences to move the index.
-    /// - Returns: A character index in UTF-16.
-    final func lowerBoundOfComposedCharacterSequence(_ index: Int, offsetBy offset: Int) -> Int {
-        
-        assert((0...self.length).contains(index))
-        assert(offset >= 0)
-        
-        if index == self.length, offset == 0 { return index }
-        
-        var remainingCount = (index == self.length) ? offset : offset + 1
-        var boundary = index
-        
-        let range = NSRange(..<min(index + 1, self.length))
-        let options: EnumerationOptions = [.byComposedCharacterSequences, .substringNotRequired, .reverse]
-        unsafe self.enumerateSubstrings(in: range, options: options) { _, range, _, stop in
-            
-            boundary = range.lowerBound
-            remainingCount -= 1
-            
-            if remainingCount <= 0 {
-                unsafe stop.pointee = true
-            }
-        }
-        
-        return boundary
-    }
-    
-    
     /// Returns whether the given location is between CR and LF in a CRLF pair.
     ///
     /// - Parameter location: The UTF-16 location to test.

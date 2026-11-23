@@ -148,7 +148,6 @@ struct OutlineInspectorView: View, HostedPaneView {
         var document: TextDocument? { get set }
         var isPresented: Bool { get set }
         
-        var items: [Item] { get }
         var selection: Item.ID? { get set }
         var outlineNodes: [OutlineNode] { get }
         var outlineAllIDs: [OutlineItem.ID] { get }

@@ -107,6 +107,6 @@ private extension ValueRange where Value == LineEnding {
     
     init(value: LineEnding, location: Int) {
         
-        self.init(value: value, range: NSRange(location: location, length: value.length))
+        self.init(value: value, range: NSRange(location: location, length: value.rawValue.unicodeScalars.count))
     }
 }

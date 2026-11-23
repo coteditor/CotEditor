@@ -59,10 +59,6 @@ extension TokenRepresentable {
 
 final class Tokenizer: Sendable {
     
-    let tokens: [String]
-    let prefix: String
-    let suffix: String
-    
     private let regex: NSRegularExpression
     
     
@@ -71,10 +67,6 @@ final class Tokenizer: Sendable {
     init(tokens: [String], prefix: String, suffix: String) {
         
         assert(tokens.allSatisfy({ !$0.isEmpty && $0 == NSRegularExpression.escapedPattern(for: $0) }))
-        
-        self.tokens = tokens
-        self.prefix = prefix
-        self.suffix = suffix
         
         let prefixPattern = NSRegularExpression.escapedPattern(for: prefix)
         let suffixPattern = NSRegularExpression.escapedPattern(for: suffix)
@@ -90,14 +82,13 @@ final class Tokenizer: Sendable {
     ///
     /// - Parameters:
     ///   - string: The string.
-    ///   - range: Range to find tokens.
     ///   - block: The block enumerates the matches of the tokens in the string.
     ///   - token: Found token.
     ///   - range: Range of token including prefix and suffix.
     ///   - keywordRange: Range of keyword.
-    func tokenize(_ string: String, range: NSRange? = nil, block: (_ token: String, _ range: NSRange, _ keywordRange: NSRange) -> Void) {
+    func tokenize(_ string: String, block: (_ token: String, _ range: NSRange, _ keywordRange: NSRange) -> Void) {
         
-        self.regex.enumerateMatches(in: string, range: range ?? string.nsRange) { match, _, _ in
+        self.regex.enumerateMatches(in: string, range: string.nsRange) { match, _, _ in
             
             guard let match else { return }
             

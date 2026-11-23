@@ -90,11 +90,10 @@ public extension String {
     /// Decreases the indentation level of each line that intersects the given selections.
     ///
     /// - Parameters:
-    ///   - style: The indent style to convert to.
     ///   - indentWidth: The number of characters for the indentation.
     ///   - selectedRanges: The selection in the editor.
     /// - Returns: An `EditingContext`, or `nil` if no changes were necessary.
-    func outdent(style: IndentStyle, indentWidth: Int, in selectedRanges: [NSRange]) -> EditingContext? {
+    func outdent(indentWidth: Int, in selectedRanges: [NSRange]) -> EditingContext? {
         
         assert(indentWidth > 0)
         

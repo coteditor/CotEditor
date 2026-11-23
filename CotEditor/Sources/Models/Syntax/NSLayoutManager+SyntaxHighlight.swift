@@ -99,10 +99,9 @@ extension NSLayoutManager {
     ///
     /// - Parameters:
     ///   - theme: The theme to apply.
-    ///   - range: The character range to invalidate.
-    @MainActor final func invalidateHighlight(theme: Theme, in range: NSRange? = nil) {
+    @MainActor final func invalidateHighlight(theme: Theme) {
         
-        let targetRange = range ?? self.attributedString().range
+        let targetRange = self.attributedString().range
         
         guard self.hasTemporaryAttribute(.syntaxType, in: targetRange) else { return }
         

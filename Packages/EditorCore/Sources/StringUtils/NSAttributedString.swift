@@ -35,13 +35,6 @@ public extension NSAttributedString {
     }
     
     
-    /// A mutable copy of the receiver.
-    final var mutable: NSMutableAttributedString {
-        
-        self.mutableCopy() as! NSMutableAttributedString
-    }
-    
-    
     /// Concatenates two attributed strings.
     static func + (lhs: NSAttributedString, rhs: NSAttributedString) -> NSAttributedString {
         

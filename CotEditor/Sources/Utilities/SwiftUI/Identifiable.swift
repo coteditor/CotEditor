@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2023-2024 1024jp
+//  © 2023-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -24,12 +24,6 @@
 //
 
 extension Sequence where Element: Identifiable {
-    
-    subscript(id id: Element.ID?) -> Element? {
-        
-        self.first { $0.id == id }
-    }
-    
     
     /// Returns an array containing, in order, the elements with the given ids.
     ///

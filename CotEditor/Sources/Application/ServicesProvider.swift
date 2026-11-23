@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2015-2024 1024jp
+//  © 2015-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -35,7 +35,7 @@ import AppKit
         guard let selection = pboard.string(forType: .string) else { return assertionFailure() }
         
         do {
-            try (NSDocumentController.shared as! DocumentController).openUntitledDocument(content: selection, display: true)
+            try (NSDocumentController.shared as! DocumentController).openUntitledDocument(content: selection)
         } catch {
             errorPointer?.pointee = error as NSError
             NSApp.presentError(error)

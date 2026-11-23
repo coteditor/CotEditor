@@ -143,7 +143,7 @@ struct StringIndentationTests {
         let string = "  foo\n\tbar\nbaz"
         let range = NSRange(location: 0, length: string.utf16.count)
         
-        let context = try #require(string.outdent(style: .space, indentWidth: 2, in: [range]))
+        let context = try #require(string.outdent(indentWidth: 2, in: [range]))
         
         #expect(context.strings == ["foo\n", "bar\n", "baz"])
         #expect(context.ranges == [
@@ -160,7 +160,7 @@ struct StringIndentationTests {
         let string = "foo\nbar"
         let range = NSRange(location: 0, length: string.utf16.count)
         
-        #expect(string.outdent(style: .space, indentWidth: 2, in: [range]) == nil)
+        #expect(string.outdent(indentWidth: 2, in: [range]) == nil)
     }
     
     
@@ -169,13 +169,13 @@ struct StringIndentationTests {
         // the selection starting inside the leading indent must not underflow
         let string = "    abcdefgh\n"
         
-        let context = try #require(string.outdent(style: .space, indentWidth: 4, in: [NSRange(location: 1, length: 10)]))
+        let context = try #require(string.outdent(indentWidth: 4, in: [NSRange(location: 1, length: 10)]))
         
         #expect(context.strings == ["abcdefgh\n"])
         #expect(context.ranges == [NSRange(location: 0, length: 13)])
         #expect(context.selectedRanges == [NSRange(location: 0, length: 7)])
         
-        let caretContext = try #require(string.outdent(style: .space, indentWidth: 4, in: [NSRange(location: 2, length: 0)]))
+        let caretContext = try #require(string.outdent(indentWidth: 4, in: [NSRange(location: 2, length: 0)]))
         
         #expect(caretContext.selectedRanges == [NSRange(location: 0, length: 0)])
     }

@@ -122,12 +122,6 @@ extension CGRect {
     }
     
     
-    func offset(by size: CGSize) -> CGRect {
-        
-        self.offsetBy(dx: size.width, dy: size.height)
-    }
-    
-    
     func inset(by size: CGSize) -> CGRect {
         
         self.insetBy(dx: size.width, dy: size.height)

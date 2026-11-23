@@ -64,7 +64,7 @@ struct CreateDocumentIntent: AppIntent {
     
     @MainActor func perform() async throws -> some IntentResult {
         
-        try (DocumentController.shared as! DocumentController).openUntitledDocument(content: self.content ?? "", display: true)
+        try (DocumentController.shared as! DocumentController).openUntitledDocument(content: self.content ?? "")
         
         return .result()
     }

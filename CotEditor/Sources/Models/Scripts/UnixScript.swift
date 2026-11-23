@@ -163,7 +163,7 @@ struct UnixScript: Script {
             case .newDocument:
                 guard !output.isEmpty else { return }  // create document only when output is available
                 do {
-                    try (DocumentController.shared as! DocumentController).openUntitledDocument(content: output, display: true)
+                    try (DocumentController.shared as! DocumentController).openUntitledDocument(content: output)
                 } catch {
                     throw .standardError(error.localizedDescription)
                 }

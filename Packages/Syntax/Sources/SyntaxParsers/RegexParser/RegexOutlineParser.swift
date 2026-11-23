@@ -32,16 +32,15 @@ actor RegexOutlineParser: OutlineParsing {
     // MARK: Private Properties
     
     private let extractors: [OutlineExtractor]
-    private let policy: OutlinePolicy
+    private let policy: OutlinePolicy = .init()
     private var identityResolver: OutlineItem.IdentityResolver = .init()
     
     
     // MARK: Lifecycle
     
-    init(extractors: [OutlineExtractor], policy: OutlinePolicy = .init()) {
+    init(extractors: [OutlineExtractor]) {
         
         self.extractors = extractors
-        self.policy = policy
     }
     
     

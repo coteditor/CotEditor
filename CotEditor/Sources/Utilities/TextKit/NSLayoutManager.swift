@@ -76,17 +76,15 @@ extension NSLayoutManager {
     ///
     /// - Parameters:
     ///   - glyphIndex: The glyph index for which to return enclosing rectangle.
-    ///   - forSelection: Whether obtaining rect in the quality for selection range drawing.
     ///   - textContainer: The text container in which the glyph is laid out.
     /// - Returns: The enclosing rectangle.
-    final func enclosingRectForGlyph(at glyphIndex: Int, forSelection: Bool = false, in textContainer: NSTextContainer) -> NSRect {
+    final func enclosingRectForGlyph(at glyphIndex: Int, in textContainer: NSTextContainer) -> NSRect {
         
         assert(self.isValidGlyphIndex(glyphIndex))
         
         let glyphRange = NSRange(location: glyphIndex, length: 1)
-        let selectedGlyphRange = forSelection ? glyphRange : .notFound
         var enclosingRect: NSRect = .zero
-        self.enumerateEnclosingRects(forGlyphRange: glyphRange, withinSelectedGlyphRange: selectedGlyphRange, in: textContainer) { rect, _ in
+        self.enumerateEnclosingRects(forGlyphRange: glyphRange, withinSelectedGlyphRange: .notFound, in: textContainer) { rect, _ in
             enclosingRect = rect
         }
         
@@ -104,14 +102,12 @@ extension NSLayoutManager {
     /// - Parameters:
     ///   - attrName: The name of a temporary attribute.
     ///   - location: The index for which to check attributes. This value must not exceed the bounds of the receiver.
-    ///   - range: The range over which to search for continuous presence of attrName. This value must not exceed the bounds of the receiver.
-    /// - Returns: A range containing the maximum range over which the named attribute’s value applies, clipped to rangeLimit. Or `nil` if no attribute value exists.
-    final func effectiveRange(of attrName: NSAttributedString.Key, at location: Int, in range: NSRange? = nil) -> NSRange? {
+    /// - Returns: A range containing the maximum range over which the named attribute’s value applies. Or `nil` if no attribute value exists.
+    final func effectiveRange(of attrName: NSAttributedString.Key, at location: Int) -> NSRange? {
         
-        let range = range ?? self.attributedString().range
         var effectiveRange = NSRange.notFound
         
-        guard self.temporaryAttribute(attrName, atCharacterIndex: location, longestEffectiveRange: &effectiveRange, in: range) != nil else { return nil }
+        guard self.temporaryAttribute(attrName, atCharacterIndex: location, longestEffectiveRange: &effectiveRange, in: self.attributedString().range) != nil else { return nil }
         
         return effectiveRange
     }

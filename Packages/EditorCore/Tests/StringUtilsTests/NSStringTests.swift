@@ -128,33 +128,6 @@ struct NSStringTests {
     }
     
     
-    @Test func composedCharacterSequence() {
-        
-        let blackDog = "🐕‍⬛"  // 4
-        #expect(blackDog.lowerBoundOfComposedCharacterSequence(2, offsetBy: 1) == 0)
-        
-        let abcDog = "🐕‍⬛abc"  // 4 1 1 1
-        #expect(abcDog.lowerBoundOfComposedCharacterSequence(6, offsetBy: 1) == "🐕‍⬛a".utf16.count)
-        #expect(abcDog.lowerBoundOfComposedCharacterSequence(5, offsetBy: 1) == "🐕‍⬛".utf16.count)
-        
-        let dogDog = "🐕‍⬛🐕"  // 4 2
-        #expect(dogDog.lowerBoundOfComposedCharacterSequence(5, offsetBy: 1) == 0)
-        #expect(dogDog.lowerBoundOfComposedCharacterSequence(6, offsetBy: 1) == "🐕‍⬛".utf16.count)
-        #expect(dogDog.lowerBoundOfComposedCharacterSequence(6, offsetBy: 0) == "🐕‍⬛🐕".utf16.count)
-        
-        let string = "🐕🏴‍☠️🇯🇵🧑‍💻"  // 2 5 4 5
-        #expect(string.lowerBoundOfComposedCharacterSequence(9, offsetBy: 3) == 0)
-        #expect(string.lowerBoundOfComposedCharacterSequence(9, offsetBy: 2) == 0)
-        #expect(string.lowerBoundOfComposedCharacterSequence(9, offsetBy: 1) == "🐕".utf16.count)
-        #expect(string.lowerBoundOfComposedCharacterSequence(9, offsetBy: 0) == "🐕🏴‍☠️".utf16.count)
-        
-        let abc = "abc"
-        #expect(abc.lowerBoundOfComposedCharacterSequence(1, offsetBy: 2) == 0)
-        #expect(abc.lowerBoundOfComposedCharacterSequence(1, offsetBy: 1) == 0)
-        #expect(abc.lowerBoundOfComposedCharacterSequence(1, offsetBy: 0) == 1)
-    }
-    
-    
     @Test func nsRangeAndLength() {
         
         let string = "a🐕"

@@ -41,13 +41,6 @@ public enum LineEnding: Character, Sendable, CaseIterable {
     }
     
     
-    /// The length in Unicode scalars.
-    public var length: Int {
-        
-        self.rawValue.unicodeScalars.count
-    }
-    
-    
     /// The index in the `enum`.
     public var index: Int {
         

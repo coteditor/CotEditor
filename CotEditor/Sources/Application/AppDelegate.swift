@@ -54,7 +54,6 @@ extension Logger {
 @MainActor @objc protocol SyntaxChanging: AnyObject {
     
     func changeSyntax(_ sender: NSMenuItem)
-    func recolorAll(_ sender: Any?)
 }
 
 
@@ -443,7 +442,7 @@ extension Logger {
         
         // open as document
         do {
-            let document = try (NSDocumentController.shared as! DocumentController).openUntitledDocument(content: report.template, title: report.title, display: true)
+            let document = try (NSDocumentController.shared as! DocumentController).openUntitledDocument(content: report.template, title: report.title)
             document.setSyntax(name: SyntaxName.markdown)
         } catch {
             NSApp.presentError(error)

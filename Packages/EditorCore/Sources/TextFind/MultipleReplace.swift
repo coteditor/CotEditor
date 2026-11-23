@@ -136,13 +136,6 @@ extension MultipleReplace {
     }
     
     
-    public enum Status: Sendable {
-        
-        case processed
-        case unitChanged
-    }
-    
-    
     // MARK: Public Methods
     
     /// Batch-finds in the given string.

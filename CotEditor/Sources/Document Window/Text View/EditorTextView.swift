@@ -86,7 +86,6 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
     // MARK: Public Properties
     
     var lineEnding: LineEnding = .lf
-    var defaultFontType: FontType = .standard
     
     var theme: Theme?  { didSet { self.applyTheme() } }
     

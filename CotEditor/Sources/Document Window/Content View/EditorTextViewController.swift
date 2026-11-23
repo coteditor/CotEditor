@@ -603,7 +603,6 @@ private extension EditorTextView {
     /// - Parameter mode: The mode options to apply.
     func applyMode(_ mode: ModeOptions) {
         
-        self.defaultFontType = mode.fontType
         self.setFont(type: mode.fontType)
         
         self.applyIndentOptions(mode.indentOptions)

@@ -34,21 +34,19 @@ public extension NSTextView {
     ///   - mode: Parse mode of regular expression.
     ///   - theme: The color theme for regex highlighting.
     ///   - enabled: If true, parse and highlight; otherwise just remove the current highlight.
-    /// - Returns: Whether the current content is a valid regular expression pattern, or `true` if validation is skipped.
-    func highlightAsRegularExpressionPattern(mode: RegexParseMode, theme: RegexTheme<NSColor>, enabled: Bool = true) -> Bool {
+    func highlightAsRegularExpressionPattern(mode: RegexParseMode, theme: RegexTheme<NSColor>, enabled: Bool = true) {
         
         guard let layoutManager = unsafe self.layoutManager else {
-            assertionFailure("This method supports only TextKit 1.")
-            return false
+            return assertionFailure("This method supports only TextKit 1.")
         }
         
         // clear the last highlight anyway
         layoutManager.removeTemporaryAttribute(.foregroundColor, forCharacterRange: NSRange(..<self.string.utf16.count))
         
-        guard enabled else { return true }
+        guard enabled else { return }
         
         // validate regex pattern
-        guard mode.validate(pattern: self.string) else { return false }
+        guard mode.validate(pattern: self.string) else { return }
         
         // highlight
         for type in RegexSyntaxType.allCases.reversed() {
@@ -57,7 +55,5 @@ public extension NSTextView {
                 layoutManager.addTemporaryAttribute(.foregroundColor, value: color, forCharacterRange: range)
             }
         }
-        
-        return true
     }
 }

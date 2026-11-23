@@ -124,7 +124,7 @@ extension Indenting {
         guard
             self.tabWidth > 0,
             let selectedRanges = self.rangesForUserTextChange?.map(\.rangeValue),
-            let textEditing = self.string.outdent(style: self.indentStyle, indentWidth: self.tabWidth, in: selectedRanges)
+            let textEditing = self.string.outdent(indentWidth: self.tabWidth, in: selectedRanges)
         else { return false }
         
         return self.edit(with: textEditing)

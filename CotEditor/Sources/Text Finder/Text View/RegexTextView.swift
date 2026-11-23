@@ -47,8 +47,6 @@ class RegexTextView: NSTextView {
         }
     }
     
-    private var isValid = true
-    
     private let theme: RegexTheme<NSColor> = .default
     
     
@@ -108,6 +106,6 @@ class RegexTextView: NSTextView {
     /// Highlights the content string as a regular expression pattern.
     private func invalidateRegularExpression() {
         
-        self.isValid = self.highlightAsRegularExpressionPattern(mode: self.parseMode, theme: self.theme, enabled: self.isRegularExpressionMode)
+        self.highlightAsRegularExpressionPattern(mode: self.parseMode, theme: self.theme, enabled: self.isRegularExpressionMode)
     }
 }

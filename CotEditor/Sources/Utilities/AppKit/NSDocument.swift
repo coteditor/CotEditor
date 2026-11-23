@@ -104,12 +104,11 @@ extension NSDocument {
     
     /// Reverts the receiver with the current document file without asking to the user in advance.
     ///
-    /// - Parameter fileURL: The location from which the document content is read, or `nil` to revert at the same location.
     /// - Returns: `true` if succeeded.
-    @discardableResult final func revert(fileURL: URL? = nil) -> Bool {
+    @discardableResult final func revert() -> Bool {
         
         guard
-            let fileURL = fileURL ?? self.fileURL,
+            let fileURL = self.fileURL,
             let fileType = self.fileType
         else { return false }
         

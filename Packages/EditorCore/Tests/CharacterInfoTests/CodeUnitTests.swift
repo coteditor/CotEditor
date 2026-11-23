@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2015-2024 1024jp
+//  © 2015-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -33,7 +33,6 @@ struct CodeUnitTests {
         
         let character: UTF32.CodeUnit = 0xD83D
         
-        #expect(character.unicodeName == "<lead surrogate-D83D>")
         #expect(character.blockName == "High Surrogates")
         
         #expect(Unicode.Scalar(character) == nil)
