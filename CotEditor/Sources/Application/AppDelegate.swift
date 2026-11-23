@@ -327,7 +327,7 @@ extension Logger {
     /// Shows the What's New panel.
     @IBAction func showWhatsNew(_ sender: Any?) {
         
-        let panel = self.whatsNewPanel ?? NSPanel(view: WhatsNewView())
+        let panel = self.whatsNewPanel ?? NSPanel(view: WhatsNewView(), title: String(localized: "What’s New in CotEditor", table: "WhatsNew", comment: "window title"))
         self.whatsNewPanel = panel
         
         panel.makeKeyAndOrderFront(sender)
@@ -617,7 +617,7 @@ private extension NSPanel {
     /// - Parameters:
     ///   - view: The SwiftUI view.
     ///   - title: The window title mainly for the accessibility.
-    convenience init(view: some View, title: String? = nil) {
+    convenience init(view: some View, title: String) {
         
         let viewController = NSHostingController(rootView: view)
         viewController.safeAreaRegions = []
@@ -629,10 +629,7 @@ private extension NSPanel {
         self.titlebarAppearsTransparent = true
         self.hidesOnDeactivate = false
         self.setContentSize(viewController.view.intrinsicContentSize)
-        
-        if let title {
-            self.title = title
-        }
+        self.title = title
         
         self.center()
     }

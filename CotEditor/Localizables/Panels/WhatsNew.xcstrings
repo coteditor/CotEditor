@@ -1369,6 +1369,125 @@
         }
       }
     },
+    "What’s New in CotEditor" : {
+      "comment" : "window title",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Co je nového v CotEditoru"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Neue Funktionen in CotEditor"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "What’s New in CotEditor"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Novedades de CotEditor"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nouveautés de CotEditor"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CotEditor में नया क्या है"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A CotEditor újdonságai"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Novità di CotEditor"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CotEditorの新機能"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CotEditor의 새로운 기능"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nieuw in CotEditor"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Co nowego w CotEditorze"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Novidades do CotEditor"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Что нового в CotEditor"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CotEditor’deki Yenilikler"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Що нового в CotEditor"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CotEditor新功能"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CotEditor的新功能"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CotEditor的新功能"
+          }
+        }
+      }
+    },
     "What’s New in CotEditor %@" : {
       "comment" : "%@ is version number",
       "localizations" : {
@@ -1435,7 +1554,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Wat is er nieuw in CotEditor %@?"
+            "value" : "Nieuw in CotEditor %@"
           }
         },
         "pl" : {
@@ -1447,7 +1566,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Novidades no CotEditor %@"
+            "value" : "Novidades do CotEditor %@"
           }
         },
         "ru" : {
