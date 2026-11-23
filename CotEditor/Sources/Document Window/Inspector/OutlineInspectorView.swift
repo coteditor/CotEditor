@@ -447,8 +447,14 @@ private final class OutlineBuildNode {
         var items: [Item] = []
         var selection: Item.ID?
         var filterString: String = ""
-        var outlineNodes: [OutlineNode] = []
-        var outlineAllIDs: [OutlineItem.ID] = []
+        
+        var outlineNodes: [OutlineNode] {
+            
+            OutlineBuildNode.build(from: self.items).roots
+                .compactMap { $0.filteredNode(filter: self.filterString) }
+        }
+        
+        var outlineAllIDs: [OutlineItem.ID]  { self.items.map(\.id) }
     }
     
     @Previewable @State var model = MockedModel(items: [
