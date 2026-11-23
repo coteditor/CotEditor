@@ -616,9 +616,8 @@ private extension NSPanel {
     ///
     /// - Parameters:
     ///   - view: The SwiftUI view.
-    ///   - hidesTitleButtons: If `true`, the close/miniaturize/zoom buttons are hidden.
     ///   - title: The window title mainly for the accessibility.
-    convenience init(view: some View, hidesTitleButtons: Bool = false, title: String? = nil) {
+    convenience init(view: some View, title: String? = nil) {
         
         let viewController = NSHostingController(rootView: view)
         viewController.safeAreaRegions = []
@@ -630,15 +629,6 @@ private extension NSPanel {
         self.titlebarAppearsTransparent = true
         self.hidesOnDeactivate = false
         self.setContentSize(viewController.view.intrinsicContentSize)
-        if title == nil {
-            self.toolbar = NSToolbar()
-        }
-        
-        if hidesTitleButtons {
-            self.standardWindowButton(.closeButton)?.isHidden = true
-            self.standardWindowButton(.miniaturizeButton)?.isHidden = true
-            self.standardWindowButton(.zoomButton)?.isHidden = true
-        }
         
         if let title {
             self.title = title
