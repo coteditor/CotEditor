@@ -80,7 +80,7 @@ class RegexTextView: NSTextView {
         let characterIndex = String.Index(utf16Offset: range.lowerBound, in: self.string)
         
         // select inside of brackets
-        if let pairRange = self.string.rangeOfSymbolPair(at: characterIndex, candidates: [SymbolPair("(", ")"), SymbolPair("[", "]")], ignoring: SymbolPair("[", "]")) {
+        if let pairRange = self.string.rangeOfSymbolPair(at: characterIndex, candidates: [SymbolPair("(", ")"), SymbolPair("[", "]")], ignoring: SymbolPair("[", "]"), escapeCharacter: "\\") {
             return NSRange(pairRange, in: self.string)
         }
         
@@ -99,7 +99,7 @@ class RegexTextView: NSTextView {
             !stillSelectingFlag
         else { return }
         
-        self.highlightMatchingSymbol(candidates: [SymbolPair("(", ")"), SymbolPair("[", "]")], ignoring: SymbolPair("[", "]"))
+        self.highlightMatchingSymbol(candidates: [SymbolPair("(", ")"), SymbolPair("[", "]")], ignoring: SymbolPair("[", "]"), escapeCharacter: "\\")
     }
     
     

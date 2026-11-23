@@ -1,5 +1,14 @@
 # Change Log
 
+7.2.0 (unreleased)
+--------------------------
+
+### Fixes
+
+- [trivial] Fix an issue in the Find window where escaped parentheses and brackets, such as `\(`, were treated as pairs in a regular expression when highlighting the matching one or selecting the pair by double-clicking.
+
+
+
 7.2.0-rc (2026-11-21)
 --------------------------
 
