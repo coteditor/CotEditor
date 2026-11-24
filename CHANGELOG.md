@@ -3,6 +3,10 @@
 7.2.1 (unreleased)
 --------------------------
 
+### Fixes
+
+- Fix an issue in the file browser where the app could crash when a file or folder was added to a subfolder while filtering.
+
 
 
 7.2.0 (2026-11-24)

@@ -791,6 +791,7 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
             for item in expandedItems + selectedItems {
                 self.outlineView.expandItem(item)
             }
+            self.expandingNodes.removeAll()
             
             self.expandedItems = nil
             self.outlineView.autosaveExpandedItems = true
