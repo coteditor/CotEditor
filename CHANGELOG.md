@@ -6,6 +6,7 @@
 ### Fixes
 
 - Fix an issue in the file browser where the app could crash when a file or folder was added to a subfolder while filtering.
+- Fix an issue where the Copy File Path command didn’t copy the path as plain text so that it couldn’t be pasted as a path in some apps.
 
 
 
