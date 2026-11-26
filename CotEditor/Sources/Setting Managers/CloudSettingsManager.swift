@@ -37,6 +37,7 @@ enum CloudSettingsError: LocalizedError {
     case iCloudUnavailable
     case metadataQueryFailed
     case invalidArchiveURL
+    case archiveNotFound
     
     
     var errorDescription: String? {
@@ -52,6 +53,9 @@ enum CloudSettingsError: LocalizedError {
             case .invalidArchiveURL:
                 String(localized: "CloudSettingsError.invalidArchiveURL.description",
                        defaultValue: "Couldn’t access the selected settings copy.")
+            case .archiveNotFound:
+                String(localized: "CloudSettingsError.archiveNotFound.description",
+                       defaultValue: "Couldn’t find the settings copy in iCloud.")
         }
     }
 }
@@ -209,21 +213,34 @@ enum CloudSettingsError: LocalizedError {
                     archives = Dictionary(urls.map { ($0, archives[$0] ?? Archive(url: $0)) }, uniquingKeysWith: { $1 })
                     continuation.yield(Array(archives.values))
                     
-                    try await withThrowingTaskGroup(of: Archive.self) { group in
+                    try await withThrowingTaskGroup(of: (URL, Result<PortableSettingsDocument.Info, any Error>).self) { group in
                         for url in urls {
                             _ = group.addTaskUnlessCancelled {
                                 let infoURL = url.appending(component: PortableSettingsDocument.Info.filename)
-                                let info = try? await self.coordinate(intent: .readingIntent(with: infoURL, options: .withoutChanges),
-                                                                      body: PortableSettingsDocument.Info.init(contentsOf:))
-                                return Archive(url: url, info: info)
+                                let result = await Result {
+                                    try await self.coordinate(intent: .readingIntent(with: infoURL, options: .withoutChanges)) { infoURL in
+                                        // -> The metadata query can still list an archive that has already been deleted.
+                                        guard FileManager.default.fileExists(atPath: infoURL.deletingLastPathComponent().path) else {
+                                            throw CloudSettingsError.archiveNotFound
+                                        }
+                                        return try PortableSettingsDocument.Info(contentsOf: infoURL)
+                                    }
+                                }
+                                return (url, result)
                             }
                         }
-                        for try await archive in group {
+                        for try await (url, result) in group {
                             try Task.checkCancellation()
                             
-                            guard let info = archive.info, info != archives[archive.url]?.info else { continue }
-                            
-                            archives[archive.url] = archive
+                            switch result {
+                                case .success(let info):
+                                    guard info != archives[url]?.info else { continue }
+                                    archives[url] = Archive(url: url, info: info)
+                                case .failure(CloudSettingsError.archiveNotFound):
+                                    guard archives.removeValue(forKey: url) != nil else { continue }
+                                case .failure:
+                                    continue
+                            }
                             continuation.yield(Array(archives.values))
                         }
                     }
@@ -243,7 +260,7 @@ enum CloudSettingsError: LocalizedError {
     ///
     /// - Parameter fileURL: An archive URL received by `archives()`.
     /// - Returns: The settings snapshot read from the archive.
-    /// - Throws: An error if the URL is outside the settings directory, reading fails, or the operation is canceled.
+    /// - Throws: An error if the URL is outside the settings directory, the archive no longer exists, reading fails, or the operation is canceled.
     func load(from fileURL: URL) async throws -> PortableSettingsDocument {
         
         let directoryURL = try await Self.settingsDirectoryURL(containerURL: self.containerURL)
@@ -251,7 +268,9 @@ enum CloudSettingsError: LocalizedError {
         guard Self.isSettingsArchiveURL(fileURL, in: directoryURL) else { throw CloudSettingsError.invalidArchiveURL }
         
         return try await self.coordinate(intent: .readingIntent(with: fileURL, options: .withoutChanges)) { url in
-            try PortableSettingsDocument(contentsOf: url)
+            guard FileManager.default.fileExists(atPath: url.path) else { throw CloudSettingsError.archiveNotFound }
+            
+            return try PortableSettingsDocument(contentsOf: url)
         }
     }
     

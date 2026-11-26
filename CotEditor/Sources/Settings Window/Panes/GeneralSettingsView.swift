@@ -417,6 +417,9 @@ private struct SettingsImportMenu: View {
         switch result {
             case .success(let document):
                 self.importingSettings = document
+            case .failure(CloudSettingsError.archiveNotFound):
+                self.cloudArchives?.removeAll { $0.url == url }
+                self.error = CloudSettingsError.archiveNotFound
             case .failure(let error):
                 self.error = error
         }

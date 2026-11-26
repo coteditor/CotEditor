@@ -187,6 +187,23 @@ import Defaults
     }
     
     
+    /// Verifies that loading a copy deleted after being listed reports that it no longer exists.
+    ///
+    /// - Throws: An error if preparing or deleting the copy fails.
+    @Test func loadingDeletedCopyFails() async throws {
+        
+        let directoryURL = try FileManager.default.makeTemporaryDirectory()
+        defer { try? FileManager.default.removeItem(at: directoryURL) }
+        let manager = CloudSettingsManager(containerURL: directoryURL)
+        let fileURL = try self.writeArchive(PortableSettingsDocument(including: []), in: directoryURL)
+        try FileManager.default.removeItem(at: fileURL)
+        
+        await #expect(throws: CloudSettingsError.archiveNotFound) {
+            try await manager.load(from: fileURL)
+        }
+    }
+    
+    
     /// Verifies that canceled access neither reads an invalid copy nor deletes it.
     ///
     /// - Parameter deletes: Whether to delete rather than load the copy.
