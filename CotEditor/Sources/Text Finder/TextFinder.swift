@@ -488,7 +488,7 @@ struct FindMatchesCache {
             return cache.matches
         }
         
-        let matches = try await { @concurrent () async throws(CancellationError) -> [NSRange] in
+        let matches: [NSRange] = try await { @concurrent () async throws(CancellationError) in
             try textFind.matches
         }()
         

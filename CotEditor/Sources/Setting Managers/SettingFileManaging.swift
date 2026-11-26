@@ -445,7 +445,7 @@ extension SettingFileManaging {
     func invalidateUserSettings() async {
         
         self.cachedSettings.removeAll()
-        self.settingNames = await { @concurrent () async -> [String] in
+        self.settingNames = await { @concurrent () async in
             self.listAvailableSettings()
         }()
     }

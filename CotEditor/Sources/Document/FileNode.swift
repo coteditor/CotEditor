@@ -420,7 +420,7 @@ extension FileNode {
             // async read files in background
             if self.cachedChildren == nil {
                 do {
-                    let files = try await { @concurrent [fileURL = self.file.fileURL] () async throws -> [File] in
+                    let files: [File] = try await { @concurrent [fileURL = self.file.fileURL] () async throws in
                         try Self.readChildFiles(at: fileURL)
                     }()
                     

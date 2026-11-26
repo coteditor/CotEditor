@@ -117,7 +117,7 @@ import StringUtils
         let options = UserDefaults.standard.characterCountOptions
         self.entireCountTask = Task(priority: .utility) { [weak self] in
             try Task.checkCancellation()
-            let count = await { @concurrent () async -> Int? in
+            let count: Int? = await { @concurrent () async in
                 string.count(options: options)
             }()
             try Task.checkCancellation()
@@ -143,7 +143,7 @@ import StringUtils
         let options = UserDefaults.standard.characterCountOptions
         self.selectionCountTask = Task(priority: .utility) { [weak self] in
             try Task.checkCancellation()
-            let count = await { @concurrent () async -> Int? in
+            let count: Int? = await { @concurrent () async in
                 var count = 0
                 for string in strings {
                     guard let stringCount = string.count(options: options) else { return nil }

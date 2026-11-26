@@ -1686,7 +1686,7 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
         else { return }
         
         let selectedRange = self.selectedRange
-        let ranges = try await { @concurrent [string = self.string.immutable] () async throws(CancellationError) -> [NSRange] in
+        let ranges: [NSRange] = try await { @concurrent [string = self.string.immutable] () async throws(CancellationError) in
             try string.instanceRangesOfWord(at: selectedRange)
                 .filter { $0 != selectedRange }
         }()

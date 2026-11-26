@@ -446,7 +446,7 @@ enum CloudSettingsError: LocalizedError {
         let directoryURL = try await Self.settingsDirectoryURL(containerURL: self.containerURL)
         
         if self.containerURL != nil {
-            let urls = try await { @concurrent () async throws -> [URL] in
+            let urls: [URL] = try await { @concurrent () async throws in
                 do {
                     return try FileManager.default.contentsOfDirectory(at: directoryURL, includingPropertiesForKeys: nil)
                 } catch CocoaError.fileReadNoSuchFile {

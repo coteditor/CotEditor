@@ -260,7 +260,7 @@ private extension IncompatibleCharactersView.Model {
                 }
             }
             
-            let items = try await { @concurrent () async throws(CancellationError) -> [Item] in
+            let items: [Item] = try await { @concurrent () async throws(CancellationError) in
                 try string.charactersIncompatible(with: encoding)
             }()
             

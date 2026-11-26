@@ -214,7 +214,9 @@ import Network
         guard self.isConnected else { throw URLError(.networkConnectionLost) }
         
         let id = UUID()
-        let task = Task { @concurrent [connection] in try await connection.send(message.encoded()) }
+        let task = Task { @concurrent [connection] in
+            try await connection.send(message.encoded())
+        }
         self.sendTasks[id] = task
         defer { self.sendTasks[id] = nil }
         

@@ -175,7 +175,7 @@ import TextFind
         
         self.searchTask = Task { [weak self] in
             do {
-                let summary = try await { @concurrent () async throws -> FolderFind.Summary in
+                let summary: FolderFind.Summary = try await { @concurrent () async throws in
                     var search = try Search(rootURL: rootURL, pattern: pattern, options: options, progress: progress) { candidate in
                         syntaxMappingTable.syntaxName(forFilename: candidate.fileURL.lastPathComponent) != nil
                     }
