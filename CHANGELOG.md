@@ -3,6 +3,11 @@
 7.2.1 (unreleased)
 --------------------------
 
+### Improvements
+
+- Update tree-sitter-scala to 0.26.14.
+
+
 ### Fixes
 
 - Fix an issue in the file browser where the app could crash when a file or folder was added to a subfolder while filtering.
