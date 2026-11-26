@@ -188,8 +188,7 @@ struct PatternSortView: View {
     /// Validates the current sort pattern and applies the result to the view.
     ///
     /// - Returns: Whether the sort pattern is valid.
-    @discardableResult
-    private func validate() -> Bool {
+    @discardableResult private func validate() -> Bool {
         
         self.attributedSampleLine.backgroundColor = nil
         
