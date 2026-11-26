@@ -231,17 +231,17 @@ private struct FindPanelFieldAccessoryView: View {
     
     var body: some View {
         
-        if !self.text.isEmpty {
-            HStack(alignment: .firstTextBaseline, spacing: 4) {
-                if let result {
-                    Text(result)
-                        .monospacedDigit()
-                        .padding(.horizontal, 2)
-                        .foregroundStyle(.tertiary)
-                        .background(.background)
-                        .clipShape(.rect(cornerRadius: 2))
-                }
-                
+        HStack(alignment: .firstTextBaseline, spacing: 4) {
+            if let result {
+                Text(result)
+                    .monospacedDigit()
+                    .padding(.horizontal, 2)
+                    .foregroundStyle(.tertiary)
+                    .background(.background)
+                    .clipShape(.rect(cornerRadius: 2))
+            }
+            
+            if !self.text.isEmpty {
                 Button(.init("Clear", table: "TextFind", comment: "verb; button"), systemImage: "xmark") {
                     self.text = ""
                 }
@@ -249,9 +249,9 @@ private struct FindPanelFieldAccessoryView: View {
                 .buttonStyle(.borderless)
                 .labelStyle(.iconOnly)
             }
-            .controlSize(.small)
-            .padding(5)
         }
+        .controlSize(.small)
+        .padding(5)
     }
 }
 
