@@ -29,6 +29,8 @@ import RMate
 
 struct IntegrationSettingsView: View {
     
+    @Namespace private var accessibility
+    
     @AppStorage(.enablesRemoteEditing) private var enablesRemoteEditing: Bool
     @AppStorage(.remoteEditingPort) private var remoteEditingPort: Int
     
@@ -76,17 +78,26 @@ struct IntegrationSettingsView: View {
                     .gridColumnAlignment(.trailing)
                 
                 VStack(alignment: .leading) {
-                    Toggle(.init("Accept rmate connections", table: "IntegrationSettings", comment: "verb; checkbox; rmate is a remote connection protocol"), isOn: $enablesRemoteEditing)
+                    Toggle(isOn: $enablesRemoteEditing) {
+                        Text("Accept rmate connections", tableName: "IntegrationSettings", comment: "verb; checkbox; rmate is a remote connection protocol")
+                        Text(AttributedString(localized: "Allow remote files to be opened in CotEditor using the `rmate` protocol.", table: "IntegrationSettings")
+                            .replacingAttributes(AttributeContainer.inlinePresentationIntent(.code),
+                                                 with: AttributeContainer
+                                .inlinePresentationIntent(.code)
+                                .link(URL(string: "help:anchor=howto_edit_remote%20bookID=com.coteditor.CotEditor.help")!)))
+                        .tint(.accentColor)
+                    }
                     
                     HStack {
                         Text("Port:", tableName: "IntegrationSettings")
                             .foregroundStyle(self.enablesRemoteEditing ? .primary : .tertiary)
-                            .accessibilityHidden(true)
-                        TextField(.init("Port:", table: "IntegrationSettings"),
-                                  value: $remoteEditingPort, format: .number.grouping(.never),
-                                  prompt: Text(RMateServer.defaultPort, format: .number.grouping(.never)))
+                            .accessibilityLabeledPair(role: .label, id: "port", in: self.accessibility)
+                        TextField(value: $remoteEditingPort, format: .number.grouping(.never),
+                                  prompt: Text(RMateServer.defaultPort, format: .number.grouping(.never)),
+                                  label: EmptyView.init)
                         .disabled(!self.enablesRemoteEditing)
                         .labelsVisibility(.hidden)
+                        .accessibilityLabeledPair(role: .content, id: "port", in: self.accessibility)
                         .frame(width: 80)
                         
                         if let message = RemoteEditingController.shared.errorMessage {
@@ -98,19 +109,6 @@ struct IntegrationSettingsView: View {
                     }
                     .frame(minHeight: 28)
                     .padding(.leading, 20)
-                    
-                    let description = AttributedString(localized: "Allow remote files to be opened in CotEditor using the `rmate` protocol.",
-                                                       table: "IntegrationSettings")
-                        .replacingAttributes(AttributeContainer.inlinePresentationIntent(.code),
-                                             with: AttributeContainer
-                            .inlinePresentationIntent(.code)
-                            .link(URL(string: "help:anchor=howto_edit_remote%20bookID=com.coteditor.CotEditor.help")!))
-                    Text(description)
-                        .foregroundStyle(.secondary)
-                        .tint(.accentColor)
-                        .controlSize(.small)
-                        .fixedSize(horizontal: false, vertical: true)
-                        .padding(.leading, 20)
                 }
             }
             
