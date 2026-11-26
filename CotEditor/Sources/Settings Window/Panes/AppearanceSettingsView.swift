@@ -208,7 +208,7 @@ private struct FontSettingView: View {
                                               table: "AppearanceSettings", comment: "accessibility label for font size"))
                     .labelsHidden()
                     .padding(.leading, -4)
-                FontPicker(.init("Select…", table: "AppearanceSettings", comment: "verb; button; opens the font picker"), selection: self.font)
+                FontPicker(.init("Action.select.ellipsis.label", defaultValue: "Select…"), selection: self.font)
             }
             HStack {
                 Toggle(.init("Antialias", table: "AppearanceSettings", comment: "verb; checkbox"), isOn: $antialias)

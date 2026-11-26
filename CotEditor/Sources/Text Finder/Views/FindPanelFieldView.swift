@@ -242,7 +242,7 @@ private struct FindPanelFieldAccessoryView: View {
             }
             
             if !self.text.isEmpty {
-                Button(.init("Clear", table: "TextFind", comment: "verb; button"), systemImage: "xmark") {
+                Button(.init("Action.clear.label", defaultValue: "Clear"), systemImage: "xmark") {
                     self.text = ""
                 }
                 .symbolVariant(.circle.fill)
