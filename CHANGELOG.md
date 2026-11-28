@@ -13,6 +13,7 @@
 - Fix an issue in the file browser where the app could crash when a file or folder was added to a subfolder while filtering.
 - Fix an issue where the replacement result in the Find window did not appear when the replacement text is empty.
 - Fix an issue where the Copy File Path command didn’t copy the path as plain text so that it couldn’t be pasted as a path in some apps.
+- Fix an issue where editing a mode in Settings could reset the indent width of documents that had switched modes.
 - Fix an issue on CotEditor 7.2.0 where the import menu in the General settings pane could still list settings copies that had already been deleted from iCloud.
 
 

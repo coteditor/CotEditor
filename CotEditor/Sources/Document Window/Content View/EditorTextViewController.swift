@@ -135,6 +135,10 @@ final class EditorTextViewController: NSViewController, NSServicesMenuRequestor,
         super.viewDidLoad()
         
         let defaults = UserDefaults.standard
+        
+        // -> Apply only when the indent options of the document's mode change, as `.modes` holds the settings of all modes.
+        var indentOptions = ModeManager.shared.setting(for: self.document.mode).indentOptions
+        
         self.observers = [
             // apply user settings to the text view
             defaults.publisher(for: .lineHeight, initial: true)
@@ -146,10 +150,13 @@ final class EditorTextViewController: NSViewController, NSServicesMenuRequestor,
             defaults.publisher(for: .autoExpandTab, initial: true)
                 .filter { [document] _ in ModeManager.shared.setting(for: document.mode).indentOptions == nil }
                 .assign(to: \.isAutomaticTabExpansionEnabled, on: self.textView),
-            defaults.publisher(for: .modes, initial: true)
+            defaults.publisher(for: .modes)
                 .map { [document] _ in ModeManager.shared.setting(for: document.mode).indentOptions }
-                .removeDuplicates()
-                .sink { [textView] options in textView.applyIndentOptions(options) },
+                .sink { [textView] options in
+                    guard options != indentOptions else { return }
+                    indentOptions = options
+                    textView.applyIndentOptions(options)
+                },
             defaults.publisher(for: .autoIndent, initial: true)
                 .assign(to: \.isAutomaticIndentEnabled, on: self.textView),
             defaults.publisher(for: .trimsWhitespaceOnlyLines, initial: true)
@@ -223,7 +230,9 @@ final class EditorTextViewController: NSViewController, NSServicesMenuRequestor,
             Task { [textView, document] in
                 // skip the mode already applied above so as not to override the editor states set afterward
                 for await modeName in Observations({ document.mode }).drop(while: { $0 == mode }) {
-                    textView.applyMode(ModeManager.shared.setting(for: modeName))
+                    let setting = ModeManager.shared.setting(for: modeName)
+                    indentOptions = setting.indentOptions
+                    textView.applyMode(setting)
                 }
             },
         ]
